@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,9 +56,8 @@
 			<form class="search-form d-flex align-items-center" method="POST" action="#">
 				<!--         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button> -->
-				<a href="page-code-list.html" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 관리</span>
-				</a>
-				<a href="page-codeGroup-list.html" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 그룹 관리</span>
+				<a href="page-code-list.html" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span>
+				</a> <a href="page-codeGroup-list.html" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span>
 				</a>
 			</form>
 		</div>
@@ -81,8 +80,7 @@
 				<!-- End Search Icon-->
 
 				<li class="nav-item dropdown"><a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown"> <i class="bi bi-bell"></i> <span class="badge bg-primary badge-number">4</span>
-				</a>
-				<!-- End Notification Icon -->
+				</a> <!-- End Notification Icon -->
 
 					<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
 						<li class="dropdown-header">You have 4 new notifications <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
@@ -136,13 +134,11 @@
 						</li>
 						<li class="dropdown-footer"><a href="#">Show all notifications</a></li>
 
-					</ul>
-					<!-- End Notification Dropdown Items --></li>
+					</ul> <!-- End Notification Dropdown Items --></li>
 				<!-- End Notification Nav -->
 
 				<li class="nav-item dropdown"><a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown"> <i class="bi bi-chat-left-text"></i> <span class="badge bg-success badge-number">3</span>
-				</a>
-				<!-- End Messages Icon -->
+				</a> <!-- End Messages Icon -->
 
 					<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
 						<li class="dropdown-header">You have 3 new messages <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
@@ -186,13 +182,11 @@
 
 						<li class="dropdown-footer"><a href="#">Show all messages</a></li>
 
-					</ul>
-					<!-- End Messages Dropdown Items --></li>
+					</ul> <!-- End Messages Dropdown Items --></li>
 				<!-- End Messages Nav -->
 
 				<li class="nav-item dropdown pe-3"><a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown"> <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-				</a>
-				<!-- End Profile Iamge Icon -->
+				</a> <!-- End Profile Iamge Icon -->
 
 					<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 						<li class="dropdown-header">
@@ -223,8 +217,7 @@
 						<li><a class="dropdown-item d-flex align-items-center" href="#"> <i class="bi bi-box-arrow-right"></i> <span>Sign Out</span>
 						</a></li>
 
-					</ul>
-					<!-- End Profile Dropdown Items --></li>
+					</ul> <!-- End Profile Dropdown Items --></li>
 				<!-- End Profile Nav -->
 
 			</ul>
@@ -363,12 +356,12 @@
 	<main id="main" class="main">
 
 		<div class="pagetitle">
-			<h1>코드 그룹 관리</h1>
+			<h1>코드 관리</h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-					<li class="breadcrumb-item active">코드 그룹 목록</li>
-					<li class="breadcrumb-item"><a href="page-code-list.html">코드 그룹 관리</a></li>
+					<li class="breadcrumb-item active">코드 목록</li>
+					<li class="breadcrumb-item"><a href="page-code-list.html">코드 관리</a></li>
 				</ol>
 			</nav>
 		</div>
@@ -381,11 +374,13 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="row mt-3 mb-3">
-							<div class="container" style="clear: both;">
-							<div class="d-flex p-2">
+								<div class="container" style="clear: both;">
+									<div class="d-flex p-2">
 										<select class="form-select m-1">
 											<option selected>검색조건 1</option>
 											<option value="1">코드 그룹 코드</option>
+											<option value="2">코드</option>
+											<option value="3">사용</option>
 											<option value="4">등록일</option>
 											<option value="5">수정일</option>
 										</select>
@@ -393,6 +388,8 @@
 										<select class="form-select m-1">
 											<option selected>검색조건 2</option>
 											<option value="1">코드 그룹 코드</option>
+											<option value="2">코드</option>
+											<option value="3">사용</option>
 											<option value="4">등록일</option>
 											<option value="5">수정일</option>
 										</select>
@@ -400,6 +397,17 @@
 										<select class="form-select m-1">
 											<option selected>검색조건 3</option>
 											<option value="1">코드 그룹 코드</option>
+											<option value="2">코드</option>
+											<option value="3">사용</option>
+											<option value="4">등록일</option>
+											<option value="5">수정일</option>
+										</select>
+										<input class="form-control m-1" type="search" placeholder="키워드">
+										<select class="form-select m-1">
+											<option selected>검색조건 4</option>
+											<option value="1">코드 그룹 코드</option>
+											<option value="2">코드</option>
+											<option value="3">사용</option>
 											<option value="4">등록일</option>
 											<option value="5">수정일</option>
 										</select>
@@ -410,73 +418,83 @@
 											</button>
 										</div>
 									</div>
-		<div class="row">
-			<table class="table table-light table-hover" id="userList">
-				<thead>
-					<tr class="table">
-						<th scope="col"><input class="form-check-input" type="checkbox" name="flexCheck" onclick="selectAll(this);"></th>
-						<th scope="col">No</th>
-						<th scope="col">코드 그룹 코드</th>
-						<th scope="col">코드 그룹 이름 (한글)</th>
-						<th scope="col">코드 그룹 이름 (영문)</th>
-						<th scope="col">코드 수량</th>
-						<th scope="col">등록일</th>
-						<th scope="col">수정일</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr style="cursor: pointer;">
-						<th scope="col" onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></th>
-						<th scope="col">1</th>
-						<td>1</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-		<div class="container">
-		<div class="row">
-			<div class="col">
-				<button type="button" class="btn btn-outline-danger m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-					<i class="fa-solid fa-circle-minus"></i> 삭제
-				</button>
+									<div class="row">
+										<table class="table table-light table-hover" id="userList">
+											<thead>
+												<tr class="table">
+													<th scope="col"><input class="form-check-input" type="checkbox" name="flexCheck" onclick="selectAll(this);"></th>
+													<th scope="col">No</th>
+													<th scope="col">코드 그룹 코드</th>
+													<th scope="col">코드 그룹 코드 이름 (한글)</th>
+													<th scope="col">코드</th>
+													<th scope="col">대체 코드</th>
+													<th scope="col">코드 이름 (한글)</th>
+													<th scope="col">코드 이름 (영문)</th>
+													<th scope="col">사용</th>
+													<th scope="col">순서</th>
+													<th scope="col">등록일</th>
+													<th scope="col">수정일</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach items="${list}" var="list" varStatus="status">
+													<tr style="cursor: pointer;">
+														<th scope="col" onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></th>
+														<th scope="col"><c:out value="${list.CCseq }"/></th>
+														<td><c:out value="${list.CCGseq}"/></td>
+														<td><c:out value="${list.CCGgroupName}"/></td>
+														<td><c:out value="${list.CCGseqChar}"/></td>
+														<td></td>
+														<td><c:out value="${list.CCcodeName}"/></td>
+														<td><c:out value="${list.CCcodeNameEng}"/></td>
+														<td><c:out value="${list.CCuseYn}"/></td>
+														<td><c:out value="${list.CCsort}"/></td>
+														<td><c:out value="${list.CCregDate}"/></td>
+														<td><c:out value="${list.CCmodDate}"/></td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="container">
+									<div class="row">
+										<div class="col">
+											<button type="button" class="btn btn-outline-danger m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+												<i class="fa-solid fa-circle-minus"></i> 삭제
+											</button>
 
-				<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="staticBackdropLabel">데이터 삭제 경고알림</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body">정말 삭제하시겠습니까?</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary" onclick="location.href='./memberList.html'">Yes</button>
-								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+											<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="staticBackdropLabel">데이터 삭제 경고알림</h5>
+															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+														</div>
+														<div class="modal-body">정말 삭제하시겠습니까?</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-primary" onclick="location.href='./memberList.html'">Yes</button>
+															<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col d-flex justify-content-end">
+											<button type="button" class="btn btn-outline-success m-2" onclick="location.href='./memberReg.html'">
+												<i class="fa-solid fa-circle-plus"></i> 추가
+											</button>
+
+											<button type="button" class="btn btn-outline-warning m-2">
+												<i class="fa-solid fa-pen-to-square"></i> 수정
+											</button>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col d-flex justify-content-end">
-				<button type="button" class="btn btn-outline-success m-2" onclick="location.href='./memberReg.html'">
-					<i class="fa-solid fa-circle-plus"></i> 추가
-				</button>
-				
-				<button type="button" class="btn btn-outline-warning m-2">
-					<i class="fa-solid fa-pen-to-square"></i> 수정
-				</button>
-			</div>
-		</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</section>
 
 	</main>

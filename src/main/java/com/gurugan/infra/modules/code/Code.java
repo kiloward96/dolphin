@@ -1,9 +1,8 @@
-package com.gurugan.infra.modules.codegroup;
+package com.gurugan.infra.modules.code;
 
 import java.util.Date;
 
-public class CodeGroup {
-	
+public class Code {
 	private String CCseq;
 	private String CCseqChar;
 	private String CCcodeName;
@@ -14,8 +13,6 @@ public class CodeGroup {
 	private Integer CCdelYn;
 	private Date CCdelDate;
 	private Date CCmodDate;
-	private Integer CCcount;
-	
 	
 	private String CCGseq;
 	private String CCGseqChar;
@@ -23,20 +20,6 @@ public class CodeGroup {
 	private String CCGgroupNameEng;
 	private Integer CCGuseYn;
 	private Date CCGregDate;
-	private Date CCGdelDate;
-	
-	public Integer getCCcount() {
-		return CCcount;
-	}
-	public void setCCcount(Integer cCcount) {
-		CCcount = cCcount;
-	}
-	public Date getCCGdelDate() {
-		return CCGdelDate;
-	}
-	public void setCCGdelDate(Date cCGdelDate) {
-		CCGdelDate = cCGdelDate;
-	}
 	public String getCCseq() {
 		return CCseq;
 	}
@@ -133,4 +116,6 @@ public class CodeGroup {
 	public void setCCGregDate(Date cCGregDate) {
 		CCGregDate = cCGregDate;
 	}
+	
+
 }

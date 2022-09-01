@@ -4,21 +4,20 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.gurugan.infra.modules.codegroup.CodeGroupMapper">
+<mapper namespace="com.gurugan.infra.modules.code.CodeMapper">
 
-    <resultMap id="resultMapObj" type="com.gurugan.infra.modules.codegroup.CodeGroup"></resultMap>
+    <resultMap id="resultMapObj" type="com.gurugan.infra.modules.code.Code"></resultMap>
 	
 	<select id="selectList" resultMap="resultMapObj">
-<!-- 	SELECT
+	SELECT
 		CC.seq as CCseq
 		,CC.seqChar as CCseqChar
-		,count(CC.commonCodeGroup_seq) as CCcount
 		,CC.codeName as CCcodeName
 		,CC.codeNameEng as CCcodeNameEng
 		,CC.useYn as CCuseYn
 		,CC.sort as CCsort
 		,CC.regDate as CCregDate
-		,CC.delYn as CCdelYn
+
 		,CC.delDate as CCdelDate
 		,CC.modDate as CCmodDate
 		,CCG.seq as CCGseq
@@ -31,24 +30,9 @@
 		,CCG.delDate as CCGdelDate
 	FROM commonCode CC
 	LEFT JOIN commonCodeGroup CCG on CC.commonCodeGroup_seq = CCG.seq
-	WHERE 1=1
+    WHERE 1=1
 		AND CC.delYn = 0
-	    AND CCG.delYn = 0
-	GROUP BY CCG.groupName; -->
-	
-	SELECT
-		CCG.seq as CCGseq
-		,CCG.seqChar as CCGseqChar
-		,CCG.groupName as CCGgroupName
-		,CCG.groupNameEng as CCGgroupNameEng
-		,CCG.useYn as CCGuseYn
-		,CCG.regDate as CCGregDate
-		,CCG.delYn as CCGdelYn
-		,CCG.delDate as CCGdelDate
-        ,(select count(CC.seq) from commonCode CC where 1=1 and CC.delYn=0 and CC.commonCodeGroup_seq = CCG.seq AND CC.delYn = 0) as CCcount
-	FROM commonCodeGroup CCG
-	WHERE 1=1
-		AND CCG.delYn = 0;
+        AND CCG.delYn = 0;
 	</select>
 
 </mapper>	
