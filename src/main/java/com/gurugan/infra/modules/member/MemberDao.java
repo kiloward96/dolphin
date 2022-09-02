@@ -1,4 +1,4 @@
-package com.gurugan.infra.modules.code;
+package com.gurugan.infra.modules.member;
 
 import java.util.List;
 
@@ -8,18 +8,16 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
-public class CodeDao {
+public class MemberDao {
 
 	@Inject
 	@Resource(name = "sqlSession")
 	private SqlSession sqlSession;
 
-	private static String namespace = "com.gurugan.infra.modules.code.CodeMapper";
+	private static String namespace = "com.gurugan.infra.modules.member.MemberMapper";
 
-	public List<Code> selectList() {
+	public List<Member> selectList() {
 		return sqlSession.selectList(namespace + ".selectList", "");
 	}
-	
 }

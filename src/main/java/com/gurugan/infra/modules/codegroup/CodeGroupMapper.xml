@@ -48,7 +48,13 @@
         ,(select count(CC.seq) from commonCode CC where 1=1 and CC.delYn=0 and CC.commonCodeGroup_seq = CCG.seq AND CC.delYn = 0) as CCcount
 	FROM commonCodeGroup CCG
 	WHERE 1=1
-		AND CCG.delYn = 0;
+		<!-- <if test="shDelYn != null and !shDelYn.equals('')">AND CCG.delYn = #{shDelYn}</if> -->
+		AND CCG.delYn = 0
+		<choose>
+			<when test="shOption == 1">AND CCG.seq = #{shValue}</when>
+			<when test="shOption == 2">AND CCG.seqChar LIKE CONCAT ('%',#{shValue},'%')</when>
+			<when test="shOption == 3">AND CCG.groupName LIKE CONCAT ('%',#{shValue},'%')</when>
+		</choose>
 	</select>
 
 </mapper>	

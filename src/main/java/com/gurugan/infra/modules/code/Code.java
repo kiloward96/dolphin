@@ -20,6 +20,8 @@ public class Code {
 	private String CCGgroupNameEng;
 	private Integer CCGuseYn;
 	private Date CCGregDate;
+	
+	
 	public String getCCseq() {
 		return CCseq;
 	}

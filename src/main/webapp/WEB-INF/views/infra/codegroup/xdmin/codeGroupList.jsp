@@ -1,7 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,8 +59,7 @@
 				<!--         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button> -->
 				<a href="page-code-list.html" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 관리</span>
-				</a>
-				<a href="page-codeGroup-list.html" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 그룹 관리</span>
+				</a> <a href="page-codeGroup-list.html" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 그룹 관리</span>
 				</a>
 			</form>
 		</div>
@@ -81,8 +82,7 @@
 				<!-- End Search Icon-->
 
 				<li class="nav-item dropdown"><a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown"> <i class="bi bi-bell"></i> <span class="badge bg-primary badge-number">4</span>
-				</a>
-				<!-- End Notification Icon -->
+				</a> <!-- End Notification Icon -->
 
 					<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
 						<li class="dropdown-header">You have 4 new notifications <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
@@ -136,13 +136,11 @@
 						</li>
 						<li class="dropdown-footer"><a href="#">Show all notifications</a></li>
 
-					</ul>
-					<!-- End Notification Dropdown Items --></li>
+					</ul> <!-- End Notification Dropdown Items --></li>
 				<!-- End Notification Nav -->
 
 				<li class="nav-item dropdown"><a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown"> <i class="bi bi-chat-left-text"></i> <span class="badge bg-success badge-number">3</span>
-				</a>
-				<!-- End Messages Icon -->
+				</a> <!-- End Messages Icon -->
 
 					<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
 						<li class="dropdown-header">You have 3 new messages <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
@@ -186,13 +184,11 @@
 
 						<li class="dropdown-footer"><a href="#">Show all messages</a></li>
 
-					</ul>
-					<!-- End Messages Dropdown Items --></li>
+					</ul> <!-- End Messages Dropdown Items --></li>
 				<!-- End Messages Nav -->
 
 				<li class="nav-item dropdown pe-3"><a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown"> <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-				</a>
-				<!-- End Profile Iamge Icon -->
+				</a> <!-- End Profile Iamge Icon -->
 
 					<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 						<li class="dropdown-header">
@@ -223,8 +219,7 @@
 						<li><a class="dropdown-item d-flex align-items-center" href="#"> <i class="bi bi-box-arrow-right"></i> <span>Sign Out</span>
 						</a></li>
 
-					</ul>
-					<!-- End Profile Dropdown Items --></li>
+					</ul> <!-- End Profile Dropdown Items --></li>
 				<!-- End Profile Nav -->
 
 			</ul>
@@ -381,105 +376,116 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="row mt-3 mb-3">
-							<div class="container" style="clear: both;">
-							<div class="d-flex p-2">
-										<select class="form-select m-1">
-											<option selected>검색조건 1</option>
-											<option value="1">코드 그룹 코드</option>
-											<option value="4">등록일</option>
-											<option value="5">수정일</option>
-										</select>
-										<input class="form-control m-1" type="search" placeholder="키워드">
-										<select class="form-select m-1">
-											<option selected>검색조건 2</option>
-											<option value="1">코드 그룹 코드</option>
-											<option value="4">등록일</option>
-											<option value="5">수정일</option>
-										</select>
-										<input class="form-control m-1" type="search" placeholder="키워드">
-										<select class="form-select m-1">
-											<option selected>검색조건 3</option>
-											<option value="1">코드 그룹 코드</option>
-											<option value="4">등록일</option>
-											<option value="5">수정일</option>
-										</select>
-										<input class="form-control m-1" type="search" placeholder="키워드">
-										<div class="col m-1" style="line-height: 10px;">
-											<button class="btn btn-primary" type="submit" style="width: 120px;">
-												<i class="fa-brands fa-searchengin"></i> 통합검색
+								<div class="container" style="clear: both;">
+									<div class="d-flex p-2">
+										<form method="post" action="/codeGroup/codeGroupList">
+											<select class="form-select m-1" id="shOption" name="shOption">
+												<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색조건 1</option>
+												<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드 번호</option>
+												<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 코드</option>
+												<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 명</option>
+											</select>
+											<input class="form-control m-1" type="search" id="shValue" name="shValue" value="<c:if test="${vo.shValue}"/>" placeholder="키워드">
+											<!-- <select class="form-select m-1">
+												<option selected>검색조건 2</option>
+												<option value="1">코드 그룹 코드</option>
+												<option value="2">등록일</option>
+												<option value="3">수정일</option>
+											</select>
+											<input class="form-control m-1" type="search" placeholder="키워드">
+											<select class="form-select m-1">
+												<option selected>검색조건 3</option>
+												<option value="1">코드 그룹 코드</option>
+												<option value="2">등록일</option>
+												<option value="3">수정일</option>
+											</select> -->
+											<!-- <input class="form-control m-1" type="search" placeholder="키워드"> -->
+											<div class="col m-1" style="line-height: 10px;">
+												<button class="btn btn-primary" type="submit" style="width: 120px;">
+													<i class="fa-brands fa-searchengin"></i> 통합검색
+												</button>
+											</div>
+										</form>
+									</div>
+
+									<div class="row">
+										<table class="table table-light table-hover" id="userList">
+											<thead>
+												<tr class="table">
+													<th scope="col"><input class="form-check-input" type="checkbox" name="flexCheck" onclick="selectAll(this);"></th>
+													<th scope="col">No</th>
+													<th scope="col">코드 그룹 코드</th>
+													<th scope="col">코드 그룹 이름 (한글)</th>
+													<th scope="col">코드 그룹 이름 (영문)</th>
+													<th scope="col">코드 수량</th>
+													<th scope="col">등록일</th>
+													<th scope="col">수정일</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:choose>
+													<c:when test="${fn:length(list) eq 0}">
+														<tr>
+															<td class="text-center" colspan="12">데이터가 없습니다.</td>
+													</c:when>
+													<c:otherwise>
+														<c:forEach items="${list}" var="list" varStatus="status">
+															<tr style="cursor: pointer;">
+																<th scope="col" onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></th>
+																<th scope="col"><c:out value="${list.CCGseq }" /></th>
+																<td><c:out value="${list.CCGseqChar}" /> <br></td>
+																<td><c:out value="${list.CCGgroupName}" /> <br></td>
+																<td><c:out value="${list.CCGgroupNameEng}" /> <br></td>
+																<td><c:out value="${list.CCcount}" /> <br></td>
+																<td><fmt:formatDate value="${list.CCGregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+																<td><fmt:formatDate value="${list.CCGregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+																<br>
+															</tr>
+														</c:forEach>
+													</c:otherwise>
+												</c:choose>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="container">
+									<div class="row">
+										<div class="col">
+											<button type="button" class="btn btn-outline-danger m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+												<i class="fa-solid fa-circle-minus"></i> 삭제
+											</button>
+
+											<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="staticBackdropLabel">데이터 삭제 경고알림</h5>
+															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+														</div>
+														<div class="modal-body">정말 삭제하시겠습니까?</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-primary" onclick="location.href='./memberList.html'">Yes</button>
+															<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col d-flex justify-content-end">
+											<button type="button" class="btn btn-outline-success m-2" onclick="location.href='./memberReg.html'">
+												<i class="fa-solid fa-circle-plus"></i> 추가
+											</button>
+
+											<button type="button" class="btn btn-outline-warning m-2">
+												<i class="fa-solid fa-pen-to-square"></i> 수정
 											</button>
 										</div>
 									</div>
-		<div class="row">
-			<table class="table table-light table-hover" id="userList">
-				<thead>
-					<tr class="table">
-						<th scope="col"><input class="form-check-input" type="checkbox" name="flexCheck" onclick="selectAll(this);"></th>
-						<th scope="col">No</th>
-						<th scope="col">코드 그룹 코드</th>
-						<th scope="col">코드 그룹 이름 (한글)</th>
-						<th scope="col">코드 그룹 이름 (영문)</th>
-						<th scope="col">코드 수량</th>
-						<th scope="col">등록일</th>
-						<th scope="col">수정일</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${list}" var="list" varStatus="status">
-					<tr style="cursor: pointer;">
-						<th scope="col" onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></th>
-						<th scope="col"><c:out value="${list.CCGseq }"/></th>
-						<td><c:out value="${list.CCGseqChar}"/><br></td>
-						<td><c:out value="${list.CCGgroupName}"/><br></td>
-						<td><c:out value="${list.CCGgroupNameEng}"/><br></td>
-						<td><c:out value="${list.CCcount}"/><br></td>
-						<td><c:out value="${list.CCGregDate}"/><br></td>
-						<td><c:out value="${list.CCGdelDate}"/><br></td>
-						<br>
-					</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-	</div>
-		<div class="container">
-		<div class="row">
-			<div class="col">
-				<button type="button" class="btn btn-outline-danger m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-					<i class="fa-solid fa-circle-minus"></i> 삭제
-				</button>
-
-				<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="staticBackdropLabel">데이터 삭제 경고알림</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body">정말 삭제하시겠습니까?</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary" onclick="location.href='./memberList.html'">Yes</button>
-								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col d-flex justify-content-end">
-				<button type="button" class="btn btn-outline-success m-2" onclick="location.href='./memberReg.html'">
-					<i class="fa-solid fa-circle-plus"></i> 추가
-				</button>
-				
-				<button type="button" class="btn btn-outline-warning m-2">
-					<i class="fa-solid fa-pen-to-square"></i> 수정
-				</button>
-			</div>
-		</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</section>
 
 	</main>
@@ -503,17 +509,17 @@
 	<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 	<!-- Vendor JS Files -->
-	<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-	<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="assets/vendor/chart.js/chart.min.js"></script>
-	<script src="assets/vendor/echarts/echarts.min.js"></script>
-	<script src="assets/vendor/quill/quill.min.js"></script>
-	<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-	<script src="assets/vendor/tinymce/tinymce.min.js"></script>
-	<script src="assets/vendor/php-email-form/validate.js"></script>
+	<script src="/resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
+	<script src="/resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/resources/assets/vendor/chart.js/chart.min.js"></script>
+	<script src="/resources/assets/vendor/echarts/echarts.min.js"></script>
+	<script src="/resources/assets/vendor/quill/quill.min.js"></script>
+	<script src="/resources/assets/vendor/simple-datatables/simple-datatables.js"></script>
+	<script src="/resources/assets/vendor/tinymce/tinymce.min.js"></script>
+	<script src="/resources/assets/vendor/php-email-form/validate.js"></script>
 
 	<!-- Template Main JS File -->
-	<script src="assets/js/main.js"></script>
+	<script src="/resources/assets/js/main.js"></script>
 
 </body>
 
