@@ -5,15 +5,7 @@ import java.util.Date;
 public class CodeGroup {
 	
 	private String CCseq;
-	private String CCseqChar;
-	private String CCcodeName;
-	private String CCcodeNameEng;
-	private Integer CCuseYn;
-	private Integer CCsort;
-	private Date CCregDate;
 	private Integer CCdelYn;
-	private Date CCdelDate;
-	private Date CCmodDate;
 	private Integer CCcount;
 	
 	
@@ -24,60 +16,13 @@ public class CodeGroup {
 	private Integer CCGuseYn;
 	private Date CCGregDate;
 	private Date CCGdelDate;
-	
-	public Integer getCCcount() {
-		return CCcount;
-	}
-	public void setCCcount(Integer cCcount) {
-		CCcount = cCcount;
-	}
-	public Date getCCGdelDate() {
-		return CCGdelDate;
-	}
-	public void setCCGdelDate(Date cCGdelDate) {
-		CCGdelDate = cCGdelDate;
-	}
+	private Date CCGmodDate;
+	private Integer CCGdelYn;
 	public String getCCseq() {
 		return CCseq;
 	}
 	public void setCCseq(String cCseq) {
 		CCseq = cCseq;
-	}
-	public String getCCseqChar() {
-		return CCseqChar;
-	}
-	public void setCCseqChar(String cCseqChar) {
-		CCseqChar = cCseqChar;
-	}
-	public String getCCcodeName() {
-		return CCcodeName;
-	}
-	public void setCCcodeName(String cCcodeName) {
-		CCcodeName = cCcodeName;
-	}
-	public String getCCcodeNameEng() {
-		return CCcodeNameEng;
-	}
-	public void setCCcodeNameEng(String cCcodeNameEng) {
-		CCcodeNameEng = cCcodeNameEng;
-	}
-	public Integer getCCuseYn() {
-		return CCuseYn;
-	}
-	public void setCCuseYn(Integer cCuseYn) {
-		CCuseYn = cCuseYn;
-	}
-	public Integer getCCsort() {
-		return CCsort;
-	}
-	public void setCCsort(Integer cCsort) {
-		CCsort = cCsort;
-	}
-	public Date getCCregDate() {
-		return CCregDate;
-	}
-	public void setCCregDate(Date cCregDate) {
-		CCregDate = cCregDate;
 	}
 	public Integer getCCdelYn() {
 		return CCdelYn;
@@ -85,17 +30,11 @@ public class CodeGroup {
 	public void setCCdelYn(Integer cCdelYn) {
 		CCdelYn = cCdelYn;
 	}
-	public Date getCCdelDate() {
-		return CCdelDate;
+	public Integer getCCcount() {
+		return CCcount;
 	}
-	public void setCCdelDate(Date cCdelDate) {
-		CCdelDate = cCdelDate;
-	}
-	public Date getCCmodDate() {
-		return CCmodDate;
-	}
-	public void setCCmodDate(Date cCmodDate) {
-		CCmodDate = cCmodDate;
+	public void setCCcount(Integer cCcount) {
+		CCcount = cCcount;
 	}
 	public String getCCGseq() {
 		return CCGseq;
@@ -133,4 +72,27 @@ public class CodeGroup {
 	public void setCCGregDate(Date cCGregDate) {
 		CCGregDate = cCGregDate;
 	}
+	public Date getCCGdelDate() {
+		return CCGdelDate;
+	}
+	public void setCCGdelDate(Date cCGdelDate) {
+		CCGdelDate = cCGdelDate;
+	}
+	public Date getCCGmodDate() {
+		return CCGmodDate;
+	}
+	public void setCCGmodDate(Date cCGmodDate) {
+		CCGmodDate = cCGmodDate;
+	}
+	public Integer getCCGdelYn() {
+		return CCGdelYn;
+	}
+	public void setCCGdelYn(Integer cCGdelYn) {
+		CCGdelYn = cCGdelYn;
+	}
+	
+	
+
+	
+	
 }

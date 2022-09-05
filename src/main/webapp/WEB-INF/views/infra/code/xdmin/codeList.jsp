@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -375,7 +376,7 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="row mt-3 mb-3">
-								<div class="container" style="clear: both;">
+								<div class="container text-center" style="clear: both;">
 									<div class="d-flex p-2">
 										<select class="form-select m-1">
 											<option selected>검색조건 1</option>
@@ -428,7 +429,6 @@
 													<th scope="col">코드 그룹 코드</th>
 													<th scope="col">코드 그룹 코드 이름 (한글)</th>
 													<th scope="col">코드</th>
-													<th scope="col">대체 코드</th>
 													<th scope="col">코드 이름 (한글)</th>
 													<th scope="col">코드 이름 (영문)</th>
 													<th scope="col">사용</th>
@@ -451,13 +451,12 @@
 																<td><c:out value="${list.CCGseq}" /></td>
 																<td><c:out value="${list.CCGgroupName}" /></td>
 																<td><c:out value="${list.CCGseqChar}" /></td>
-																<td></td>
 																<td><c:out value="${list.CCcodeName}" /></td>
 																<td><c:out value="${list.CCcodeNameEng}" /></td>
 																<td><c:out value="${list.CCuseYn}" /></td>
 																<td><c:out value="${list.CCsort}" /></td>
-																<td><c:out value="${list.CCregDate}" /></td>
-																<td><c:out value="${list.CCmodDate}" /></td>
+																<td><fmt:formatDate value="${list.CCregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+																<td><fmt:formatDate value="${list.CCmodDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 															</tr>
 														</c:forEach>
 													</c:otherwise>

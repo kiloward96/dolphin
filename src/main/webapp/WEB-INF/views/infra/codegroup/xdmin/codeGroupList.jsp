@@ -15,6 +15,54 @@
 <meta content="" name="description">
 <meta content="" name="keywords">
 
+<!-- Datepicker -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+            $.datepicker.setDefaults($.datepicker.regional['ko']); 
+            $( "#startDate" ).datepicker({
+                 changeMonth: true, 
+                 changeYear: true,
+                 nextText: '다음 달',
+                 prevText: '이전 달', 
+                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 dateFormat: "yy-mm-dd",
+                 /* maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
+                 onClose: function( selectedDate ) {    
+                      //시작일(startDate) datepicker가 닫힐때
+                      //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+                     $("#endDate").datepicker( "option", "minDate", selectedDate );
+                 }    
+ 
+            });
+            $( "#endDate" ).datepicker({
+                 changeMonth: true, 
+                 changeYear: true,
+                 nextText: '다음 달',
+                 prevText: '이전 달', 
+                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 dateFormat: "yy-mm-dd",
+                 /* maxDate: 0,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
+                 onClose: function( selectedDate ) {    
+                     // 종료일(endDate) datepicker가 닫힐때
+                     // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+                     $("#startDate").datepicker( "option", "maxDate", selectedDate );
+                 }    
+ 
+            });    
+    });
+</script>
+
+
 <!-- Favicons -->
 <!-- <link href="assets/img/favicon.png" rel="icon"> -->
 <link href="/resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -49,7 +97,7 @@
 	<header id="header" class="header fixed-top d-flex align-items-center">
 
 		<div class="d-flex align-items-center justify-content-between">
-			<a href="index.html" class="logo d-flex align-items-center"> <img src="assets/img/logo.png" alt=""> <span class="jumal d-none d-lg-block">Jumal</span>
+			<a href="index.html" class="logo d-flex align-items-center"> <img src="/resources/assets/img/logo.png" alt=""> <span class="jumal d-none d-lg-block">Jumal</span>
 			</a> <i class="bi bi-list toggle-sidebar-btn"></i>
 		</div>
 		<!-- End Logo -->
@@ -187,7 +235,8 @@
 					</ul> <!-- End Messages Dropdown Items --></li>
 				<!-- End Messages Nav -->
 
-				<li class="nav-item dropdown pe-3"><a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown"> <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+				<li class="nav-item dropdown pe-3"><a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown"> <img src="/resources/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> <span class="d-none d-md-block dropdown-toggle ps-2">K.
+							Anderson</span>
 				</a> <!-- End Profile Iamge Icon -->
 
 					<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -379,32 +428,57 @@
 								<div class="container" style="clear: both;">
 									<div class="d-flex p-2">
 										<form method="post" action="/codeGroup/codeGroupList">
-											<select class="form-select m-1" id="shOption" name="shOption">
-												<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색조건 1</option>
-												<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드 번호</option>
-												<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 코드</option>
-												<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 명</option>
-											</select>
-											<input class="form-control m-1" type="search" id="shValue" name="shValue" value="<c:if test="${vo.shValue}"/>" placeholder="키워드">
-											<!-- <select class="form-select m-1">
-												<option selected>검색조건 2</option>
-												<option value="1">코드 그룹 코드</option>
-												<option value="2">등록일</option>
-												<option value="3">수정일</option>
-											</select>
-											<input class="form-control m-1" type="search" placeholder="키워드">
+											<table>
+												<tr>
+													<td><select class="form-select m-1" id="shDelYn" name="shDelYn">
+															<option value="" <c:if test="${empty vo.shDelYn}">selected</c:if>>삭제유무</option>
+															<option value="2" <c:if test="${vo.shDelYn eq 2}">selected</c:if>>ALL</option>
+															<option value="1" <c:if test="${vo.shDelYn eq 1}">selected</c:if>>Yes</option>
+															<option value="0" <c:if test="${vo.shDelYn eq 0}">selected</c:if>>No</option>
+													</select></td>
+													<td>
+													<select class="form-select m-1" id="shDate" name="shDate">
+													<option value="" <c:if test="${empty vo.shDate}">selected</c:if>>날짜 검색</option>
+														<option value="1" <c:if test="${vo.shDate eq 1}">selected</c:if>>등록일</option>
+														<option value="2" <c:if test="${vo.shDate eq 2}">selected</c:if>>수정일</option>
+														</select></td>
+													<td><input class="form-control m-1" type="text" id="startDate" name="shStartDate" value="<c:if test="${vo.shStartDate}"/>" placeholder="~일부터"></td>
+													<td><input class="form-control m-1" type="text" id="endDate" name="shEndDate" value="<c:if test="${vo.shEndDate}"/>" placeholder="~일까지"></td>
+												</tr>
+												<tr>
+													<td><select class="form-select m-1" id="shOption" name="shOption">
+															<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색조건 1</option>
+															<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드 번호</option>
+															<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 코드</option>
+															<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 명</option>
+													</select></td>
+													<td><input class="form-control m-1" type="search" id="shValue" name="shValue" value="<c:if test="${vo.shValue}"/>" placeholder="키워드"></td>
+												<tr>
+													<td><select class="form-select m-1" id="shOption" name="shOption2">
+															<option value="" <c:if test="${empty vo.shOption2}">selected</c:if>>검색조건 2</option>
+															<option value="1" <c:if test="${vo.shOption2 eq 1}">selected</c:if>>코드 번호</option>
+															<option value="2" <c:if test="${vo.shOption2 eq 2}">selected</c:if>>코드그룹 코드</option>
+															<option value="3" <c:if test="${vo.shOption2 eq 3}">selected</c:if>>코드그룹 명</option>
+													</select></td>
+													<td><input class="form-control m-1" type="search" id="shValue2" name="shValue2" value="<c:if test="${vo.shValue}"/>" placeholder="키워드"></td>
+													<td>
+														<div class="col m-1" style="line-height: 10px;">
+															<button class="btn btn-primary" type="submit" style="width: 120px;">
+																<i class="fa-brands fa-searchengin"></i> 통합검색
+															</button>
+														</div>
+													</td>
+												</tr>
+												<!-- <td>
 											<select class="form-select m-1">
 												<option selected>검색조건 3</option>
 												<option value="1">코드 그룹 코드</option>
 												<option value="2">등록일</option>
 												<option value="3">수정일</option>
-											</select> -->
-											<!-- <input class="form-control m-1" type="search" placeholder="키워드"> -->
-											<div class="col m-1" style="line-height: 10px;">
-												<button class="btn btn-primary" type="submit" style="width: 120px;">
-													<i class="fa-brands fa-searchengin"></i> 통합검색
-												</button>
-											</div>
+											</select>
+											</td> -->
+												<!-- <input class="form-control m-1" type="search" placeholder="키워드"> -->
+											</table>
 										</form>
 									</div>
 
@@ -420,6 +494,7 @@
 													<th scope="col">코드 수량</th>
 													<th scope="col">등록일</th>
 													<th scope="col">수정일</th>
+													<th scope="col">삭제유무</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -438,7 +513,8 @@
 																<td><c:out value="${list.CCGgroupNameEng}" /> <br></td>
 																<td><c:out value="${list.CCcount}" /> <br></td>
 																<td><fmt:formatDate value="${list.CCGregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-																<td><fmt:formatDate value="${list.CCGregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+																<td><fmt:formatDate value="${list.CCGmodDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+																<td><c:out value="${list.CCGdelYn}" /> <br></td>
 																<br>
 															</tr>
 														</c:forEach>
