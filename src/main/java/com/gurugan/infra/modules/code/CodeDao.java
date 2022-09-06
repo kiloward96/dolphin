@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
 public class CodeDao {
 
@@ -20,6 +19,16 @@ public class CodeDao {
 
 	public List<Code> selectList() {
 		return sqlSession.selectList(namespace + ".selectList", "");
+	}
+	
+	public List<Code> groupList() {
+		return sqlSession.selectList(namespace + ".groupList", "");
+	}
+	
+	public int insert(Code dto) {
+		int result = sqlSession.insert(namespace + ".insert", dto);
+		System.out.println("dao result: " + result);
+		return result;
 	}
 	
 }

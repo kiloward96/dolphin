@@ -7,9 +7,9 @@
 <mapper namespace="com.gurugan.infra.modules.codegroup.CodeGroupMapper">
 
 	<resultMap id="resultMapObj" type="com.gurugan.infra.modules.codegroup.CodeGroup"></resultMap>
-
+	
 	<select id="selectList" resultMap="resultMapObj">
-		SELECT
+	SELECT
 		CCG.seq as CCGseq
 		,CCG.seqChar as CCGseqChar
 		,CCG.groupName as CCGgroupName
@@ -19,9 +19,9 @@
 		,CCG.delYn as CCGdelYn
 		,CCG.modDate as CCGmodDate
 		,CCG.delDate as CCGdelDate
-		,(select count(CC.seq) from commonCode CC where 1=1 and CC.delYn=0 and CC.commonCodeGroup_seq = CCG.seq AND CC.delYn = 0) as CCcount
-		FROM commonCodeGroup CCG
-		WHERE 1=1
+		,(select count(CC.seq) from commonCode CC where 1=1 and CC.delYn=0 and CC.commonCodeGroup_seq = CCG.seq AND CC.delYn = 0) as xCCcount
+	FROM commonCodeGroup CCG
+	WHERE 1=1
 		<choose>
 			<when test="shDelYn == 2">AND CCG.delYn IS NOT NULL</when>
 			<when test="shDelYn != null and !shDelYn.equals('')">AND CCG.delYn = #{shDelYn}</when>
@@ -31,7 +31,6 @@
 			<when test="shDate == 1">AND CCG.regDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
 			<when test="shDate == 2">AND CCG.modDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
 		</choose>
-		<!-- AND CCG.delYn = 0 -->
 		<choose>
 			<when test="shOption == 1">AND CCG.seq = #{shValue}</when>
 			<when test="shOption == 2">AND CCG.seqChar LIKE CONCAT ('%',#{shValue},'%')</when>
@@ -39,12 +38,33 @@
 			<otherwise></otherwise>
 		</choose>
 		<choose>
-			<when test="shOption2 == 1">AND CCG.seq = #{shValue2}</when>
-			<when test="shOption2 == 2">AND CCG.seqChar LIKE CONCAT ('%',#{shValue2},'%')</when>
-			<when test="shOption2 == 3">AND CCG.groupName LIKE CONCAT ('%',#{shValue2},'%')</when>
+			<when test="shOption2 == 1">OR CCG.seq = #{shValue2}</when>
+			<when test="shOption2 == 2">OR CCG.seqChar LIKE CONCAT ('%',#{shValue2},'%')</when>
+			<when test="shOption2 == 3">OR CCG.groupName LIKE CONCAT ('%',#{shValue2},'%')</when>
 			<otherwise></otherwise>
 		</choose>
 	</select>
+	
+	<insert id="insert">
+		INSERT INTO commonCodeGroup (
+			seqChar
+			,groupName
+			,groupNameEng
+			,useYn
+			,regDate
+			,delYn
+		) VALUES (
+			#{CCGseqChar}
+			,#{CCGgroupName}
+			,#{CCGgroupNameEng}
+			,#{CCGuseYn}
+			,NOW()
+			,#{CCGdelYn}
+		)
+	<selectKey resultType="String" keyProperty="CCGseq" order="AFTER">
+		SELECT last_insert_id()
+	</selectKey>
+	</insert>
 
 </mapper>
 <!-- SELECT CC.seq as CCseq ,CC.seqChar as CCseqChar ,count(CC.commonCodeGroup_seq) as CCcount ,CC.codeName as CCcodeName ,CC.codeNameEng as CCcodeNameEng 

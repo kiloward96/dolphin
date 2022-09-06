@@ -13,15 +13,11 @@ public class Code {
 	private Integer CCdelYn;
 	private Date CCdelDate;
 	private Date CCmodDate;
+	private String CCcommonCodeGroup_seq;
 	
 	private String CCGseq;
 	private String CCGseqChar;
 	private String CCGgroupName;
-	private String CCGgroupNameEng;
-	private Integer CCGuseYn;
-	private Date CCGregDate;
-	
-	
 	public String getCCseq() {
 		return CCseq;
 	}
@@ -82,6 +78,12 @@ public class Code {
 	public void setCCmodDate(Date cCmodDate) {
 		CCmodDate = cCmodDate;
 	}
+	public String getCCcommonCodeGroup_seq() {
+		return CCcommonCodeGroup_seq;
+	}
+	public void setCCcommonCodeGroup_seq(String cCcommonCodeGroup_seq) {
+		CCcommonCodeGroup_seq = cCcommonCodeGroup_seq;
+	}
 	public String getCCGseq() {
 		return CCGseq;
 	}
@@ -100,24 +102,7 @@ public class Code {
 	public void setCCGgroupName(String cCGgroupName) {
 		CCGgroupName = cCGgroupName;
 	}
-	public String getCCGgroupNameEng() {
-		return CCGgroupNameEng;
-	}
-	public void setCCGgroupNameEng(String cCGgroupNameEng) {
-		CCGgroupNameEng = cCGgroupNameEng;
-	}
-	public Integer getCCGuseYn() {
-		return CCGuseYn;
-	}
-	public void setCCGuseYn(Integer cCGuseYn) {
-		CCGuseYn = cCGuseYn;
-	}
-	public Date getCCGregDate() {
-		return CCGregDate;
-	}
-	public void setCCGregDate(Date cCGregDate) {
-		CCGregDate = cCGregDate;
-	}
 	
+
 
 }

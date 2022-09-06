@@ -64,9 +64,4 @@ public class HomeController {
 		return "helloE";
 	}
 	
-	@RequestMapping(value = "/xdmin/xdminCodeGroupList", method = RequestMethod.GET)
-	public String xdminCodeGroupList(Locale locale, Model model) {
-		
-		return "xdmin/xdminCodeGroupList";
-	}
 }

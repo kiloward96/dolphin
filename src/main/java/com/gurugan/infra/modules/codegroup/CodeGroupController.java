@@ -25,10 +25,26 @@ public class CodeGroupController {
 		
 		System.out.println("vo.ShStartDate(): " + vo.getShStartDate());
 		System.out.println("vo.getShEndDate(): " + vo.getShEndDate());
+		System.out.println("vo.getShDate(): " + vo.getShDate());
 
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);
 
 		return "infra/codegroup/xdmin/codeGroupList";
 	}
+	
+	@RequestMapping(value = "codeGroupView")
+	public String codeGroupView() throws Exception {
+		return "infra/codegroup/xdmin/codeGroupView";
+	}
+	
+	@RequestMapping(value = "codeGroupInst")
+	public String codeGroupInst(CodeGroup dto) throws Exception {
+		
+		int result = service.insert(dto);
+		System.out.println("controller Result: " + result);
+		
+		return "redirect:/codeGroup/codeGroupList";
+	}
+	
 }

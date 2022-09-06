@@ -9,7 +9,7 @@
     <resultMap id="resultMapObj" type="com.gurugan.infra.modules.code.Code"></resultMap>
 	
 	<select id="selectList" resultMap="resultMapObj">
-	SELECT
+ 	SELECT
 		CC.seq as CCseq
 		,CC.seqChar as CCseqChar
 		,CC.codeName as CCcodeName
@@ -17,22 +17,51 @@
 		,CC.useYn as CCuseYn
 		,CC.sort as CCsort
 		,CC.regDate as CCregDate
-
 		,CC.delDate as CCdelDate
 		,CC.modDate as CCmodDate
+		,CC.commonCodeGroup_seq as CCcommonCodeGroup_seq
 		,CCG.seq as CCGseq
 		,CCG.seqChar as CCGseqChar
 		,CCG.groupName as CCGgroupName
-		,CCG.groupNameEng as CCGgroupNameEng
 		,CCG.useYn as CCGuseYn
-		,CCG.regDate as CCGregDate
 		,CCG.delYn as CCGdelYn
-		,CCG.delDate as CCGdelDate
-	FROM commonCode CC
-	LEFT JOIN commonCodeGroup CCG on CC.commonCodeGroup_seq = CCG.seq
+	FROM commonCodeGroup CCG
+	LEFT JOIN commonCode CC on CC.commonCodeGroup_seq = CCG.seq
     WHERE 1=1
 		AND CC.delYn = 0
-        AND CCG.delYn = 0;
+        AND CCG.delYn = 0
 	</select>
+	<insert id="insert">
+		INSERT INTO commonCode (
+			commonCodeGroup_seq
+			,seqChar
+			,codeName
+			,codeNameEng
+			,useYn
+			,regDate
+			,delYn
+		) VALUES (
+			#{CCcommonCodeGroup_seq}
+			,#{CCseqChar}
+			,#{CCcodeName}
+			,#{CCcodeNameEng}
+			,#{CCuseYn}
+			,NOW()
+			,0
+		)
+	<selectKey resultType="String" keyProperty="CCseq" order="AFTER">
+		SELECT last_insert_id()
+	</selectKey>
+	</insert>
+	
+	<resultMap id="resultMapGroup" type="com.gurugan.infra.modules.codegroup.CodeGroup"></resultMap>
+	
+	<select id="groupList" resultMap="resultMapGroup">
+	SELECT 
+		groupName as CCGgroupName
+		,seq as CCGseq
+		FROM commonCodeGroup
+	</select>
+	
 
 </mapper>	

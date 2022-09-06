@@ -363,7 +363,7 @@
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
 					<li class="breadcrumb-item active">코드 목록</li>
-					<li class="breadcrumb-item"><a href="page-code-list.html">코드 관리</a></li>
+					<li class="breadcrumb-item"><a onclick="/code/codeView">코드 관리</a></li>
 				</ol>
 			</nav>
 		</div>
@@ -489,7 +489,7 @@
 											</div>
 										</div>
 										<div class="col d-flex justify-content-end">
-											<button type="button" class="btn btn-outline-success m-2" onclick="location.href='./memberReg.html'">
+											<button type="button" class="btn btn-outline-success m-2" onclick="location.href='/code/codeView'">
 												<i class="fa-solid fa-circle-plus"></i> 추가
 											</button>
 

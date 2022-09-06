@@ -6,7 +6,7 @@ public class CodeGroup {
 	
 	private String CCseq;
 	private Integer CCdelYn;
-	private Integer CCcount;
+	private Integer xCCcount;
 	
 	
 	private String CCGseq;
@@ -30,11 +30,11 @@ public class CodeGroup {
 	public void setCCdelYn(Integer cCdelYn) {
 		CCdelYn = cCdelYn;
 	}
-	public Integer getCCcount() {
-		return CCcount;
+	public Integer getxCCcount() {
+		return xCCcount;
 	}
-	public void setCCcount(Integer cCcount) {
-		CCcount = cCcount;
+	public void setxCCcount(Integer xCCcount) {
+		this.xCCcount = xCCcount;
 	}
 	public String getCCGseq() {
 		return CCGseq;
@@ -90,9 +90,5 @@ public class CodeGroup {
 	public void setCCGdelYn(Integer cCGdelYn) {
 		CCGdelYn = cCGdelYn;
 	}
-	
-	
-
-	
 	
 }
