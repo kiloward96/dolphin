@@ -33,9 +33,9 @@ public class CodeGroupController {
 		return "infra/codegroup/xdmin/codeGroupList";
 	}
 	
-	@RequestMapping(value = "codeGroupView")
+	@RequestMapping(value = "codeGroupForm")
 	public String codeGroupView() throws Exception {
-		return "infra/codegroup/xdmin/codeGroupView";
+		return "infra/codegroup/xdmin/codeGroupForm";
 	}
 	
 	@RequestMapping(value = "codeGroupInst")

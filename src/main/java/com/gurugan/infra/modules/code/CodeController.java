@@ -23,13 +23,13 @@ public class CodeController {
 		return "infra/code/xdmin/codeList";
 	}
 	
-	@RequestMapping(value = "codeView")
+	@RequestMapping(value = "codeForm")
 	public String codeView(Model model) throws Exception {
 		
 		List<Code> list = service.groupList();
 		model.addAttribute("groupList", list);
 		
-		return "infra/code/xdmin/codeView";
+		return "infra/code/xdmin/codeForm";
 	}
 	
 	@RequestMapping(value = "codeInst")

@@ -18,6 +18,7 @@ public class CodeGroup {
 	private Date CCGdelDate;
 	private Date CCGmodDate;
 	private Integer CCGdelYn;
+	
 	public String getCCseq() {
 		return CCseq;
 	}

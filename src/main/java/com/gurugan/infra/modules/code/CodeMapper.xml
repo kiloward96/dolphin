@@ -9,28 +9,29 @@
     <resultMap id="resultMapObj" type="com.gurugan.infra.modules.code.Code"></resultMap>
 	
 	<select id="selectList" resultMap="resultMapObj">
- 	SELECT
-		CC.seq as CCseq
-		,CC.seqChar as CCseqChar
-		,CC.codeName as CCcodeName
-		,CC.codeNameEng as CCcodeNameEng
-		,CC.useYn as CCuseYn
-		,CC.sort as CCsort
-		,CC.regDate as CCregDate
-		,CC.delDate as CCdelDate
-		,CC.modDate as CCmodDate
-		,CC.commonCodeGroup_seq as CCcommonCodeGroup_seq
-		,CCG.seq as CCGseq
-		,CCG.seqChar as CCGseqChar
-		,CCG.groupName as CCGgroupName
-		,CCG.useYn as CCGuseYn
-		,CCG.delYn as CCGdelYn
-	FROM commonCodeGroup CCG
-	LEFT JOIN commonCode CC on CC.commonCodeGroup_seq = CCG.seq
-    WHERE 1=1
-		AND CC.delYn = 0
-        AND CCG.delYn = 0
+	 	SELECT
+			CC.seq as CCseq
+			,CC.seqChar as CCseqChar
+			,CC.codeName as CCcodeName
+			,CC.codeNameEng as CCcodeNameEng
+			,CC.useYn as CCuseYn
+			,CC.sort as CCsort
+			,CC.regDate as CCregDate
+			,CC.delDate as CCdelDate
+			,CC.modDate as CCmodDate
+			,CC.commonCodeGroup_seq as CCcommonCodeGroup_seq
+			,CCG.seq as CCGseq
+			,CCG.seqChar as CCGseqChar
+			,CCG.groupName as CCGgroupName
+			,CCG.useYn as CCGuseYn
+			,CCG.delYn as CCGdelYn
+		FROM commonCodeGroup CCG
+		LEFT JOIN commonCode CC on CC.commonCodeGroup_seq = CCG.seq
+	    WHERE 1=1
+			AND CC.delYn = 0
+	        AND CCG.delYn = 0
 	</select>
+	
 	<insert id="insert">
 		INSERT INTO commonCode (
 			commonCodeGroup_seq
@@ -57,11 +58,9 @@
 	<resultMap id="resultMapGroup" type="com.gurugan.infra.modules.codegroup.CodeGroup"></resultMap>
 	
 	<select id="groupList" resultMap="resultMapGroup">
-	SELECT 
-		groupName as CCGgroupName
-		,seq as CCGseq
+		SELECT 
+			groupName as CCGgroupName
+			,seq as CCGseq
 		FROM commonCodeGroup
 	</select>
-	
-
 </mapper>	

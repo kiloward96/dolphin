@@ -18,6 +18,8 @@ public class Code {
 	private String CCGseq;
 	private String CCGseqChar;
 	private String CCGgroupName;
+	
+	
 	public String getCCseq() {
 		return CCseq;
 	}

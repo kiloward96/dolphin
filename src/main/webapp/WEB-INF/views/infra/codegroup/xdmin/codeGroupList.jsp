@@ -600,7 +600,7 @@
 											</div>
 										</div>
 										<div class="col d-flex justify-content-end">
-											<button type="button" class="btn btn-outline-success m-2" onclick="location.href='/codeGroup/codeGroupView'">
+											<button type="button" class="btn btn-outline-success m-2" onclick="location.href='/codeGroup/codeGroupForm'">
 												<i class="fa-solid fa-circle-plus"></i> 추가
 											</button>
 

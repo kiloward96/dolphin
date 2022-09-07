@@ -489,7 +489,7 @@
 											</div>
 										</div>
 										<div class="col d-flex justify-content-end">
-											<button type="button" class="btn btn-outline-success m-2" onclick="location.href='/code/codeView'">
+											<button type="button" class="btn btn-outline-success m-2" onclick="location.href='/code/codeForm'">
 												<i class="fa-solid fa-circle-plus"></i> 추가
 											</button>
 
