@@ -11,6 +11,16 @@ public class CodeGroupVo {
 	private String shStartDate;
 	private String shEndDate;
 	
+	private String CCGseq;
+	
+	
+	
+	public String getCCGseq() {
+		return CCGseq;
+	}
+	public void setCCGseq(String cCGseq) {
+		CCGseq = cCGseq;
+	}
 	public Integer getShOption() {
 		return shOption;
 	}

@@ -34,7 +34,7 @@ public class CodeGroupController {
 	}
 	
 	@RequestMapping(value = "codeGroupForm")
-	public String codeGroupView() throws Exception {
+	public String codeGroupForm() throws Exception {
 		return "infra/codegroup/xdmin/codeGroupForm";
 	}
 	
@@ -45,6 +45,29 @@ public class CodeGroupController {
 		System.out.println("controller Result: " + result);
 		
 		return "redirect:/codeGroup/codeGroupList";
+	}
+	
+	@RequestMapping(value = "codeGroupForm2")
+	public String codeGroupForm2() throws Exception {
+		return "infra/codegroup/xdmin/codeGroupForm2";
+	}
+	
+	@RequestMapping(value = "codeGroupDel")
+	public String codeGroupDel(CodeGroup dto) throws Exception {
+		System.out.println(dto.getCCGseq());
+		int result = service.delete(dto);
+		System.out.println("controller Result: " + result);
+		
+		return "redirect:/codeGroup/codeGroupList";
+	}
+	
+	@RequestMapping(value = "codeGroupView")
+	public String codeGroupView(CodeGroupVo vo, Model model) throws Exception {
+		
+		CodeGroup result = service.selectOne(vo);
+		model.addAttribute("item", result);
+		
+		return "infra/codegroup/xdmin/codeGroupForm2";
 	}
 	
 }

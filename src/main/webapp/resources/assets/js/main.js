@@ -320,7 +320,7 @@
 })();
 
 function selectAll(selectAll)  {
-			  const checkboxes = document.getElementsByName('flexCheck');
+			  const checkboxes = document.getElementsByName('selectGroup');
 		 			checkboxes.forEach((checkbox) => { checkbox.checked = selectAll.checked; 
 		 			})
 				}

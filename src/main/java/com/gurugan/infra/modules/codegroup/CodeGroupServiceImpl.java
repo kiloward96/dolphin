@@ -41,4 +41,18 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 		
 		return result;
 	}
+	
+	@Override
+	public CodeGroup selectOne(CodeGroupVo vo) throws Exception {
+		CodeGroup result = dao.selectOne(vo);
+		System.out.println("service result: " + result);
+		return result;
+	}
+	
+	public int delete(CodeGroup dto) throws Exception {
+		System.out.println(dto.getCCGseq());
+		int result = dao.delete(dto);
+		System.out.println("service result:" + result);
+		return result;
+	}
 }

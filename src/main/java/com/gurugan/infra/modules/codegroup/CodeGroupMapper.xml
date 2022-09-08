@@ -65,6 +65,26 @@
 		SELECT last_insert_id()
 	</selectKey>
 	</insert>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			CCG.useYn AS CCGuseYn
+			,CCG.seq AS CCGseq
+			,CCG.seqChar AS CCGseqChar
+			,CCG.groupName AS CCGgroupName
+			,CCG.groupNameEng AS CCGgroupNameEng
+			,CCG.delYn AS CCGuseYn
+		FROM commonCodeGroup CCG
+		WHERE 1=1
+			AND CCG.seq = #{CCGseq}
+	</select>
+	
+	<update id="delete">
+		UPDATE commonCodeGroup CCG
+			SET CCG.delYn = #{CCGdelYn}
+		WHERE 1=1
+			AND CCG.seq = #{CCGseq}
+	</update>
 
 </mapper>
 <!-- SELECT CC.seq as CCseq ,CC.seqChar as CCseqChar ,count(CC.commonCodeGroup_seq) as CCcount ,CC.codeName as CCcodeName ,CC.codeNameEng as CCcodeNameEng 

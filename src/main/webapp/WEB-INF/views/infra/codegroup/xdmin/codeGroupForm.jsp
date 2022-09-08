@@ -58,8 +58,8 @@
 			<form class="search-form d-flex align-items-center" method="POST" action="#">
 				<!--         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button> -->
-				<a href="index.html" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span>
-				</a> <a href="index.html" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span>
+				<a href="/code/codeList" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span>
+				</a> <a href="/codeGroup/codeGroupList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span>
 				</a>
 			</form>
 		</div>
@@ -391,14 +391,14 @@
 									<div class="col">
 										<div class="m-auto">
 											<label for="inputId" class="form-label">코드그룹 번호</label>
-											<input type="text" class="form-control" placeholder="자동생성" disabled name="CCGseq">
+											<input type="text" class="form-control" placeholder="자동생성" disabled name="CCGseq" value="<c:out value="${item.CCGseq }"/>">
 										</div>
 									</div>
 									<div class="col">
 										<div class="m-auto">
 											<label for="CCGseqChar" id="basicSeqChar" class="form-label" >코드그룹 번호(Another)</label>
 											<label for="CCGseqChar" id="alertSeqChar" class="form-label fw-bold text-danger" style="display:none;">코드그룹 번호(Another)</label>
-											<input type="text" class="form-control" id="CCGseqChar" name="CCGseqChar">
+											<input type="text" class="form-control" id="CCGseqChar" name="CCGseqChar" value="<c:out value="${item.CCGseqChar}"/>">
 										</div>
 									</div>
 								</div>
@@ -421,8 +421,8 @@
 									<div class="col">
 										<label for="inputId" class="form-label text bold">코드그룹 삭제 여부</label>
 										<select class="form-select" name="CCGdelYn">
-											<option value="1">Yes</option>
-											<option selected value="0">No</option>
+											<option value="1" <c:if test="${item.CCGdelYn eq 1}">selected</c:if>>Yes</option>
+											<option value="0" <c:if test="${item.CCGdelYn eq 0}">selected</c:if>>no</option>
 										</select>
 									</div>
 									<div class="col"></div>

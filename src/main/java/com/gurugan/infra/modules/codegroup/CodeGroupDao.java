@@ -18,13 +18,27 @@ public class CodeGroupDao {
 	private static String namespace = "com.gurugan.infra.modules.codegroup.CodeGroupMapper";
 
 	public List<CodeGroup> selectList(CodeGroupVo vo) {
-//		return sqlSession.selectList(namespace + ".selectList", vo);
-		List<CodeGroup> list = sqlSession.selectList("com.gurugan.infra.modules.codegroup.CodeGroupMapper.selectList", vo);
+		List<CodeGroup> list = sqlSession.selectList(namespace + ".selectList", vo);
+//		List<CodeGroup> list = sqlSession.selectOne("com.gurugan.infra.modules.codegroup.CodeGroupMapper.selectList", vo);
 		return list;
 	}
 	
+	
+	
 	public int insert(CodeGroup dto) {
 		int result = sqlSession.insert(namespace + ".insert", dto);
+		System.out.println("dao result: " + result);
+		return result;
+	}
+	public CodeGroup selectOne(CodeGroupVo vo) {
+//		return sqlSession.selectList(namespace + ".selectList", vo);
+		CodeGroup result = sqlSession.selectOne(namespace + ".selectOne", vo);
+		System.out.println("dao result: " + result);
+		return result;
+	}
+	
+	public int delete(CodeGroup dto) {
+		int result = sqlSession.update(namespace + ".delete", dto);
 		System.out.println("dao result: " + result);
 		return result;
 	}
