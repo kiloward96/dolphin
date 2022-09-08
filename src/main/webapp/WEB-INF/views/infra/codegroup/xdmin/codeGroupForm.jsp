@@ -375,11 +375,11 @@
 
 					<div class="card">
 						<div class="card-body">
-							<form method="post" action="/codeGroup/codeGroupInst">
+							<form method="post" id="insertForm" action="/codeGroup/codeGroupInst">
 								<h5 class="card-title fw-bold">코드그룹 등록</h5>
 								<div class="row mt-3 mb-3">
 									<div class="col">
-										<label for="inputId" class="form-label text bold">코드그룹 사용여부</label>
+										<label for="inputId" class="form-label">코드그룹 사용여부</label>
 										<select class="form-select" name="CCGuseYn">
 											<option selected value="1">Yes</option>
 											<option value="0">No</option>
@@ -396,22 +396,24 @@
 									</div>
 									<div class="col">
 										<div class="m-auto">
-											<label for="inputId" class="form-label">코드그룹 번호(Another)</label>
-											<input type="text" class="form-control" name="CCGseqChar">
+											<label for="CCGseqChar" id="basicSeqChar" class="form-label" >코드그룹 번호(Another)</label>
+											<label for="CCGseqChar" id="alertSeqChar" class="form-label fw-bold text-danger" style="display:none;">코드그룹 번호(Another)</label>
+											<input type="text" class="form-control" id="CCGseqChar" name="CCGseqChar">
 										</div>
 									</div>
 								</div>
 								<div class="row mt-3 mb-3">
 									<div class="col">
 										<div class="m-auto">
-											<label for="inputId" class="form-label">코드그룹 이름 (한글)</label>
-											<input type="text" class="form-control" name="CCGgroupName">
+											<label for="CCGgroupName" id="basicGroupName" class="form-label">코드그룹 이름 (한글)</label>
+											<label for="CCGgroupName" id="alertGroupName" class="form-label fw-bold text-danger" style="display:none;">코드그룹 이름 (한글)</label>
+											<input type="text" class="form-control" id="CCGgroupName" name="CCGgroupName">
 										</div>
 									</div>
 									<div class="col">
 										<div class="m-auto">
 											<label for="inputId" class="form-label">코드그룹 이름 (영문)</label>
-											<input type="text" class="form-control" name="CCGgroupNameEng">
+											<input type="text" class="form-control" id="CCGgroupNameEng" name="CCGgroupNameEng">
 										</div>
 									</div>
 								</div>
@@ -432,15 +434,19 @@
 											<textarea class="form-control" rows="3"></textarea>
 										</div>
 									</div>
-									<div class="col"></div>
+									<div class="col">
+									</div>
 								</div>
 								<div class="row">
 									<div class="text-center mt-3 mb-3">
-										<button type="submit" class="btn btn-success">
+										<button type="submit" class="btn btn-success" onclick="CGsubmit()">
 											<i class='bx bxs-save'> 저장</i>
 										</button>
 										<button type="reset" class="btn btn-danger">
 											<i class='bx bx-minus-circle'> 취소</i>
+										</button>
+										<button type="button" class="btn btn-primary" onclick="CGsubmit()">
+											<i class='bx bx-minus-circle'> test</i>
 										</button>
 									</div>
 								</div>
@@ -483,6 +489,35 @@
 
 	<!-- Template Main JS File -->
 	<script src="/resources/assets/js/main.js"></script>
+
+	<script type="text/javascript">
+	var CCGseqChar = document.getElementById("CCGseqChar");
+	var CCGgroupName = document.getElementById("CCGgroupName");
+	
+		
+	
+		function CGsubmit() {
+	  		if(CCGseqChar.value == '' || CCGseqChar.value == null) {
+				document.getElementById("basicSeqChar").style.display = 'none';
+				document.getElementById("alertSeqChar").style.display = 'block';
+				
+				return false;
+				
+			} else if (CCGgroupName.value == '' || CCGgroupName.value == null ) {
+				document.getElementById("basicGroupName").style.display = 'none';
+				document.getElementById("alertGroupName").style.display = 'block';
+				
+				return false;
+				
+			} else {
+				alert(document.getElementById("CCGseqChar").value); 	 			
+				document.getElementById("inputForm").submit();
+				
+				return true;
+				
+	 		}
+		}
+	</script>
 
 </body>
 
