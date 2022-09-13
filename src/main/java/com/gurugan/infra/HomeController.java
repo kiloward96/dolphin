@@ -30,38 +30,38 @@ public class HomeController {
 
 		model.addAttribute("serverTime", formattedDate);
 
-		return "home";
+		return "main";
 
 	}
 	
-	@RequestMapping(value = "/helloA", method = RequestMethod.GET)
-	public String helloA(Locale locale, Model model) {
-		
-		return "helloA";
-	}
-	
-	@RequestMapping(value = "/helloB", method = RequestMethod.GET)
-	public String helloB(Locale locale, Model model) {
-		
-		return "helloB";
-	}
-	
-	@RequestMapping(value = "/helloC", method = RequestMethod.GET)
-	public String helloC(Locale locale, Model model) {
-		
-		return "helloC";
-	}
-	
-	@RequestMapping(value = "/helloD", method = RequestMethod.GET)
-	public String helloD(Locale locale, Model model) {
-		
-		return "helloD";
-	}
-	
-	@RequestMapping(value = "/helloE", method = RequestMethod.GET)
-	public String helloE(Locale locale, Model model) {
-		
-		return "helloE";
-	}
+//	@RequestMapping(value = "/helloA", method = RequestMethod.GET)
+//	public String helloA(Locale locale, Model model) {
+//		
+//		return "helloA";
+//	}
+//	
+//	@RequestMapping(value = "/helloB", method = RequestMethod.GET)
+//	public String helloB(Locale locale, Model model) {
+//		
+//		return "helloB";
+//	}
+//	
+//	@RequestMapping(value = "/helloC", method = RequestMethod.GET)
+//	public String helloC(Locale locale, Model model) {
+//		
+//		return "helloC";
+//	}
+//	
+//	@RequestMapping(value = "/helloD", method = RequestMethod.GET)
+//	public String helloD(Locale locale, Model model) {
+//		
+//		return "helloD";
+//	}
+//	
+//	@RequestMapping(value = "/helloE", method = RequestMethod.GET)
+//	public String helloE(Locale locale, Model model) {
+//		
+//		return "helloE";
+//	}
 	
 }
