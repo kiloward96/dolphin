@@ -19,6 +19,7 @@
 		,CCG.delYn as CCGdelYn
 		,CCG.modDate as CCGmodDate
 		,CCG.delDate as CCGdelDate
+		,CCG.description as CCGdescription
 		,(select count(CC.seq) from commonCode CC where 1=1 and CC.delYn=0 and CC.commonCodeGroup_seq = CCG.seq AND CC.delYn = 0) as xCCcount
 	FROM commonCodeGroup CCG
 	WHERE 1=1
@@ -53,6 +54,7 @@
 			,useYn
 			,regDate
 			,delYn
+			,description
 		) VALUES (
 			#{CCGseqChar}
 			,#{CCGgroupName}
@@ -60,6 +62,7 @@
 			,#{CCGuseYn}
 			,NOW()
 			,#{CCGdelYn}
+			,#{CCGdescription}
 		)
 	<selectKey resultType="String" keyProperty="CCGseq" order="AFTER">
 		SELECT last_insert_id()
@@ -73,15 +76,22 @@
 			,CCG.seqChar AS CCGseqChar
 			,CCG.groupName AS CCGgroupName
 			,CCG.groupNameEng AS CCGgroupNameEng
-			,CCG.delYn AS CCGuseYn
+			,CCG.delYn AS CCGdelYn
 		FROM commonCodeGroup CCG
 		WHERE 1=1
 			AND CCG.seq = #{CCGseq}
 	</select>
 	
-	<update id="delete">
+	<update id="update">
 		UPDATE commonCodeGroup CCG
-			SET CCG.delYn = #{CCGdelYn}
+			SET
+				CCG.delYn = #{CCGdelYn}
+				,CCG.useYn = #{CCGuseYn}
+				,CCG.seqChar = #{CCGseqChar}
+				,CCG.groupName = #{CCGgroupName}
+				,CCG.groupNameEng = #{CCGgroupNameEng}
+				,CCG.modDate = NOW()
+				,CCG.description = #{CCGdescription}
 		WHERE 1=1
 			AND CCG.seq = #{CCGseq}
 	</update>

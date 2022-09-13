@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -18,15 +19,6 @@ public class CodeGroupController {
 	public String codeGroupList(Model model, CodeGroupVo vo) throws Exception {
 		
 		System.out.println("vo.getShValue(): " + vo.getShValue());
-		System.out.println("vo.getShOption(): " + vo.getShOption());
-		
-		System.out.println("vo.getShValue2(): " + vo.getShValue2());
-		System.out.println("vo.getShOption2(): " + vo.getShOption2());
-		
-		System.out.println("vo.ShStartDate(): " + vo.getShStartDate());
-		System.out.println("vo.getShEndDate(): " + vo.getShEndDate());
-		System.out.println("vo.getShDate(): " + vo.getShDate());
-
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);
 
@@ -34,7 +26,7 @@ public class CodeGroupController {
 	}
 	
 	@RequestMapping(value = "codeGroupForm")
-	public String codeGroupForm() throws Exception {
+	public String codeGroupForm(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
 		return "infra/codegroup/xdmin/codeGroupForm";
 	}
 	
@@ -44,18 +36,17 @@ public class CodeGroupController {
 		int result = service.insert(dto);
 		System.out.println("controller Result: " + result);
 		
-		return "redirect:/codeGroup/codeGroupList";
+		return "redirect:/codeGroup/codeGroupModForm";
 	}
 	
-	@RequestMapping(value = "codeGroupForm2")
-	public String codeGroupForm2() throws Exception {
-		return "infra/codegroup/xdmin/codeGroupForm2";
+	@RequestMapping(value = "codeGroupModForm")
+	public String codeGroupModForm() throws Exception {
+		return "infra/codegroup/xdmin/codeGroupModForm";
 	}
 	
-	@RequestMapping(value = "codeGroupDel")
-	public String codeGroupDel(CodeGroup dto) throws Exception {
-		System.out.println(dto.getCCGseq());
-		int result = service.delete(dto);
+	@RequestMapping(value = "codeGroupUpdt")
+	public String codeGroupUpdt(CodeGroup dto) throws Exception {
+		int result = service.update(dto);
 		System.out.println("controller Result: " + result);
 		
 		return "redirect:/codeGroup/codeGroupList";
@@ -67,7 +58,7 @@ public class CodeGroupController {
 		CodeGroup result = service.selectOne(vo);
 		model.addAttribute("item", result);
 		
-		return "infra/codegroup/xdmin/codeGroupForm2";
+		return "infra/codegroup/xdmin/codeGroupModForm";
 	}
 	
 }

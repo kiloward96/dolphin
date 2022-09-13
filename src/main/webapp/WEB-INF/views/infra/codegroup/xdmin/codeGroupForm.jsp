@@ -391,7 +391,7 @@
 									<div class="col">
 										<div class="m-auto">
 											<label for="inputId" class="form-label">코드그룹 번호</label>
-											<input type="text" class="form-control" placeholder="자동생성" disabled name="CCGseq" value="<c:out value="${item.CCGseq }"/>">
+											<input type="text" class="form-control" placeholder="자동생성" hidden name="CCGseq" value="<c:out value="${item.CCGseq }"/>">
 										</div>
 									</div>
 									<div class="col">
@@ -446,7 +446,7 @@
 											<i class='bx bx-minus-circle'> 취소</i>
 										</button>
 										<button type="button" class="btn btn-primary" onclick="CGsubmit()">
-											<i class='bx bx-minus-circle'> test</i>
+											<i class='bx bx-minus-circle'> 수정</i>
 										</button>
 									</div>
 								</div>
@@ -517,6 +517,32 @@
 				
 	 		}
 		}
+		
+		
+		var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
+		var goUrlInst = "/codeGroup/codeGroupInst"; 			/* #-> */
+		var goUrlUpdt = "/codeGroup/codeGroupUpdt";				/* #-> */
+		var goUrlUele = "/codeGroup/codeGroupUele";				/* #-> */
+		var goUrlDele = "/codeGroup/codeGroupDele";				/* #-> */
+		
+		var seq = $("input:hidden[name=ifcgSeq]");				/* #-> */
+		
+		var form = $("form[name=form]");
+		var formVo = $("form[name=formVo]");
+		
+		
+		$("#btnSave").on("click", function(){
+			if (seq.val() == "0" || seq.val() == ""){
+		   		// insert
+		   		if (validationInst() == false) return false;
+		   		form.attr("action", goUrlInst).submit();
+		   	} else {
+		   		// update
+		   		/* keyName.val(atob(keyName.val())); */
+		   		if (validationUpdt() == false) return false;
+		   		form.attr("action", goUrlUpdt).submit();
+		   	}
+		}); 
 	</script>
 
 </body>

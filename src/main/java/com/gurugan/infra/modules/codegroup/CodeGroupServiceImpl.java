@@ -49,10 +49,12 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 		return result;
 	}
 	
-	public int delete(CodeGroup dto) throws Exception {
+	@Override
+	public int update(CodeGroup dto) throws Exception {
 		System.out.println(dto.getCCGseq());
-		int result = dao.delete(dto);
+		int result = dao.update(dto);
 		System.out.println("service result:" + result);
 		return result;
 	}
+
 }

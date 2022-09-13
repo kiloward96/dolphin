@@ -375,14 +375,14 @@
 
 					<div class="card">
 						<div class="card-body">
-							<form method="post" id="insertForm" action="/codeGroup/codeGroupDel">
+							<form method="post" id="insertForm" action="/codeGroup/codeGroupUpdt">
 								<h5 class="card-title fw-bold">코드그룹 등록</h5>
 								<div class="row mt-3 mb-3">
 									<div class="col">
 										<label for="inputId" class="form-label">코드그룹 사용여부</label>
-										<select class="form-select" name="CCGuseYn">
-											<option selected value="1">Yes</option>
-											<option value="0">No</option>
+										<select class="form-select" id="CCGuseYn" name="CCGuseYn">
+											<option value="1" <c:if test="${item.CCGuseYn eq 1}">selected</c:if>>Yes</option>
+											<option value="0" <c:if test="${item.CCGuseYn eq 0}">selected</c:if>>no</option>
 										</select>
 									</div>
 									<div class="col"></div>
@@ -391,7 +391,8 @@
 									<div class="col">
 										<div class="m-auto">
 											<label for="CCGseq" class="form-label">코드그룹 번호</label>
-											<input type="text" class="form-control" placeholder="자동생성" readonly name="CCGseq" value="<c:out value="${item.CCGseq}"/>">
+											<input type="text" class="form-control" placeholder="자동생성" disabled name="CCGseq" value="<c:out value="${item.CCGseq}"/>">
+											<input type="text" class="form-control" placeholder="자동생성" hidden name="CCGseq" value="<c:out value="${item.CCGseq}"/>">
 										</div>
 									</div>
 									<div class="col">
@@ -419,8 +420,8 @@
 								</div>
 								<div class="row mt-3 mb-3">
 									<div class="col">
-										<label for="inputId" class="form-label text bold">코드그룹 삭제 여부</label>
-										<select class="form-select" name="CCGdelYn">
+										<label for="CCGdelYn" class="form-label fw-bold">코드그룹 삭제 여부</label>
+										<select class="form-select" id="CCGdelYn" name="CCGdelYn">
 											<option value="1" <c:if test="${item.CCGdelYn eq 1}">selected</c:if>>Yes</option>
 											<option value="0" <c:if test="${item.CCGdelYn eq 0}">selected</c:if>>no</option>
 										</select>
@@ -439,13 +440,13 @@
 								</div>
 								<div class="row">
 									<div class="text-center mt-3 mb-3">
-										<button type="submit" class="btn btn-success" onclick="CGsubmit()">
+										<button type="submit" class="btn btn-success">
 											<i class='bx bxs-save'> 저장</i>
 										</button>
 										<button type="reset" class="btn btn-danger">
 											<i class='bx bx-minus-circle'> 취소</i>
 										</button>
-										<button type="button" class="btn btn-primary" onclick="CGsubmit()">
+										<button type="button" class="btn btn-primary">
 											<i class='bx bx-minus-circle'> test</i>
 										</button>
 									</div>

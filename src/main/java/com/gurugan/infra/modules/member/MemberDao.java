@@ -20,4 +20,8 @@ public class MemberDao {
 	public List<Member> selectList() {
 		return sqlSession.selectList(namespace + ".selectList", "");
 	}
+	
+	public Member selectOne() {
+		return sqlSession.selectOne(namespace + ".selectOne", "");
+	}
 }

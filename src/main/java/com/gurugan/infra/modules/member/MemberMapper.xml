@@ -20,9 +20,28 @@
 			,MB.mobile AS MBmobile
 			,MB.email AS MBemail
 			,MB.regDate AS MBregDate
-			,MB.delYn AS MBdelYn
 			,MB.grade AS MBgrade
 		FROM member MB
+		WHERE 1=1
+			AND MB.delYn = 0
+s	</select>
+	
+	<select id="selectOne">
+		SELECT
+			MB.seq AS MBseq
+			,MB.id AS MBid
+			,MB.password AS MBpassword
+			,MB.name AS MBname
+			,MB.gender AS MBgender
+			,MB.dob AS MBdob
+			,MB.mobile AS MBmobile
+			,MB.email AS MBemail
+			,MB.regDate AS MBregDate
+			,MB.grade AS MBgrade
+		FROM member MB
+		WHERE 1=1
+			AND MB.delYn = 0
+			AND MB.seq = #{MBseq}
 	</select>
 
 </mapper>	

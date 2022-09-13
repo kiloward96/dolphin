@@ -22,9 +22,6 @@ public class CodeGroupDao {
 //		List<CodeGroup> list = sqlSession.selectOne("com.gurugan.infra.modules.codegroup.CodeGroupMapper.selectList", vo);
 		return list;
 	}
-	
-	
-	
 	public int insert(CodeGroup dto) {
 		int result = sqlSession.insert(namespace + ".insert", dto);
 		System.out.println("dao result: " + result);
@@ -37,8 +34,8 @@ public class CodeGroupDao {
 		return result;
 	}
 	
-	public int delete(CodeGroup dto) {
-		int result = sqlSession.update(namespace + ".delete", dto);
+	public int update(CodeGroup dto) {
+		int result = sqlSession.update(namespace + ".update", dto);
 		System.out.println("dao result: " + result);
 		return result;
 	}

@@ -1,7 +1,6 @@
-package com.gurugan.infra.modules.codegroup;
+package com.gurugan.infra.modules.member;
 
-
-public class CodeGroupVo {
+public class memberVo {
 	private Integer shOption;
 	private String shValue;
 	private Integer shDelYn;
@@ -10,8 +9,7 @@ public class CodeGroupVo {
 	private Integer shDate;
 	private String shStartDate;
 	private String shEndDate;
-	
-	private String CCGseq;
+	private Integer shStatus;
 	public Integer getShOption() {
 		return shOption;
 	}
@@ -60,14 +58,12 @@ public class CodeGroupVo {
 	public void setShEndDate(String shEndDate) {
 		this.shEndDate = shEndDate;
 	}
-	public String getCCGseq() {
-		return CCGseq;
+	public Integer getShStatus() {
+		return shStatus;
 	}
-	public void setCCGseq(String cCGseq) {
-		CCGseq = cCGseq;
+	public void setShStatus(Integer shStatus) {
+		this.shStatus = shStatus;
 	}
-	
-	
 	
 	
 
