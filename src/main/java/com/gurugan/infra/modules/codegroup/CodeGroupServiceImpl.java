@@ -27,8 +27,12 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 //			vo.setShStartDate(vo.getShStartDate() + " 00:00:00");
 //			vo.setShEndDate(vo.getShEndDate() + " 23:59:59");
 //		}
-		vo.setShStartDate(vo.getShStartDate() + " 00:00:00");
-		vo.setShEndDate(vo.getShEndDate() + " 23:59:59");
+		
+		if (vo.getShStartDate() != null && !vo.getShStartDate().equals("") || vo.getShEndDate() != null && !vo.getShEndDate().equals("")){
+			
+			vo.setShStartDate(vo.getShStartDate() + " 00:00:00");
+			vo.setShEndDate(vo.getShEndDate() + " 23:59:59");
+		}
 		
 		List<CodeGroup> list = dao.selectList(vo);
 		return list;

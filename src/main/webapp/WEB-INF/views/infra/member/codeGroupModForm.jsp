@@ -422,8 +422,8 @@
 									<div class="col">
 										<label for="CCGdelYn" class="form-label fw-bold">코드그룹 삭제 여부</label>
 										<select class="form-select" id="CCGdelYn" name="CCGdelYn">
+											<option value="0" <c:if test="${item.CCGdelYn eq 0}">selected</c:if>>No</option>
 											<option value="1" <c:if test="${item.CCGdelYn eq 1}">selected</c:if>>Yes</option>
-											<option value="0" <c:if test="${item.CCGdelYn eq 0}">selected</c:if>>no</option>
 										</select>
 									</div>
 									<div class="col"></div>

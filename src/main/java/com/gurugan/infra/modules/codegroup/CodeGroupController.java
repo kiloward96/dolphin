@@ -16,7 +16,7 @@ public class CodeGroupController {
 	CodeGroupServiceImpl service;
 
 	@RequestMapping(value = "codeGroupList")
-	public String codeGroupList(Model model, CodeGroupVo vo) throws Exception {
+	public String codeGroupList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
 		
 		System.out.println("vo.getShValue(): " + vo.getShValue());
 		List<CodeGroup> list = service.selectList(vo);
@@ -36,12 +36,16 @@ public class CodeGroupController {
 		int result = service.insert(dto);
 		System.out.println("controller Result: " + result);
 		
-		return "redirect:/codeGroup/codeGroupModForm";
+		return "redirect:/codeGroup/codeGroupList";
 	}
 	
-	@RequestMapping(value = "codeGroupModForm")
-	public String codeGroupModForm() throws Exception {
-		return "infra/codegroup/xdmin/codeGroupModForm";
+	@RequestMapping(value = "codeGroupView")
+	public String codeGroupView(CodeGroupVo vo, Model model) throws Exception {
+		
+		CodeGroup result = service.selectOne(vo);
+		model.addAttribute("item", result);
+		
+		return "infra/codegroup/xdmin/codeGroupForm";
 	}
 	
 	@RequestMapping(value = "codeGroupUpdt")
@@ -52,13 +56,5 @@ public class CodeGroupController {
 		return "redirect:/codeGroup/codeGroupList";
 	}
 	
-	@RequestMapping(value = "codeGroupView")
-	public String codeGroupView(CodeGroupVo vo, Model model) throws Exception {
-		
-		CodeGroup result = service.selectOne(vo);
-		model.addAttribute("item", result);
-		
-		return "infra/codegroup/xdmin/codeGroupModForm";
-	}
 	
 }

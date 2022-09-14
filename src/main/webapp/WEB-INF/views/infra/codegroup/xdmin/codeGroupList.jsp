@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script src="/resources/js/jquery-ui-timepicker-addon.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(
@@ -122,22 +123,22 @@
 		<!-- End Logo -->
 
 		<div class="search-bar">
-			<form class="search-form d-flex align-items-center" method="POST" action="#">
+			<div class="search-form d-flex align-items-center">
 				<!--         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button> -->
 				<a href="page-code-list.html" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 관리</span>
-				</a> <a href="/codeGroup/codeGroupView" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 그룹 관리</span>
+				</a> <a href="/codeGroup/codeGroupList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 그룹 관리</span>
 				</a>
-			</form>
+			</div>
 		</div>
 
 		<div class="search-bar">
-			<form class="search-form d-flex align-items-center" method="POST" action="#">
+			<div class="search-form d-flex align-items-center">
 				<input type="text" name="query" placeholder="Search" title="Enter search keyword">
 				<button type="submit" title="Search">
 					<i class="bi bi-search"></i>
 				</button>
-			</form>
+			</div>
 		</div>
 		<!-- End Search Bar -->
 
@@ -446,7 +447,7 @@
 							<div class="row mt-3 mb-3">
 								<div class="container" style="clear: both;">
 									<div class="d-flex p-2">
-										<form method="post" action="/codeGroup/codeGroupList">
+										<form method="get" id="formList" name="formList" action="/codeGroup/codeGroupList">
 											<table class="text-center tw-bold">
 												<tr>
 													<td>
@@ -492,7 +493,7 @@
 														</select>
 													</td>
 													<td>
-														<input class="form-control m-1" type="search" id="shValue2" name="shValue2" value="<c:out value="${vo.shValue}"/>" placeholder="키워드">
+														<input class="form-control m-1" type="search" id="shValue2" name="shValue2" value="<c:out value="${vo.shValue2}"/>" placeholder="키워드">
 													</td>
 													<td>
 														<div class="col m-1" style="line-height: 10px;">
@@ -535,6 +536,7 @@
 													<c:when test="${fn:length(list) eq 0}">
 														<tr>
 															<td class="text-center" colspan="12">데이터가 없습니다.</td>
+														</tr>
 													</c:when>
 													<c:otherwise>
 														<c:forEach items="${list}" var="list" varStatus="status">
@@ -542,7 +544,7 @@
 																<th scope="col" onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="selectGroup"></th>
 																<th scope="col"><c:out value="${list.CCGseq }" /></th>
 																<td>
-																	<%-- <a href="/codeGroup/codeGroupView?CCGseq=<c:out value="${list.CCGseq}"></c:out>"> --%><c:out value="${list.CCGseqChar}" /></a>
+																	<c:out value="${list.CCGseqChar}" /></a>
 																	<br>
 																</td>
 																<td>
@@ -603,7 +605,9 @@
 											<button type="button" class="btn btn-outline-success m-2" onclick="location.href='/codeGroup/codeGroupForm'">
 												<i class="fa-solid fa-circle-plus"></i> 추가
 											</button>
-
+											<button type="button" class="btn btn-outline-danger m-2">
+												<i class="fa-solid fa-pen-to-square"></i> 삭제
+											</button>
 											<button type="button" class="btn btn-outline-warning m-2">
 												<i class="fa-solid fa-pen-to-square"></i> 수정
 											</button>

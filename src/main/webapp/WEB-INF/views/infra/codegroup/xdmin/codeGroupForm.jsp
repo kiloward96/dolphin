@@ -13,7 +13,7 @@
 
 <title>Jumal 관리자</title>
 <meta content="" name="description">
-<meta content="" name="keywords">
+
 
 <!-- Favicons -->
 <!-- <link href="assets/img/favicon.png" rel="icon"> -->
@@ -34,6 +34,11 @@
 
 <!-- Template Main CSS File -->
 <link href="/resources/assets/css/style.css" rel="stylesheet">
+
+<!-- Jquery CDN -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
 
 <!-- =======================================================
   * Template Name: NiceAdmin - v2.3.1
@@ -375,14 +380,14 @@
 
 					<div class="card">
 						<div class="card-body">
-							<form method="post" id="insertForm" action="/codeGroup/codeGroupInst">
+							<form method="post" id="actionMode" name="actionMode">
 								<h5 class="card-title fw-bold">코드그룹 등록</h5>
 								<div class="row mt-3 mb-3">
 									<div class="col">
 										<label for="inputId" class="form-label">코드그룹 사용여부</label>
 										<select class="form-select" name="CCGuseYn">
-											<option selected value="1">Yes</option>
-											<option value="0">No</option>
+											<option value="1" <c:if test="${item.CCGuseYn eq 1}">selected</c:if>>Yes</option>
+											<option value="0" <c:if test="${item.CCGuseYn eq 0}">selected</c:if>>No</option>
 										</select>
 									</div>
 									<div class="col"></div>
@@ -391,7 +396,7 @@
 									<div class="col">
 										<div class="m-auto">
 											<label for="inputId" class="form-label">코드그룹 번호</label>
-											<input type="text" class="form-control" placeholder="자동생성" hidden name="CCGseq" value="<c:out value="${item.CCGseq }"/>">
+											<input type="text" class="form-control" placeholder="자동생성" name="CCGseq" value="<c:out value="${item.CCGseq }"/>">
 										</div>
 									</div>
 									<div class="col">
@@ -407,13 +412,13 @@
 										<div class="m-auto">
 											<label for="CCGgroupName" id="basicGroupName" class="form-label">코드그룹 이름 (한글)</label>
 											<label for="CCGgroupName" id="alertGroupName" class="form-label fw-bold text-danger" style="display:none;">코드그룹 이름 (한글)</label>
-											<input type="text" class="form-control" id="CCGgroupName" name="CCGgroupName">
+											<input type="text" class="form-control" id="CCGgroupName" name="CCGgroupName" value="<c:out value="${item.CCGgroupName}"/>">
 										</div>
 									</div>
 									<div class="col">
 										<div class="m-auto">
 											<label for="inputId" class="form-label">코드그룹 이름 (영문)</label>
-											<input type="text" class="form-control" id="CCGgroupNameEng" name="CCGgroupNameEng">
+											<input type="text" class="form-control" id="CCGgroupNameEng" name="CCGgroupNameEng" value="<c:out value="${item.CCGgroupNameEng}"/>">
 										</div>
 									</div>
 								</div>
@@ -421,8 +426,8 @@
 									<div class="col">
 										<label for="inputId" class="form-label text bold">코드그룹 삭제 여부</label>
 										<select class="form-select" name="CCGdelYn">
+											<option value="0" <c:if test="${item.CCGdelYn eq 0}">selected</c:if>>No</option>
 											<option value="1" <c:if test="${item.CCGdelYn eq 1}">selected</c:if>>Yes</option>
-											<option value="0" <c:if test="${item.CCGdelYn eq 0}">selected</c:if>>no</option>
 										</select>
 									</div>
 									<div class="col"></div>
@@ -439,14 +444,14 @@
 								</div>
 								<div class="row">
 									<div class="text-center mt-3 mb-3">
-										<button type="submit" class="btn btn-success" onclick="CGsubmit()">
+										<button type="submit" class="btn btn-success" >
 											<i class='bx bxs-save'> 저장</i>
 										</button>
 										<button type="reset" class="btn btn-danger">
 											<i class='bx bx-minus-circle'> 취소</i>
 										</button>
-										<button type="button" class="btn btn-primary" onclick="CGsubmit()">
-											<i class='bx bx-minus-circle'> 수정</i>
+										<button type="button" class="btn btn-primary" id="btnSave" name="btnSave" >
+											<i class='bx bx-minus-circle'> 테스트</i>
 										</button>
 									</div>
 								</div>
@@ -517,32 +522,33 @@
 				
 	 		}
 		}
-		
-		
 		var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
 		var goUrlInst = "/codeGroup/codeGroupInst"; 			/* #-> */
 		var goUrlUpdt = "/codeGroup/codeGroupUpdt";				/* #-> */
-		var goUrlUele = "/codeGroup/codeGroupUele";				/* #-> */
-		var goUrlDele = "/codeGroup/codeGroupDele";				/* #-> */
-		
-		var seq = $("input:hidden[name=ifcgSeq]");				/* #-> */
-		
-		var form = $("form[name=form]");
+//		var goUrlUele = "/codeGroup/codeGroupUele";				/* #-> */
+//		var goUrlDele = "/codeGroup/codeGroupDele";				/* #-> */
+
+		var seq = $("input:text[name=CCGseq]");						/* #-> */
+
+		var form = $("form[name=actionMode]");
 		var formVo = $("form[name=formVo]");
-		
-		
+
+
 		$("#btnSave").on("click", function(){
 			if (seq.val() == "0" || seq.val() == ""){
+				alert("test2");
 		   		// insert
-		   		if (validationInst() == false) return false;
+		   		//if (validationInst() == false) return false;
 		   		form.attr("action", goUrlInst).submit();
 		   	} else {
+		   		alert("test");
 		   		// update
 		   		/* keyName.val(atob(keyName.val())); */
-		   		if (validationUpdt() == false) return false;
+		   		//if (validationUpdt() == false) return false;
 		   		form.attr("action", goUrlUpdt).submit();
 		   	}
 		}); 
+		
 	</script>
 
 </body>

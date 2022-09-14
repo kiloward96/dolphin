@@ -12,6 +12,7 @@ public class CodeGroupVo {
 	private String shEndDate;
 	
 	private String CCGseq;
+	
 	public Integer getShOption() {
 		return shOption;
 	}
