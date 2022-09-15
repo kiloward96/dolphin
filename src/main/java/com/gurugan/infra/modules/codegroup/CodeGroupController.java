@@ -14,9 +14,24 @@ public class CodeGroupController {
 
 	@Autowired
 	CodeGroupServiceImpl service;
-
+	
 	@RequestMapping(value = "codeGroupList")
 	public String codeGroupList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
+		
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		System.out.println("Controller s");
+		System.out.println("getThisPage():" + vo.getThisPage());
+		System.out.println("getTotalRows():" + vo.getTotalRows());
+		System.out.println("getRowNumToShow():" + vo.getRowNumToShow());
+		System.out.println("getTotalPages():" + vo.getTotalPages());
+		System.out.println("getStartPage():" + vo.getStartPage());
+		System.out.println("getEndPage():" + vo.getEndPage());		
+		System.out.println("getStartRnumForOracle():" + vo.getStartRnumForOracle());
+		System.out.println("getEndRnumForOracle():" + vo.getEndRnumForOracle());
+		System.out.println("getStartRnumForMysql(): " + vo.getStartRnumForMysql());
+		System.out.println("Controller e");
+		
 		
 		System.out.println("vo.getShValue(): " + vo.getShValue());
 		List<CodeGroup> list = service.selectList(vo);

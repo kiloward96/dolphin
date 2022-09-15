@@ -8,30 +8,35 @@
 
 	<resultMap id="resultMapObj" type="com.gurugan.infra.modules.codegroup.CodeGroup"></resultMap>
 	
-	<select id="selectList" resultMap="resultMapObj">
-	SELECT
-		CCG.seq as CCGseq
-		,CCG.seqChar as CCGseqChar
-		,CCG.groupName as CCGgroupName
-		,CCG.groupNameEng as CCGgroupNameEng
-		,CCG.useYn as CCGuseYn
-		,CCG.regDate as CCGregDate
-		,CCG.delYn as CCGdelYn
-		,CCG.modDate as CCGmodDate
-		,CCG.delDate as CCGdelDate
-		,CCG.description as CCGdescription
-		,(select count(CC.seq) from commonCode CC where 1=1 and CC.delYn=0 and CC.commonCodeGroup_seq = CCG.seq AND CC.delYn = 0) as xCCcount
+	<sql id="selectCommon">
 	FROM commonCodeGroup CCG
-	WHERE 1=1
-		<choose>
-			<when test="shDelYn == 2">AND CCG.delYn IS NOT NULL</when>
-			<when test="shDelYn != null and !shDelYn.equals('')">AND CCG.delYn = #{shDelYn}</when>
-			<otherwise>AND CCG.delYn = 0</otherwise>
+		WHERE 1=1
+			<choose>
+				<when test="shDelYn == 2">AND CCG.delYn IS NOT NULL</when>
+				<when test="shDelYn != null and !shDelYn.equals('')">AND CCG.delYn = #{shDelYn}</when>
+				<otherwise>AND CCG.delYn = 0</otherwise>
 		</choose>
-		<choose>
-			<when test="shDate == 1">AND CCG.regDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
-			<when test="shDate == 2">AND CCG.modDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
-		</choose>
+	</sql>
+	
+	<select id="selectList" resultMap="resultMapObj">
+	<include refid="Base.selectListUpperForMysql"/>
+		SELECT
+			CCG.seq as CCGseq
+			,CCG.seqChar as CCGseqChar
+			,CCG.groupName as CCGgroupName
+			,CCG.groupNameEng as CCGgroupNameEng
+			,CCG.useYn as CCGuseYn
+			,CCG.regDate as CCGregDate
+			,CCG.delYn as CCGdelYn
+			,CCG.modDate as CCGmodDate
+			,CCG.delDate as CCGdelDate
+			,CCG.description as CCGdescription
+			,(select count(CC.seq) from commonCode CC where 1=1 and CC.delYn=0 and CC.commonCodeGroup_seq = CCG.seq AND CC.delYn = 0) as xCCcount
+		<include refid="selectCommon"/>
+			<choose>
+				<when test="shDate == 1">AND CCG.regDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+				<when test="shDate == 2">AND CCG.modDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+			</choose>
 		<choose>
 			<when test="shOption == 1">AND CCG.seq = #{shValue}</when>
 			<when test="shOption == 2">AND CCG.seqChar LIKE CONCAT ('%',#{shValue},'%')</when>
@@ -44,6 +49,9 @@
 			<when test="shOption2 == 3">OR CCG.groupName LIKE CONCAT ('%',#{shValue2},'%')</when>
 			<otherwise></otherwise>
 		</choose>
+		ORDER BY
+			CCG.seq ASC
+		<include refid="Base.selectListLowerForMysql" />
 	</select>
 	
 	<insert id="insert">
@@ -69,6 +77,29 @@
 	</selectKey>
 	</insert>
 	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+			<include refid="selectCommon"/>
+			<choose>
+				<when test="shDate == 1">AND CCG.regDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+				<when test="shDate == 2">AND CCG.modDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+			</choose>
+			<choose>
+			<when test="shOption == 1">AND CCG.seq = #{shValue}</when>
+			<when test="shOption == 2">AND CCG.seqChar LIKE CONCAT ('%',#{shValue},'%')</when>
+			<when test="shOption == 3">AND CCG.groupName LIKE CONCAT ('%',#{shValue},'%')</when>
+			<otherwise></otherwise>
+		</choose>
+		<choose>
+			<when test="shOption2 == 1">OR CCG.seq = #{shValue2}</when>
+			<when test="shOption2 == 2">OR CCG.seqChar LIKE CONCAT ('%',#{shValue2},'%')</when>
+			<when test="shOption2 == 3">OR CCG.groupName LIKE CONCAT ('%',#{shValue2},'%')</when>
+			<otherwise></otherwise>
+		</choose>
+		ORDER BY
+			CCG.seq ASC
+	</select>
+	
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			CCG.useYn AS CCGuseYn
@@ -81,6 +112,7 @@
 		WHERE 1=1
 			AND CCG.seq = #{CCGseq}
 	</select>
+	
 	
 	<update id="update">
 		UPDATE commonCodeGroup CCG
@@ -102,4 +134,21 @@
 	,CCG.seqChar as CCGseqChar ,CCG.groupName as CCGgroupName ,CCG.groupNameEng as CCGgroupNameEng ,CCG.useYn as CCGuseYn ,CCG.regDate as CCGregDate ,CCG.delYn 
 	as CCGdelYn ,CCG.delDate as CCGdelDate FROM commonCode CC LEFT JOIN commonCodeGroup CCG on CC.commonCodeGroup_seq = CCG.seq WHERE 1=1 AND CC.delYn = 0 
 	AND CCG.delYn = 0 GROUP BY CCG.groupName; -->
+	<!-- 	<sql id ="selectCommon">
+		FROM commonCodeGroup CCG
+		WHERE 1=1
+			<if test="shDelYn != null and !shDelYn.equals('')">AND CCG.delYn = #{shDelYn}</if>
+			<choose>
+				<when test="shDelYn == 2">AND CCG.delYn IS NOT NULL</when>
+				<otherwise>AND CCG.delYn = 0</otherwise>
+			</choose>
+			<choose>
+				<when test="shDate == 1">AND CCG.regDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+				<when test="shDate == 2">AND CCG.modDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+			</choose>
+	</sql> -->
+				<!-- <choose>
+				<when test="shDelYn == 2">AND CCG.delYn IS NOT NULL</when>
+				<otherwise>AND CCG.delYn = 0</otherwise>
+			</choose> -->
 	

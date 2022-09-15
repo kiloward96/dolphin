@@ -24,7 +24,7 @@
 		FROM member MB
 		WHERE 1=1
 			AND MB.delYn = 0
-s	</select>
+	</select>
 	
 	<select id="selectOne">
 		SELECT

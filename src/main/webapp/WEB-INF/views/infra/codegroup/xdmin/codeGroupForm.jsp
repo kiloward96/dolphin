@@ -396,7 +396,7 @@
 									<div class="col">
 										<div class="m-auto">
 											<label for="inputId" class="form-label">코드그룹 번호</label>
-											<input type="text" class="form-control" placeholder="자동생성" name="CCGseq" value="<c:out value="${item.CCGseq }"/>">
+											<input type="text" class="form-control" placeholder="자동생성" readonly name="CCGseq" value="<c:out value="${item.CCGseq }"/>">
 										</div>
 									</div>
 									<div class="col">

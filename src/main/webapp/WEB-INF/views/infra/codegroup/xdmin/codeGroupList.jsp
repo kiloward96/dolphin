@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -80,6 +80,7 @@
 
 								});
 			});
+	
 </script>
 
 
@@ -437,73 +438,58 @@
 			</nav>
 		</div>
 		<!-- End Page Title -->
-
+<form method="get" id="formList" name="formList">
 		<section class="section">
 			<div class="row">
 				<div class="col-lg">
-
 					<div class="card">
 						<div class="card-body">
 							<div class="row mt-3 mb-3">
 								<div class="container" style="clear: both;">
-									<div class="d-flex p-2">
-										<form method="get" id="formList" name="formList" action="/codeGroup/codeGroupList">
-											<table class="text-center tw-bold">
-												<tr>
-													<td>
-														<select class="form-select m-1" id="shDelYn" name="shDelYn">
-															<option value="" <c:if test="${empty vo.shDelYn}">selected</c:if>>삭제유무</option>
-															<option value="2" <c:if test="${vo.shDelYn eq 2}">selected</c:if>>ALL</option>
-															<option value="1" <c:if test="${vo.shDelYn eq 1}">selected</c:if>>Yes</option>
-															<option value="0" <c:if test="${vo.shDelYn eq 0}">selected</c:if>>No</option>
-														</select>
-													</td>
-													<td>
-														<select class="form-select m-1" id="shDate" name="shDate">
-															<option value="" <c:if test="${empty vo.shDate}">selected</c:if>>날짜검색기준</option>
-															<option value="1" <c:if test="${vo.shDate eq 1}">selected</c:if>>등록일</option>
-															<option value="2" <c:if test="${vo.shDate eq 2}">selected</c:if>>수정일</option>
-														</select>
-													</td>
-													<td>
-														<input class="form-control m-1" type="text" id="startDate" name="shStartDate" value="<c:out value="${vo.shStartDate}"/>" placeholder="~일부터">
-													</td>
-													<td>
-														<input class="form-control m-1" type="text" id="endDate" name="shEndDate" value="<c:out value="${vo.shEndDate}"/>" placeholder="~일까지">
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<select class="form-select m-1" id="shOption" name="shOption">
-															<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색조건 1</option>
-															<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드 번호</option>
-															<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 코드</option>
-															<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 명</option>
-														</select>
-													</td>
-													<td>
-														<input class="form-control m-1" type="search" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>" placeholder="키워드">
-													</td>
-													<td>
-														<select class="form-select m-1" id="shOption" name="shOption2">
-															<option value="" <c:if test="${empty vo.shOption2}">selected</c:if>>검색조건 2</option>
-															<option value="1" <c:if test="${vo.shOption2 eq 1}">selected</c:if>>코드 번호</option>
-															<option value="2" <c:if test="${vo.shOption2 eq 2}">selected</c:if>>코드그룹 코드</option>
-															<option value="3" <c:if test="${vo.shOption2 eq 3}">selected</c:if>>코드그룹 명</option>
-														</select>
-													</td>
-													<td>
-														<input class="form-control m-1" type="search" id="shValue2" name="shValue2" value="<c:out value="${vo.shValue2}"/>" placeholder="키워드">
-													</td>
-													<td>
-														<div class="col m-1" style="line-height: 10px;">
-															<button class="btn btn-primary" type="submit" style="width: 120px;">
-																<i class="fa-brands fa-searchengin"></i> 통합검색
-															</button>
-														</div>
-													</td>
-												</tr>
-												<!-- <td>
+									<input type="hidden" name="mainKey">
+									<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+									<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+									<input type="hidden" name="checkboxSeqArray">
+									<table class="text-center tw-bold">
+										<tr>
+											<td><select class="form-select m-1" id="shDelYn" name="shDelYn">
+													<option value="" <c:if test="${empty vo.shDelYn}">selected</c:if>>삭제유무</option>
+													<option value="2" <c:if test="${vo.shDelYn eq 2}">selected</c:if>>ALL</option>
+													<option value="1" <c:if test="${vo.shDelYn eq 1}">selected</c:if>>Yes</option>
+													<option value="0" <c:if test="${vo.shDelYn eq 0}">selected</c:if>>No</option>
+												</select></td>
+											<td><select class="form-select m-1" id="shDate" name="shDate">
+													<option value="" <c:if test="${empty vo.shDate}">selected</c:if>>날짜검색기준</option>
+													<option value="1" <c:if test="${vo.shDate eq 1}">selected</c:if>>등록일</option>
+													<option value="2" <c:if test="${vo.shDate eq 2}">selected</c:if>>수정일</option>
+												</select></td>
+											<td><input class="form-control m-1" type="text" id="startDate" name="shStartDate" value="<c:out value="${vo.shStartDate}"/>" placeholder="~일부터"></td>
+											<td><input class="form-control m-1" type="text" id="endDate" name="shEndDate" value="<c:out value="${vo.shEndDate}"/>" placeholder="~일까지"></td>
+										</tr>
+										<tr>
+											<td><select class="form-select m-1" id="shOption" name="shOption">
+													<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색조건 1</option>
+													<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드 번호</option>
+													<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 코드</option>
+													<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 명</option>
+												</select></td>
+											<td><input class="form-control m-1" type="search" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>" placeholder="키워드"></td>
+											<td><select class="form-select m-1" id="shOption" name="shOption2">
+													<option value="" <c:if test="${empty vo.shOption2}">selected</c:if>>검색조건 2</option>
+													<option value="1" <c:if test="${vo.shOption2 eq 1}">selected</c:if>>코드 번호</option>
+													<option value="2" <c:if test="${vo.shOption2 eq 2}">selected</c:if>>코드그룹 코드</option>
+													<option value="3" <c:if test="${vo.shOption2 eq 3}">selected</c:if>>코드그룹 명</option>
+												</select></td>
+											<td><input class="form-control m-1" type="search" id="shValue2" name="shValue2" value="<c:out value="${vo.shValue2}"/>" placeholder="키워드"></td>
+											<td>
+												<div class="col m-1" style="line-height: 10px;">
+													<button class="btn btn-primary" type="submit" style="width: 120px;">
+														<i class="fa-brands fa-searchengin"></i> 통합검색
+													</button>
+												</div>
+											</td>
+										</tr>
+										<!-- <td>
 											<select class="form-select m-1">
 												<option selected>검색조건 3</option>
 												<option value="1">코드 그룹 코드</option>
@@ -511,9 +497,9 @@
 												<option value="3">수정일</option>
 											</select>
 											</td> -->
-												<!-- <input class="form-control m-1" type="search" placeholder="키워드"> -->
-											</table>
-										</form>
+										<!-- <input class="form-control m-1" type="search" placeholder="키워드"> -->
+									</table>
+									</form>
 									</div>
 
 									<div class="row">
@@ -578,6 +564,22 @@
 										</table>
 									</div>
 								</div>
+								<%@include file="./pagination.jsp"%>
+								<!-- <nav aria-label="Page navigation" class="nav justify-content-center">
+									<ul class="pagination pagination-dark">
+										<li class="page-item"><a class="page-link" href="#" aria-label="first"> <span aria-hidden="true">&laquo;</span>
+										</a></li>
+										<li class="page-item"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&lt;</span>
+										</a></li>
+										<li class="page-item"><a class="page-link" href="#">1</a></li>
+										<li class="page-item"><a class="page-link" href="#">2</a></li>
+										<li class="page-item"><a class="page-link" href="#">3</a></li>
+										<li class="page-item"><a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&gt;</span>
+										</a></li>
+										<li class="page-item"><a class="page-link" href="#" aria-label="last"> <span aria-hidden="true">&raquo;</span>
+										</a></li>
+									</ul>
+								</nav> -->
 								<div class="container">
 									<div class="row">
 										<div class="col">
@@ -652,6 +654,15 @@
 
 	<!-- Template Main JS File -->
 	<script src="/resources/assets/js/main.js"></script>
+	<script type="text/javascript">
+	var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
+	var form = $("form[name=formList]");
+	
+	goList = function(thisPage) {
+		$("input:hidden[name=thisPage]").val(thisPage);
+		form.attr("action", goUrlList).submit();
+	}
+	</script>
 
 </body>
 

@@ -28,11 +28,11 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 //			vo.setShEndDate(vo.getShEndDate() + " 23:59:59");
 //		}
 		
-		if (vo.getShStartDate() != null && !vo.getShStartDate().equals("") || vo.getShEndDate() != null && !vo.getShEndDate().equals("")){
-			
-			vo.setShStartDate(vo.getShStartDate() + " 00:00:00");
-			vo.setShEndDate(vo.getShEndDate() + " 23:59:59");
-		}
+//		if (vo.getShStartDate() != null && !vo.getShStartDate().equals("") || vo.getShEndDate() != null && !vo.getShEndDate().equals("")){
+//			
+//			vo.setShStartDate(vo.getShStartDate() + " 00:00:00");
+//			vo.setShEndDate(vo.getShEndDate() + " 23:59:59");
+//		}
 		
 		List<CodeGroup> list = dao.selectList(vo);
 		return list;
@@ -45,6 +45,13 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 		
 		return result;
 	}
+	@Override
+	public int update(CodeGroup dto) throws Exception {
+		System.out.println(dto.getCCGseq());
+		int result = dao.update(dto);
+		System.out.println("service result:" + result);
+		return result;
+	}
 	
 	@Override
 	public CodeGroup selectOne(CodeGroupVo vo) throws Exception {
@@ -54,11 +61,10 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	}
 	
 	@Override
-	public int update(CodeGroup dto) throws Exception {
-		System.out.println(dto.getCCGseq());
-		int result = dao.update(dto);
-		System.out.println("service result:" + result);
-		return result;
+	public int selectOneCount(CodeGroupVo vo) throws Exception {
+		return dao.selectOneCount(vo);
+		
 	}
+
 
 }

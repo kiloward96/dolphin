@@ -1,7 +1,10 @@
 package com.gurugan.infra.modules.codegroup;
 
+import com.gurugan.infra.common.base.BaseVo;
 
-public class CodeGroupVo {
+public class CodeGroupVo extends BaseVo{
+	
+	// 검색 vo
 	private Integer shOption;
 	private String shValue;
 	private Integer shDelYn;
@@ -67,9 +70,4 @@ public class CodeGroupVo {
 	public void setCCGseq(String cCGseq) {
 		CCGseq = cCGseq;
 	}
-	
-	
-	
-	
-
 }
