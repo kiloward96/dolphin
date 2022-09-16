@@ -2,6 +2,7 @@ package com.gurugan.infra.modules.codegroup;
 
 import java.util.Date;
 
+
 public class CodeGroup {
 	
 	private String CCseq;

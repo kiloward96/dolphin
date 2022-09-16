@@ -14,7 +14,7 @@
 			<choose>
 				<when test="shDelYn == 2">AND CCG.delYn IS NOT NULL</when>
 				<when test="shDelYn != null and !shDelYn.equals('')">AND CCG.delYn = #{shDelYn}</when>
-				<otherwise>AND CCG.delYn = 0</otherwise>
+				<otherwise></otherwise>
 		</choose>
 	</sql>
 	
@@ -127,6 +127,22 @@
 		WHERE 1=1
 			AND CCG.seq = #{CCGseq}
 	</update>
+	
+	<update id="deleteFake">
+		UPDATE commonCodeGroup CCG
+			SET
+				CCG.delYn = 1
+				,CCG.useYn = 0
+		WHERE 1=1
+			AND CCG.seq = #{CCGseq}
+	</update>
+	
+	<delete id="deleteTrue">
+		DELETE 
+			FROM commonCodeGroup CCG
+		WHERE 1=1
+			AND CCG.seq = #{CCGseq}
+	</delete>
 
 </mapper>
 <!-- SELECT CC.seq as CCseq ,CC.seqChar as CCseqChar ,count(CC.commonCodeGroup_seq) as CCcount ,CC.codeName as CCcodeName ,CC.codeNameEng as CCcodeNameEng 

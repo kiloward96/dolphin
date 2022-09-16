@@ -41,6 +41,7 @@ public class CodeGroupDao {
 	}
 	
 	public int selectOneCount(CodeGroupVo vo) {
+		System.out.println("vo wtf" + vo.getShValue());
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
 }

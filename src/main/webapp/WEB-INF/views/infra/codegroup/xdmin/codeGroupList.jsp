@@ -80,7 +80,6 @@
 
 								});
 			});
-	
 </script>
 
 
@@ -438,57 +437,58 @@
 			</nav>
 		</div>
 		<!-- End Page Title -->
-<form method="get" id="formList" name="formList">
-		<section class="section">
-			<div class="row">
-				<div class="col-lg">
-					<div class="card">
-						<div class="card-body">
-							<div class="row mt-3 mb-3">
-								<div class="container" style="clear: both;">
-									<input type="hidden" name="mainKey">
-									<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
-									<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
-									<input type="hidden" name="checkboxSeqArray">
-									<table class="text-center tw-bold">
-										<tr>
-											<td><select class="form-select m-1" id="shDelYn" name="shDelYn">
-													<option value="" <c:if test="${empty vo.shDelYn}">selected</c:if>>삭제유무</option>
-													<option value="2" <c:if test="${vo.shDelYn eq 2}">selected</c:if>>ALL</option>
-													<option value="1" <c:if test="${vo.shDelYn eq 1}">selected</c:if>>Yes</option>
-													<option value="0" <c:if test="${vo.shDelYn eq 0}">selected</c:if>>No</option>
-												</select></td>
-											<td><select class="form-select m-1" id="shDate" name="shDate">
-													<option value="" <c:if test="${empty vo.shDate}">selected</c:if>>날짜검색기준</option>
-													<option value="1" <c:if test="${vo.shDate eq 1}">selected</c:if>>등록일</option>
-													<option value="2" <c:if test="${vo.shDate eq 2}">selected</c:if>>수정일</option>
-												</select></td>
-											<td><input class="form-control m-1" type="text" id="startDate" name="shStartDate" value="<c:out value="${vo.shStartDate}"/>" placeholder="~일부터"></td>
-											<td><input class="form-control m-1" type="text" id="endDate" name="shEndDate" value="<c:out value="${vo.shEndDate}"/>" placeholder="~일까지"></td>
-										</tr>
-										<tr>
-											<td><select class="form-select m-1" id="shOption" name="shOption">
-													<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색조건 1</option>
-													<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드 번호</option>
-													<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 코드</option>
-													<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 명</option>
-												</select></td>
-											<td><input class="form-control m-1" type="search" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>" placeholder="키워드"></td>
-											<td><select class="form-select m-1" id="shOption" name="shOption2">
-													<option value="" <c:if test="${empty vo.shOption2}">selected</c:if>>검색조건 2</option>
-													<option value="1" <c:if test="${vo.shOption2 eq 1}">selected</c:if>>코드 번호</option>
-													<option value="2" <c:if test="${vo.shOption2 eq 2}">selected</c:if>>코드그룹 코드</option>
-													<option value="3" <c:if test="${vo.shOption2 eq 3}">selected</c:if>>코드그룹 명</option>
-												</select></td>
-											<td><input class="form-control m-1" type="search" id="shValue2" name="shValue2" value="<c:out value="${vo.shValue2}"/>" placeholder="키워드"></td>
-											<td>
-												<div class="col m-1" style="line-height: 10px;">
-													<button class="btn btn-primary" type="submit" style="width: 120px;">
-														<i class="fa-brands fa-searchengin"></i> 통합검색
-													</button>
-												</div>
-											</td>
-										</tr>
+		<form method="get" id="formList" name="formList">
+		
+			<section class="section">
+				<div class="row">
+					<div class="col-lg">
+						<div class="card">
+							<div class="card-body">
+								<div class="row mt-3 mb-3">
+									<div class="container" style="clear: both;">
+										<input type="hidden" name="CCGseq">
+										<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+										<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+										<input type="hidden" name="checkboxSeqArray">
+										<table class="text-center tw-bold">
+											<tr>
+												<td><select class="form-select m-1" id="shDelYn" name="shDelYn">
+														<option value="" <c:if test="${empty vo.shDelYn}">selected</c:if>>삭제유무</option>
+														<option value="2" <c:if test="${vo.shDelYn eq 2}">selected</c:if>>ALL</option>
+														<option value="1" <c:if test="${vo.shDelYn eq 1}">selected</c:if>>Yes</option>
+														<option value="0" <c:if test="${vo.shDelYn eq 0}">selected</c:if>>No</option>
+													</select></td>
+												<td><select class="form-select m-1" id="shDate" name="shDate">
+														<option value="" <c:if test="${empty vo.shDate}">selected</c:if>>날짜검색기준</option>
+														<option value="1" <c:if test="${vo.shDate eq 1}">selected</c:if>>등록일</option>
+														<option value="2" <c:if test="${vo.shDate eq 2}">selected</c:if>>수정일</option>
+													</select></td>
+												<td><input class="form-control m-1" type="text" id="startDate" name="shStartDate" value="<c:out value="${vo.shStartDate}"/>" placeholder="~일부터"></td>
+												<td><input class="form-control m-1" type="text" id="endDate" name="shEndDate" value="<c:out value="${vo.shEndDate}"/>" placeholder="~일까지"></td>
+											</tr>
+											<tr>
+												<td><select class="form-select m-1" id="shOption" name="shOption">
+														<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색조건 1</option>
+														<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드 번호</option>
+														<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 코드</option>
+														<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 명</option>
+													</select></td>
+												<td><input class="form-control m-1" type="search" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>" placeholder="키워드"></td>
+												<td><select class="form-select m-1" id="shOption" name="shOption2">
+														<option value="" <c:if test="${empty vo.shOption2}">selected</c:if>>검색조건 2</option>
+														<option value="1" <c:if test="${vo.shOption2 eq 1}">selected</c:if>>코드 번호</option>
+														<option value="2" <c:if test="${vo.shOption2 eq 2}">selected</c:if>>코드그룹 코드</option>
+														<option value="3" <c:if test="${vo.shOption2 eq 3}">selected</c:if>>코드그룹 명</option>
+													</select></td>
+												<td><input class="form-control m-1" type="search" id="shValue2" name="shValue2" value="<c:out value="${vo.shValue2}"/>" placeholder="키워드"></td>
+												<td>
+													<div class="col m-1" style="line-height: 10px;">
+														<button class="btn btn-primary" type="submit" style="width: 120px;">
+															<i class="fa-brands fa-searchengin"></i> 통합검색
+														</button>
+													</div>
+												</td>
+											</tr>
 										<!-- <td>
 											<select class="form-select m-1">
 												<option selected>검색조건 3</option>
@@ -497,11 +497,11 @@
 												<option value="3">수정일</option>
 											</select>
 											</td> -->
-										<!-- <input class="form-control m-1" type="search" placeholder="키워드"> -->
-									</table>
-									</form>
+											<!-- <input class="form-control m-1" type="search" placeholder="키워드"> -->
+											</table>
 									</div>
-
+									
+												<div><span >Total : <c:out value="${vo.totalRows}"/></span></tr></div>
 									<div class="row">
 										<table class="table table-light table-hover" id="codeGroupList">
 											<thead>
@@ -526,35 +526,18 @@
 													</c:when>
 													<c:otherwise>
 														<c:forEach items="${list}" var="list" varStatus="status">
-															<tr style="cursor: pointer;" onclick="location.href='/codeGroup/codeGroupView?CCGseq=<c:out value="${list.CCGseq}"/>'" >
+															<%-- <tr style="cursor: pointer;" onclick="location.href='/codeGroup/codeGroupView?CCGseq=<c:out value="${list.CCGseq}"/>'" > --%>
+															<tr style="cursor: pointer;" onclick="javascript:goForm(<c:out value="${list.CCGseq }"/>)" >
+															<!-- <tr style="cursor: pointer;" id="goForm" name="goForm"> -->
 																<th scope="col" onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="selectGroup"></th>
 																<th scope="col"><c:out value="${list.CCGseq }" /></th>
-																<td>
-																	<c:out value="${list.CCGseqChar}" /></a>
-																	<br>
-																</td>
-																<td>
-																	<c:out value="${list.CCGgroupName}" />
-																	<br>
-																</td>
-																<td>
-																	<c:out value="${list.CCGgroupNameEng}" />
-																	<br>
-																</td>
-																<td>
-																	<c:out value="${list.xCCcount}" />
-																	<br>
-																</td>
-																<td>
-																	<fmt:formatDate value="${list.CCGregDate}" pattern="yyyy-MM-dd HH:mm:ss" />
-																</td>
-																<td>
-																	<fmt:formatDate value="${list.CCGmodDate}" pattern="yyyy-MM-dd HH:mm:ss" />
-																</td>
-																<td>
-																	<c:out value="${list.CCGdelYn}" />
-																	<br>
-																</td>
+																<td><c:out value="${list.CCGseqChar}" /></a></td>
+																<td><c:out value="${list.CCGgroupName}" /></td>
+																<td><c:out value="${list.CCGgroupNameEng}" /> </td>
+																<td><c:out value="${list.xCCcount}" /></td>
+																<td><fmt:formatDate value="${list.CCGregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+																<td><fmt:formatDate value="${list.CCGmodDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+																<td><c:out value="${list.CCGdelYn}" /></td>
 																<br>
 															</tr>
 														</c:forEach>
@@ -564,22 +547,7 @@
 										</table>
 									</div>
 								</div>
-								<%@include file="./pagination.jsp"%>
-								<!-- <nav aria-label="Page navigation" class="nav justify-content-center">
-									<ul class="pagination pagination-dark">
-										<li class="page-item"><a class="page-link" href="#" aria-label="first"> <span aria-hidden="true">&laquo;</span>
-										</a></li>
-										<li class="page-item"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&lt;</span>
-										</a></li>
-										<li class="page-item"><a class="page-link" href="#">1</a></li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-										<li class="page-item"><a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&gt;</span>
-										</a></li>
-										<li class="page-item"><a class="page-link" href="#" aria-label="last"> <span aria-hidden="true">&raquo;</span>
-										</a></li>
-									</ul>
-								</nav> -->
+								<%@include file="../../util/pagination.jsp"%>
 								<div class="container">
 									<div class="row">
 										<div class="col">
@@ -604,7 +572,7 @@
 											</div>
 										</div>
 										<div class="col d-flex justify-content-end">
-											<button type="button" class="btn btn-outline-success m-2" onclick="location.href='/codeGroup/codeGroupForm'">
+											<button type="button" class="btn btn-outline-success m-2" id="btnForm" name="btnForm">
 												<i class="fa-solid fa-circle-plus"></i> 추가
 											</button>
 											<button type="button" class="btn btn-outline-danger m-2">
@@ -620,7 +588,15 @@
 						</div>
 					</div>
 				</div>
+		</form>
+		
 		</section>
+		<form name="formVo" id="formVo" method="get">
+			<!-- *Vo.jsp s -->
+			<%@include file="codeGroupVo.jsp"%>
+			<!-- #-> -->
+			<!-- *Vo.jsp e -->
+		</form>
 
 	</main>
 	<!-- End #main -->
@@ -655,14 +631,28 @@
 	<!-- Template Main JS File -->
 	<script src="/resources/assets/js/main.js"></script>
 	<script type="text/javascript">
-	var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
-	var form = $("form[name=formList]");
-	
-	goList = function(thisPage) {
-		$("input:hidden[name=thisPage]").val(thisPage);
-		form.attr("action", goUrlList).submit();
-	}
+		var goUrlForm = "/codeGroup/codeGroupForm";
+		var goUrlList = "/codeGroup/codeGroupList"; /* #-> */
+		var form = $("form[name=formList]");
+
+		goList = function(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+		}
+
+		var seq = $("input:hidden[name=CCGseq]");
+
+		$('#btnForm').on("click", function() {
+			goForm(0);
+		});
+
+		goForm = function(keyValue) {
+			/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+			seq.val(keyValue);
+			form.attr("action", goUrlForm).submit();
+		}
 	</script>
+		
 
 </body>
 

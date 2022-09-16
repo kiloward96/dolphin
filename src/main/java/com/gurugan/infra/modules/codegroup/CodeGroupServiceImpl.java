@@ -62,6 +62,7 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	
 	@Override
 	public int selectOneCount(CodeGroupVo vo) throws Exception {
+		System.out.println("vo.getShValue" + vo.getShValue());
 		return dao.selectOneCount(vo);
 		
 	}

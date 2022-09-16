@@ -6,10 +6,12 @@
             <!-- <ul class="pagination pagination-sm justify-content-center mb-0"> -->
             <ul class="pagination justify-content-center mb-0">
                 <!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li> -->
-                <li class="page-item"><a class="page-link" href="javascript:goList(1)" aria-label="first"> <span aria-hidden="true">&laquo;</span></a></li>
 <c:if test="${vo.startPage gt vo.pageNumToShow}">
-                <li class="page-item"><a class="page-link" href="javascript:goList(${vo.startPage - 1})"><i class="fa-solid fa-angle-left"></i></a></li>
-</c:if>
+                <li class="page-item"><a class="page-link" href="javascript:goList(1)" aria-label="first"> <span aria-hidden="true">&laquo;</span></a></li></c:if>
+<c:if test="${vo.startPage gt vo.pageNumToShow}">
+                <li class="page-item"><a class="page-link" href="javascript:goList(${vo.startPage - 1})"><i class="fa-solid fa-angle-left"></i></a></li></c:if>
+<c:if test="${vo.startPage lt vo.pageNumToShow}">
+                <li class="page-item disabled"><a class="page-link" href="javascript:goList(${vo.startPage - 1})"><i class="fa-solid fa-angle-left"></i></a></li></c:if>
 <c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
 	<c:choose>
 		<c:when test="${i.index eq vo.thisPage}">

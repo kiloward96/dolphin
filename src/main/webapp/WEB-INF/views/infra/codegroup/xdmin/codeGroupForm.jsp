@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -60,22 +60,22 @@
 		<!-- End Logo -->
 
 		<div class="search-bar">
-			<form class="search-form d-flex align-items-center" method="POST" action="#">
+			<div class="search-form d-flex align-items-center">
 				<!--         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button> -->
 				<a href="/code/codeList" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span>
 				</a> <a href="/codeGroup/codeGroupList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span>
 				</a>
-			</form>
+			</div>
 		</div>
 
 		<div class="search-bar">
-			<form class="search-form d-flex align-items-center" method="POST" action="#">
+			<div class="search-form d-flex align-items-center">
 				<input type="text" name="query" placeholder="Search" title="Enter search keyword">
 				<button type="submit" title="Search">
 					<i class="bi bi-search"></i>
 				</button>
-			</form>
+			</div>
 		</div>
 		<!-- End Search Bar -->
 
@@ -380,7 +380,7 @@
 
 					<div class="card">
 						<div class="card-body">
-							<form method="post" id="actionMode" name="actionMode">
+							<form method="post" id="form" name="form">
 								<h5 class="card-title fw-bold">코드그룹 등록</h5>
 								<div class="row mt-3 mb-3">
 									<div class="col">
@@ -444,18 +444,27 @@
 								</div>
 								<div class="row">
 									<div class="text-center mt-3 mb-3">
-										<button type="submit" class="btn btn-success" >
+										<button type="button" class="btn btn-warning" id="btnList" name="btnList">
+											<i class='bx bxs-save'> 목록</i>
+										</button>
+										<button type="button" class="btn btn-primary" id="btnSave" name="btnSave" >
 											<i class='bx bxs-save'> 저장</i>
 										</button>
 										<button type="reset" class="btn btn-danger">
 											<i class='bx bx-minus-circle'> 취소</i>
 										</button>
-										<button type="button" class="btn btn-primary" id="btnSave" name="btnSave" >
-											<i class='bx bx-minus-circle'> 테스트</i>
-										</button>
 									</div>
 								</div>
 							</form>
+
+							<!-- form vo s -->
+							<form name="formVo" id="formVo" method="post">
+								<!-- *Vo.jsp s -->
+								<%@include file="codeGroupVo.jsp"%>
+								<!-- #-> -->
+								<!-- *Vo.jsp e -->
+							</form>
+							<!-- form vo e -->
 						</div>
 					</div>
 				</div>
@@ -496,32 +505,32 @@
 	<script src="/resources/assets/js/main.js"></script>
 
 	<script type="text/javascript">
-	var CCGseqChar = document.getElementById("CCGseqChar");
-	var CCGgroupName = document.getElementById("CCGgroupName");
+//	var CCGseqChar = document.getElementById("CCGseqChar");
+//	var CCGgroupName = document.getElementById("CCGgroupName");
 	
 		
 	
-		function CGsubmit() {
-	  		if(CCGseqChar.value == '' || CCGseqChar.value == null) {
-				document.getElementById("basicSeqChar").style.display = 'none';
-				document.getElementById("alertSeqChar").style.display = 'block';
+//		function CGsubmit() {
+//	  		if(CCGseqChar.value == '' || CCGseqChar.value == null) {
+//				document.getElementById("basicSeqChar").style.display = 'none';
+//				document.getElementById("alertSeqChar").style.display = 'block';
+//				
+//				return false;
 				
-				return false;
+//			} else if (CCGgroupName.value == '' || CCGgroupName.value == null ) {
+//				document.getElementById("basicGroupName").style.display = 'none';
+//				document.getElementById("alertGroupName").style.display = 'block';
 				
-			} else if (CCGgroupName.value == '' || CCGgroupName.value == null ) {
-				document.getElementById("basicGroupName").style.display = 'none';
-				document.getElementById("alertGroupName").style.display = 'block';
+//				return false;
 				
-				return false;
+//			} else {
+//				alert(document.getElementById("CCGseqChar").value); 	 			
+//				document.getElementById("inputForm").submit();
 				
-			} else {
-				alert(document.getElementById("CCGseqChar").value); 	 			
-				document.getElementById("inputForm").submit();
+//				return true;
 				
-				return true;
-				
-	 		}
-		}
+//	 		}
+//		}
 		var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
 		var goUrlInst = "/codeGroup/codeGroupInst"; 			/* #-> */
 		var goUrlUpdt = "/codeGroup/codeGroupUpdt";				/* #-> */
@@ -530,7 +539,7 @@
 
 		var seq = $("input:text[name=CCGseq]");						/* #-> */
 
-		var form = $("form[name=actionMode]");
+		var form = $("form[name=form]");
 		var formVo = $("form[name=formVo]");
 
 
@@ -547,7 +556,11 @@
 		   		//if (validationUpdt() == false) return false;
 		   		form.attr("action", goUrlUpdt).submit();
 		   	}
+			
 		}); 
+		$("#btnList").on("click", function(){
+			formVo.attr("action", goUrlList).submit();
+		});
 		
 	</script>
 
