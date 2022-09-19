@@ -17,12 +17,16 @@ public class CodeDao {
 
 	private static String namespace = "com.gurugan.infra.modules.code.CodeMapper";
 
-	public List<Code> selectList() {
-		return sqlSession.selectList(namespace + ".selectList", "");
+	public List<Code> selectList(CodeVo vo) {
+		return sqlSession.selectList(namespace + ".selectList", vo);
 	}
 	
 	public List<Code> groupList() {
 		return sqlSession.selectList(namespace + ".groupList", "");
+	}
+	
+	public Code selectOne(CodeVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOne", vo);
 	}
 	
 	public int insert(Code dto) {

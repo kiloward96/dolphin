@@ -35,12 +35,81 @@
 <!-- Template Main CSS File -->
 <link href="/resources/assets/css/style.css" rel="stylesheet">
 
+<!-- Datepicker -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script src="/resources/js/jquery-ui-timepicker-addon.js"></script>
+
 <!-- =======================================================
   * Template Name: NiceAdmin - v2.3.1
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				$.datepicker.setDefaults($.datepicker.regional['ko']);
+				$("#startDate")
+						.datepicker(
+								{
+									changeMonth : true,
+									changeYear : true,
+									nextText : '다음 달',
+									prevText : '이전 달',
+									dayNames : [ '일요일', '월요일', '화요일', '수요일',
+											'목요일', '금요일', '토요일' ],
+									dayNamesMin : [ '일', '월', '화', '수', '목',
+											'금', '토' ],
+									monthNamesShort : [ '1월', '2월', '3월', '4월',
+											'5월', '6월', '7월', '8월', '9월',
+											'10월', '11월', '12월' ],
+									monthNames : [ '1월', '2월', '3월', '4월',
+											'5월', '6월', '7월', '8월', '9월',
+											'10월', '11월', '12월' ],
+									dateFormat : "yy-mm-dd",
+									/* maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
+									onClose : function(selectedDate) {
+										//시작일(startDate) datepicker가 닫힐때
+										//종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+										$("#endDate").datepicker("option",
+												"minDate", selectedDate);
+									}
+
+								});
+				$("#endDate")
+						.datepicker(
+								{
+									changeMonth : true,
+									changeYear : true,
+									nextText : '다음 달',
+									prevText : '이전 달',
+									dayNames : [ '일요일', '월요일', '화요일', '수요일',
+											'목요일', '금요일', '토요일' ],
+									dayNamesMin : [ '일', '월', '화', '수', '목',
+											'금', '토' ],
+									monthNamesShort : [ '1월', '2월', '3월', '4월',
+											'5월', '6월', '7월', '8월', '9월',
+											'10월', '11월', '12월' ],
+									monthNames : [ '1월', '2월', '3월', '4월',
+											'5월', '6월', '7월', '8월', '9월',
+											'10월', '11월', '12월' ],
+									dateFormat : "yy-mm-dd",
+									/* maxDate: 0,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
+									onClose : function(selectedDate) {
+										// 종료일(endDate) datepicker가 닫힐때
+										// 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+										$("#startDate").datepicker("option",
+												"maxDate", selectedDate);
+									}
+
+								});
+			});
+</script>
+
+
 </head>
 
 <body>
@@ -372,137 +441,150 @@
 		<section class="section">
 			<div class="row">
 				<div class="col-lg">
-
-					<div class="card">
-						<div class="card-body">
-							<div class="row mt-3 mb-3">
-								<div class="container text-center" style="clear: both;">
-									<div class="d-flex p-2">
-										<select class="form-select m-1">
-											<option selected>검색조건 1</option>
-											<option value="1">코드 그룹 코드</option>
-											<option value="2">코드</option>
-											<option value="3">사용</option>
-											<option value="4">등록일</option>
-											<option value="5">수정일</option>
-										</select>
-										<input class="form-control m-1" type="search" placeholder="키워드">
-										<select class="form-select m-1">
-											<option selected>검색조건 2</option>
-											<option value="1">코드 그룹 코드</option>
-											<option value="2">코드</option>
-											<option value="3">사용</option>
-											<option value="4">등록일</option>
-											<option value="5">수정일</option>
-										</select>
-										<input class="form-control m-1" type="search" placeholder="키워드">
-										<select class="form-select m-1">
-											<option selected>검색조건 3</option>
-											<option value="1">코드 그룹 코드</option>
-											<option value="2">코드</option>
-											<option value="3">사용</option>
-											<option value="4">등록일</option>
-											<option value="5">수정일</option>
-										</select>
-										<input class="form-control m-1" type="search" placeholder="키워드">
-										<select class="form-select m-1">
-											<option selected>검색조건 4</option>
-											<option value="1">코드 그룹 코드</option>
-											<option value="2">코드</option>
-											<option value="3">사용</option>
-											<option value="4">등록일</option>
-											<option value="5">수정일</option>
-										</select>
-										<input class="form-control m-1" type="search" placeholder="키워드">
-										<div class="col m-1" style="line-height: 10px;">
-											<button class="btn btn-primary" type="submit" style="width: 120px;">
-												<i class="fa-brands fa-searchengin"></i> 통합검색
-											</button>
+					<form>
+						<div class="card">
+							<div class="card-body">
+								<div class="row mt-3 mb-3">
+									<div class="container text-center" style="clear: both;">
+										<div class="row">
+											<div class="col-2">
+												<select class="form-select m-1" id="shDelYn" name="shDelYn">
+													<option value="" <c:if test="${empty vo.shDelYn}">selected</c:if>>삭제유무</option>
+													<option value="2" <c:if test="${vo.shDelYn eq 2}">selected</c:if>>ALL</option>
+													<option value="1" <c:if test="${vo.shDelYn eq 1}">selected</c:if>>Yes</option>
+													<option value="0" <c:if test="${vo.shDelYn eq 0}">selected</c:if>>No</option>
+												</select>
+											</div>
+											<div class="col-2">
+												<select class="form-select m-1" id="shDate" name="shDate">
+													<option value="" <c:if test="${empty vo.shDate}">selected</c:if>>날짜검색기준</option>
+													<option value="1" <c:if test="${vo.shDate eq 1}">selected</c:if>>등록일</option>
+													<option value="2" <c:if test="${vo.shDate eq 2}">selected</c:if>>수정일</option>
+												</select>
+											</div>
+											<div class="col-2">
+												<input class="form-control m-1" type="text" id="startDate" name="shStartDate" value="<c:out value="${vo.shStartDate}"/>" placeholder="~일부터">
+											</div>
+											<div class="col-2">
+												<input class="form-control m-1" type="text" id="endDate" name="shEndDate" value="<c:out value="${vo.shEndDate}"/>" placeholder="~일까지">
+											</div>
 										</div>
-									</div>
-									<div class="row">
-										<table class="table table-light table-hover" id="userList">
-											<thead>
-												<tr class="table">
-													<th scope="col"><input class="form-check-input" type="checkbox" name="flexCheck" onclick="selectAll(this);"></th>
-													<th scope="col">No</th>
-													<th scope="col">코드 그룹 코드</th>
-													<th scope="col">코드 그룹 코드 이름 (한글)</th>
-													<th scope="col">코드</th>
-													<th scope="col">코드 이름 (한글)</th>
-													<th scope="col">코드 이름 (영문)</th>
-													<th scope="col">사용</th>
-													<th scope="col">순서</th>
-													<th scope="col">등록일</th>
-													<th scope="col">수정일</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:choose>
-													<c:when test="${fn:length(list) eq 0}">
-													<tr>
-														<td class="text-center" colspan="12">데이터가 없습니다.</td>
-													</c:when>
-													<c:otherwise>
-														<c:forEach items="${list}" var="list" varStatus="status">
-															<tr style="cursor: pointer;">
-																<td onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></td>
-																<td><c:out value="${list.CCseq }" /></td>
-																<td><c:out value="${list.CCGseq}" /></td>
-																<td><c:out value="${list.CCGgroupName}" /></td>
-																<td><c:out value="${list.CCGseqChar}" /></td>
-																<td><c:out value="${list.CCcodeName}" /></td>
-																<td><c:out value="${list.CCcodeNameEng}" /></td>
-																<td><c:out value="${list.CCuseYn}" /></td>
-																<td><c:out value="${list.CCsort}" /></td>
-																<td><fmt:formatDate value="${list.CCregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-																<td><fmt:formatDate value="${list.CCmodDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-															</tr>
-														</c:forEach>
-													</c:otherwise>
-												</c:choose>
-											</tbody>
-										</table>
-									</div>
+										<!-- <div class="d-flex p-2"> -->
+										<div class="row mt-3 mb-3">
+											<div class="col-2">
+												<select class="form-select m-1" id="shOption" name="shOption">
+													<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색조건 1</option>
+													<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드 번호</option>
+													<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 코드</option>
+													<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 명</option>
+												</select>
+											</div>
+											<div class="col-2">
+												<input class="form-control m-1" type="search" placeholder="키워드">
+											</div>
+											<div class="col-2">
+												<select class="form-select m-1" id="shOption" name="shOption2">
+														<option value="" <c:if test="${empty vo.shOption2}">selected</c:if>>검색조건 2</option>
+														<option value="1" <c:if test="${vo.shOption2 eq 1}">selected</c:if>>코드 번호</option>
+														<option value="2" <c:if test="${vo.shOption2 eq 2}">selected</c:if>>코드그룹 코드</option>
+														<option value="3" <c:if test="${vo.shOption2 eq 3}">selected</c:if>>코드그룹 명</option>
+													</select>
+											</div>
+											<div class="col-2">
+												<input class="form-control m-1" type="search" placeholder="키워드">
+											</div>
+											<div class="col-2">
+												<button class="btn btn-primary" type="button">
+													<i class="fa-brands fa-searchengin"></i> 통합검색
+												</button>
+											</div>
+										</div>
 								</div>
-								<div class="container">
-									<div class="row">
-										<div class="col">
-											<button type="button" class="btn btn-outline-danger m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-												<i class="fa-solid fa-circle-minus"></i> 삭제
-											</button>
+							</div>
+							<div class="row">
+								<table class="table table-light table-hover" id="userList">
+									<thead>
+										<tr class="table">
+											<th scope="col"><input class="form-check-input" type="checkbox" name="flexCheck" onclick="selectAll(this);"></th>
+											<th scope="col">No</th>
+											<th scope="col">코드 그룹 코드</th>
+											<th scope="col">코드 그룹 코드 이름 (한글)</th>
+											<th scope="col">코드</th>
+											<th scope="col">코드 이름 (한글)</th>
+											<th scope="col">코드 이름 (영문)</th>
+											<th scope="col">사용</th>
+											<th scope="col">순서</th>
+											<th scope="col">등록일</th>
+											<th scope="col">수정일</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:choose>
+											<c:when test="${fn:length(list) eq 0}">
+												<tr>
+													<td class="text-center" colspan="12">데이터가 없습니다.</td>
+											</c:when>
+											<c:otherwise>
+												<c:forEach items="${list}" var="list" varStatus="status">
+													<tr style="cursor: pointer;">
+														<td onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></td>
+														<td><c:out value="${list.CCseq }" /></td>
+														<td><c:out value="${list.CCGseq}" /></td>
+														<td><c:out value="${list.CCGgroupName}" /></td>
+														<td><c:out value="${list.CCGseqChar}" /></td>
+														<td><c:out value="${list.CCcodeName}" /></td>
+														<td><c:out value="${list.CCcodeNameEng}" /></td>
+														<td><c:out value="${list.CCuseYn}" /></td>
+														<td><c:out value="${list.CCsort}" /></td>
+														<td><fmt:formatDate value="${list.CCregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+														<td><fmt:formatDate value="${list.CCmodDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+													</tr>
+												</c:forEach>
+											</c:otherwise>
+										</c:choose>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="container">
+							<div class="row">
+								<div class="col">
+									<button type="button" class="btn btn-outline-danger m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+										<i class="fa-solid fa-circle-minus"></i> 삭제
+									</button>
 
-											<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header">
-															<h5 class="modal-title" id="staticBackdropLabel">데이터 삭제 경고알림</h5>
-															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-														</div>
-														<div class="modal-body">정말 삭제하시겠습니까?</div>
-														<div class="modal-footer">
-															<button type="button" class="btn btn-primary" onclick="location.href='./memberList.html'">Yes</button>
-															<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-														</div>
-													</div>
+									<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="staticBackdropLabel">데이터 삭제 경고알림</h5>
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body">정말 삭제하시겠습니까?</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-primary" onclick="location.href='./memberList.html'">Yes</button>
+													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
 												</div>
 											</div>
 										</div>
-										<div class="col d-flex justify-content-end">
-											<button type="button" class="btn btn-outline-success m-2" onclick="location.href='/code/codeForm'">
-												<i class="fa-solid fa-circle-plus"></i> 추가
-											</button>
-
-											<button type="button" class="btn btn-outline-warning m-2">
-												<i class="fa-solid fa-pen-to-square"></i> 수정
-											</button>
-										</div>
 									</div>
+								</div>
+								<div class="col d-flex justify-content-end">
+									<button type="button" class="btn btn-outline-success m-2" onclick="location.href='/code/codeForm'">
+										<i class="fa-solid fa-circle-plus"></i> 추가
+									</button>
+
+									<button type="button" class="btn btn-outline-warning m-2">
+										<i class="fa-solid fa-pen-to-square"></i> 수정
+									</button>
 								</div>
 							</div>
 						</div>
-					</div>
 				</div>
+			</div>
+			</div>
+			</form>
+			</div>
 		</section>
 
 	</main>
@@ -526,17 +608,17 @@
 	<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 	<!-- Vendor JS Files -->
-	<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-	<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="assets/vendor/chart.js/chart.min.js"></script>
-	<script src="assets/vendor/echarts/echarts.min.js"></script>
-	<script src="assets/vendor/quill/quill.min.js"></script>
-	<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-	<script src="assets/vendor/tinymce/tinymce.min.js"></script>
-	<script src="assets/vendor/php-email-form/validate.js"></script>
+	<script src="/resources/assets/vendor/apexcharts/apexcharts.min.js"></script>
+	<script src="/resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/resources/assets/vendor/chart.js/chart.min.js"></script>
+	<script src="/resources/assets/vendor/echarts/echarts.min.js"></script>
+	<script src="/resources/assets/vendor/quill/quill.min.js"></script>
+	<script src="/resources/assets/vendor/simple-datatables/simple-datatables.js"></script>
+	<script src="/resources/assets/vendor/tinymce/tinymce.min.js"></script>
+	<script src="/resources/assets/vendor/php-email-form/validate.js"></script>
 
 	<!-- Template Main JS File -->
-	<script src="assets/js/main.js"></script>
+	<script src="/resources/assets/js/main.js"></script>
 
 </body>
 
