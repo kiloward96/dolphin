@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gurugan.infra.modules.codegroup.CodeGroup;
 
@@ -37,7 +38,7 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "codeInst")
-	public String codeInst(CodeVo vo, Code dto) throws Exception {
+	public String codeInst(CodeVo vo, Code dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		int result = service.insert(dto);
 		System.out.println("controller Result: " + result);
@@ -46,10 +47,12 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "codeUpdt")
-	public String codeUpdt(CodeVo vo, Code dto) throws Exception {
+	public String codeUpdt(CodeVo vo, Code dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		int result = service.update(dto);
 		System.out.println("controller Result: " + result);
+		vo.setCCseq(dto.getCCseq());
+		redirectAttributes.addFlashAttribute("vo", vo);
 		
 		return "redirect:/code/codeForm";
 	}
