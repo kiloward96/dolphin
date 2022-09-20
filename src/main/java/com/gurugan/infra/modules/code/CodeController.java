@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.gurugan.infra.modules.codegroup.CodeGroup;
+
 
 @Controller
 @RequestMapping(value = "/code")
@@ -15,7 +19,7 @@ public class CodeController {
 	CodeServiceImpl service;
 
 	@RequestMapping(value = "codeList")
-	public String codeGroupList(CodeVo vo, Model model) throws Exception {
+	public String codeGroupList(@ModelAttribute("vo") CodeVo vo, CodeGroup dto, Model model) throws Exception {
 
 		List<Code> list = service.selectList(vo);
 		model.addAttribute("list", list);
@@ -24,20 +28,29 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "codeForm")
-	public String codeView(Model model) throws Exception {
+	public String codeView(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 		
-		List<Code> list = service.groupList();
-		model.addAttribute("groupList", list);
+		Code result = service.selectOne(vo);
+		model.addAttribute("item", result);
 		
 		return "infra/code/xdmin/codeForm";
 	}
 	
 	@RequestMapping(value = "codeInst")
-	public String codeInst(Code dto) throws Exception {
+	public String codeInst(CodeVo vo, Code dto) throws Exception {
 		
 		int result = service.insert(dto);
 		System.out.println("controller Result: " + result);
 		
-		return "redirect:/code/codeList";
+		return "redirect:/code/codeForm";
+	}
+	
+	@RequestMapping(value = "codeUpdt")
+	public String codeUpdt(CodeVo vo, Code dto) throws Exception {
+		
+		int result = service.update(dto);
+		System.out.println("controller Result: " + result);
+		
+		return "redirect:/code/codeForm";
 	}
 }

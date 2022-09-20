@@ -126,9 +126,8 @@
 			<div class="search-form d-flex align-items-center">
 				<!--         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button> -->
-				<a href="page-code-list.html" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 관리</span>
-				</a> <a href="/codeGroup/codeGroupList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 그룹 관리</span>
-				</a>
+				<a href="/code/codeList" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span> </a> 
+				<a href="/codeGroup/codeGroupList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span> </a>
 			</div>
 		</div>
 
@@ -438,7 +437,7 @@
 		</div>
 		<!-- End Page Title -->
 		<form method="get" id="formList" name="formList">
-		
+
 			<section class="section">
 				<div class="row">
 					<div class="col-lg">
@@ -489,7 +488,7 @@
 													</div>
 												</td>
 											</tr>
-										<!-- <td>
+											<!-- <td>
 											<select class="form-select m-1">
 												<option selected>검색조건 3</option>
 												<option value="1">코드 그룹 코드</option>
@@ -498,10 +497,13 @@
 											</select>
 											</td> -->
 											<!-- <input class="form-control m-1" type="search" placeholder="키워드"> -->
-											</table>
+										</table>
 									</div>
-									
-												<div><span >Total : <c:out value="${vo.totalRows}"/></span></tr></div>
+
+									<div>
+										<span>Total : <c:out value="${vo.totalRows}" /></span>
+										</tr>
+									</div>
 									<div class="row">
 										<table class="table table-light table-hover" id="codeGroupList">
 											<thead>
@@ -527,13 +529,13 @@
 													<c:otherwise>
 														<c:forEach items="${list}" var="list" varStatus="status">
 															<%-- <tr style="cursor: pointer;" onclick="location.href='/codeGroup/codeGroupView?CCGseq=<c:out value="${list.CCGseq}"/>'" > --%>
-															<tr style="cursor: pointer;" onclick="javascript:goForm(<c:out value="${list.CCGseq }"/>)" >
-															<!-- <tr style="cursor: pointer;" id="goForm" name="goForm"> -->
+															<tr style="cursor: pointer;" onclick="javascript:goForm(<c:out value="${list.CCGseq }"/>)">
+																<!-- <tr style="cursor: pointer;" id="goForm" name="goForm"> -->
 																<th scope="col" onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="selectGroup"></th>
 																<th scope="col"><c:out value="${list.CCGseq }" /></th>
 																<td><c:out value="${list.CCGseqChar}" /></a></td>
 																<td><c:out value="${list.CCGgroupName}" /></td>
-																<td><c:out value="${list.CCGgroupNameEng}" /> </td>
+																<td><c:out value="${list.CCGgroupNameEng}" /></td>
 																<td><c:out value="${list.xCCcount}" /></td>
 																<td><fmt:formatDate value="${list.CCGregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 																<td><fmt:formatDate value="${list.CCGmodDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
@@ -589,7 +591,7 @@
 					</div>
 				</div>
 		</form>
-		
+
 		</section>
 		<form name="formVo" id="formVo" method="get">
 			<!-- *Vo.jsp s -->
@@ -652,7 +654,7 @@
 			form.attr("action", goUrlForm).submit();
 		}
 	</script>
-		
+
 
 </body>
 

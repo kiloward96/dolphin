@@ -18,9 +18,17 @@ public class CodeServiceImpl implements CodeService {
 	}
 	
 	@Override
-	public List<Code> groupList() throws Exception {
-		return dao.groupList();
+	public List<Code> groupList(CodeVo vo) throws Exception {
+		return dao.groupList(vo);
 	}
+	
+	@Override
+	public Code selectOne(CodeVo vo) throws Exception {
+		Code result = dao.selectOne(vo);
+		System.out.println("service result: " + result);
+		return result;
+	}
+	
 	
 	@Override
 	public int insert(Code dto) throws Exception {
@@ -29,6 +37,13 @@ public class CodeServiceImpl implements CodeService {
 		System.out.println("service result: " + result);
 		
 		return result;
+	}
+	
+	@Override
+	public int update(Code dto) throws Exception {
+		int result = dao.update(dto);
+		System.out.println("service result: " + result);
 		
+		return result;
 	}
 }

@@ -1,6 +1,8 @@
 package com.gurugan.infra.modules.code;
 
-public class CodeVo {
+import com.gurugan.infra.common.base.BaseVo;
+
+public class CodeVo extends BaseVo{
 	
 	private Integer shOption;
 	private String shValue;

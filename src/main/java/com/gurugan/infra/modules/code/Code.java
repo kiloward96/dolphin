@@ -18,7 +18,8 @@ public class Code {
 	private String CCGseq;
 	private String CCGseqChar;
 	private String CCGgroupName;
-	
+	private Integer CCGuseYn;
+	private Integer CCGdelYn;
 	
 	public String getCCseq() {
 		return CCseq;
@@ -104,7 +105,17 @@ public class Code {
 	public void setCCGgroupName(String cCGgroupName) {
 		CCGgroupName = cCGgroupName;
 	}
-	
-
+	public Integer getCCGuseYn() {
+		return CCGuseYn;
+	}
+	public void setCCGuseYn(Integer cCGuseYn) {
+		CCGuseYn = cCGuseYn;
+	}
+	public Integer getCCGdelYn() {
+		return CCGdelYn;
+	}
+	public void setCCGdelYn(Integer cCGdelYn) {
+		CCGdelYn = cCGdelYn;
+	}
 
 }

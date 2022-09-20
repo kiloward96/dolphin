@@ -10,11 +10,15 @@
 	
 	<sql id="selectCommon">
 	FROM commonCodeGroup CCG
-		WHERE 1=1
-			<choose>
-				<when test="shDelYn == 2">AND CCG.delYn IS NOT NULL</when>
-				<when test="shDelYn != null and !shDelYn.equals('')">AND CCG.delYn = #{shDelYn}</when>
-				<otherwise></otherwise>
+	WHERE 1=1
+		<choose>
+			<when test="shDelYn == 2">AND CCG.delYn IS NOT NULL</when>
+			<when test="shDelYn != null and !shDelYn.equals('')">AND CCG.delYn = #{shDelYn}</when>
+			<otherwise></otherwise>
+		</choose>
+		<choose>
+				<when test="shDate == 1">AND CCG.regDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+				<when test="shDate == 2">AND CCG.modDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
 		</choose>
 	</sql>
 	
@@ -33,10 +37,6 @@
 			,CCG.description as CCGdescription
 			,(select count(CC.seq) from commonCode CC where 1=1 and CC.delYn=0 and CC.commonCodeGroup_seq = CCG.seq AND CC.delYn = 0) as xCCcount
 		<include refid="selectCommon"/>
-			<choose>
-				<when test="shDate == 1">AND CCG.regDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
-				<when test="shDate == 2">AND CCG.modDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
-			</choose>
 		<choose>
 			<when test="shOption == 1">AND CCG.seq = #{shValue}</when>
 			<when test="shOption == 2">AND CCG.seqChar LIKE CONCAT ('%',#{shValue},'%')</when>
@@ -80,10 +80,6 @@
 	<select id="selectOneCount" resultType="Integer">
 		SELECT COUNT(*)
 			<include refid="selectCommon"/>
-			<choose>
-				<when test="shDate == 1">AND CCG.regDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
-				<when test="shDate == 2">AND CCG.modDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
-			</choose>
 			<choose>
 			<when test="shOption == 1">AND CCG.seq = #{shValue}</when>
 			<when test="shOption == 2">AND CCG.seqChar LIKE CONCAT ('%',#{shValue},'%')</when>

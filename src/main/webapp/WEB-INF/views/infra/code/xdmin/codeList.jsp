@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -52,7 +52,7 @@
 	$(document).ready(
 			function() {
 				$.datepicker.setDefaults($.datepicker.regional['ko']);
-				$("#startDate")
+				$("#shStartDate")
 						.datepicker(
 								{
 									changeMonth : true,
@@ -74,12 +74,12 @@
 									onClose : function(selectedDate) {
 										//시작일(startDate) datepicker가 닫힐때
 										//종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-										$("#endDate").datepicker("option",
+										$("#shEndDate").datepicker("option",
 												"minDate", selectedDate);
 									}
 
 								});
-				$("#endDate")
+				$("#shEndDate")
 						.datepicker(
 								{
 									changeMonth : true,
@@ -101,7 +101,7 @@
 									onClose : function(selectedDate) {
 										// 종료일(endDate) datepicker가 닫힐때
 										// 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
-										$("#startDate").datepicker("option",
+										$("#shStartDate").datepicker("option",
 												"maxDate", selectedDate);
 									}
 
@@ -124,22 +124,21 @@
 		<!-- End Logo -->
 
 		<div class="search-bar">
-			<form class="search-form d-flex align-items-center" method="POST" action="#">
+			<div class="search-form d-flex align-items-center" method="POST" action="#">
 				<!--         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button> -->
-				<a href="page-code-list.html" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span>
-				</a> <a href="page-codeGroup-list.html" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span>
-				</a>
-			</form>
+				<a href="/code/codeList" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span> </a> 
+				<a href="/codeGroup/codeGroupList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span> </a>
+			</div>
 		</div>
 
 		<div class="search-bar">
-			<form class="search-form d-flex align-items-center" method="POST" action="#">
+			<div class="search-form d-flex align-items-center" method="POST" action="#">
 				<input type="text" name="query" placeholder="Search" title="Enter search keyword">
 				<button type="submit" title="Search">
 					<i class="bi bi-search"></i>
 				</button>
-			</form>
+			</div>
 		</div>
 		<!-- End Search Bar -->
 
@@ -441,7 +440,11 @@
 		<section class="section">
 			<div class="row">
 				<div class="col-lg">
-					<form>
+					<form id="formList" name="formList">
+						<input type="hidden" name="CCseq">
+						<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+						<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+						<input type="hidden" name="checkboxSeqArray">
 						<div class="card">
 							<div class="card-body">
 								<div class="row mt-3 mb-3">
@@ -463,10 +466,10 @@
 												</select>
 											</div>
 											<div class="col-2">
-												<input class="form-control m-1" type="text" id="startDate" name="shStartDate" value="<c:out value="${vo.shStartDate}"/>" placeholder="~일부터">
+												<input class="form-control m-1" type="text" id="shStartDate" name="shStartDate" value="<c:out value="${vo.shStartDate}"/>" placeholder="~일부터">
 											</div>
 											<div class="col-2">
-												<input class="form-control m-1" type="text" id="endDate" name="shEndDate" value="<c:out value="${vo.shEndDate}"/>" placeholder="~일까지">
+												<input class="form-control m-1" type="text" id="shEndDate" name="shEndDate" value="<c:out value="${vo.shEndDate}"/>" placeholder="~일까지">
 											</div>
 										</div>
 										<!-- <div class="d-flex p-2"> -->
@@ -476,7 +479,7 @@
 													<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색조건 1</option>
 													<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드 번호</option>
 													<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 코드</option>
-													<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 명</option>
+													<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드 명</option>
 												</select>
 											</div>
 											<div class="col-2">
@@ -484,106 +487,109 @@
 											</div>
 											<div class="col-2">
 												<select class="form-select m-1" id="shOption" name="shOption2">
-														<option value="" <c:if test="${empty vo.shOption2}">selected</c:if>>검색조건 2</option>
-														<option value="1" <c:if test="${vo.shOption2 eq 1}">selected</c:if>>코드 번호</option>
-														<option value="2" <c:if test="${vo.shOption2 eq 2}">selected</c:if>>코드그룹 코드</option>
-														<option value="3" <c:if test="${vo.shOption2 eq 3}">selected</c:if>>코드그룹 명</option>
-													</select>
+													<option value="" <c:if test="${empty vo.shOption2}">selected</c:if>>검색조건 2</option>
+													<option value="1" <c:if test="${vo.shOption2 eq 1}">selected</c:if>>코드 번호</option>
+													<option value="2" <c:if test="${vo.shOption2 eq 2}">selected</c:if>>코드그룹 코드</option>
+													<option value="3" <c:if test="${vo.shOption2 eq 3}">selected</c:if>>코드 명</option>
+												</select>
 											</div>
 											<div class="col-2">
 												<input class="form-control m-1" type="search" placeholder="키워드">
 											</div>
 											<div class="col-2">
-												<button class="btn btn-primary" type="button">
+												<button class="btn btn-primary" type="submit">
 													<i class="fa-brands fa-searchengin"></i> 통합검색
 												</button>
 											</div>
 										</div>
+									</div>
+								</div>
+								<div class="row">
+									<table class="table table-light table-hover" id="userList">
+										<thead>
+											<tr class="table">
+												<th scope="col"><input class="form-check-input" type="checkbox" name="flexCheck" onclick="selectAll(this);"></th>
+												<th scope="col">No</th>
+												<th scope="col">코드 그룹 코드</th>
+												<th scope="col">코드 그룹 코드 이름 (한글)</th>
+												<th scope="col">코드</th>
+												<th scope="col">코드 이름 (한글)</th>
+												<th scope="col">코드 이름 (영문)</th>
+												<th scope="col">사용</th>
+												<th scope="col">순서</th>
+												<th scope="col">등록일</th>
+												<th scope="col">수정일</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:choose>
+												<c:when test="${fn:length(list) eq 0}">
+													<tr>
+														<td class="text-center" colspan="12">데이터가 없습니다.</td>
+												</c:when>
+												<c:otherwise>
+													<c:forEach items="${list}" var="list" varStatus="status">
+														<tr style="cursor: pointer;" onclick="javascript:goForm(<c:out value="${list.CCseq }"/>)">
+															<td onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></td>
+															<td><c:out value="${list.CCseq }" /></td>
+															<td><c:out value="${list.CCGseq}" /></td>
+															<td><c:out value="${list.CCGgroupName}" /></td>
+															<td><c:out value="${list.CCseqChar}" /></td>
+															<td><c:out value="${list.CCcodeName}" /></td>
+															<td><c:out value="${list.CCcodeNameEng}" /></td>
+															<td><c:out value="${list.CCuseYn}" /></td>
+															<td><c:out value="${list.CCsort}" /></td>
+															<td><fmt:formatDate value="${list.CCregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+															<td><fmt:formatDate value="${list.CCmodDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+														</tr>
+													</c:forEach>
+												</c:otherwise>
+											</c:choose>
+										</tbody>
+									</table>
 								</div>
 							</div>
-							<div class="row">
-								<table class="table table-light table-hover" id="userList">
-									<thead>
-										<tr class="table">
-											<th scope="col"><input class="form-check-input" type="checkbox" name="flexCheck" onclick="selectAll(this);"></th>
-											<th scope="col">No</th>
-											<th scope="col">코드 그룹 코드</th>
-											<th scope="col">코드 그룹 코드 이름 (한글)</th>
-											<th scope="col">코드</th>
-											<th scope="col">코드 이름 (한글)</th>
-											<th scope="col">코드 이름 (영문)</th>
-											<th scope="col">사용</th>
-											<th scope="col">순서</th>
-											<th scope="col">등록일</th>
-											<th scope="col">수정일</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:choose>
-											<c:when test="${fn:length(list) eq 0}">
-												<tr>
-													<td class="text-center" colspan="12">데이터가 없습니다.</td>
-											</c:when>
-											<c:otherwise>
-												<c:forEach items="${list}" var="list" varStatus="status">
-													<tr style="cursor: pointer;">
-														<td onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></td>
-														<td><c:out value="${list.CCseq }" /></td>
-														<td><c:out value="${list.CCGseq}" /></td>
-														<td><c:out value="${list.CCGgroupName}" /></td>
-														<td><c:out value="${list.CCGseqChar}" /></td>
-														<td><c:out value="${list.CCcodeName}" /></td>
-														<td><c:out value="${list.CCcodeNameEng}" /></td>
-														<td><c:out value="${list.CCuseYn}" /></td>
-														<td><c:out value="${list.CCsort}" /></td>
-														<td><fmt:formatDate value="${list.CCregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-														<td><fmt:formatDate value="${list.CCmodDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-													</tr>
-												</c:forEach>
-											</c:otherwise>
-										</c:choose>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="container">
-							<div class="row">
-								<div class="col">
-									<button type="button" class="btn btn-outline-danger m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-										<i class="fa-solid fa-circle-minus"></i> 삭제
-									</button>
+							<%@include file="../../util/pagination.jsp"%>
+							<div class="container">
+								<div class="row">
+									<div class="col">
+										<button type="button" class="btn btn-outline-danger m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+											<i class="fa-solid fa-circle-minus"></i> 삭제
+										</button>
 
-									<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="staticBackdropLabel">데이터 삭제 경고알림</h5>
-													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
-												<div class="modal-body">정말 삭제하시겠습니까?</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-primary" onclick="location.href='./memberList.html'">Yes</button>
-													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+										<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="staticBackdropLabel">데이터 삭제 경고알림</h5>
+														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<div class="modal-body">정말 삭제하시겠습니까?</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-primary" onclick="location.href='./memberList.html'">Yes</button>
+														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="col d-flex justify-content-end">
-									<button type="button" class="btn btn-outline-success m-2" onclick="location.href='/code/codeForm'">
-										<i class="fa-solid fa-circle-plus"></i> 추가
-									</button>
-
-									<button type="button" class="btn btn-outline-warning m-2">
-										<i class="fa-solid fa-pen-to-square"></i> 수정
-									</button>
+									<div class="col d-flex justify-content-end">
+										<button type="button" class="btn btn-outline-success m-2" id="btnForm" name="btnForm">
+											<i class="fa-solid fa-circle-plus"></i> 추가
+										</button>
+										<button type="button" class="btn btn-outline-danger m-2">
+											<i class="fa-solid fa-pen-to-square"></i> 삭제
+										</button>
+										<button type="button" class="btn btn-outline-warning m-2">
+											<i class="fa-solid fa-pen-to-square"></i> 수정
+										</button>
+									</div>
 								</div>
 							</div>
 						</div>
+					</form>
 				</div>
 			</div>
-			</div>
-			</form>
 			</div>
 		</section>
 
@@ -619,6 +625,29 @@
 
 	<!-- Template Main JS File -->
 	<script src="/resources/assets/js/main.js"></script>
+
+	<script type="text/javascript">
+		var goUrlForm = "/code/codeForm";
+		var goUrlList = "/code/codeList"; /* #-> */
+		var form = $("form[name=formList]");
+
+		goList = function(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+		}
+
+		var seq = $("input:hidden[name=CCseq]");
+
+		$('#btnForm').on("click", function() {
+			goForm(0);
+		});
+
+		goForm = function(keyValue) {
+			/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+			seq.val(keyValue);
+			form.attr("action", goUrlForm).submit();
+		}
+	</script>
 
 </body>
 

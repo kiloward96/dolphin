@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -58,9 +58,8 @@
 			<form class="search-form d-flex align-items-center" method="POST" action="#">
 				<!--         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button> -->
-				<a href="index.html" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span>
-				</a> <a href="index.html" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span>
-				</a>
+				<a href="/code/codeList" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span> </a> 
+				<a href="/codeGroup/codeGroupList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span> </a>
 			</form>
 		</div>
 
@@ -372,7 +371,7 @@
 		<section class="section">
 			<div class="row">
 				<div class="col-lg">
-					<form method="post" action="/code/codeInst">
+					<form method="get" id="form" name="form">
 						<div class="card">
 							<div class="card-body">
 								<h5 class="card-title fw-bold">코드 등록</h5>
@@ -382,17 +381,16 @@
 										<%-- <c:if test="${empty list}"> --%>
 										<select class="form-select" name="CCcommonCodeGroup_seq">
 											<option value="" selected>선택</option>
-											<c:forEach items="${groupList}" var="list" varStatus="status">
-												<option value="<c:out value="${list.CCGseq}"></c:out>"><c:out value="${list.CCGgroupName}"/></option>
+											<c:forEach items="${groupList}" var="group" varStatus="status">
+												<option value="<c:out value="${group.CCGseq}"></c:out>"><c:out value="${group.CCGgroupName}" /></option>
 											</c:forEach>
 										</select>
 									</div>
 									<div class="col">
 										<label for="inputId" class="form-label text bold">코드 사용여부</label>
 										<select class="form-select" name="CCuseYn">
-											<option selected>선택</option>
-											<option value="1">Yes</option>
-											<option value="0">No</option>
+											<option value="1" <c:if test="${item.CCuseYn eq 1}">selected</c:if>>Yes</option>
+											<option value="0" <c:if test="${item.CCuseYn eq 0}">selected</c:if>>No</option>
 										</select>
 									</div>
 									<div class="col"></div>
@@ -401,13 +399,13 @@
 									<div class="col">
 										<div class="m-auto">
 											<label for="inputId" class="form-label">코드 번호</label>
-											<input type="text" class="form-control" placeholder="자동생성" disabled name="CCseq">
+											<input type="text" class="form-control" placeholder="자동생성" id="CCseq" name="CCseq" value="<c:out value="${item.CCseq }"/>">
 										</div>
 									</div>
 									<div class="col">
 										<div class="m-auto">
 											<label for="inputId" class="form-label">코드 번호(Another)</label>
-											<input type="text" class="form-control" name="CCseqChar">
+											<input type="text" class="form-control" id="CCseqChar" name="CCseqChar" value="<c:out value="${item.CCseqChar }"/>">
 										</div>
 									</div>
 								</div>
@@ -415,13 +413,13 @@
 									<div class="col">
 										<div class="m-auto">
 											<label for="inputId" class="form-label">코드 이름 (한글)</label>
-											<input type="text" class="form-control" name="CCcodeName">
+											<input type="text" class="form-control" id="CCcodeName" name="CCcodeName" value="<c:out value="${item.CCcodeName }"/>">
 										</div>
 									</div>
 									<div class="col">
 										<div class="m-auto">
 											<label for="inputId" class="form-label">코드 이름 (영문)</label>
-											<input type="text" class="form-control" name="CCcodeNameEng">
+											<input type="text" class="form-control" id="CCcodeNameEng" name="CCcodeNameEng" value="<c:out value="${item.CCcodeNameEng }"/>">
 										</div>
 									</div>
 								</div>
@@ -429,15 +427,14 @@
 									<div class="col">
 										<div class="m-auto">
 											<label for="inputId" class="form-label">순서</label>
-											<input type="text" class="form-control"  name="CCsort">
+											<input type="text" class="form-control" id="CCsort" name="CCsort" value="<c:out value="${item.CCsort }"/>">
 										</div>
 									</div>
 									<div class="col">
 										<label for="inputId" class="form-label text bold">코드 삭제 여부</label>
 										<select class="form-select" name="CCdelYn">
-											<option selected>선택</option>
-											<option value="1">Yes</option>
-											<option value="0">No</option>
+											<option value="0" <c:if test="${item.CCdelYn eq 0}">selected</c:if>>No</option>
+											<option value="1" <c:if test="${item.CCdelYn eq 1}">selected</c:if>>Yes</option>
 										</select>
 									</div>
 								</div>
@@ -524,6 +521,66 @@
 
 	<!-- Template Main JS File -->
 	<script src="/resources/assets/js/main.js"></script>
+
+	<script type="text/javascript">
+//	var CCGseqChar = document.getElementById("CCGseqChar");
+//	var CCGgroupName = document.getElementById("CCGgroupName");
+	
+		
+	
+//		function CGsubmit() {
+//	  		if(CCGseqChar.value == '' || CCGseqChar.value == null) {
+//				document.getElementById("basicSeqChar").style.display = 'none';
+//				document.getElementById("alertSeqChar").style.display = 'block';
+//				
+//				return false;
+				
+//			} else if (CCGgroupName.value == '' || CCGgroupName.value == null ) {
+//				document.getElementById("basicGroupName").style.display = 'none';
+//				document.getElementById("alertGroupName").style.display = 'block';
+				
+//				return false;
+				
+//			} else {
+//				alert(document.getElementById("CCGseqChar").value); 	 			
+//				document.getElementById("inputForm").submit();
+				
+//				return true;
+				
+//	 		}
+//		}
+		var goUrlList = "/code/codeList"; 			/* #-> */
+		var goUrlInst = "/code/codeInst"; 			/* #-> */
+		var goUrlUpdt = "/code/codeUpdt";				/* #-> */
+//		var goUrlUele = "/code/codeUele";				/* #-> */
+//		var goUrlDele = "/code/codeDele";				/* #-> */
+
+		var seq = $("input:text[name=CCGseq]");						/* #-> */
+
+		var form = $("form[name=form]");
+		var formVo = $("form[name=formVo]");
+
+
+		$("#btnSave").on("click", function(){
+			if (seq.val() == "0" || seq.val() == ""){
+				alert("test2");
+		   		// insert
+		   		//if (validationInst() == false) return false;
+		   		form.attr("action", goUrlInst).submit();
+		   	} else {
+		   		alert("test");
+		   		// update
+		   		/* keyName.val(atob(keyName.val())); */
+		   		//if (validationUpdt() == false) return false;
+		   		form.attr("action", goUrlUpdt).submit();
+		   	}
+			
+		}); 
+		$("#btnList").on("click", function(){
+			formVo.attr("action", goUrlList).submit();
+		});
+		
+	</script>
 
 </body>
 

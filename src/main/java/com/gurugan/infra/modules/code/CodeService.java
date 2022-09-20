@@ -9,7 +9,11 @@ public interface CodeService {
 	
 	public List<Code> selectList(CodeVo vo) throws Exception; 
 	
-	public List<Code> groupList() throws Exception; 
+	public Code selectOne(CodeVo vo) throws Exception;
+	
+	public List<Code> groupList(CodeVo vo) throws Exception; 
 	
 	public int insert(Code dto) throws Exception; 
+	
+	public int update(Code dto) throws Exception;
 }
