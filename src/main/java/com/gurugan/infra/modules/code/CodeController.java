@@ -58,8 +58,8 @@ public class CodeController {
 		int result = service.update(dto);
 		System.out.println("controller Result: " + result);
 		vo.setCCseq(dto.getCCseq());
-		System.out.println("왜래키: " + vo.getCCGseq());
-		System.out.println("왜래키2: " + vo.getCCcommonCodeGroup_seq());
+		System.out.println("외래키: " + vo.getCCGseq());
+		System.out.println("외래키2: " + vo.getCCcommonCodeGroup_seq());
 		redirectAttributes.addFlashAttribute("vo", vo);
 		
 		return "redirect:/code/codeForm";

@@ -82,7 +82,7 @@
 			ORDER BY CC.seq ASC
 	</select>
 	
-	<select id="selectOneCount" resultMap="resultMapObj">
+	<select id="selectOneCount" resultType="Integer">
 		SELECT COUNT(*)
 			FROM commonCode CC
 		WHERE 1=1
