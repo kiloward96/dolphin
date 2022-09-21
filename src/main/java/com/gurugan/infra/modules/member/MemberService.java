@@ -7,4 +7,8 @@ public interface MemberService {
 	public List<Member> selectList(MemberVo vo) throws Exception;
 	
 	public Member selectOne(MemberVo vo) throws Exception; 
+	
+	public int insert(MemberAddress dto) throws Exception;
+	
+	public int update(Member dto) throws Exception;
 }

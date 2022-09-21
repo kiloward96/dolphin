@@ -12,6 +12,9 @@ public class MemberVo extends BaseVo {
 	private String shStartDate;
 	private String shEndDate;
 	private Integer shStatus;
+	
+	private String MBseq;
+	
 	public Integer getShOption() {
 		return shOption;
 	}
@@ -65,6 +68,12 @@ public class MemberVo extends BaseVo {
 	}
 	public void setShStatus(Integer shStatus) {
 		this.shStatus = shStatus;
+	}
+	public String getMBseq() {
+		return MBseq;
+	}
+	public void setMBseq(String mBseq) {
+		MBseq = mBseq;
 	}
 	
 	

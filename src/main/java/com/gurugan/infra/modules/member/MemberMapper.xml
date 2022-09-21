@@ -29,7 +29,7 @@
 		<include refid="Base.selectListLowerForMysql" />
 	</select>
 	
-	<select id="selectOne">
+	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			MB.seq AS MBseq
 			,MB.id AS MBid
@@ -85,13 +85,15 @@
 			,addressZipcode
 			,addressMain
 			,addressDetail
+			,addressMore
 			,delYn
 		) VALUES (
-			#{MBseq}
+			1
 			,#{addressName}
 			,#{addressZipcode}
 			,#{addressMain}
 			,#{addressDetail}
+			,#{addressMore}
 			,0
 		)
 	<selectKey resultType="String" keyProperty="MAseq" order="AFTER">
@@ -113,7 +115,7 @@
 				,delYn = #{MBdelYn}
 				,grade = #{MBgrade}
 		WHERE 1=1
-			AND CCG.seq = #{CCGseq}
+			AND MB.seq = #{MBseq}
 	</update>
 	
 	

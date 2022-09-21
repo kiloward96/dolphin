@@ -8,6 +8,7 @@ public class MemberAddress {
 	private Integer addressZipcode;
 	private String addressMain;
 	private String addressDetail;
+	private String addressMore;
 	private String recieverName;		// 차후 변경가능 수신자명
 	private String recieverMobile;		// 수신자 전화번호
 	private String defaultYn;
@@ -72,6 +73,12 @@ public class MemberAddress {
 	}
 	public void setMAdelYn(String mAdelYn) {
 		MAdelYn = mAdelYn;
+	}
+	public String getAddressMore() {
+		return addressMore;
+	}
+	public void setAddressMore(String addressMore) {
+		this.addressMore = addressMore;
 	}
 	
 }

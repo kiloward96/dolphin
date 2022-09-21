@@ -13,13 +13,13 @@
 		INNER JOIN commonCode CC on CC.commonCodeGroup_seq = CCG.seq
 	    WHERE 1=1
 	    <choose>
-				<when test="shDelYn == 2">AND CC.delYn IS NOT NULL</when>
-				<when test="shDelYn != null and !shDelYn.equals('')">AND CC.delYn = #{shDelYn}</when>
-				<otherwise></otherwise>
+			<when test="shDelYn == 2">AND CC.delYn IS NOT NULL</when>
+			<when test="shDelYn != null and !shDelYn.equals('')">AND CC.delYn = #{shDelYn}</when>
+			<otherwise></otherwise>
 	    </choose>
 	    <choose>
-				<when test="shDate == 1">AND CC.regDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
-				<when test="shDate == 2">AND CC.modDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+			<when test="shDate == 1">AND CC.regDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+			<when test="shDate == 2">AND CC.modDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
 		</choose>
 		<choose>
 			<when test="shOption == 1">AND CC.seq = #{shValue}</when>
@@ -30,7 +30,7 @@
 		<choose>
 			<when test="shOption2 == 1">OR CC.seq = #{shValue2}</when>
 			<when test="shOption2 == 2">OR CC.seqChar LIKE CONCAT ('%',#{shValue2},'%')</when>
-			<when test="shOption2 == 3">OR CC.codeName LIKE CONCAT ('%',#{shValue2},'%')</when>
+			<when test="shOption2 == 3">OR CC.codeName LIKE CONCAT ('%',#{shValue2},'%') OR CC.codeNameEng LIKE CONCAT ('%',#{shValue},'%')</when>
 			<otherwise></otherwise>
 		</choose>
     </sql>
@@ -105,7 +105,7 @@
 		<choose>
 			<when test="shOption2 == 1">OR CC.seq = #{shValue2}</when>
 			<when test="shOption2 == 2">OR CC.seqChar LIKE CONCAT ('%',#{shValue2},'%')</when>
-			<when test="shOption2 == 3">OR CC.codeName LIKE CONCAT ('%',#{shValue2},'%')</when>
+			<when test="shOption2 == 3">OR CC.codeName LIKE CONCAT ('%',#{shValue2},'%')  OR CC.codeNameEng LIKE CONCAT ('%',#{shValue},'%')</when>
 			<otherwise></otherwise>
 		</choose>
 		ORDER BY

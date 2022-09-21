@@ -41,14 +41,14 @@ public class CodeDao {
 		return sqlSession.update(namespace + ".update", dto);
 	}
 	
-	public int selectOneCount() {
+	public int selectOneCount(CodeVo vo) {
 		/* System.out.println("vo wtf: " + vo.getShValue()); */
 		/*
 		 * if (vo.getShDelYn() == null || vo.getShDelYn().equals(null) ) {
 		 * vo.setShDelYn(2); } else { vo.setShDelYn(2); }
 		 */
 		/* System.out.println("DAO debug: " + vo); */
-		return sqlSession.selectOne(namespace + ".selectOneCount", "");
+		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
 	
 //	for cache

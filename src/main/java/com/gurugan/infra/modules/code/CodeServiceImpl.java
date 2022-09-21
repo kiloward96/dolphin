@@ -50,9 +50,9 @@ public class CodeServiceImpl implements CodeService {
 	}
 	
 	@Override
-	public int selectOneCount() throws Exception {
-		/* System.out.println("vo.getShValue: " + vo.getShValue()); */
-		return dao.selectOneCount();
+	public int selectOneCount(CodeVo vo) throws Exception {
+		System.out.println("vo.getShValue: " + vo.getShValue()); 
+		return dao.selectOneCount(vo);
 	}
 	
 	@PostConstruct

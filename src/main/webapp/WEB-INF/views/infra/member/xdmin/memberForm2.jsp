@@ -41,13 +41,11 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-
+  
 <!-- Jquery CDN -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+  
 </head>
 
 <body>
@@ -65,10 +63,9 @@
 			<form class="search-form d-flex align-items-center">
 				<!--         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button> -->
-				<a href="/code/codeList" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span>
-				</a> <a href="/codeGroup/codeGroupList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span>
-				</a> <a href="/member/memberList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">사용자 관리</span>
-				</a>
+				<a href="/code/codeList" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span> </a> 
+				<a href="/codeGroup/codeGroupList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span> </a>
+				<a href="/member/memberList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">사용자 관리</span> </a>
 			</form>
 		</div>
 
@@ -383,148 +380,114 @@
 					<form method="get" id="form" name="form">
 						<div class="card">
 							<div class="card-body">
-								<div class="container mt-2 mb-5">
-									<div class="row">
-										<div class="row mt-5">
-											<div class="col-5 d-flex justify-content-start">
-												<h4>기본정보</h4>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col">
-												<div class="form-floating mt-3">
-													<input class="form-control shadow-sm" type="text" placeholder="ID" id="input_id">
-													<label for="input_id">아이디</label>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<span class="alert_subtext" id="result_id">사용가능한 ID 입니다.</span>
-										</div>
-										<div class="row">
-											<div class="col">
-												<div class="form-floating mt-2">
-													<input class="form-control shadow-sm" type="password" placeholder="Password" id="input_password">
-													<label for="input_password">비밀번호</label>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col">
-												<div class="form-floating mt-3">
-													<input class="form-control shadow-sm" type="password" placeholder="Password Check" id="input_password_chk">
-													<label for="input_password_chk">비밀번호확인</label>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<span class="alert_subtext" id="result_password">비밀번호가 일치합니다.</span>
-										</div>
-										<div class="row">
-											<div class="col">
-												<div class="form-floating mt-2">
-													<input class="form-control shadow-sm" type="text" placeholder="name" id="input_name">
-													<label for="input_name">이름</label>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col  d-flex align-items-end">
-												<div class="form-floating mt-3 mobile-box">
-													<input class="form-control shadow-sm" type="text" placeholder="mobile" id="input_mobile">
-													<label for="input_mobile">Mobile</label>
-												</div>
-												<button type="button" class="btn btn-primary ms-4 opacity-75 mobile-btn">전송</button>
-											</div>
-											<div class="row">
-												<span class="alert_subtext mobile" id="send_certnumber">인증번호가 전송되었습니다.</span>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col d-flex align-items-end">
-												<div class="form-floating mt-2 mobile-box">
-													<input class="form-control shadow-sm" type="text" placeholder="certnumber" id="input_certnumber">
-													<label for="input_certnumber">인증번호</label>
-												</div>
-												<button type="button" class="btn btn-primary ms-4 opacity-75 mobile-btn">인증확인</button>
-											</div>
-											<div class="row">
-												<span class="form-label alert_subtext mobile" id="result_certnumber">본인인증완료</span>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col">
-												<div class="form-floating mt-2">
-													<input class="form-control shadow-sm" type="email" placeholder="Email" id="input_email">
-													<label for="input_email">Email</label>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="form-check form-check-inline email_subtext">
-												<input class="form-check-input" type="checkbox" id="confirm_emailAd" value="option1">
-												<label class="form-check-label ps-2" for="confirm_emailAd">구매내역 및 혜택 Email 수신 동의</label>
-											</div>
-										</div>
-										<div class="row mt-5">
-											<div class="col-5 d-flex justify-content-start">
-												<h4>기본 배송지</h4>
-											</div>
-											<div class="row">
-												<span class="alert_subtext mobile" id="result_certnumber">택배 배송 받으실 주소를 입력해주세요.</span>
-											</div>
-											<div class="row">
-												<div class="col d-flex align-items-end">
-													<div class="form-floating mt-2 mobile-box">
-														<input class="form-control shadow-sm" type="text" readonly placeholder="zipcode" id="addressZipcode" name="addressZipcode">
-														<label for="input_zipcode">인증번호</label>
-													</div>
-													<button type="button" class="btn btn-primary ms-4 opacity-75 mobile-btn" onclick="searchAddress()">주소검색</button>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col">
-													<div class="form-floating mt-4">
-														<input class="form-control shadow-sm" type="text" readonly placeholder="도로명/지번주소" id="addressMain" name="addressMain">
-														<label for="input_postAddress">도로명/지번주소</label>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col">
-													<div class="form-floating mt-4">
-														<input class="form-control shadow-sm" type="text" placeholder="상세주소" id="addressDetail" name="addressDetail">
-														<label for="input_detailAddress">상세주소</label>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col">
-													<div class="form-floating mt-4">
-														<input class="form-control shadow-sm" type="text" readonly placeholder="참고항목" id="addressMore" name="addressMore">
-														<label for="input_detailAddress">참고항목</label>
-													</div>
-												</div>
-											</div>
-											<div>
-												<div id="wrap" style="display: none; border: 1px solid; width: 500px; height: 300px; margin: 5px 0; position: relative">
-													<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1" onclick="foldDaumPostcode()" alt="접기 버튼">
-												</div>
-											</div>
-											<div class="row mt-4 mb-2">
-												<div class="col">
-													<div class="form-floating mt-4 mb-5">
-														<button type="button" class="btn btn-success w-100" id="btnSave" name="btnSave">
-															<i class="fa-solid fa-play me-3"></i>가입하기
-														</button>
-													</div>
-												</div>
-											</div>
+								<h5 class="card-title fw-bold">사용자 등록</h5>
+								<div class="row mt-3 mb-3">
+									<%-- <div class="col">
+										<label for="inputId" class="form-label text bold">사용자 고유번호</label>
+										<input type="text" class="form-control" placeholder="자동생성" readonly name="MBseq" value="<c:out value="${item.MBseq }"/>">
+									</div> --%>
+									<div class="col">
+										<label for="inputId" class="form-label text bold">주소 고유번호</label>
+										<input type="text" class="form-control" placeholder="자동생성" readonly name="MBseq" value="<c:out value="${item.MBseq }"/>">
+									</div>
+									<div class="col">
+										<label for="inputId" class="form-label text bold">사용자 삭제여부</label>
+									<%-- 	<select class="form-select" name="MBdelYn">
+											<option value="1" <c:if test="${item.MBdelYn eq 1}">selected</c:if>>Yes</option>
+											<option value="0" <c:if test="${item.MBdelYn eq 0}">selected</c:if>>No</option>
+										</select> --%>
+									</div>
+									<div class="col"></div>
+								</div>
+								<div class="row mt-3 mb-3">
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">사용자 ID </label>
+											<%-- <input type="text" class="form-control" id="MBid" name="MBid" value="<c:out value="${item.MBid }"/>"> --%>
 										</div>
 									</div>
-									<div class="mt-5 mb-5" id="footer"></div>
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">사용자명 </label>
+											<%-- <input type="text" class="form-control" id="MBname" name="MBname" value="<c:out value="${item.MBname }"/>"> --%>
+										</div>
+									</div>
+								</div>
+								<div class="row mt-3 mb-3">
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">비밀번호 </label>
+											<%-- <input type="text" class="form-control" id="MBpassword" name="MBpassword" value="<c:out value="${item.CCcodeName }"/>"> --%>
+										</div>
+									</div>
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">비밀번호 확인</label>
+											<%-- <input type="text" class="form-control" id="MBpassword" name="MBpassword" value="<c:out value="${item.CCcodeNameEng }"/>"> --%>
+										</div>
+									</div>
+								</div>
+								<div class="row mt-3 mb-3">
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">순서</label>
+											<input type="text" class="form-control" id="CCsort" name="CCsort" value="<c:out value="${item.CCsort }"/>">
+										</div>
+									</div>
+									<div class="col">
+										<label for="inputId" class="form-label text bold">코드 삭제 여부</label>
+										<select class="form-select" name="CCdelYn">
+											<option value="0" <c:if test="${item.CCdelYn eq 0}">selected</c:if>>No</option>
+											<option value="1" <c:if test="${item.CCdelYn eq 1}">selected</c:if>>Yes</option>
+										</select>
+									</div>
+								</div>
+								<div class="row mt-3 mb-3">
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">설명</label>
+											<textarea class="form-control" rows="3" id="formGroupExampleInput"></textarea>
+										</div>
+									</div>
+									<div class="col"></div>
+								</div>
+								<div class="row mt-3 mb-3">
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">예비1 (varchar type)</label>
+											<input type="text" class="form-control" id="formGroupExampleInput">
+										</div>
+									</div>
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">예비2 (varchar type)</label>
+											<input type="text" class="form-control" id="formGroupExampleInput">
+										</div>
+									</div>
+								</div>
+								<div class="row mt-3 mb-3">
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">예비3 (varchar type)</label>
+											<input type="text" class="form-control" id="formGroupExampleInput">
+										</div>
+									</div>
+									<div class="col">
+										<div class="m-auto"></div>
+									</div>
+									<div class="row">
+										<div class="text-center mt-3 mb-3">
+											<button type="button" class="btn btn-success" id="btnSave" name="btnSave">
+												<i class='bx bxs-save'> 저장</i>
+											</button>
+											<button type="reset" class="btn btn-danger">
+												<i class='bx bx-minus-circle'> 취소</i>
+											</button>
+										</div>
+									</div>
 								</div>
 							</div>
+						</div>
 					</form>
 					<form name="formVo" id="formVo" method="get">
 						<!-- *Vo.jsp s -->
@@ -570,142 +533,63 @@
 	<script src="/resources/assets/js/main.js"></script>
 
 	<script type="text/javascript">
-		//	var CCGseqChar = document.getElementById("CCGseqChar");
-		//	var CCGgroupName = document.getElementById("CCGgroupName");
+//	var CCGseqChar = document.getElementById("CCGseqChar");
+//	var CCGgroupName = document.getElementById("CCGgroupName");
+	
+		
+	
+//		function CGsubmit() {
+//	  		if(CCGseqChar.value == '' || CCGseqChar.value == null) {
+//				document.getElementById("basicSeqChar").style.display = 'none';
+//				document.getElementById("alertSeqChar").style.display = 'block';
+//				
+//				return false;
+				
+//			} else if (CCGgroupName.value == '' || CCGgroupName.value == null ) {
+//				document.getElementById("basicGroupName").style.display = 'none';
+//				document.getElementById("alertGroupName").style.display = 'block';
+				
+//				return false;
+				
+//			} else {
+//				alert(document.getElementById("CCGseqChar").value); 	 			
+//				document.getElementById("inputForm").submit();
+				
+//				return true;
+				
+//	 		}
+//		}
+		var goUrlList = "/member/memberList"; 			/* #-> */
+		var goUrlInst = "/member/memberInst"; 			/* #-> */
+		var goUrlUpdt = "/member/memberUpdt";				/* #-> */
+//		var goUrlUele = "/code/codeUele";				/* #-> */
+//		var goUrlDele = "/code/codeDele";				/* #-> */
 
-		//		function CGsubmit() {
-		//	  		if(CCGseqChar.value == '' || CCGseqChar.value == null) {
-		//				document.getElementById("basicSeqChar").style.display = 'none';
-		//				document.getElementById("alertSeqChar").style.display = 'block';
-		//				
-		//				return false;
-
-		//			} else if (CCGgroupName.value == '' || CCGgroupName.value == null ) {
-		//				document.getElementById("basicGroupName").style.display = 'none';
-		//				document.getElementById("alertGroupName").style.display = 'block';
-
-		//				return false;
-
-		//			} else {
-		//				alert(document.getElementById("CCGseqChar").value); 	 			
-		//				document.getElementById("inputForm").submit();
-
-		//				return true;
-
-		//	 		}
-		//		}
-		var goUrlList = "/member/memberList"; /* #-> */
-		var goUrlInst = "/member/memberInst"; /* #-> */
-		var goUrlUpdt = "/member/memberUpdt"; /* #-> */
-		//		var goUrlUele = "/code/codeUele";				/* #-> */
-		//		var goUrlDele = "/code/codeDele";				/* #-> */
-
-		var seq = $("input:text[name=MBseq]"); /* #-> */
+		var seq = $("input:text[name=MBseq]");						/* #-> */
 
 		var form = $("form[name=form]");
 		var formVo = $("form[name=formVo]");
 
-		$("#btnSave").on("click", function() {
-//			if (seq.val() == "0" || seq.val() == "") {
-//				alert("test2");
-//				// insert
-//				//if (validationInst() == false) return false;
-//				form.attr("action", goUrlInst).submit();
-//			} else {
-//				alert("test");
-//				// update
-//				/* keyName.val(atob(keyName.val())); */
-//				//if (validationUpdt() == false) return false;
-//				form.attr("action", goUrlUpdt).submit();
-//			}
-			form.attr("action", goUrlInst).submit();
-		});
-		$("#btnList").on("click", function() {
+
+		$("#btnSave").on("click", function(){
+			if (seq.val() == "0" || seq.val() == ""){
+				alert("test2");
+		   		// insert
+		   		//if (validationInst() == false) return false;
+		   		form.attr("action", goUrlInst).submit();
+		   	} else {
+		   		alert("test");
+		   		// update
+		   		/* keyName.val(atob(keyName.val())); */
+		   		//if (validationUpdt() == false) return false;
+		   		form.attr("action", goUrlUpdt).submit();
+		   	}
+			
+		}); 
+		$("#btnList").on("click", function(){
 			formVo.attr("action", goUrlList).submit();
 		});
-
-		// Kakao Map
-
-		// 우편번호 찾기 찾기 화면을 넣을 element
-		var element_wrap = document.getElementById('wrap');
-
-		function foldDaumPostcode() {
-			// iframe을 넣은 element를 안보이게 한다.
-			element_wrap.style.display = 'none';
-		}
-
-		function searchAddress() {
-			// 현재 scroll 위치를 저장해놓는다.
-			var currentScroll = Math.max(document.body.scrollTop,
-					document.documentElement.scrollTop);
-			new daum.Postcode(
-					{
-						oncomplete : function(data) {
-							// 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-							// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-							var addr = ''; // 주소 변수
-							var extraAddr = ''; // 참고항목 변수
-
-							//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-							if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-								addr = data.roadAddress;
-							} else { // 사용자가 지번 주소를 선택했을 경우(J)
-								addr = data.jibunAddress;
-							}
-
-							// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-							if (data.userSelectedType === 'R') {
-								// 법정동명이 있을 경우 추가한다. (법정리는 제외)
-								// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-								if (data.bname !== ''
-										&& /[동|로|가]$/g.test(data.bname)) {
-									extraAddr += data.bname;
-								}
-								// 건물명이 있고, 공동주택일 경우 추가한다.
-								if (data.buildingName !== ''
-										&& data.apartment === 'Y') {
-									extraAddr += (extraAddr !== '' ? ', '
-											+ data.buildingName
-											: data.buildingName);
-								}
-								// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-								if (extraAddr !== '') {
-									extraAddr = ' (' + extraAddr + ')';
-								}
-								// 조합된 참고항목을 해당 필드에 넣는다.
-								document.getElementById("addressMore").value = extraAddr;
-
-							} else {
-								document.getElementById("addressMore").value = '';
-							}
-
-							// 우편번호와 주소 정보를 해당 필드에 넣는다.
-							document.getElementById('addressZipcode').value = data.zonecode;
-							document.getElementById("addressMain").value = addr;
-							// 커서를 상세주소 필드로 이동한다.
-							document.getElementById("addressDetail")
-									.focus();
-
-							// iframe을 넣은 element를 안보이게 한다.
-							// (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
-							element_wrap.style.display = 'none';
-
-							// 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
-							document.body.scrollTop = currentScroll;
-						},
-						// 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
-						onresize : function(size) {
-							element_wrap.style.height = size.height + 'px';
-						},
-						width : '100%',
-						height : '100%'
-					}).embed(element_wrap);
-
-			// iframe을 넣은 element를 보이게 한다.
-			element_wrap.style.display = 'block';
-		}
+		
 	</script>
 
 </body>

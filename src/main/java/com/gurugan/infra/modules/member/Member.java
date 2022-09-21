@@ -17,6 +17,16 @@ public class Member{
 	private Integer MBdelYn;
 	private Integer MBgrade;
 	
+	private String CCGseq;
+	
+	 
+	
+	public String getCCGseq() {
+		return CCGseq;
+	}
+	public void setCCGseq(String cCGseq) {
+		CCGseq = cCGseq;
+	}
 	public Integer getMBgrade() {
 		return MBgrade;
 	}

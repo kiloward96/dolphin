@@ -43,6 +43,11 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+<!-- Jquery CDN -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
 </head>
 
 <body>
@@ -60,9 +65,10 @@
 			<form class="search-form d-flex align-items-center" method="POST" action="#">
 				<!--         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button> -->
-				<a href="/code/codeList" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span> </a> 
-				<a href="/codeGroup/codeGroupList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span> </a>
-				<a href="/member/memberList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">사용자 관리</span> </a>
+				<a href="/code/codeList" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span>
+				</a> <a href="/codeGroup/codeGroupList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span>
+				</a> <a href="/member/memberList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">사용자 관리</span>
+				</a>
 			</form>
 		</div>
 
@@ -370,151 +376,152 @@
 			</nav>
 		</div>
 		<!-- End Page Title -->
-
-		<section class="section">
-			<div class="row">
-				<div class="col-lg">
-					<div class="card">
-						<div class="card-body">
-							<div class="row mt-3 mb-3">
-								<div class="container" style="clear: both;">
-									<div class="d-flex p-2">
-										<select class="form-select m-1">
-											<option selected>검색조건 1</option>
-											<option value="1">이름</option>
-											<option value="2">ID</option>
-											<option value="3">권한</option>
-											<option value="4">Email</option>
-										</select>
-										<input class="form-control m-1" type="search" placeholder="키워드">
-										<select class="form-select m-1">
-											<option selected>검색조건 2</option>
-											<option value="1">이름</option>
-											<option value="2">ID</option>
-											<option value="3">권한</option>
-											<option value="4">Email</option>
-										</select>
-										<input class="form-control m-1" type="search" placeholder="키워드">
-										<select class="form-select m-1">
-											<option selected>검색조건 3</option>
-											<option value="1">이름</option>
-											<option value="2">ID</option>
-											<option value="3">권한</option>
-											<option value="4">Email</option>
-										</select>
-										<input class="form-control m-1" type="search" placeholder="키워드">
-										<select class="form-select m-1">
-											<option selected>검색조건 4</option>
-											<option value="1">이름</option>
-											<option value="2">ID</option>
-											<option value="3">권한</option>
-											<option value="4">Email</option>
-										</select>
-										<input class="form-control m-1" type="search" placeholder="키워드">
-										<div class="col m-1" style="line-height: 10px;">
-											<button class="btn btn-primary" type="submit" style="width: 120px;">
-												<i class="fa-brands fa-searchengin"></i> 통합검색
-											</button>
+		<form method="get" id="formList" name="formList">
+			<section class="section">
+				<div class="row">
+					<div class="col-lg">
+						<div class="card">
+							<div class="card-body">
+								<div class="row mt-3 mb-3">
+									<div class="container" style="clear: both;">
+										<div class="d-flex p-2">
+											<select class="form-select m-1">
+												<option selected>검색조건 1</option>
+												<option value="1">이름</option>
+												<option value="2">ID</option>
+												<option value="3">권한</option>
+												<option value="4">Email</option>
+											</select>
+											<input class="form-control m-1" type="search" placeholder="키워드">
+											<select class="form-select m-1">
+												<option selected>검색조건 2</option>
+												<option value="1">이름</option>
+												<option value="2">ID</option>
+												<option value="3">권한</option>
+												<option value="4">Email</option>
+											</select>
+											<input class="form-control m-1" type="search" placeholder="키워드">
+											<select class="form-select m-1">
+												<option selected>검색조건 3</option>
+												<option value="1">이름</option>
+												<option value="2">ID</option>
+												<option value="3">권한</option>
+												<option value="4">Email</option>
+											</select>
+											<input class="form-control m-1" type="search" placeholder="키워드">
+											<select class="form-select m-1">
+												<option selected>검색조건 4</option>
+												<option value="1">이름</option>
+												<option value="2">ID</option>
+												<option value="3">권한</option>
+												<option value="4">Email</option>
+											</select>
+											<input class="form-control m-1" type="search" placeholder="키워드">
+											<div class="col m-1" style="line-height: 10px;">
+												<button class="btn btn-primary" type="submit" style="width: 120px;">
+													<i class="fa-brands fa-searchengin"></i> 통합검색
+												</button>
+											</div>
+										</div>
+										<div class="row">
+											<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('2')}" />
+											<table class="table table-light table-hover text-center" id="userList">
+												<thead>
+													<tr class="table">
+														<th scope="col"><input class="form-check-input" type="checkbox" name="flexCheck" onclick="selectAll(this);"></th>
+														<th scope="col">No</th>
+														<th scope="col">권한</th>
+														<th scope="col">이름</th>
+														<th scope="col">ID</th>
+														<th scope="col">성별</th>
+														<th scope="col">생년월일</th>
+														<th scope="col">Email</th>
+														<th scope="col">mobile</th>
+														<th scope="col">가입일</th>
+														<th scope="col">탈퇴여부</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:choose>
+														<c:when test="${fn:length(list) eq 0}">
+															<tr>
+																<td class="text-center" colspan="11">데이터가 없습니다.</td>
+														</c:when>
+														<c:otherwise>
+															<c:forEach items="${list}" var="list" varStatus="status">
+																<tr style="cursor: pointer;">
+																	<th scope="col" onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></th>
+																	<th scope="col"><c:out value="${list.MBseq}" /></th>
+																	<td><c:out value="${list.MBgrade}" /></td>
+																	<td><c:out value="${list.MBname}" /></td>
+																	<td><c:out value="${list.MBid}" /></td>
+																	<%-- <td><c:out value="${list.MBgender}"/></td> --%>
+																	<td><c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+																			<c:if test="${list.MBgender eq listGender.CCseq}">
+																				<c:out value="${listGender.CCcodeName }" />
+																			</c:if>
+																		</c:forEach></td>
+																	<td><fmt:formatDate value="${list.MBdob}" pattern="yyyy-MM-dd" /></td>
+																	<td><c:out value="${list.MBemail}" /></td>
+																	<td><c:out value="${list.MBmobile}" /></td>
+																	<td><fmt:formatDate value="${list.MBregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+																	<td><c:out value="${list.MBdelYn}" /></td>
+																	<br>
+																</tr>
+															</c:forEach>
+														</c:otherwise>
+													</c:choose>
+												</tbody>
+											</table>
 										</div>
 									</div>
-									<div class="row">
-									<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('2')}"/>
-										<table class="table table-light table-hover text-center" id="userList">
-											<thead>
-												<tr class="table">
-													<th scope="col"><input class="form-check-input" type="checkbox" name="flexCheck" onclick="selectAll(this);"></th>
-													<th scope="col">No</th>
-													<th scope="col">권한</th>
-													<th scope="col">이름</th>
-													<th scope="col">ID</th>
-													<th scope="col">성별</th>
-													<th scope="col">생년월일</th>
-													<th scope="col">Email</th>
-													<th scope="col">mobile</th>
-													<th scope="col">가입일</th>
-													<th scope="col">탈퇴여부</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:choose>
-													<c:when test="${fn:length(list) eq 0}">
-														<tr>
-															<td class="text-center" colspan="11">데이터가 없습니다.</td>
-													</c:when>
-													<c:otherwise>
-														<c:forEach items="${list}" var="list" varStatus="status">
-															<tr style="cursor: pointer;">
-																<th scope="col" onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></th>
-																<th scope="col"><c:out value="${list.MBseq}" /></th>
-																<td><c:out value="${list.MBgrade}" /></td>
-																<td><c:out value="${list.MBname}" /></td>
-																<td><c:out value="${list.MBid}" /></td>
-																<%-- <td><c:out value="${list.MBgender}"/></td> --%>
-																<td>
-																	<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
-																		<c:if test="${list.MBgender eq listGender.CCseq}">
-																			<c:out value="${listGender.CCcodeName }" />
-																		</c:if>
-																	</c:forEach>
-																</td>
-																<td><fmt:formatDate value="${list.MBdob}" pattern="yyyy-MM-dd" /></td>
-																<td><c:out value="${list.MBemail}" /></td>
-																<td><c:out value="${list.MBmobile}" /></td>
-																<td><fmt:formatDate value="${list.MBregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-																<td><c:out value="${list.MBdelYn}" /></td>
-																<br>
-															</tr>
-														</c:forEach>
-													</c:otherwise>
-												</c:choose>
-											</tbody>
-										</table>
-									</div>
-								</div>
-								
-								<!-- pagination s -->
-								<%@include file="../../util/pagination.jsp"%>
-								<!-- pagination e -->
-								
-								<div class="container">
-									<div class="row">
-										<div class="col">
-											<button type="button" class="btn btn-outline-danger m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-												<i class="fa-solid fa-circle-minus"></i> 삭제
-											</button>
 
-											<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header">
-															<h5 class="modal-title" id="staticBackdropLabel">데이터 삭제 경고알림</h5>
-															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-														</div>
-														<div class="modal-body">정말 삭제하시겠습니까?</div>
-														<div class="modal-footer">
-															<button type="button" class="btn btn-primary" onclick="location.href='./memberList.html'">Yes</button>
-															<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+									<!-- pagination s -->
+									<%@include file="../../util/pagination.jsp"%>
+									<!-- pagination e -->
+
+									<div class="container">
+										<div class="row">
+											<div class="col">
+												<button type="button" class="btn btn-outline-danger m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+													<i class="fa-solid fa-circle-minus"></i> 삭제
+												</button>
+
+												<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title" id="staticBackdropLabel">데이터 삭제 경고알림</h5>
+																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+															</div>
+															<div class="modal-body">정말 삭제하시겠습니까?</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-primary" onclick="location.href='./memberList.html'">Yes</button>
+																<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+															</div>
 														</div>
 													</div>
 												</div>
 											</div>
-										</div>
-										<div class="col d-flex justify-content-end">
-											<button type="button" class="btn btn-outline-success m-2" onclick="location.href='./memberReg.html'">
-												<i class="fa-solid fa-circle-plus"></i> 추가
-											</button>
-
-											<button type="button" class="btn btn-outline-warning m-2">
-												<i class="fa-solid fa-pen-to-square"></i> 수정
-											</button>
+											<div class="col d-flex justify-content-end">
+												<button type="button" class="btn btn-outline-success m-2" id="btnForm" name="btnForm">
+													<i class="fa-solid fa-circle-plus"></i> 추가
+												</button>
+												<button type="button" class="btn btn-outline-danger m-2">
+													<i class="fa-solid fa-pen-to-square"></i> 삭제
+												</button>
+												<button type="button" class="btn btn-outline-warning m-2">
+													<i class="fa-solid fa-pen-to-square"></i> 수정
+												</button>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-		</section>
+			</section>
+		</form>
 
 	</main>
 	<!-- End #main -->
@@ -548,6 +555,29 @@
 
 	<!-- Template Main JS File -->
 	<script src="/resources/assets/js/main.js"></script>
+
+	<script type="text/javascript">
+		var goUrlForm = "/member/memberForm";
+		var goUrlList = "/member/memberList"; /* #-> */
+		var form = $("form[name=formList]");
+
+		goList = function(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+		}
+
+		var seq = $("input:hidden[name=MBseq]");
+
+		$('#btnForm').on("click", function() {
+			goForm(0);
+		});
+
+		goForm = function(keyValue) {
+		if(keyValue != 0) seq.val(btoa(keyValue));
+			seq.val(keyValue);
+			form.attr("action", goUrlForm).submit();
+		}
+	</script>
 
 	<!-- FontAwsome Icon Src -->
 	<script src="https://kit.fontawesome.com/8d31d55045.js" crossorigin="anonymous"></script>
