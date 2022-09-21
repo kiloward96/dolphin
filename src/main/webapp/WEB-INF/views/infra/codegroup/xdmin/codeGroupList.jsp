@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -128,6 +128,7 @@
         <button type="submit" title="Search"><i class="bi bi-search"></i></button> -->
 				<a href="/code/codeList" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span> </a> 
 				<a href="/codeGroup/codeGroupList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span> </a>
+				<a href="/member/memberList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">사용자 관리</span> </a>
 			</div>
 		</div>
 
@@ -539,7 +540,13 @@
 																<td><c:out value="${list.xCCcount}" /></td>
 																<td><fmt:formatDate value="${list.CCGregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 																<td><fmt:formatDate value="${list.CCGmodDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-																<td><c:out value="${list.CCGdelYn}" /></td>
+																<%-- <td><c:out value="${list.CCGdelYn}" /></td> --%>
+																<td><c:if test="${list.CCGdelYn eq 0}">
+																		<c:out value="No" />
+																	</c:if> <c:if test="${list.CCGdelYn eq 1}">
+																		<c:out value="Yes" />
+																	</c:if>
+																</td>
 																<br>
 															</tr>
 														</c:forEach>
@@ -549,7 +556,11 @@
 										</table>
 									</div>
 								</div>
+								
+								<!-- pagination s -->
 								<%@include file="../../util/pagination.jsp"%>
+								<!-- pagination e -->
+								
 								<div class="container">
 									<div class="row">
 										<div class="col">

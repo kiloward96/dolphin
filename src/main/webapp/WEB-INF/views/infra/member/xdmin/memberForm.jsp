@@ -1,11 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page session="false"%>
-
-<jsp:useBean id="CodeServiceImpl" class="com.gurugan.infra.modules.code.CodeServiceImpl" />
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +17,7 @@
 
 <!-- Favicons -->
 <!-- <link href="assets/img/favicon.png" rel="icon"> -->
-<link href="/resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
 <!-- Google Fonts -->
 <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -43,6 +41,11 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  
+<!-- Jquery CDN -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+  
 </head>
 
 <body>
@@ -57,7 +60,7 @@
 		<!-- End Logo -->
 
 		<div class="search-bar">
-			<form class="search-form d-flex align-items-center" method="POST" action="#">
+			<form class="search-form d-flex align-items-center">
 				<!--         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button> -->
 				<a href="/code/codeList" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span> </a> 
@@ -67,7 +70,7 @@
 		</div>
 
 		<div class="search-bar">
-			<form class="search-form d-flex align-items-center" method="POST" action="#">
+			<form class="search-form d-flex align-items-center">
 				<input type="text" name="query" placeholder="Search" title="Enter search keyword">
 				<button type="submit" title="Search">
 					<i class="bi bi-search"></i>
@@ -360,12 +363,12 @@
 	<main id="main" class="main">
 
 		<div class="pagetitle">
-			<h1>사용자 관리</h1>
+			<h1>코드 관리</h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-					<li class="breadcrumb-item active">사용자 목록</li>
-					<li class="breadcrumb-item"><a href="codelist.html">사용자 관리</a></li>
+					<li class="breadcrumb-item"><a onclick="location.href='/code/memberList'" style="cursor: pointer;">사용자 목록</a></li>
+					<li class="breadcrumb-item active">사용자 관리</li>
 				</ol>
 			</nav>
 		</div>
@@ -374,146 +377,119 @@
 		<section class="section">
 			<div class="row">
 				<div class="col-lg">
-					<div class="card">
-						<div class="card-body">
-							<div class="row mt-3 mb-3">
-								<div class="container" style="clear: both;">
-									<div class="d-flex p-2">
-										<select class="form-select m-1">
-											<option selected>검색조건 1</option>
-											<option value="1">이름</option>
-											<option value="2">ID</option>
-											<option value="3">권한</option>
-											<option value="4">Email</option>
+					<form method="get" id="form" name="form">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title fw-bold">사용자 등록</h5>
+								<div class="row mt-3 mb-3">
+									<div class="col">
+										<label for="inputId" class="form-label text bold">사용자 고유번호</label>
+											<!-- <option value="" selected>선택</option> -->
+											<label for="inputId" class="form-label">코드 번호</label>
+											<input type="text" class="form-control" placeholder="자동생성" readonly name="MBseq" value="<c:out value="${item.MBseq }"/>">
 										</select>
-										<input class="form-control m-1" type="search" placeholder="키워드">
-										<select class="form-select m-1">
-											<option selected>검색조건 2</option>
-											<option value="1">이름</option>
-											<option value="2">ID</option>
-											<option value="3">권한</option>
-											<option value="4">Email</option>
-										</select>
-										<input class="form-control m-1" type="search" placeholder="키워드">
-										<select class="form-select m-1">
-											<option selected>검색조건 3</option>
-											<option value="1">이름</option>
-											<option value="2">ID</option>
-											<option value="3">권한</option>
-											<option value="4">Email</option>
-										</select>
-										<input class="form-control m-1" type="search" placeholder="키워드">
-										<select class="form-select m-1">
-											<option selected>검색조건 4</option>
-											<option value="1">이름</option>
-											<option value="2">ID</option>
-											<option value="3">권한</option>
-											<option value="4">Email</option>
-										</select>
-										<input class="form-control m-1" type="search" placeholder="키워드">
-										<div class="col m-1" style="line-height: 10px;">
-											<button class="btn btn-primary" type="submit" style="width: 120px;">
-												<i class="fa-brands fa-searchengin"></i> 통합검색
-											</button>
-										</div>
 									</div>
-									<div class="row">
-									<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('2')}"/>
-										<table class="table table-light table-hover text-center" id="userList">
-											<thead>
-												<tr class="table">
-													<th scope="col"><input class="form-check-input" type="checkbox" name="flexCheck" onclick="selectAll(this);"></th>
-													<th scope="col">No</th>
-													<th scope="col">권한</th>
-													<th scope="col">이름</th>
-													<th scope="col">ID</th>
-													<th scope="col">성별</th>
-													<th scope="col">생년월일</th>
-													<th scope="col">Email</th>
-													<th scope="col">mobile</th>
-													<th scope="col">가입일</th>
-													<th scope="col">탈퇴여부</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:choose>
-													<c:when test="${fn:length(list) eq 0}">
-														<tr>
-															<td class="text-center" colspan="11">데이터가 없습니다.</td>
-													</c:when>
-													<c:otherwise>
-														<c:forEach items="${list}" var="list" varStatus="status">
-															<tr style="cursor: pointer;">
-																<th scope="col" onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></th>
-																<th scope="col"><c:out value="${list.MBseq}" /></th>
-																<td><c:out value="${list.MBgrade}" /></td>
-																<td><c:out value="${list.MBname}" /></td>
-																<td><c:out value="${list.MBid}" /></td>
-																<%-- <td><c:out value="${list.MBgender}"/></td> --%>
-																<td>
-																	<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
-																		<c:if test="${list.MBgender eq listGender.CCseq}">
-																			<c:out value="${listGender.CCcodeName }" />
-																		</c:if>
-																	</c:forEach>
-																</td>
-																<td><fmt:formatDate value="${list.MBdob}" pattern="yyyy-MM-dd" /></td>
-																<td><c:out value="${list.MBemail}" /></td>
-																<td><c:out value="${list.MBmobile}" /></td>
-																<td><fmt:formatDate value="${list.MBregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-																<td><c:out value="${list.MBdelYn}" /></td>
-																<br>
-															</tr>
-														</c:forEach>
-													</c:otherwise>
-												</c:choose>
-											</tbody>
-										</table>
+									<div class="col">
+										<label for="inputId" class="form-label text bold">사용자 삭제여부</label>
+										<select class="form-select" name="MBdelYn">
+											<option value="1" <c:if test="${item.MBdelYn eq 1}">selected</c:if>>Yes</option>
+											<option value="0" <c:if test="${item.MBdelYn eq 0}">selected</c:if>>No</option>
+										</select>
+									</div>
+									<div class="col"></div>
+								</div>
+								<div class="row mt-3 mb-3">
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">코드 번호(Another)</label>
+											<input type="text" class="form-control" id="CCseqChar" name="CCseqChar" value="<c:out value="${item.CCseqChar }"/>">
+										</div>
 									</div>
 								</div>
-								
-								<!-- pagination s -->
-								<%@include file="../../util/pagination.jsp"%>
-								<!-- pagination e -->
-								
-								<div class="container">
-									<div class="row">
-										<div class="col">
-											<button type="button" class="btn btn-outline-danger m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-												<i class="fa-solid fa-circle-minus"></i> 삭제
-											</button>
-
-											<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header">
-															<h5 class="modal-title" id="staticBackdropLabel">데이터 삭제 경고알림</h5>
-															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-														</div>
-														<div class="modal-body">정말 삭제하시겠습니까?</div>
-														<div class="modal-footer">
-															<button type="button" class="btn btn-primary" onclick="location.href='./memberList.html'">Yes</button>
-															<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-														</div>
-													</div>
-												</div>
-											</div>
+								<div class="row mt-3 mb-3">
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">코드 이름 (한글)</label>
+											<input type="text" class="form-control" id="CCcodeName" name="CCcodeName" value="<c:out value="${item.CCcodeName }"/>">
 										</div>
-										<div class="col d-flex justify-content-end">
-											<button type="button" class="btn btn-outline-success m-2" onclick="location.href='./memberReg.html'">
-												<i class="fa-solid fa-circle-plus"></i> 추가
+									</div>
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">코드 이름 (영문)</label>
+											<input type="text" class="form-control" id="CCcodeNameEng" name="CCcodeNameEng" value="<c:out value="${item.CCcodeNameEng }"/>">
+										</div>
+									</div>
+								</div>
+								<div class="row mt-3 mb-3">
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">순서</label>
+											<input type="text" class="form-control" id="CCsort" name="CCsort" value="<c:out value="${item.CCsort }"/>">
+										</div>
+									</div>
+									<div class="col">
+										<label for="inputId" class="form-label text bold">코드 삭제 여부</label>
+										<select class="form-select" name="CCdelYn">
+											<option value="0" <c:if test="${item.CCdelYn eq 0}">selected</c:if>>No</option>
+											<option value="1" <c:if test="${item.CCdelYn eq 1}">selected</c:if>>Yes</option>
+										</select>
+									</div>
+								</div>
+								<div class="row mt-3 mb-3">
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">설명</label>
+											<textarea class="form-control" rows="3" id="formGroupExampleInput"></textarea>
+										</div>
+									</div>
+									<div class="col"></div>
+								</div>
+								<div class="row mt-3 mb-3">
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">예비1 (varchar type)</label>
+											<input type="text" class="form-control" id="formGroupExampleInput">
+										</div>
+									</div>
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">예비2 (varchar type)</label>
+											<input type="text" class="form-control" id="formGroupExampleInput">
+										</div>
+									</div>
+								</div>
+								<div class="row mt-3 mb-3">
+									<div class="col">
+										<div class="m-auto">
+											<label for="inputId" class="form-label">예비3 (varchar type)</label>
+											<input type="text" class="form-control" id="formGroupExampleInput">
+										</div>
+									</div>
+									<div class="col">
+										<div class="m-auto"></div>
+									</div>
+									<div class="row">
+										<div class="text-center mt-3 mb-3">
+											<button type="button" class="btn btn-success" id="btnSave" name="btnSave">
+												<i class='bx bxs-save'> 저장</i>
 											</button>
-
-											<button type="button" class="btn btn-outline-warning m-2">
-												<i class="fa-solid fa-pen-to-square"></i> 수정
+											<button type="reset" class="btn btn-danger">
+												<i class='bx bx-minus-circle'> 취소</i>
 											</button>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</form>
+					<form name="formVo" id="formVo" method="get">
+						<!-- *Vo.jsp s -->
+						<%@include file="codeVo.jsp"%>
+						<!-- #-> -->
+						<!-- *Vo.jsp e -->
+					</form>
 				</div>
+			</div>
 		</section>
 
 	</main>
@@ -522,14 +498,14 @@
 	<!-- ======= Footer ======= -->
 	<footer id="footer" class="footer">
 		<div class="copyright">
-			&copy; Copyright <strong><span>Jumal</span></strong>. All Rights Reserved
+			&copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
 		</div>
 		<div class="credits">
 			<!-- All the links in the footer should remain intact. -->
 			<!-- You can delete the links only if you purchased the pro version. -->
 			<!-- Licensing information: https://bootstrapmade.com/license/ -->
 			<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-			<span>Modify by <a href="https://github.com/kiloward96">kiloward96</a></span>
+			Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
 		</div>
 	</footer>
 	<!-- End Footer -->
@@ -549,8 +525,65 @@
 	<!-- Template Main JS File -->
 	<script src="/resources/assets/js/main.js"></script>
 
-	<!-- FontAwsome Icon Src -->
-	<script src="https://kit.fontawesome.com/8d31d55045.js" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+//	var CCGseqChar = document.getElementById("CCGseqChar");
+//	var CCGgroupName = document.getElementById("CCGgroupName");
+	
+		
+	
+//		function CGsubmit() {
+//	  		if(CCGseqChar.value == '' || CCGseqChar.value == null) {
+//				document.getElementById("basicSeqChar").style.display = 'none';
+//				document.getElementById("alertSeqChar").style.display = 'block';
+//				
+//				return false;
+				
+//			} else if (CCGgroupName.value == '' || CCGgroupName.value == null ) {
+//				document.getElementById("basicGroupName").style.display = 'none';
+//				document.getElementById("alertGroupName").style.display = 'block';
+				
+//				return false;
+				
+//			} else {
+//				alert(document.getElementById("CCGseqChar").value); 	 			
+//				document.getElementById("inputForm").submit();
+				
+//				return true;
+				
+//	 		}
+//		}
+		var goUrlList = "/code/codeList"; 			/* #-> */
+		var goUrlInst = "/code/codeInst"; 			/* #-> */
+		var goUrlUpdt = "/code/codeUpdt";				/* #-> */
+//		var goUrlUele = "/code/codeUele";				/* #-> */
+//		var goUrlDele = "/code/codeDele";				/* #-> */
+
+		var seq = $("input:text[name=CCseq]");						/* #-> */
+
+		var form = $("form[name=form]");
+		var formVo = $("form[name=formVo]");
+
+
+		$("#btnSave").on("click", function(){
+			if (seq.val() == "0" || seq.val() == ""){
+				alert("test2");
+		   		// insert
+		   		//if (validationInst() == false) return false;
+		   		form.attr("action", goUrlInst).submit();
+		   	} else {
+		   		alert("test");
+		   		// update
+		   		/* keyName.val(atob(keyName.val())); */
+		   		//if (validationUpdt() == false) return false;
+		   		form.attr("action", goUrlUpdt).submit();
+		   	}
+			
+		}); 
+		$("#btnList").on("click", function(){
+			formVo.attr("action", goUrlList).submit();
+		});
+		
+	</script>
 
 </body>
 

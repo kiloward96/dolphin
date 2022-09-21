@@ -1,6 +1,8 @@
 package com.gurugan.infra.modules.code;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Code {
 	private String CCseq;
@@ -20,6 +22,9 @@ public class Code {
 	private String CCGgroupName;
 	private Integer CCGuseYn;
 	private Integer CCGdelYn;
+	
+//	for cache
+	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
 	
 	public String getCCseq() {
 		return CCseq;

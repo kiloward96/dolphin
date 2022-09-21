@@ -65,6 +65,7 @@
         <button type="submit" title="Search"><i class="bi bi-search"></i></button> -->
 				<a href="/code/codeList" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span> </a> 
 				<a href="/codeGroup/codeGroupList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span> </a>
+				<a href="/member/memberList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">사용자 관리</span> </a>
 			</div>
 		</div>
 

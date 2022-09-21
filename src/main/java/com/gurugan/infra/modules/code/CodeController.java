@@ -9,19 +9,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.gurugan.infra.modules.codegroup.CodeGroup;
-
-
 @Controller
 @RequestMapping(value = "/code")
 public class CodeController {
 
 	@Autowired
 	CodeServiceImpl service;
+	
+	public void setSearchAndPagin(CodeVo vo) throws Exception {
+		vo.setShDelYn(vo.getShDelYn() == null ? 0 : vo.getShDelYn());
+	}
 
 	@RequestMapping(value = "codeList")
-	public String codeGroupList(@ModelAttribute("vo") CodeVo vo, CodeGroup dto, Model model) throws Exception {
-
+	public String codeGroupList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
+		setSearchAndPagin(vo);
+		/* vo.setParamsPaging(service.selectOneCount()); */
+		System.out.println("sh vo value: " + vo.getShValue() + "| sh vo value2: " + vo.getShValue2());
+		
 		List<Code> list = service.selectList(vo);
 		model.addAttribute("list", list);
 
@@ -32,7 +36,9 @@ public class CodeController {
 	public String codeView(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 		
 		Code result = service.selectOne(vo);
+		List<Code> list = service.groupList();
 		model.addAttribute("item", result);
+		model.addAttribute("list", list);
 		
 		return "infra/code/xdmin/codeForm";
 	}
@@ -52,6 +58,8 @@ public class CodeController {
 		int result = service.update(dto);
 		System.out.println("controller Result: " + result);
 		vo.setCCseq(dto.getCCseq());
+		System.out.println("왜래키: " + vo.getCCGseq());
+		System.out.println("왜래키2: " + vo.getCCcommonCodeGroup_seq());
 		redirectAttributes.addFlashAttribute("vo", vo);
 		
 		return "redirect:/code/codeForm";

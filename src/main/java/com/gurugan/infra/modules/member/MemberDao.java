@@ -17,11 +17,23 @@ public class MemberDao {
 
 	private static String namespace = "com.gurugan.infra.modules.member.MemberMapper";
 
-	public List<Member> selectList() {
-		return sqlSession.selectList(namespace + ".selectList", "");
+	public List<Member> selectList(MemberVo vo) {
+		return sqlSession.selectList(namespace + ".selectList", vo);
 	}
 	
-	public Member selectOne() {
-		return sqlSession.selectOne(namespace + ".selectOne", "");
+	public Member selectOne(MemberVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOne", vo);
+	}
+	
+	public int insert(Member dto) {
+		int result = sqlSession.insert(namespace + ".insert", dto);
+		System.out.println("dao result: " + result);
+		return result;
+	}
+	
+	public int update(Member dto) {
+		int result = sqlSession.update(namespace + ".update", dto);
+		System.out.println("dao result: " + result);
+		return result;
 	}
 }

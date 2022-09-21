@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 		MemberServiceImpl service;
 
 		@RequestMapping(value = "memberList")
-		public String MemberList(Model model, Member vo) throws Exception {
+		public String MemberList(@ModelAttribute ("vo") MemberVo vo, Model model) throws Exception {
 
 			List<Member> list = service.selectList(vo);
 			model.addAttribute("list", list);
@@ -26,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 		}
 		
 		@RequestMapping(value = "MemberForm")
-		public String MemberForm (Model model, Member vo) throws Exception {
+		public String MemberForm (@ModelAttribute ("vo") MemberVo vo, Model model) throws Exception {
 			Member list = service.selectOne(vo);
 			model.addAttribute("list", list);
 			

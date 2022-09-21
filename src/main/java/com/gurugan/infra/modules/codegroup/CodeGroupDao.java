@@ -41,7 +41,12 @@ public class CodeGroupDao {
 	}
 	
 	public int selectOneCount(CodeGroupVo vo) {
-		System.out.println("vo wtf" + vo.getShValue());
+		System.out.println("vo wtf: " + vo.getShValue());
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
+	}
+	
+//	for cache
+	public List<CodeGroup> selectListCachedCodeArrayList(){ 
+		return sqlSession.selectList(namespace + ".selectListCachedCodeArrayList", null); 
 	}
 }

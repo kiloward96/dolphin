@@ -124,11 +124,12 @@
 		<!-- End Logo -->
 
 		<div class="search-bar">
-			<div class="search-form d-flex align-items-center" method="POST" action="#">
+			<div class="search-form d-flex align-items-center">
 				<!--         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button> -->
 				<a href="/code/codeList" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span> </a> 
 				<a href="/codeGroup/codeGroupList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span> </a>
+				<a href="/member/memberList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">사용자 관리</span> </a>
 			</div>
 		</div>
 
@@ -483,7 +484,7 @@
 												</select>
 											</div>
 											<div class="col-2">
-												<input class="form-control m-1" type="search" placeholder="키워드">
+												<input class="form-control m-1" type="search" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>" placeholder="키워드">
 											</div>
 											<div class="col-2">
 												<select class="form-select m-1" id="shOption" name="shOption2">
@@ -494,7 +495,7 @@
 												</select>
 											</div>
 											<div class="col-2">
-												<input class="form-control m-1" type="search" placeholder="키워드">
+												<input class="form-control m-1" type="search" id="shValue2" name="shValue2" value="<c:out value="${vo.shValue2}"/>" placeholder="키워드">
 											</div>
 											<div class="col-2">
 												<button class="btn btn-primary" type="submit">
@@ -532,7 +533,7 @@
 														<tr style="cursor: pointer;" onclick="javascript:goForm(<c:out value="${list.CCseq }"/>)">
 															<td onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></td>
 															<td><c:out value="${list.CCseq }" /></td>
-															<td><c:out value="${list.CCGseq}" /></td>
+															<td><c:out value="${list.CCcommonCodeGroup_seq}" /></td>
 															<td><c:out value="${list.CCGgroupName}" /></td>
 															<td><c:out value="${list.CCseqChar}" /></td>
 															<td><c:out value="${list.CCcodeName}" /></td>
@@ -587,6 +588,12 @@
 								</div>
 							</div>
 						</div>
+					</form>
+					<form name="formVo" id="formVo" method="get">
+						<!-- *Vo.jsp s -->
+						<%@include file="codeVo.jsp"%>
+						<!-- #-> -->
+						<!-- *Vo.jsp e -->
 					</form>
 				</div>
 			</div>

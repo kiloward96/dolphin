@@ -41,6 +41,11 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  
+<!-- Jquery CDN -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+  
 </head>
 
 <body>
@@ -49,22 +54,23 @@
 	<header id="header" class="header fixed-top d-flex align-items-center">
 
 		<div class="d-flex align-items-center justify-content-between">
-			<a href="index.html" class="logo d-flex align-items-center"> <img src="assets/img/logo.png" alt=""> <span class="jumal d-none d-lg-block">Jumal</span>
+			<a href="index.html" class="logo d-flex align-items-center"> <img src="/resources/assets/img/logo.png" alt=""> <span class="jumal d-none d-lg-block">Jumal</span>
 			</a> <i class="bi bi-list toggle-sidebar-btn"></i>
 		</div>
 		<!-- End Logo -->
 
 		<div class="search-bar">
-			<form class="search-form d-flex align-items-center" method="POST" action="#">
+			<div class="search-form d-flex align-items-center">
 				<!--         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button> -->
 				<a href="/code/codeList" class="code-title  d-flex align-items-center"> <span class="d-none d-lg-block nav-link active">코드 관리</span> </a> 
 				<a href="/codeGroup/codeGroupList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">코드 그룹 관리</span> </a>
-			</form>
+				<a href="/member/memberList" class="code-title d-flex align-items-center"> <span class="d-none d-lg-block nav-link">사용자 관리</span> </a>
+			</div>
 		</div>
 
 		<div class="search-bar">
-			<form class="search-form d-flex align-items-center" method="POST" action="#">
+			<form class="search-form d-flex align-items-center">
 				<input type="text" name="query" placeholder="Search" title="Enter search keyword">
 				<button type="submit" title="Search">
 					<i class="bi bi-search"></i>
@@ -379,10 +385,26 @@
 									<div class="col">
 										<label for="inputId" class="form-label text bold">코드 그룹</label>
 										<%-- <c:if test="${empty list}"> --%>
+										<%-- <select class="form-select" name="CCcommonCodeGroup_seq">
+												<!-- <option value="" selected>선택</option> -->
+										<c:forEach items="${list}" var="list" varStatus="status">
+												<option value="<c:out value="${list.CCGseq}"></c:out>"><c:out value="${list.CCGgroupName}" /></option>
+												<c:if test="${empty item.CCGseq }">selected</c:if><c:out value="${list.CCGgroupName}" />
+										</c:forEach>
+										</select> --%>
 										<select class="form-select" name="CCcommonCodeGroup_seq">
-											<option value="" selected>선택</option>
-											<c:forEach items="${groupList}" var="group" varStatus="status">
-												<option value="<c:out value="${group.CCGseq}"></c:out>"><c:out value="${group.CCGgroupName}" /></option>
+											<!-- <option value="" selected>선택</option> -->
+											<c:forEach items="${list}" var="list" varStatus="status">
+												<c:choose>
+													<c:when test="${empty item.CCseq}">
+														<option value="<c:out value="${list.CCGseq}"></c:out>"><c:out value="${list.CCGgroupName}" /></option>
+													</c:when>
+													<c:otherwise>
+														<option value="<c:out value="${list.CCGseq}"/>"
+															<c:if test="${list.CCGseq eq item.CCcommonCodeGroup_seq}">selected</c:if>><c:out value="${list.CCGgroupName}" />
+														</option>
+													</c:otherwise>
+												</c:choose>
 											</c:forEach>
 										</select>
 									</div>
@@ -399,7 +421,7 @@
 									<div class="col">
 										<div class="m-auto">
 											<label for="inputId" class="form-label">코드 번호</label>
-											<input type="text" class="form-control" placeholder="자동생성" id="CCseq" name="CCseq" value="<c:out value="${item.CCseq }"/>">
+											<input type="text" class="form-control" placeholder="자동생성" readonly name="CCseq" value="<c:out value="${item.CCseq }"/>">
 										</div>
 									</div>
 									<div class="col">
@@ -473,7 +495,7 @@
 									</div>
 									<div class="row">
 										<div class="text-center mt-3 mb-3">
-											<button type="submit" class="btn btn-success">
+											<button type="button" class="btn btn-success" id="btnSave" name="btnSave">
 												<i class='bx bxs-save'> 저장</i>
 											</button>
 											<button type="reset" class="btn btn-danger">
@@ -484,6 +506,12 @@
 								</div>
 							</div>
 						</div>
+					</form>
+					<form name="formVo" id="formVo" method="get">
+						<!-- *Vo.jsp s -->
+						<%@include file="codeVo.jsp"%>
+						<!-- #-> -->
+						<!-- *Vo.jsp e -->
 					</form>
 				</div>
 			</div>
@@ -555,7 +583,7 @@
 //		var goUrlUele = "/code/codeUele";				/* #-> */
 //		var goUrlDele = "/code/codeDele";				/* #-> */
 
-		var seq = $("input:text[name=CCGseq]");						/* #-> */
+		var seq = $("input:text[name=CCseq]");						/* #-> */
 
 		var form = $("form[name=form]");
 		var formVo = $("form[name=formVo]");

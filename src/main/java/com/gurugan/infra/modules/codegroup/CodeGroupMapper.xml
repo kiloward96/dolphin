@@ -139,7 +139,18 @@
 		WHERE 1=1
 			AND CCG.seq = #{CCGseq}
 	</delete>
-
+	
+<!-- 	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			seq
+			, groupName
+		FROM
+			commonCodeGroup
+		WHERE 1=1
+			AND delYn = 0
+		    AND useYn = 1
+    </select>
+ -->
 </mapper>
 <!-- SELECT CC.seq as CCseq ,CC.seqChar as CCseqChar ,count(CC.commonCodeGroup_seq) as CCcount ,CC.codeName as CCcodeName ,CC.codeNameEng as CCcodeNameEng 
 	,CC.useYn as CCuseYn ,CC.sort as CCsort ,CC.regDate as CCregDate ,CC.delYn as CCdelYn ,CC.delDate as CCdelDate ,CC.modDate as CCmodDate ,CCG.seq as CCGseq 

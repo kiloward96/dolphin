@@ -14,4 +14,7 @@ public interface CodeGroupService {
 	
 	public int selectOneCount(CodeGroupVo vo) throws Exception;
 	
+//	for cache
+//	public static List<CodeGroup> cachedCodeArrayList = new ArrayList<CodeGroup>();
+	
 }

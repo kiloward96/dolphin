@@ -6,6 +6,7 @@ import java.util.Date;
 public class CodeGroup {
 	
 	private String CCseq;
+	private String CCcommonCodeGroup_seq;
 	private Integer CCdelYn;
 	private Integer xCCcount;
 	
@@ -22,6 +23,9 @@ public class CodeGroup {
 	
 	private String CCGdescription;
 
+	// for cache
+//	public static Object cachedCodeArrayList;
+	
 	public String getCCseq() {
 		return CCseq;
 	}
@@ -125,6 +129,13 @@ public class CodeGroup {
 	public void setCCGdescription(String cCGdescription) {
 		CCGdescription = cCGdescription;
 	}
-	
+
+	public String getCCcommonCodeGroup_seq() {
+		return CCcommonCodeGroup_seq;
+	}
+
+	public void setCCcommonCodeGroup_seq(String cCcommonCodeGroup_seq) {
+		CCcommonCodeGroup_seq = cCcommonCodeGroup_seq;
+	}
 	
 }

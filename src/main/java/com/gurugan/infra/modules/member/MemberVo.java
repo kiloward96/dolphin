@@ -1,6 +1,8 @@
 package com.gurugan.infra.modules.member;
 
-public class memberVo {
+import com.gurugan.infra.common.base.BaseVo;
+
+public class MemberVo extends BaseVo {
 	private Integer shOption;
 	private String shValue;
 	private Integer shDelYn;

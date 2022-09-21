@@ -9,8 +9,8 @@
     <resultMap id="resultMapObj" type="com.gurugan.infra.modules.code.Code"></resultMap>
     
     <sql id="selectCommon">
-    	FROM commonCode CC
-		LEFT JOIN commonCodeGroup CCG on CC.commonCodeGroup_seq = CCG.seq
+    	FROM commonCodeGroup CCG
+		INNER JOIN commonCode CC on CC.commonCodeGroup_seq = CCG.seq
 	    WHERE 1=1
 	    <choose>
 				<when test="shDelYn == 2">AND CC.delYn IS NOT NULL</when>
@@ -24,7 +24,7 @@
 		<choose>
 			<when test="shOption == 1">AND CC.seq = #{shValue}</when>
 			<when test="shOption == 2">AND CC.seqChar LIKE CONCAT ('%',#{shValue},'%')</when>
-			<when test="shOption == 3">AND CC.codeName LIKE CONCAT ('%',#{shValue},'%')</when>
+			<when test="shOption == 3">AND CC.codeName LIKE CONCAT ('%',#{shValue},'%') OR CC.codeNameEng LIKE CONCAT ('%',#{shValue},'%')</when>
 			<otherwise></otherwise>
 		</choose>
 		<choose>
@@ -75,15 +75,41 @@
 			,CCG.groupName as CCGgroupName
 			,CCG.useYn as CCGuseYn
 			,CCG.delYn as CCGdelYn
-		<include refid="selectCommon"></include>
+		FROM commonCode CC
+		INNER JOIN commonCodeGroup CCG on CC.commonCodeGroup_seq = CCG.seq
+	    WHERE 1=1
 			AND CC.seq = #{CCseq}
 			ORDER BY CC.seq ASC
 	</select>
 	
 	<select id="selectOneCount" resultMap="resultMapObj">
 		SELECT COUNT(*)
-			<include refid="selectCommon"></include>
-			
+			FROM commonCode CC
+		WHERE 1=1
+	    <choose>
+				<when test="shDelYn == 2">AND CC.delYn IS NOT NULL</when>
+				<when test="shDelYn != null and !shDelYn.equals('')">AND CC.delYn = #{shDelYn}</when>
+				<otherwise></otherwise>
+	    </choose>
+	    <choose>
+				<when test="shDate == 1">AND CC.regDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+				<when test="shDate == 2">AND CC.modDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+				<otherwise></otherwise>
+		</choose>
+		<choose>
+			<when test="shOption == 1">AND CC.seq = #{shValue}</when>
+			<when test="shOption == 2">AND CC.seqChar LIKE CONCAT ('%',#{shValue},'%')</when>
+			<when test="shOption == 3">AND CC.codeName LIKE CONCAT ('%',#{shValue},'%') OR CC.codeNameEng LIKE CONCAT ('%',#{shValue},'%')</when>
+			<otherwise></otherwise>
+		</choose>
+		<choose>
+			<when test="shOption2 == 1">OR CC.seq = #{shValue2}</when>
+			<when test="shOption2 == 2">OR CC.seqChar LIKE CONCAT ('%',#{shValue2},'%')</when>
+			<when test="shOption2 == 3">OR CC.codeName LIKE CONCAT ('%',#{shValue2},'%')</when>
+			<otherwise></otherwise>
+		</choose>
+		ORDER BY
+			CC.seq ASC
 	</select>
 	
 	<insert id="insert">
@@ -112,24 +138,41 @@
 	<update id="update">
 		UPDATE commonCode CC
 			SET
-				CC.seqChar = #{CCseqChar}
+				CC.commonCodeGroup_seq = #{CCcommonCodeGroup_seq}
+				,CC.delYn = #{CCdelYn}
+				,CC.useYn = #{CCuseYn}
+				,CC.seqChar = #{CCseqChar}
 				,CC.codeName = #{CCcodeName}
 				,CC.codeNameEng = #{CCcodeNameEng}
-				,CC.useYn = #{CCuseYn}
-				,CC.delYn = = #{CCdelYn}
-				,CC.commonCodeGroup_seq = #{CCGseq}
 				,CC.modDate = NOW()
 			WHERE 1=1
-				AND CC.seq = #{CCseq}			
+				AND CC.seq = #{CCseq}
 	</update>
 	
 	
 	<resultMap id="resultMapGroup" type="com.gurugan.infra.modules.codegroup.CodeGroup"></resultMap>
 	
 	<select id="groupList" resultMap="resultMapGroup">
-		SELECT 
-			CCG.groupName as CCGgroupName
-			,CCG.seq as CCGseq
+		SELECT DISTINCT
+			CCG.groupName AS CCGgroupName
+			,CCG.seq AS CCGseq
+			,CC.commonCodeGroup_seq AS CCcommonCodeGroup_seq
 		FROM commonCodeGroup CCG
+		LEFT JOIN commonCode CC on CC.commonCodeGroup_seq = CCG.seq
+		WHERE 1=1
+			AND CCG.delYn = 0
+			AND CCG.useYn = 1
 	</select>
+	
+	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			CC.seq AS CCseq
+			,CC.codeName AS CCcodeName
+			,CC.commonCodeGroup_seq AS CCGseq
+		FROM
+			commonCode CC
+		WHERE 1=1
+			AND delYn = 0
+		    AND useYn = 1
+    </select>
 </mapper>	

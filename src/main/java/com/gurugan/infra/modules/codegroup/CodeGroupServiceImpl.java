@@ -66,6 +66,15 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 		return dao.selectOneCount(vo);
 		
 	}
+	
+//	@PostConstruct
+//	public void selectListCachedCodeArrayList() throws Exception {
+//		List<CodeGroup> codeListFromDb = (ArrayList<CodeGroup>) dao.selectListCachedCodeArrayList();
+////		codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
+//		CodeGroup.cachedCodeArrayList.clear(); 
+//		CodeGroup.cachedCodeArrayList.addAll(codeListFromDb);
+//		System.out.println("cachedCodeArrayList: " + CodeGroup.cachedCodeArrayList.size() + " chached !");
+//	}
 
 
 }
