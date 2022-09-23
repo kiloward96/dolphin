@@ -34,6 +34,13 @@ public class HomeController {
 
 	}
 	
+	@RequestMapping(value = "login")
+	public String login(Model model) {
+
+		return "infra/member/user/login";
+
+	}
+	
 //	@RequestMapping(value = "/helloA", method = RequestMethod.GET)
 //	public String helloA(Locale locale, Model model) {
 //		

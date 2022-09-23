@@ -14,6 +14,7 @@ public class MemberVo extends BaseVo {
 	private Integer shStatus;
 	
 	private String MBseq;
+	private String MBid;
 	
 	public Integer getShOption() {
 		return shOption;
@@ -74,6 +75,12 @@ public class MemberVo extends BaseVo {
 	}
 	public void setMBseq(String mBseq) {
 		MBseq = mBseq;
+	}
+	public String getMBid() {
+		return MBid;
+	}
+	public void setMBid(String mBid) {
+		MBid = mBid;
 	}
 	
 	

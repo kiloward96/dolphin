@@ -56,7 +56,7 @@
 	<header id="header" class="header fixed-top d-flex align-items-center">
 
 		<div class="d-flex align-items-center justify-content-between">
-			<a href="index.html" class="logo d-flex align-items-center"> <img src="assets/img/logo.png" alt=""> <span class="jumal d-none d-lg-block">Jumal</span>
+			<a href="index.html" class="logo d-flex align-items-center"> <img src="/resources/assets/img/logo.png" alt=""> <span class="jumal d-none d-lg-block">Jumal</span>
 			</a> <i class="bi bi-list toggle-sidebar-btn"></i>
 		</div>
 		<!-- End Logo -->
@@ -377,6 +377,10 @@
 		</div>
 		<!-- End Page Title -->
 		<form method="get" id="formList" name="formList">
+			<input type="hidden" name="MBseq">
+			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+			<input type="hidden" name="checkboxSeqArray">
 			<section class="section">
 				<div class="row">
 					<div class="col-lg">
@@ -449,7 +453,7 @@
 														</c:when>
 														<c:otherwise>
 															<c:forEach items="${list}" var="list" varStatus="status">
-																<tr style="cursor: pointer;">
+																<tr style="cursor: pointer;" onclick="javascript:goForm(<c:out value="${item.MBseq }"/>)">
 																	<th scope="col" onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></th>
 																	<th scope="col"><c:out value="${list.MBseq}" /></th>
 																	<td><c:out value="${list.MBgrade}" /></td>
@@ -573,7 +577,7 @@
 		});
 
 		goForm = function(keyValue) {
-		if(keyValue != 0) seq.val(btoa(keyValue));
+		/* if(keyValue != 0) seq.val(btoa(keyValue)); */
 			seq.val(keyValue);
 			form.attr("action", goUrlForm).submit();
 		}

@@ -25,8 +25,8 @@ public class MemberDao {
 		return sqlSession.selectOne(namespace + ".selectOne", vo);
 	}
 	
-	public int insert(MemberAddress dto) {
-		int result = sqlSession.insert(namespace + ".insertAddress", dto);
+	public int insert(Member dto) {
+		int result = sqlSession.insert(namespace + ".insert", dto);
 		System.out.println("dao result: " + result);
 		return result;
 	}

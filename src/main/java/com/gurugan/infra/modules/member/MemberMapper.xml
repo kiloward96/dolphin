@@ -45,6 +45,7 @@
 		WHERE 1=1
 			AND MB.delYn = 0
 			AND MB.seq = #{MBseq}
+			OR MB.id = #{MBid}
 		ORDER BY
 			MB.seq DESC
 	</select>
@@ -111,7 +112,6 @@
 				,dob = #{MBdob}
 				,mobile = #{MBmobile}
 				,email = #{MBemail}
-				,regDate = #{MBregDate}
 				,delYn = #{MBdelYn}
 				,grade = #{MBgrade}
 		WHERE 1=1

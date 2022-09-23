@@ -378,6 +378,7 @@
 			<div class="row">
 				<div class="col-lg">
 					<form method="get" id="form" name="form">
+					<input type="hidden" id="AllowedNy" name="AllowedNy">
 						<div class="card">
 							<div class="card-body">
 								<h5 class="card-title fw-bold">코드 등록</h5>
@@ -428,6 +429,7 @@
 										<div class="m-auto">
 											<label for="inputId" class="form-label">코드 번호(Another)</label>
 											<input type="text" class="form-control" id="CCseqChar" name="CCseqChar" value="<c:out value="${item.CCseqChar }"/>">
+											<div class="fw-bold feedback" id="IdFeedback" name="IdFeedback"></div>
 										</div>
 									</div>
 								</div>
@@ -598,7 +600,7 @@
 		   	} else {
 		   		alert("test");
 		   		// update
-		   		/* keyName.val(atob(keyName.val())); */
+		   		keyName.val(atob(keyName.val()));
 		   		//if (validationUpdt() == false) return false;
 		   		form.attr("action", goUrlUpdt).submit();
 		   	}
@@ -606,6 +608,47 @@
 		}); 
 		$("#btnList").on("click", function(){
 			formVo.attr("action", goUrlList).submit();
+		});
+		
+		$("#CCseqChar").on("focusout", function(){
+			
+			
+
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					/* ,dataType:"json" */
+					,url: "/code/checkId"
+					/* ,data : $("#formLogin").serialize() */
+					,data : { "CCseqChar" : $("#CCseqChar").val() }
+					,success: function(response) {
+						if(response.rt == "success") {
+							document.getElementById("CCseqChar").classList.remove('is-invalid');
+							document.getElementById("CCseqChar").classList.add('is-valid');
+		
+							document.getElementById("IdFeedback").classList.remove('invalid-feedback');
+							document.getElementById("IdFeedback").classList.add('valid-feedback');
+							document.getElementById("IdFeedback").innerText = "사용 가능 합니다.";
+							
+							document.getElementById("AllowedNy").value = 1;
+							
+						} else {
+							document.getElementById("CCseqChar").classList.remove('is-valid');
+							document.getElementById("CCseqChar").classList.add('is-invalid');
+							
+							document.getElementById("IdFeedback").classList.remove('valid-feedback');
+							document.getElementById("IdFeedback").classList.add('invalid-feedback');
+							document.getElementById("IdFeedback").innerText = "사용 불가능 합니다";
+							
+							document.getElementById("AllowedNy").value = 0;
+						}
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+			
 		});
 		
 	</script>

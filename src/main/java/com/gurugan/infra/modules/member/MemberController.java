@@ -22,21 +22,25 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 		public String MemberList(@ModelAttribute ("vo") MemberVo vo, Model model) throws Exception {
 			List<Member> list = service.selectList(vo);
 			model.addAttribute("list", list);
+			System.out.println("test1: " + vo.getMBseq());
+			System.out.println("test2: " + vo.getMBid());
 
 			return "infra/member/xdmin/memberList";
 		}
 		
 		@RequestMapping(value = "memberForm")
 		public String MemberForm (@ModelAttribute ("vo") MemberVo vo, Model model) throws Exception {
-			vo.setMBseq("0");
+			
 			Member list = service.selectOne(vo);
 			model.addAttribute("list", list);
+			System.out.println("test1: " + vo.getMBseq());
+			System.out.println("test2: " + vo.getMBid());
 			
 			return "infra/member/xdmin/memberForm";
 		}
 		
 		@RequestMapping(value = "memberInst")
-		public String MemberInst(MemberVo vo, MemberAddress dto, RedirectAttributes redirectAttributes) throws Exception {
+		public String MemberInst(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
 			int result = service.insert(dto);
 			System.out.println("controller Result: " + result);
 			

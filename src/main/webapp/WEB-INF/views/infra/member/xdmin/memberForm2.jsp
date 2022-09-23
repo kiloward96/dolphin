@@ -383,13 +383,9 @@
 								<h5 class="card-title fw-bold">사용자 등록</h5>
 								<div class="row mt-3 mb-3">
 									<%-- <div class="col">
-										<label for="inputId" class="form-label text bold">사용자 고유번호</label>
+										<label for="inputId" class="form-label text bold">사용자 시퀀스</label>
 										<input type="text" class="form-control" placeholder="자동생성" readonly name="MBseq" value="<c:out value="${item.MBseq }"/>">
 									</div> --%>
-									<div class="col">
-										<label for="inputId" class="form-label text bold">주소 고유번호</label>
-										<input type="text" class="form-control" placeholder="자동생성" readonly name="MBseq" value="<c:out value="${item.MBseq }"/>">
-									</div>
 									<div class="col">
 										<label for="inputId" class="form-label text bold">사용자 삭제여부</label>
 									<%-- 	<select class="form-select" name="MBdelYn">

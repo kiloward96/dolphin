@@ -4,6 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page session="false"%>
+
+<jsp:useBean id="CodeServiceImpl" class="com.gurugan.infra.modules.code.CodeServiceImpl" />
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +48,10 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
+<!-- Kakao Map API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7f53c37dc4421e758709ee1ef160750b&libraries=services"></script>
+
 
 </head>
 
@@ -370,7 +375,7 @@
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-					<li class="breadcrumb-item"><a onclick="location.href='/code/memberList'" style="cursor: pointer;">사용자 목록</a></li>
+					<li class="breadcrumb-item"><a onclick="location.href='/member/memberList'" style="cursor: pointer;">사용자 목록</a></li>
 					<li class="breadcrumb-item active">사용자 관리</li>
 				</ol>
 			</nav>
@@ -393,7 +398,7 @@
 										<div class="row">
 											<div class="col">
 												<div class="form-floating mt-3">
-													<input class="form-control shadow-sm" type="text" placeholder="ID" id="input_id">
+													<input class="form-control shadow-sm" type="text" id="MBid" name="MBid" value="<c:out value="${item.MBid}" />">
 													<label for="input_id">아이디</label>
 												</div>
 											</div>
@@ -404,7 +409,7 @@
 										<div class="row">
 											<div class="col">
 												<div class="form-floating mt-2">
-													<input class="form-control shadow-sm" type="password" placeholder="Password" id="input_password">
+													<input class="form-control shadow-sm" type="password" id="MBpassword" name="MBpassword" value="<c:out value="${item.MBpassword}" />">
 													<label for="input_password">비밀번호</label>
 												</div>
 											</div>
@@ -412,7 +417,7 @@
 										<div class="row">
 											<div class="col">
 												<div class="form-floating mt-3">
-													<input class="form-control shadow-sm" type="password" placeholder="Password Check" id="input_password_chk">
+													<input class="form-control shadow-sm" type="password" placeholder="Password Check" id="input_password_chk" value="<c:out value="${item.MBpassword}" />">
 													<label for="input_password_chk">비밀번호확인</label>
 												</div>
 											</div>
@@ -423,7 +428,7 @@
 										<div class="row">
 											<div class="col">
 												<div class="form-floating mt-2">
-													<input class="form-control shadow-sm" type="text" placeholder="name" id="input_name">
+													<input class="form-control shadow-sm" type="text" placeholder="name" id="input_name" value="<c:out value="${item.MBname}" />">
 													<label for="input_name">이름</label>
 												</div>
 											</div>
@@ -431,7 +436,7 @@
 										<div class="row">
 											<div class="col  d-flex align-items-end">
 												<div class="form-floating mt-3 mobile-box">
-													<input class="form-control shadow-sm" type="text" placeholder="mobile" id="input_mobile">
+													<input class="form-control shadow-sm" type="text" placeholder="mobile" id="MBmobile" name="MBmobile" value="<c:out value="${item.MBmobile}" />">
 													<label for="input_mobile">Mobile</label>
 												</div>
 												<button type="button" class="btn btn-primary ms-4 opacity-75 mobile-btn">전송</button>
@@ -455,7 +460,7 @@
 										<div class="row">
 											<div class="col">
 												<div class="form-floating mt-2">
-													<input class="form-control shadow-sm" type="email" placeholder="Email" id="input_email">
+													<input class="form-control shadow-sm" type="email" id="MBemail" name="MBemail" value="<c:out value="${item.MBemail}" />">
 													<label for="input_email">Email</label>
 												</div>
 											</div>
@@ -503,6 +508,20 @@
 													<div class="form-floating mt-4">
 														<input class="form-control shadow-sm" type="text" readonly placeholder="참고항목" id="addressMore" name="addressMore">
 														<label for="input_detailAddress">참고항목</label>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col">
+													<div class="form-floating mt-4">
+														<input class="form-control shadow-sm" type="text" readonly placeholder="위도" id="x" name="x">
+														<label for="input_detailAddress">위도</label>
+													</div>
+												</div>
+												<div class="col">
+													<div class="form-floating mt-4">
+														<input class="form-control shadow-sm" type="text" readonly placeholder="경도" id="y" name="y">
+														<label for="input_detailAddress">경도</label>
 													</div>
 												</div>
 											</div>
@@ -606,19 +625,18 @@
 		var formVo = $("form[name=formVo]");
 
 		$("#btnSave").on("click", function() {
-//			if (seq.val() == "0" || seq.val() == "") {
-//				alert("test2");
-//				// insert
-//				//if (validationInst() == false) return false;
-//				form.attr("action", goUrlInst).submit();
-//			} else {
-//				alert("test");
-//				// update
-//				/* keyName.val(atob(keyName.val())); */
-//				//if (validationUpdt() == false) return false;
-//				form.attr("action", goUrlUpdt).submit();
-//			}
-			form.attr("action", goUrlInst).submit();
+			if (seq.val() == "0" || seq.val() == "") {
+				alert("test2");
+				// insert
+				//if (validationInst() == false) return false;
+				form.attr("action", goUrlInst).submit();
+			} else {
+				alert("test");
+				// update
+				/* keyName.val(atob(keyName.val())); */
+				//if (validationUpdt() == false) return false;
+				form.attr("action", goUrlUpdt).submit();
+			}
 		});
 		$("#btnList").on("click", function() {
 			formVo.attr("action", goUrlList).submit();
@@ -687,6 +705,23 @@
 							// 커서를 상세주소 필드로 이동한다.
 							document.getElementById("addressDetail")
 									.focus();
+							
+			 				/* lat and lng from address s */
+			 				
+							// 주소-좌표 변환 객체를 생성
+						//	var geocoder = new daum.maps.services.Geocoder();
+							
+							// 주소로 좌표를 검색
+						//	geocoder.addressSearch(roadAddr, function(result, status) {
+							 
+								// 정상적으로 검색이 완료됐으면,
+						//		if (status == daum.maps.services.Status.OK) {
+									
+						//			document.getElementById("ifmaLatArray0").value=result[0].y;
+						//			document.getElementById("ifmaLngArray0").value=result[0].x;
+						//		}
+						//	});
+							/* lat and lng from address e */
 
 							// iframe을 넣은 element를 안보이게 한다.
 							// (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
@@ -705,7 +740,9 @@
 
 			// iframe을 넣은 element를 보이게 한다.
 			element_wrap.style.display = 'block';
+			
 		}
+		
 	</script>
 
 </body>

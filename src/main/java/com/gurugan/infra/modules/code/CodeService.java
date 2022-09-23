@@ -19,4 +19,6 @@ public interface CodeService {
 	
 	public int selectOneCount(CodeVo vo) throws Exception;
 	
+	public int selectOneIdCheck(Code dto) throws Exception;
+	
 }

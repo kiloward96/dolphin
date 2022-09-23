@@ -82,6 +82,14 @@
 			ORDER BY CC.seq ASC
 	</select>
 	
+	<select id="selectOneIdCheck" resultType="Integer">
+		SELECT
+			COUNT(CC.seqChar)
+		FROM commonCode CC
+	    WHERE 1=1
+			AND CC.seqChar = #{CCseqChar}
+	</select>
+	
 	<select id="selectOneCount" resultType="Integer">
 		SELECT COUNT(*)
 			FROM commonCode CC
