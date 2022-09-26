@@ -4,6 +4,4 @@ import com.gurugan.infra.modules.member.Member;
 
 public class User extends Member{
 	
-	
-
 }

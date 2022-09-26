@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.gurugan.infra.modules.member.Member;
+import com.gurugan.infra.modules.member.MemberVo;
+
 @Controller
 public class HomeController {
 
@@ -35,40 +38,17 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "login")
-	public String login(Model model) {
+	public String login(MemberVo vo, Model model) {
 
 		return "infra/member/user/login";
 
 	}
 	
-//	@RequestMapping(value = "/helloA", method = RequestMethod.GET)
-//	public String helloA(Locale locale, Model model) {
-//		
-//		return "helloA";
-//	}
-//	
-//	@RequestMapping(value = "/helloB", method = RequestMethod.GET)
-//	public String helloB(Locale locale, Model model) {
-//		
-//		return "helloB";
-//	}
-//	
-//	@RequestMapping(value = "/helloC", method = RequestMethod.GET)
-//	public String helloC(Locale locale, Model model) {
-//		
-//		return "helloC";
-//	}
-//	
-//	@RequestMapping(value = "/helloD", method = RequestMethod.GET)
-//	public String helloD(Locale locale, Model model) {
-//		
-//		return "helloD";
-//	}
-//	
-//	@RequestMapping(value = "/helloE", method = RequestMethod.GET)
-//	public String helloE(Locale locale, Model model) {
-//		
-//		return "helloE";
-//	}
+	@RequestMapping(value = "register")
+	public String register(Member dto, Model model) {
+
+		return "infra/member/user/register";
+
+	}
 	
 }

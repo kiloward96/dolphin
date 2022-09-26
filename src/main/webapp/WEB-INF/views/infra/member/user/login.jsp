@@ -16,10 +16,10 @@
 <title>Jumal - 즐거운 주말을 위한 Jumal 샵</title>
 
 <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
-<link rel="stylesheet" type="text/css" href="rs-plugin/css/settings.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/resources/rs-plugin/css/settings.css" media="screen" />
 
 <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="/resources/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -60,7 +60,7 @@
 
 					<!-- Logo -->
 					<div class="logo">
-						<a href="index.html"><img class="img-responsive" src="images/logo.png" alt=""></a>
+						<a href="index.html"><img class="img-responsive" src="/resources/images/logo.png" alt=""></a>
 					</div>
 					<nav class="navbar ownmenu">
 						<!-- NAV -->
@@ -123,10 +123,10 @@
 									<ul class="row">
 
 										<!-- Name -->
-										<li class="col-md-12"><label> USERNAME <input type="text" name="first-name" value="" placeholder="">
+										<li class="col-md-12"><label> USERNAME <input type="text" id="MBid" name="MBid" value="${item.MBid }" placeholder="">
 										</label></li>
 										<!-- LAST NAME -->
-										<li class="col-md-12"><label> PASSWORD <input type="password" name="last-name" value="" placeholder="">
+										<li class="col-md-12"><label> PASSWORD <input type="password" id="MBpassword" name="MBpassword" value="${item.MBpassword }" placeholder="">
 										</label></li>
 
 										<!-- LOGIN -->

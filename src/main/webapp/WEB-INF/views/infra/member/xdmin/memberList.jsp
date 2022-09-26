@@ -376,12 +376,12 @@
 			</nav>
 		</div>
 		<!-- End Page Title -->
-		<form method="get" id="formList" name="formList">
-			<input type="hidden" name="MBseq">
-			<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
-			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
-			<input type="hidden" name="checkboxSeqArray">
-			<section class="section">
+		<section class="section">
+			<form method="get" id="formList" name="formList">
+				<input type="hidden" name="MBseq">
+				<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+				<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+				<input type="hidden" name="checkboxSeqArray">
 				<div class="row">
 					<div class="col-lg">
 						<div class="card">
@@ -453,7 +453,7 @@
 														</c:when>
 														<c:otherwise>
 															<c:forEach items="${list}" var="list" varStatus="status">
-																<tr style="cursor: pointer;" onclick="javascript:goForm(<c:out value="${item.MBseq }"/>)">
+																<tr style="cursor: pointer;" onclick="javascript:goForm(<c:out value="${list.MBseq }"/>)">
 																	<th scope="col" onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></th>
 																	<th scope="col"><c:out value="${list.MBseq}" /></th>
 																	<td><c:out value="${list.MBgrade}" /></td>
@@ -524,8 +524,9 @@
 							</div>
 						</div>
 					</div>
-			</section>
-		</form>
+				</div>
+			</form>
+		</section>
 
 	</main>
 	<!-- End #main -->

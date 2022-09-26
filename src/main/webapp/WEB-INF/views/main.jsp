@@ -1,7 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page session="false"%>
+
+<jsp:useBean id="CodeServiceImpl" class="com.gurugan.infra.modules.code.CodeServiceImpl" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,20 +17,20 @@
 <title>Jumal - 즐거운 주말을 위한 Jumal 샵</title>
 
 <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
-<link rel="stylesheet" type="text/css" href="rs-plugin/css/settings.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/resources/rs-plugin/css/settings.css" media="screen" />
 
 <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="css/ionicons.min.css" rel="stylesheet">
-<link href="css/main.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<link href="css/responsive.css" rel="stylesheet">
+<link href="/resources/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="/resources/css/ionicons.min.css" rel="stylesheet">
+<link href="/resources/css/main.css" rel="stylesheet">
+<link href="/resources/css/style.css" rel="stylesheet">
+<link href="/resources/css/responsive.css" rel="stylesheet">
 
 <!-- JavaScripts -->
-<script src="js/modernizr.js"></script>
+<script src="/resources/js/modernizr.js"></script>
 
 <!-- Online Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
@@ -51,7 +55,7 @@
 
 					<!-- Logo -->
 					<div class="logo">
-						<a href="index.html"><img class="img-responsive" src="images/logo.png" alt=""></a>
+						<a href="/"><img class="img-responsive" src="/resources/images/logo.png" alt=""></a>
 					</div>
 					<nav class="navbar ownmenu">
 						<!-- NAV -->
@@ -104,11 +108,11 @@
 				<ul>
 					<!-- SLIDE  -->
 					<li data-transition="random" data-slotamount="7" data-masterspeed="300" data-saveperformance="off">
-						<!-- MAIN IMAGE --> <img src="images/slide-bg-2-2.jpg" alt="slider" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat"> <!-- LAYERS -->
+						<!-- MAIN IMAGE --> <img src="/resources/images/slide-bg-2-2.jpg" alt="slider" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat"> <!-- LAYERS -->
 
 						<div class="tp-caption font-playfair sfb tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="-160" data-speed="800" data-start="500" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
 							data-endspeed="300" style="z-index: 7; font-size: 22px; color: #fff; max-width: auto; max-height: auto; white-space: nowrap;"
-						>The Latest Product from ecoshop</div> <!-- LAYER NR. 2 -->
+						>The Latest Product from Jumal</div> <!-- LAYER NR. 2 -->
 						<div class="tp-caption sfr font-extra-bold tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="-60" data-speed="800" data-start="800" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="none" data-elementdelay="0.07" data-endelementdelay="0.1"
 							data-endspeed="300" style="z-index: 6; font-size: 175px; color: #fff; text-transform: uppercase; white-space: nowrap;"
 						>summer</div> <!-- LAYER NR. 2 -->
@@ -122,7 +126,7 @@
 
 					<!-- SLIDE  -->
 					<li data-transition="random" data-slotamount="7" data-masterspeed="300" data-saveperformance="off">
-						<!-- MAIN IMAGE --> <img src="images/slide-bg-2.jpg" alt="slider" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat"> <!-- LAYERS --> <!-- LAYER NR. 1 -->
+						<!-- MAIN IMAGE --> <img src="/resources/images/slide-bg-2.jpg" alt="slider" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat"> <!-- LAYERS --> <!-- LAYER NR. 1 -->
 						<div class="tp-caption font-playfair sfb tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="-150" data-speed="800" data-start="500" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
 							data-endspeed="300" style="z-index: 7; font-size: 18px; color: #fff; max-width: auto; max-height: auto; white-space: nowrap;"
 						>The Latest Product from ecoshop</div> <!-- LAYER NR. 2 -->
@@ -168,13 +172,13 @@
 				<!-- Item -->
 				<div class="item">
 					<!-- Images -->
-					<img class="img-1" src="images/item-img-1-1.jpg" alt=""> <img class="img-2" src="images/item-img-1-1-1.jpg" alt="">
+					<img class="img-1" src="/resources/images/item-img-1-1.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
 					<!-- Overlay  -->
 					<div class="overlay">
 						<!-- Price -->
 						<span class="price"><small>$</small>299</span>
 						<div class="position-center-center">
-							<a href="images/item-img-1-1.jpg" data-lighter><i class="icon-magnifier"></i></a>
+							<a href="/resources/images/item-img-1-1.jpg" data-lighter><i class="icon-magnifier"></i></a>
 						</div>
 					</div>
 					<!-- Item Name -->
@@ -187,13 +191,13 @@
 				<!-- Item -->
 				<div class="item">
 					<!-- Images -->
-					<img class="img-1" src="images/item-img-1-2.jpg" alt=""> <img class="img-2" src="images/item-img-1-1-1.jpg" alt="">
+					<img class="img-1" src="/resources/images/item-img-1-2.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
 					<!-- Overlay  -->
 					<div class="overlay">
 						<!-- Price -->
 						<span class="price"><small>$</small>299</span>
 						<div class="position-center-center">
-							<a href="images/item-img-1-2.jpg" data-lighter><i class="icon-magnifier"></i></a>
+							<a href="/resources/images/item-img-1-2.jpg" data-lighter><i class="icon-magnifier"></i></a>
 						</div>
 					</div>
 					<!-- Item Name -->
@@ -206,7 +210,7 @@
 				<!-- Item -->
 				<div class="item">
 					<!-- Images -->
-					<img class="img-1" src="images/item-img-1-3.jpg" alt=""> <img class="img-2" src="images/item-img-1-1-1.jpg" alt="">
+					<img class="img-1" src="/resources/images/item-img-1-3.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
 					<!-- Overlay  -->
 					<div class="overlay">
 						<!-- Price -->
@@ -225,13 +229,13 @@
 				<!-- Item -->
 				<div class="item">
 					<!-- Images -->
-					<img class="img-1" src="images/item-img-1-4.jpg" alt=""> <img class="img-2" src="images/item-img-1-1-1.jpg" alt="">
+					<img class="img-1" src="/resources/images/item-img-1-4.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
 					<!-- Overlay  -->
 					<div class="overlay">
 						<!-- Price -->
 						<span class="price"><small>$</small>299</span>
 						<div class="position-center-center">
-							<a href="images/item-img-1-4.jpg" data-lighter><i class="icon-magnifier"></i></a>
+							<a href="/resources/images/item-img-1-4.jpg" data-lighter><i class="icon-magnifier"></i></a>
 						</div>
 					</div>
 					<!-- Item Name -->
@@ -244,13 +248,13 @@
 				<!-- Item -->
 				<div class="item">
 					<!-- Images -->
-					<img class="img-1" src="images/item-img-1-5.jpg" alt=""> <img class="img-2" src="images/item-img-1-1-1.jpg" alt="">
+					<img class="img-1" src="/resources/images/item-img-1-5.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
 					<!-- Overlay  -->
 					<div class="overlay">
 						<!-- Price -->
 						<span class="price"><small>$</small>299</span>
 						<div class="position-center-center">
-							<a href="images/item-img-1-5.jpg" data-lighter><i class="icon-magnifier"></i></a>
+							<a href="/resources/images/item-img-1-5.jpg" data-lighter><i class="icon-magnifier"></i></a>
 						</div>
 					</div>
 					<!-- Item Name -->
@@ -263,13 +267,13 @@
 				<!-- Item -->
 				<div class="item">
 					<!-- Images -->
-					<img class="img-1" src="images/item-img-1-6.jpg" alt=""> <img class="img-2" src="images/item-img-1-1-1.jpg" alt="">
+					<img class="img-1" src="/resources/images/item-img-1-6.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
 					<!-- Overlay  -->
 					<div class="overlay">
 						<!-- Price -->
 						<span class="price"><small>$</small>299</span>
 						<div class="position-center-center">
-							<a href="images/item-img-1-6.jpg" data-lighter><i class="icon-magnifier"></i></a>
+							<a href="/resources/images/item-img-1-6.jpg" data-lighter><i class="icon-magnifier"></i></a>
 						</div>
 					</div>
 					<!-- Item Name -->
@@ -282,13 +286,13 @@
 				<!-- Item -->
 				<div class="item">
 					<!-- Images -->
-					<img class="img-1" src="images/item-img-1-7.jpg" alt=""> <img class="img-2" src="images/item-img-1-1-1.jpg" alt="">
+					<img class="img-1" src="/resources/images/item-img-1-7.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
 					<!-- Overlay  -->
 					<div class="overlay">
 						<!-- Price -->
 						<span class="price"><small>$</small>299</span>
 						<div class="position-center-center">
-							<a href="images/item-img-1-7.jpg" data-lighter><i class="icon-magnifier"></i></a>
+							<a href="/resources/images/item-img-1-7.jpg" data-lighter><i class="icon-magnifier"></i></a>
 						</div>
 					</div>
 					<!-- Item Name -->
@@ -301,13 +305,13 @@
 				<!-- Item -->
 				<div class="item">
 					<!-- Images -->
-					<img class="img-1" src="images/item-img-1-8.jpg" alt=""> <img class="img-2" src="images/item-img-1-1-1.jpg" alt="">
+					<img class="img-1" src="/resources/images/item-img-1-8.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
 					<!-- Overlay  -->
 					<div class="overlay">
 						<!-- Price -->
 						<span class="price"><small>$</small>299</span>
 						<div class="position-center-center">
-							<a href="images/item-img-1-8.jpg" data-lighter><i class="icon-magnifier"></i></a>
+							<a href="/resources/images/item-img-1-8.jpg" data-lighter><i class="icon-magnifier"></i></a>
 						</div>
 					</div>
 					<!-- Item Name -->
@@ -336,12 +340,12 @@
 					<div class="item">
 						<!-- Item img -->
 						<div class="item-img">
-							<img class="img-1" src="images/product-1.jpg" alt=""> <img class="img-2" src="images/product-2.jpg" alt="">
+							<img class="img-1" src="/resources/images/product-1.jpg" alt=""> <img class="img-2" src="/resources/images/product-2.jpg" alt="">
 							<!-- Overlay -->
 							<div class="overlay">
 								<div class="position-center-center">
 									<div class="inn">
-										<a href="images/product-1.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#."><i class="icon-heart"></i></a>
+										<a href="/resources/images/product-1.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#."><i class="icon-heart"></i></a>
 									</div>
 								</div>
 							</div>
@@ -359,12 +363,12 @@
 					<div class="item">
 						<!-- Item img -->
 						<div class="item-img">
-							<img class="img-1" src="images/product-2.jpg" alt=""> <img class="img-2" src="images/product-2.jpg" alt="">
+							<img class="img-1" src="/resources/images/product-2.jpg" alt=""> <img class="img-2" src="/resources/images/product-2.jpg" alt="">
 							<!-- Overlay -->
 							<div class="overlay">
 								<div class="position-center-center">
 									<div class="inn">
-										<a href="images/product-2.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#."><i class="icon-heart"></i></a>
+										<a href="/resources/images/product-2.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#."><i class="icon-heart"></i></a>
 									</div>
 								</div>
 							</div>
@@ -382,12 +386,12 @@
 					<div class="item">
 						<!-- Item img -->
 						<div class="item-img">
-							<img class="img-1" src="images/product-3.jpg" alt=""> <img class="img-2" src="images/product-2.jpg" alt="">
+							<img class="img-1" src="/resources/images/product-3.jpg" alt=""> <img class="img-2" src="/resources/images/product-2.jpg" alt="">
 							<!-- Overlay -->
 							<div class="overlay">
 								<div class="position-center-center">
 									<div class="inn">
-										<a href="images/product-3.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#."><i class="icon-heart"></i></a>
+										<a href="/resources/images/product-3.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#."><i class="icon-heart"></i></a>
 									</div>
 								</div>
 							</div>
@@ -405,12 +409,12 @@
 					<div class="item">
 						<!-- Item img -->
 						<div class="item-img">
-							<img class="img-1" src="images/product-4.jpg" alt=""> <img class="img-2" src="images/product-2.jpg" alt="">
+							<img class="img-1" src="/resources/images/product-4.jpg" alt=""> <img class="img-2" src="/resources/images/product-2.jpg" alt="">
 							<!-- Overlay -->
 							<div class="overlay">
 								<div class="position-center-center">
 									<div class="inn">
-										<a href="images/product-4.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#."><i class="icon-heart"></i></a>
+										<a href="/resources/images/product-4.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#."><i class="icon-heart"></i></a>
 									</div>
 								</div>
 							</div>
@@ -438,7 +442,7 @@
 			<!-- Rights -->
 			<div class="about-footer">
 				<div class="row">
-					<img class="margin-bottom-30" src="images/logo-foot.png" alt="">
+					<img class="margin-bottom-30" src="/resources/images/logo-foot.PNG" alt="">
 					<p>
 						<i class="icon-pointer"></i> Gangdong-gu, Seoul, Korea.
 					</p>
@@ -462,16 +466,16 @@
 		<!--======= RIGHTS =========-->
 
 	</div>
-	<script src="js/jquery-1.11.3.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/own-menu.js"></script>
-	<script src="js/jquery.lighter.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
+	<script src="/resources/js/jquery-1.11.3.min.js"></script>
+	<script src="/resources/js/bootstrap.min.js"></script>
+	<script src="/resources/js/own-menu.js"></script>
+	<script src="/resources/js/jquery.lighter.js"></script>
+	<script src="/resources/js/owl.carousel.min.js"></script>
 
 	<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
-	<script type="text/javascript" src="rs-plugin/js/jquery.tp.t.min.js"></script>
-	<script type="text/javascript" src="rs-plugin/js/jquery.tp.min.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/main.js"></script>
+	<script type="text/javascript" src="/resources/rs-plugin/js/jquery.tp.t.min.js"></script>
+	<script type="text/javascript" src="/resources/rs-plugin/js/jquery.tp.min.js"></script>
+	<script src="/resources/js/main.js"></script>
+	<script src="/resources/js/main.js"></script>
 </body>
 </html>

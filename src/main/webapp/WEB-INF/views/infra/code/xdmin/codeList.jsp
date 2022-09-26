@@ -532,7 +532,7 @@
 													<c:forEach items="${list}" var="list" varStatus="status">
 														<tr style="cursor: pointer;" onclick="javascript:goForm(<c:out value="${list.CCseq }"/>)">
 															<td onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></td>
-															<td><c:out value="${list.CCseq }" /></td>
+															<td><c:out value="${list.CCseq}" /></td>
 															<td><c:out value="${list.CCcommonCodeGroup_seq}" /></td>
 															<td><c:out value="${list.CCGgroupName}" /></td>
 															<td><c:out value="${list.CCseqChar}" /></td>

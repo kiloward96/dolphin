@@ -12,5 +12,5 @@
 <input type="hidden" name="shOption" value="<c:out value="${vo.shOption}"/>"/>
 <input type="hidden" name="shValue" value="<c:out value="${vo.shValue}"/>"/>
 
-<input type="hidden" name="MBseq" value="0"/>
+<input type="hidden" name="MBseq" value="<c:out value="${vo.MBseq}"/>"/>
 <%-- "<c:out value="${vo.MBseq}"/>" --%>

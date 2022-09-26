@@ -385,9 +385,10 @@
 		<section class="section">
 			<div class="row">
 				<div class="col-lg">
-					<form method="get" id="form" name="form">
-						<div class="card">
-							<div class="card-body">
+					<div class="card">
+						<div class="card-body">
+							<form method="get" id="form" name="form">
+							<input type="hidden" id="MBseq" name="MBseq" value="<c:out value="${item.MBseq }"/>">
 								<div class="container mt-2 mb-5">
 									<div class="row">
 										<div class="row mt-5">
@@ -543,16 +544,16 @@
 									</div>
 									<div class="mt-5 mb-5" id="footer"></div>
 								</div>
-							</div>
-					</form>
-					<form name="formVo" id="formVo" method="get">
-						<!-- *Vo.jsp s -->
-						<%@include file="memberVo.jsp"%>
-						<!-- #-> -->
-						<!-- *Vo.jsp e -->
-					</form>
+							</form>
+						</div>
+						<form name="formVo" id="formVo" method="get">
+							<!-- *Vo.jsp s -->
+							<%@include file="memberVo.jsp"%>
+							<!-- #-> -->
+							<!-- *Vo.jsp e -->
+						</form>
+					</div>
 				</div>
-			</div>
 		</section>
 
 	</main>
@@ -619,7 +620,7 @@
 		//		var goUrlUele = "/code/codeUele";				/* #-> */
 		//		var goUrlDele = "/code/codeDele";				/* #-> */
 
-		var seq = $("input:text[name=MBseq]"); /* #-> */
+		var seq = $("input:hidden[name=MBseq]"); /* #-> */
 
 		var form = $("form[name=form]");
 		var formVo = $("form[name=formVo]");
@@ -703,24 +704,20 @@
 							document.getElementById('addressZipcode').value = data.zonecode;
 							document.getElementById("addressMain").value = addr;
 							// 커서를 상세주소 필드로 이동한다.
-							document.getElementById("addressDetail")
-									.focus();
-							
-			 				/* lat and lng from address s */
-			 				
+							document.getElementById("addressDetail").focus();
+
+							/* lat and lng from address s */
+
 							// 주소-좌표 변환 객체를 생성
-						//	var geocoder = new daum.maps.services.Geocoder();
-							
+							//	var geocoder = new daum.maps.services.Geocoder();
 							// 주소로 좌표를 검색
-						//	geocoder.addressSearch(roadAddr, function(result, status) {
-							 
-								// 정상적으로 검색이 완료됐으면,
-						//		if (status == daum.maps.services.Status.OK) {
-									
-						//			document.getElementById("ifmaLatArray0").value=result[0].y;
-						//			document.getElementById("ifmaLngArray0").value=result[0].x;
-						//		}
-						//	});
+							//	geocoder.addressSearch(roadAddr, function(result, status) {
+							// 정상적으로 검색이 완료됐으면,
+							//		if (status == daum.maps.services.Status.OK) {
+							//			document.getElementById("ifmaLatArray0").value=result[0].y;
+							//			document.getElementById("ifmaLngArray0").value=result[0].x;
+							//		}
+							//	});
 							/* lat and lng from address e */
 
 							// iframe을 넣은 element를 안보이게 한다.
@@ -740,9 +737,8 @@
 
 			// iframe을 넣은 element를 보이게 한다.
 			element_wrap.style.display = 'block';
-			
+
 		}
-		
 	</script>
 
 </body>

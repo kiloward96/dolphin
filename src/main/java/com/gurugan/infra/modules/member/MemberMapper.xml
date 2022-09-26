@@ -9,7 +9,7 @@
 	<resultMap id="resultMapObj" type="com.gurugan.infra.modules.member.Member"></resultMap>
 
 	<select id="selectList" resultMap="resultMapObj">
-	<include refid="Base.selectListUpperForMysql"/>
+	<!-- <include refid="Base.selectListUpperForMysql"/> -->
 		SELECT
 			MB.seq AS MBseq
 			,MB.id AS MBid
@@ -26,7 +26,7 @@
 			AND MB.delYn = 0
 		ORDER BY
 			MB.seq DESC
-		<include refid="Base.selectListLowerForMysql" />
+<!-- 		<include refid="Base.selectListLowerForMysql" /> -->
 	</select>
 	
 	<select id="selectOne" resultMap="resultMapObj">
@@ -45,7 +45,11 @@
 		WHERE 1=1
 			AND MB.delYn = 0
 			AND MB.seq = #{MBseq}
-			OR MB.id = #{MBid}
+			<choose>
+				<when test="shOption == 1">AND MB.seq = #{shValue}</when>
+				<when test="shOption == 2">OR MB.id = #{MBid}</when>
+				<otherwise></otherwise>
+			</choose>
 		ORDER BY
 			MB.seq DESC
 	</select>
@@ -60,7 +64,7 @@
 			,mobile
 			,email
 			,regDate
-			,MBdelYn
+			,delYn
 			,grade
 		) VALUES (
 			#{MBid}
@@ -117,6 +121,14 @@
 		WHERE 1=1
 			AND MB.seq = #{MBseq}
 	</update>
+	
+	<select id="selectOneIdCheck" resultType="Integer">
+		SELECT
+			COUNT(MB.id)
+		FROM member MB
+	    WHERE 1=1
+			AND MB.id = #{MBid}
+	</select>
 	
 	
 
