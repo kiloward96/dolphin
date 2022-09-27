@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 
 <jsp:useBean id="CodeServiceImpl" class="com.gurugan.infra.modules.code.CodeServiceImpl" />
 
@@ -164,28 +164,28 @@
 							<!-- ESTIMATE SHIPPING & TAX -->
 							<div class="container">
 								<h6>REGISTER</h6>
-								<form id="form" name="form">
+								<form id="form" name="form" method="post">
 								<input type="hidden" id="MBseq" name="MBseq">
 								<input type="hidden" id="AllowedNy" name="AllowedNy">
 									<ul class="row">
 										<!-- ID -->
-										<li class="col-md-5"><label><span id="idLabel"> *ID </span><input type="text" id="MBid" name="MBid" placeholder="">
+										<li class="col-md-5"><label><span id="idLabel"> *ID </span><input type="text" id="MBid" name="MBid">
 										</label></li>
 
 										<!-- NAME -->
-										<li class="col-md-5"><label> *NAME <input type="text" name="MBname" placeholder="">
+										<li class="col-md-5"><label> *NAME <input type="text" id="MBname" name="MBname">
 										</label></li>
 
-										<li class="col-md-5"><label> *PASSWORD <input type="password" name="MBpassword" placeholder="">
+										<li class="col-md-5"><label> *PASSWORD <input type="password" id="MBpassword" name="MBpassword">
 										</label></li>
 
-										<li class="col-md-5"><label> *PASSWORD CHECK <input type="password" name="MBpasswordCheck" placeholder="">
+										<li class="col-md-5"><label> *PASSWORD CHECK <input type="password" id="MBpasswordCheck" name="MBpasswordCheck">
 										</label></li>
 										
-										<li class="col-md-5"><label> *EMAIL ADDRESS <input type="text" name="MBemail" value="" placeholder="">
+										<li class="col-md-5"><label> *EMAIL ADDRESS <input type="text" id="MBemail" name="MBemail">
 										</label></li>
 										
-										<li class="col-md-5"><label> *PHONE <input type="text" name="MBmobile" value="" placeholder="">
+										<li class="col-md-5"><label> *PHONE <input type="text" id="MBmobile" name="MBmobile">
 										</label></li>
 									</ul>
 									<br><br>
@@ -269,7 +269,7 @@ var goUrlUpdt = "/member/memberUpdt";				/* #-> */
 //var goUrlUele = "/code/codeUele";				/* #-> */
 //var goUrlDele = "/code/codeDele";				/* #-> */
 
-var seq = $("input:text[name=MBseq]");						/* #-> */
+var seq = $("input:hidden[name=MBseq]");						/* #-> */
 
 var form = $("form[name=form]");
 var formVo = $("form[name=formVo]");
@@ -284,7 +284,7 @@ $("#btnSave").on("click", function(){
    	} else {
    		alert("test");
    		// update
-   		keyName.val(atob(keyName.val()));
+   		//keyName.val(atob(keyName.val()));
    		//if (validationUpdt() == false) return false;
    		form.attr("action", goUrlUpdt).submit();
    	}

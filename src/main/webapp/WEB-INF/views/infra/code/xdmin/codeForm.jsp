@@ -600,7 +600,7 @@
 		   	} else {
 		   		alert("test");
 		   		// update
-		   		keyName.val(atob(keyName.val()));
+		   		// keyName.val(atob(keyName.val()));
 		   		//if (validationUpdt() == false) return false;
 		   		form.attr("action", goUrlUpdt).submit();
 		   	}

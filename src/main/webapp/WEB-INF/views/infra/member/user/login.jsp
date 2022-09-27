@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ page session="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+
+<%@ page session="true"%>
+
+<jsp:useBean id="CodeServiceImpl" class="com.gurugan.infra.modules.code.CodeServiceImpl" />
 <!DOCTYPE html>
 <html lang="en">
 
@@ -117,27 +121,27 @@
 						<div class="row">
 
 							<!-- ESTIMATE SHIPPING & TAX -->
-							<div class="col-sm-7">
-								<h6>LOGIN YOUR ACCOUNT</h6>
-								<form>
+							<form id="form" name="form" method="post">
+								<div class="col-sm-7">
+									<h6>LOGIN YOUR ACCOUNT</h6>
 									<ul class="row">
 
 										<!-- Name -->
-										<li class="col-md-12"><label> USERNAME <input type="text" id="MBid" name="MBid" value="${item.MBid }" placeholder="">
+										<li class="col-md-12"><label> USERNAME <input type="text" id="MBid" name="MBid">
 										</label></li>
 										<!-- LAST NAME -->
-										<li class="col-md-12"><label> PASSWORD <input type="password" id="MBpassword" name="MBpassword" value="${item.MBpassword }" placeholder="">
+										<li class="col-md-12"><label> PASSWORD <input type="password" id="MBpassword" name="MBpassword">
 										</label></li>
 
 										<!-- LOGIN -->
 										<li class="col-md-4">
-											<button type="submit" class="btn">LOGIN</button>
+											<button type="button" class="btn" id="btnLogin" name="btnLogin">LOGIN</button>
 										</li>
 
 										<!-- CREATE AN ACCOUNT -->
 										<li class="col-md-3">
 											<div class="checkbox margin-0 margin-top-20">
-												<input id="checkbox1" class="styled" type="checkbox">
+												<input id="autoLogin" class="styled" type="checkbox">
 												<label for="checkbox1"> Auto Login</label>
 											</div>
 										</li>
@@ -156,21 +160,29 @@
 											</div>
 										</li>
 									</ul>
-								</form>
+								</div>
 
-							</div>
+								<!-- SUB TOTAL -->
+								<div class="col-sm-5">
+									<h6>LOGIN WITH</h6>
 
-							<!-- SUB TOTAL -->
-							<div class="col-sm-5">
-								<h6>LOGIN WITH</h6>
-
-								<ul class="login-with">
-									<li><a href="#."><i class="fa fa-facebook"></i>FACEBOOK</a></li>
-									<li><a href="#."><i class="fa fa-google"></i>GOOGLE</a></li>
-									<li><a href="#."><i class="fa fa-n"></i>NAVER</a></li>
-									<li><a href="#."><i class="fa fa-comment"></i>KAKAO</a></li>
-								</ul>
-							</div>
+									<ul class="login-with">
+										<li><a href="#."><i class="fa fa-facebook"></i>FACEBOOK</a></li>
+										<li><a href="#."><i class="fa fa-google"></i>GOOGLE</a></li>
+										<li><a href="#."><i class="fa fa-n"></i>NAVER</a></li>
+										<li><a href="#."><i class="fa fa-comment"></i>KAKAO</a></li>
+									</ul>
+									sessSeq:
+									<c:out value="${sessSeq }" />
+									<br>
+									sessName:
+									<c:out value="${sessName }" />
+									<br>
+									sessId:
+									<c:out value="${sessId }" />
+									<br>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -187,10 +199,12 @@
 		<!-- Rights -->
 		<div class="about-footer">
 			<div class="col">
-				<img class="margin-bottom-20" src="images/logo-foot.png" alt="">
+				<img class="margin-bottom-20" src="/resources/images/logo-foot.PNG" alt="">
 			</div>
 			<div class="col">
-				<p>&copy; Copyright <strong><span>Jumal</span></strong>. All Rights Reserved</p>
+				<p>
+					&copy; Copyright <strong><span>Jumal</span></strong>. All Rights Reserved
+				</p>
 			</div>
 		</div>
 	</footer>
@@ -209,5 +223,48 @@
 	<script type="text/javascript" src="/resources/rs-plugin/js/jquery.tp.min.js"></script>
 	<script src="/resources/js/main.js"></script>
 	<script src="/resources/js/main.js"></script>
+
+	<script type="text/javascript">
+	var URL_INDEX_MAIN = "/"
+	
+		$("#btnLogin").on(
+				"click",
+				function() {
+				/* 	if (validation() == false)
+						return false;
+ */
+					$.ajax({
+						async : true,
+						cache : false,
+						type : "post"
+						/* ,dataType:"json" */
+						,
+						url : "/member/loginProc"
+						/* ,data : $("#formLogin").serialize() */
+						,
+						data : {
+							"MBid" : $("#MBid").val(),
+							"MBpassword" : $("#MBpassword").val(),
+//							"autoLogin" : $("#autoLogin").is(":checked")
+						},
+						success : function(response) {
+							if (response.rt == "success") {
+								alert("로그인성공")
+								/* if (response.changePwd == "true") {
+									location.href = URL_CHANGE_PWD_FORM;
+								} else {
+									location.href = URL_INDEX_MAIN;
+								} */
+							} else {
+								alert("회원없음");
+							}
+						},
+						error : function(jqXHR, textStatus, errorThrown) {
+							alert("ajaxUpdate " + jqXHR.textStatus + " : "
+									+ jqXHR.errorThrown);
+						}
+					});
+				});
+	</script>
 </body>
 </html>

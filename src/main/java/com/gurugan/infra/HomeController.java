@@ -11,9 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.gurugan.infra.modules.member.Member;
-import com.gurugan.infra.modules.member.MemberVo;
-
 @Controller
 public class HomeController {
 
@@ -37,18 +34,5 @@ public class HomeController {
 
 	}
 	
-	@RequestMapping(value = "login")
-	public String login(MemberVo vo, Model model) {
-
-		return "infra/member/user/login";
-
-	}
-	
-	@RequestMapping(value = "register")
-	public String register(Member dto, Model model) {
-
-		return "infra/member/user/register";
-
-	}
 	
 }

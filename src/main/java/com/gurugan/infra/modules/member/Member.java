@@ -2,6 +2,7 @@ package com.gurugan.infra.modules.member;
 
 import java.util.Date;
 
+
 public class Member{
 	
 	private String MBseq;
@@ -19,7 +20,12 @@ public class Member{
 	
 	private String CCGseq;
 	
-	 
+	private String sessSeq;
+	private String sessName;
+	private String sessId;
+	private Boolean AutoLogin;
+	
+	private Integer IflgResultNy;
 	
 	public String getCCGseq() {
 		return CCGseq;
@@ -100,6 +106,39 @@ public class Member{
 	public void setMBdelYn(Integer mBdelYn) {
 		MBdelYn = mBdelYn;
 	}
+	public String getSessSeq() {
+		return sessSeq;
+	}
+	public void setSessSeq(String sessSeq) {
+		this.sessSeq = sessSeq;
+	}
+	public String getSessName() {
+		return sessName;
+	}
+	public void setSessName(String sessName) {
+		this.sessName = sessName;
+	}
+	public String getSessId() {
+		return sessId;
+	}
+	public void setSessId(String sessId) {
+		this.sessId = sessId;
+	}
+	public Boolean getAutoLogin() {
+		return AutoLogin;
+	}
+	public void setAutoLogin(Boolean autoLogin) {
+		AutoLogin = autoLogin;
+	}
+	public Integer getIflgResultNy() {
+		return IflgResultNy;
+	}
+	public void setIflgResultNy(Integer iflgResultNy) {
+		IflgResultNy = iflgResultNy;
+	}
 
+	
+
+	
 
 }

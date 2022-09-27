@@ -38,8 +38,8 @@ public class CodeController {
 	@RequestMapping(value = "codeForm")
 	public String codeForm(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 		
-		Code result = service.selectOne(vo);
 		List<Code> list = service.groupList();
+		Code result = service.selectOne(vo);
 		model.addAttribute("item", result);
 		model.addAttribute("list", list);
 		

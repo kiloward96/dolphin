@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.gurugan.infra.common.constants.Constants;
 
 @Controller
 	@RequestMapping(value = "/member")
@@ -79,7 +84,91 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 			return returnMap;
 		}
 		
+		@ResponseBody
+		@RequestMapping(value = "loginProc")
+		public Map<String, Object> loginProc(Member dto, HttpSession httpSession) throws Exception {
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+
+			Member rtMember = service.selectOneId(dto);
+
+			if (rtMember != null) {
+				Member rtMember2 = service.selectOneLogin(dto);
+
+				if (rtMember2 != null) {
+					
+//					if(dto.getAutoLogin() == true) {
+//						UtilCookie.createCookie(Constants.COOKIE_NAME_SEQ, rtMember2.getIfmmSeq(), Constants.COOKIE_DOMAIN, Constants.COOKIE_PATH, Constants.COOKIE_MAXAGE);
+//					} else {
+//						// by pass
+//					}
+					
+					httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
+					httpSession.setAttribute("sessSeq", rtMember2.getMBseq());
+					httpSession.setAttribute("sessId", rtMember2.getMBid());
+					httpSession.setAttribute("sessName", rtMember2.getMBname());
+					
+					System.out.println(rtMember2.getMBseq());
+					System.out.println(rtMember2.getMBid());
+					System.out.println(rtMember2.getMBname());
+					
+					
+					rtMember2.setIflgResultNy(1);
+//					service.insertLogLogin(rtMember2);
+
+//					Date date = rtMember2.getIfmmPwdModDate();
+//					LocalDateTime ifmmPwdModDateLocalDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+
+//					if (ChronoUnit.DAYS.between(ifmmPwdModDateLocalDateTime, UtilDateTime.nowLocalDateTime()) > Constants.PASSWOPRD_CHANGE_INTERVAL) {
+//						returnMap.put("changePwd", "true");
+//					}
+
+					returnMap.put("rt", "success");
+				} else {
+					dto.setMBseq(rtMember.getMBseq());
+					dto.setIflgResultNy(0);
+//					service.insertLogLogin(dto);
+
+					returnMap.put("rt", "fail");
+				}
+			} else {
+				dto.setIflgResultNy(0);
+//				service.insertLogLogin(dto);
+
+				returnMap.put("rt", "fail");
+			}
+			return returnMap;
+		}
+		
+		@ResponseBody
+		@RequestMapping(value = "logoutProc")
+		public Map<String, Object> logoutProc(HttpSession httpSession) throws Exception {
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+//			UtilCookie.deleteCookie();
+			httpSession.invalidate();
+			returnMap.put("rt", "success");
+			return returnMap;
+		}
+		
+		public static String getSessionSeqCore(HttpServletRequest httpServletRequest) {
+			HttpSession httpSession =  httpServletRequest.getSession();
+			String rtSeq = (String) httpSession.getAttribute("sessSeq");
+			return rtSeq;
+		}
+		
+		@RequestMapping(value = "login")
+		public String login(Member dto, Model model) {
+
+			return "infra/member/user/login";
+
+		}
+		
+		@RequestMapping(value = "register")
+		public String register(Member dto, Model model) {
+
+			return "infra/member/user/register";
+
+		}
 		
 		
-//		@RequestMapping(value = "memberReg")
+		
 	}

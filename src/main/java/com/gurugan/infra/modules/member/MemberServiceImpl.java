@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gurugan.infra.common.util.UtilSecurity;
+
 @Service
 public class MemberServiceImpl implements MemberService {
 	
@@ -23,6 +25,10 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int insert(Member dto) throws Exception {
+		dto.setMBpassword(UtilSecurity.encryptSha256(dto.getMBpassword()));
+    	dto.setMBname(dto.getMBname());
+//    	dto.setMBname(dto.getIfmmLastName() + dto.getIfmmFirstName());
+//    	dto.setIfmmPwdModDate(UtilDateTime.nowDate());
 		int result = dao.insert(dto);
 		System.out.println("service result: " + result);
 		
@@ -30,6 +36,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public int update(Member dto) throws Exception {
+		dto.setMBpassword(UtilSecurity.encryptSha256(dto.getMBpassword()));
 		System.out.println(dto.getMBseq());
 		int result = dao.update(dto);
 		System.out.println("service result:" + result);
@@ -41,6 +48,17 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("service result: " + result);
 		return result;
 		
+	}
+
+	public Member selectOneId(Member dto) throws Exception {
+		
+    	return dao.selectOneId(dto);
+	}
+	
+	public Member selectOneLogin(Member dto) throws Exception {
+		dto.setMBpassword(UtilSecurity.encryptSha256(dto.getMBpassword()));
+    	dto.setMBname(dto.getMBname());
+		return dao.selectOneLogin(dto);
 	}
 
 }

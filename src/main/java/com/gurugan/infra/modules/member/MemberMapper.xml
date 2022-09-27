@@ -130,6 +130,27 @@
 			AND MB.id = #{MBid}
 	</select>
 	
+	<select id="selectOneId" resultMap="resultMapObj">
+		SELECT
+			MB.seq AS MBseq
+			,MB.id AS MBid
+		FROM member MB
+		WHERE 1=1
+			AND MB.id = #{MBid}
+			
+	</select>
+	
+	<select id="selectOneLogin" resultMap="resultMapObj">
+		SELECT
+			MB.seq AS MBseq
+			,MB.id AS MBid
+			,MB.name AS MBname
+		FROM member MB
+		WHERE 1=1
+			AND MB.id = #{MBid}
+			<if test="MBpassword != null and !MBpassword.equals('')">AND MB.password = #{MBpassword}</if>
+	</select>
+	
 	
 
 </mapper>	
