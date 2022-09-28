@@ -24,6 +24,28 @@
 									<!-- 본인의 패키지 명 입력 -->
 	<context:component-scan base-package="com.gurugan.infra" />
 	
+	<!-- session interceptor s 2022.03.13 for logincheck -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/" />
+			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/member/login" />
+			<exclude-mapping path="/member/register" />
+			<exclude-mapping path="/member/loginProc" />
+			<!-- <exclude-mapping path="/member/findIdPwdForm" /> -->
+			<exclude-mapping path="/test/**" />
+			<exclude-mapping path="/rest/**" />
+			<beans:bean id="checkLoginSessionInterception" class="com.gurugan.infra.common.interceptor.CheckLoginSessionInterception"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/code/**"/>
+			<mapping path="/codeGroup/**"/>
+			<beans:bean id="AuthLoginSessionInterception" class="com.gurugan.infra.common.interceptor.AuthLoginSessionInterception"/>
+		</interceptor>
+	</interceptors>	
+	<!-- session interceptor e 2022.03.13 for logincheck -->
+	
 	
 	
 </beans:beans>

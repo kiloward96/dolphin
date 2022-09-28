@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 
 <jsp:useBean id="CodeServiceImpl" class="com.gurugan.infra.modules.code.CodeServiceImpl" />
 <!DOCTYPE html>
@@ -63,7 +63,7 @@
 							<div class="search">
 								<form>
 									<input type="search" placeholder="Search Shop">
-									<button type="submit">
+									<button type="button">
 										<i class="icon-magnifier"></i>
 									</button>
 								</form>
@@ -74,7 +74,18 @@
 							<ul class="navbar-right">
 
 								<!-- USER INFO -->
-								<li class="user-acc"><a href="./login.html" role="button"><i class="icon-user"></i></a></li>
+								<li class="dropdown user-acc"><a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="icon-user"></i></a>
+									<ul class="dropdown-menu">
+										<li>
+											<h6>
+												HELLO!
+												<c:out value="${sessName }" />
+											</h6>
+										</li>
+										<li><a href="#">MY CART</a></li>
+										<li><a href="/member/login">ACCOUNT INFO</a></li>
+										<li><a id="btnLogout" cursor="pointer">LOG OUT</a></li>
+									</ul></li>
 
 								<!-- USER BASKET -->
 								<li class="dropdown user-basket"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="icon-basket-loaded"></i></a></li>
@@ -82,7 +93,6 @@
 						</div>
 					</nav>
 				</div>
-
 				<div class="container">
 					<nav class="navbar ownmenu">
 						<ul class="nav">
@@ -94,7 +104,6 @@
 					</nav>
 				</div>
 			</div>
-	</div>
 	</header>
 	</div>
 
@@ -477,5 +486,31 @@
 	<script type="text/javascript" src="/resources/rs-plugin/js/jquery.tp.min.js"></script>
 	<script src="/resources/js/main.js"></script>
 	<script src="/resources/js/main.js"></script>
+
+	<script type="text/javascript">
+	
+	var URL_LOGIN_FORM = "/member/login";
+	
+	$("#btnLogout").on("click", function(){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,url: "/member/logoutProc"
+			,data: {}
+			,success: function(response) {
+				if(response.rt == "success") {
+					location.href = URL_LOGIN_FORM;
+				} else {
+					// by pass
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
+	
+	</script>
 </body>
 </html>

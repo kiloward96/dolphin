@@ -17,4 +17,5 @@ public interface MemberService {
 	public Member selectOneId(Member dto) throws Exception;
 	
 	public Member selectOneLogin(Member dto) throws Exception;
+	
 }

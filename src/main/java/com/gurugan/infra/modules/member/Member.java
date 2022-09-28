@@ -16,13 +16,14 @@ public class Member{
 	private Date MBregDate;
 	private Date MBoutDate;
 	private Integer MBdelYn;
-	private Integer MBgrade;
+	private String MBgrade;
 	
 	private String CCGseq;
 	
 	private String sessSeq;
 	private String sessName;
 	private String sessId;
+	private String sessGrade;
 	private Boolean AutoLogin;
 	
 	private Integer IflgResultNy;
@@ -33,10 +34,10 @@ public class Member{
 	public void setCCGseq(String cCGseq) {
 		CCGseq = cCGseq;
 	}
-	public Integer getMBgrade() {
+	public String getMBgrade() {
 		return MBgrade;
 	}
-	public void setMBgrade(Integer mBgrade) {
+	public void setMBgrade(String mBgrade) {
 		MBgrade = mBgrade;
 	}
 	public String getMBseq() {
@@ -135,6 +136,12 @@ public class Member{
 	}
 	public void setIflgResultNy(Integer iflgResultNy) {
 		IflgResultNy = iflgResultNy;
+	}
+	public String getSessGrade() {
+		return sessGrade;
+	}
+	public void setSessGrade(String sessGrade) {
+		this.sessGrade = sessGrade;
 	}
 
 	

@@ -60,5 +60,5 @@ public class MemberServiceImpl implements MemberService {
     	dto.setMBname(dto.getMBname());
 		return dao.selectOneLogin(dto);
 	}
-
+	
 }

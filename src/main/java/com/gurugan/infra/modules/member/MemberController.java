@@ -106,11 +106,7 @@ import com.gurugan.infra.common.constants.Constants;
 					httpSession.setAttribute("sessSeq", rtMember2.getMBseq());
 					httpSession.setAttribute("sessId", rtMember2.getMBid());
 					httpSession.setAttribute("sessName", rtMember2.getMBname());
-					
-					System.out.println(rtMember2.getMBseq());
-					System.out.println(rtMember2.getMBid());
-					System.out.println(rtMember2.getMBname());
-					
+					httpSession.setAttribute("sessGrade", rtMember2.getMBgrade());
 					
 					rtMember2.setIflgResultNy(1);
 //					service.insertLogLogin(rtMember2);
@@ -157,7 +153,7 @@ import com.gurugan.infra.common.constants.Constants;
 		
 		@RequestMapping(value = "login")
 		public String login(Member dto, Model model) {
-
+			
 			return "infra/member/user/login";
 
 		}

@@ -145,6 +145,7 @@
 			MB.seq AS MBseq
 			,MB.id AS MBid
 			,MB.name AS MBname
+			,MB.grade AS MBgrade
 		FROM member MB
 		WHERE 1=1
 			AND MB.id = #{MBid}

@@ -6,7 +6,6 @@
 <%@ page session="true"%>
 
 <jsp:useBean id="CodeServiceImpl" class="com.gurugan.infra.modules.code.CodeServiceImpl" />
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,7 +118,7 @@
 							<ul class="navbar-right">
 
 								<!-- USER INFO -->
-								<li class="dropdown user-acc"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="icon-user"></i></a></li>
+								<li class="dropdown user-acc"><a href="/member/login" class="dropdown-toggle" role="button"><i class="icon-user"></i></a></li>
 
 								<!-- USER BASKET -->
 								<li class="dropdown user-basket"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="icon-basket-loaded"></i></a></li>

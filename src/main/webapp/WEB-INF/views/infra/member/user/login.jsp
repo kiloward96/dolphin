@@ -64,7 +64,7 @@
 
 					<!-- Logo -->
 					<div class="logo">
-						<a href="index.html"><img class="img-responsive" src="/resources/images/logo.png" alt=""></a>
+						<a href="/"><img class="img-responsive" src="/resources/images/logo.png" alt=""></a>
 					</div>
 					<nav class="navbar ownmenu">
 						<!-- NAV -->
@@ -83,7 +83,18 @@
 							<ul class="navbar-right">
 
 								<!-- USER INFO -->
-								<li class="dropdown user-acc"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="icon-user"></i></a></li>
+								<li class="user-acc"><a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="icon-user"></i></a>
+									<ul class="dropdown-menu">
+										<li>
+											<h6>
+												HELLO!
+												<c:out value="${sessName }" />
+											</h6>
+										</li>
+										<li><a href="#">MY CART</a></li>
+										<li><a href="/member/login">ACCOUNT INFO</a></li>
+										<li><a id="btnLogout" cursor="pointer">LOG OUT</a></li>
+									</ul></li>
 
 								<!-- USER BASKET -->
 								<li class="dropdown user-basket"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="icon-basket-loaded"></i></a></li>
@@ -149,7 +160,7 @@
 										<!-- SIGN UP -->
 										<li class="col-md-2">
 											<div class="checkbox margin-0 margin-top-20 text-right">
-												<a href="#.">SIGN UP</a>
+												<a href="/member/register">SIGN UP</a>
 											</div>
 										</li>
 
@@ -181,6 +192,9 @@
 									sessId:
 									<c:out value="${sessId }" />
 									<br>
+									sessGrade:
+									<c:out value="${sessGrade }" />
+									<br>
 								</div>
 							</form>
 						</div>
@@ -196,18 +210,29 @@
 	<footer>
 
 
-		<!-- Rights -->
-		<div class="about-footer">
-			<div class="col">
-				<img class="margin-bottom-20" src="/resources/images/logo-foot.PNG" alt="">
+			<!-- Rights -->
+			<div class="about-footer">
+				<div class="row">
+					<img class="margin-bottom-30" src="/resources/images/logo-foot.PNG" alt="">
+					<p>
+						<i class="icon-pointer"></i> Gangdong-gu, Seoul, Korea.
+					</p>
+					<p>
+						<i class="icon-call-end"></i> 010.1111.2222
+					</p>
+					<p>
+						<i class="icon-envelope"></i> info@jumal.co.kr
+					</p>
+				</div>
 			</div>
-			<div class="col">
-				<p>
-					&copy; Copyright <strong><span>Jumal</span></strong>. All Rights Reserved
-				</p>
+
+			<div class="rights">
+				<p>© 2022 jumal All right reserved.</p>
+				<div class="scroll">
+					<a href="#wrap" class="go-up"><i class="lnr lnr-arrow-up"></i></a>
+				</div>
 			</div>
-		</div>
-	</footer>
+		</footer>
 
 	<!--======= RIGHTS =========-->
 
@@ -225,7 +250,8 @@
 	<script src="/resources/js/main.js"></script>
 
 	<script type="text/javascript">
-	var URL_INDEX_MAIN = "/"
+	const URL_INDEX_MAIN = "/";
+	const URL_LOGIN_FORM = "/member/login";
 	
 		$("#btnLogin").on(
 				"click",
@@ -250,6 +276,7 @@
 						success : function(response) {
 							if (response.rt == "success") {
 								alert("로그인성공")
+									location.href = URL_INDEX_MAIN
 								/* if (response.changePwd == "true") {
 									location.href = URL_CHANGE_PWD_FORM;
 								} else {
@@ -265,6 +292,26 @@
 						}
 					});
 				});
+	
+	$("#btnLogout").on("click", function(){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,url: "/member/logoutProc"
+			,data: {}
+			,success: function(response) {
+				if(response.rt == "success") {
+					location.href = URL_LOGIN_FORM;
+				} else {
+					// by pass
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
 	</script>
 </body>
 </html>
