@@ -34,6 +34,16 @@ public class MemberServiceImpl implements MemberService {
 		
 		return result;
 	}
+	
+	
+	
+	@Override
+	public int insertAddress(Member dto) throws Exception {
+		int result = dao.insertAddress(dto);
+		System.out.println("service address result: " + result);
+		return result;
+	}
+
 	@Override
 	public int update(Member dto) throws Exception {
 		dto.setMBpassword(UtilSecurity.encryptSha256(dto.getMBpassword()));

@@ -30,9 +30,12 @@
 			<mapping path="/**"/>
 			<exclude-mapping path="/" />
 			<exclude-mapping path="/resources/**" />
-			<exclude-mapping path="/member/login" />
-			<exclude-mapping path="/member/register" />
+			<exclude-mapping path="/login" />
+			<exclude-mapping path="/register" />
+<!-- 			<exclude-mapping path="/member/checkId"/>
 			<exclude-mapping path="/member/loginProc" />
+			<exclude-mapping path="/member/memberInst" /> -->
+			<exclude-mapping path="/member/**" />
 			<!-- <exclude-mapping path="/member/findIdPwdForm" /> -->
 			<exclude-mapping path="/test/**" />
 			<exclude-mapping path="/rest/**" />
@@ -41,6 +44,8 @@
 		<interceptor>
 			<mapping path="/code/**"/>
 			<mapping path="/codeGroup/**"/>
+			<mapping path="/member/memberList"/>
+			<mapping path="/member/memberForm"/>
 			<beans:bean id="AuthLoginSessionInterception" class="com.gurugan.infra.common.interceptor.AuthLoginSessionInterception"/>
 		</interceptor>
 	</interceptors>	

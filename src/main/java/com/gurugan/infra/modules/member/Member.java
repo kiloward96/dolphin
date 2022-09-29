@@ -5,7 +5,8 @@ import java.util.Date;
 
 public class Member{
 	
-	private String MBseq;
+	// Member table
+	private String MBseq;				// member table 외래키
 	private String MBid;
 	private String MBpassword;
 	private String MBname;
@@ -18,8 +19,10 @@ public class Member{
 	private Integer MBdelYn;
 	private String MBgrade;
 	
+	// cache 관련 dto
 	private String CCGseq;
 	
+	// Session 처리 관련 dto
 	private String sessSeq;
 	private String sessName;
 	private String sessId;
@@ -28,18 +31,20 @@ public class Member{
 	
 	private Integer IflgResultNy;
 	
-	public String getCCGseq() {
-		return CCGseq;
-	}
-	public void setCCGseq(String cCGseq) {
-		CCGseq = cCGseq;
-	}
-	public String getMBgrade() {
-		return MBgrade;
-	}
-	public void setMBgrade(String mBgrade) {
-		MBgrade = mBgrade;
-	}
+	
+	// Member Addres table
+	private String MAseq;
+	private String addressName;
+	private Integer addressZipcode;
+	private String addressMain;
+	private String addressDetail;
+	private String addressMore;
+	private String recieverName;		// 차후 변경가능 수신자명
+	private String recieverMobile;		// 수신자 전화번호
+	private String defaultYn;
+	private String MAdelYn;
+	
+	
 	public String getMBseq() {
 		return MBseq;
 	}
@@ -88,7 +93,6 @@ public class Member{
 	public void setMBemail(String mBemail) {
 		MBemail = mBemail;
 	}
-
 	public Date getMBregDate() {
 		return MBregDate;
 	}
@@ -106,6 +110,18 @@ public class Member{
 	}
 	public void setMBdelYn(Integer mBdelYn) {
 		MBdelYn = mBdelYn;
+	}
+	public String getMBgrade() {
+		return MBgrade;
+	}
+	public void setMBgrade(String mBgrade) {
+		MBgrade = mBgrade;
+	}
+	public String getCCGseq() {
+		return CCGseq;
+	}
+	public void setCCGseq(String cCGseq) {
+		CCGseq = cCGseq;
 	}
 	public String getSessSeq() {
 		return sessSeq;
@@ -125,6 +141,12 @@ public class Member{
 	public void setSessId(String sessId) {
 		this.sessId = sessId;
 	}
+	public String getSessGrade() {
+		return sessGrade;
+	}
+	public void setSessGrade(String sessGrade) {
+		this.sessGrade = sessGrade;
+	}
 	public Boolean getAutoLogin() {
 		return AutoLogin;
 	}
@@ -137,14 +159,68 @@ public class Member{
 	public void setIflgResultNy(Integer iflgResultNy) {
 		IflgResultNy = iflgResultNy;
 	}
-	public String getSessGrade() {
-		return sessGrade;
+	public String getMAseq() {
+		return MAseq;
 	}
-	public void setSessGrade(String sessGrade) {
-		this.sessGrade = sessGrade;
+	public void setMAseq(String mAseq) {
+		MAseq = mAseq;
 	}
-
+	public String getAddressName() {
+		return addressName;
+	}
+	public void setAddressName(String addressName) {
+		this.addressName = addressName;
+	}
+	public Integer getAddressZipcode() {
+		return addressZipcode;
+	}
+	public void setAddressZipcode(Integer addressZipcode) {
+		this.addressZipcode = addressZipcode;
+	}
+	public String getAddressMain() {
+		return addressMain;
+	}
+	public void setAddressMain(String addressMain) {
+		this.addressMain = addressMain;
+	}
+	public String getAddressDetail() {
+		return addressDetail;
+	}
+	public void setAddressDetail(String addressDetail) {
+		this.addressDetail = addressDetail;
+	}
+	public String getAddressMore() {
+		return addressMore;
+	}
+	public void setAddressMore(String addressMore) {
+		this.addressMore = addressMore;
+	}
+	public String getRecieverName() {
+		return recieverName;
+	}
+	public void setRecieverName(String recieverName) {
+		this.recieverName = recieverName;
+	}
+	public String getRecieverMobile() {
+		return recieverMobile;
+	}
+	public void setRecieverMobile(String recieverMobile) {
+		this.recieverMobile = recieverMobile;
+	}
+	public String getDefaultYn() {
+		return defaultYn;
+	}
+	public void setDefaultYn(String defaultYn) {
+		this.defaultYn = defaultYn;
+	}
+	public String getMAdelYn() {
+		return MAdelYn;
+	}
+	public void setMAdelYn(String mAdelYn) {
+		MAdelYn = mAdelYn;
+	}
 	
+
 
 	
 

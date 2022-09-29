@@ -92,7 +92,7 @@
 											</h6>
 										</li>
 										<li><a href="#">MY CART</a></li>
-										<li><a href="/member/login">ACCOUNT INFO</a></li>
+										<li><a href="/login">ACCOUNT INFO</a></li>
 										<li><a id="btnLogout" cursor="pointer">LOG OUT</a></li>
 									</ul></li>
 
@@ -160,7 +160,7 @@
 										<!-- SIGN UP -->
 										<li class="col-md-2">
 											<div class="checkbox margin-0 margin-top-20 text-right">
-												<a href="/member/register">SIGN UP</a>
+												<a href="/register">SIGN UP</a>
 											</div>
 										</li>
 
@@ -251,7 +251,7 @@
 
 	<script type="text/javascript">
 	const URL_INDEX_MAIN = "/";
-	const URL_LOGIN_FORM = "/member/login";
+	const URL_LOGIN_FORM = "/login";
 	
 		$("#btnLogin").on(
 				"click",

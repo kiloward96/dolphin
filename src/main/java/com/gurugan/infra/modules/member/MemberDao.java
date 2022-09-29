@@ -31,6 +31,12 @@ public class MemberDao {
 		return result;
 	}
 	
+	public int insertAddress(Member dto) {
+		int result = sqlSession.insert(namespace + ".insertAddress", dto);
+		System.out.println("dao result: " + result);
+		return result;
+	}
+	
 	public int update(Member dto) {
 		int result = sqlSession.update(namespace + ".update", dto);
 		System.out.println("dao result: " + result);

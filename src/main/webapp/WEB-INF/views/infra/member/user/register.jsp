@@ -47,6 +47,9 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
+<!-- Kakao Map API -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 </head>
 <body>
 	<!DOCTYPE html>
@@ -118,7 +121,7 @@
 							<ul class="navbar-right">
 
 								<!-- USER INFO -->
-								<li class="dropdown user-acc"><a href="/member/login" class="dropdown-toggle" role="button"><i class="icon-user"></i></a></li>
+								<li class="dropdown user-acc"><a href="/login" class="dropdown-toggle" role="button"><i class="icon-user"></i></a></li>
 
 								<!-- USER BASKET -->
 								<li class="dropdown user-basket"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="icon-basket-loaded"></i></a></li>
@@ -152,7 +155,6 @@
 		<!--======= PAGES INNER =========-->
 		<section class="chart-page padding-bottom-100">
 			<div class="container">
-
 				<!-- Payments Steps -->
 				<div class="shopping-cart">
 
@@ -162,52 +164,59 @@
 
 							<!-- ESTIMATE SHIPPING & TAX -->
 							<div class="container">
-								<h6>REGISTER</h6>
 								<form id="form" name="form" method="post">
-								<input type="hidden" id="MBseq" name="MBseq">
-								<input type="hidden" id="AllowedNy" name="AllowedNy">
-									<ul class="row">
-										<!-- ID -->
-										<li class="col-md-5"><label><span id="idLabel"> *ID </span><input type="text" id="MBid" name="MBid">
-										</label></li>
+									<div>
+										<h6>REGISTER</h6>
+										<input type="hidden" id="MBseq" name="MBseq">
+										<input type="hidden" id="AllowedNy" name="AllowedNy">
+										<ul class="row">
+											<!-- ID -->
+											<li class="col-md-5"><label><span id="idLabel"> *ID </span> <input type="text" id="MBid" name="MBid"> </label></li>
 
-										<!-- NAME -->
-										<li class="col-md-5"><label> *NAME <input type="text" id="MBname" name="MBname">
-										</label></li>
+											<!-- NAME -->
+											<li class="col-md-5"><label> *NAME <input type="text" id="MBname" name="MBname">
+											</label></li>
 
-										<li class="col-md-5"><label> *PASSWORD <input type="password" id="MBpassword" name="MBpassword">
-										</label></li>
+											<li class="col-md-5"><label> *PASSWORD <input type="password" id="MBpassword" name="MBpassword">
+											</label></li>
 
-										<li class="col-md-5"><label> *PASSWORD CHECK <input type="password" id="MBpasswordCheck" name="MBpasswordCheck">
-										</label></li>
-										
-										<li class="col-md-5"><label> *EMAIL ADDRESS <input type="text" id="MBemail" name="MBemail">
-										</label></li>
-										
-										<li class="col-md-5"><label> *PHONE <input type="text" id="MBmobile" name="MBmobile">
-										</label></li>
-									</ul>
-									<br><br>
-									<h6>BASIC ADDRESS</h6>
-									<ul class="row">
-										<li class="col-md-5"><label> ZIP CODE <input type="text" name="addressZipCode" value="" placeholder="">
-										</label>
-										</li>
-										<li class="col-md-2"><label>
-												<button type="submit" class="btn" style="margin-top: 25px;">SEARCH</button>
-										</label></li>
-										<li class="col-md-8"><label>ADDRESS <input type="text" name="addressMain" value="" placeholder="">
-										</label></li>
-										<li class="col-md-8"><label>DETAIL ADDRESS <input type="text" name="addressDetail" value="" placeholder="">
-										</label></li>
-										<li class="col-md-8"><label>REFERENCE ADDRESS <input type="text" name="addressMore" value="" placeholder="">
-										</label></li>
+											<li class="col-md-5"><label> *PASSWORD CHECK <input type="password" id="MBpasswordCheck" name="MBpasswordCheck">
+											</label></li>
 
-										<!-- PHONE -->
-										<li class="d-flex justify-content-center col-md-6">
-											<button type="button" class="btn" id="btnSave" name="btnSave">REGISTER NOW</button>
-										</li>
-									</ul>
+											<li class="col-md-5"><label> *EMAIL ADDRESS <input type="text" id="MBemail" name="MBemail">
+											</label></li>
+
+											<li class="col-md-5"><label> *PHONE <input type="text" id="MBmobile" name="MBmobile">
+											</label></li>
+										</ul>
+									</div>
+									<br>
+									<br>
+									<div class="d-flex justify-content-start">
+										<h6>BASIC ADDRESS</h6>
+										<ul class="row">
+											<li class="col-md-5"><label> ZIP CODE <input type="text" id="addressZipCode" name="addressZipCode" readonly>
+											</label></li>
+											<li class="col-md-2"><label>
+													<button type="button" class="btn" style="margin-top: 25px;" onclick="searchAddress()">SEARCH</button>
+											</label></li>
+											
+											<li class="col-md-8"><label>ADDRESS <input type="text" id="addressMain" name="addressMain" readonly>
+											</label></li>
+											<li class="col-md-8"><label>DETAIL ADDRESS <input type="text" id="addressDetail" name="addressDetail">
+											</label></li>
+											<li class="col-md-8"><label>REFERENCE ADDRESS <input type="text" id="addressMore" name="addressMore" readonly>
+											</label></li>
+
+											<li class="d-flex justify-content-center col-md-6">
+												<button type="button" class="btn" id="btnSave" name="btnSave">REGISTER NOW</button>
+											</li>
+										</ul>
+
+									</div>
+
+									<!-- Kakao Map wrap 우측에 표기 -->
+
 								</form>
 							</div>
 						</div>
@@ -260,84 +269,202 @@
 	<script type="text/javascript" src="/resources/rs-plugin/js/jquery.tp.min.js"></script>
 	<script src="/resources/js/main.js"></script>
 	<script src="/resources/js/main.js"></script>
-<script type="text/javascript">
-
-var goUrlList = "/member/memberList"; 			/* #-> */
-var goUrlInst = "/member/memberInst"; 			/* #-> */
-var goUrlUpdt = "/member/memberUpdt";				/* #-> */
-//var goUrlUele = "/code/codeUele";				/* #-> */
-//var goUrlDele = "/code/codeDele";				/* #-> */
-
-var seq = $("input:hidden[name=MBseq]");						/* #-> */
-
-var form = $("form[name=form]");
-var formVo = $("form[name=formVo]");
-
-
-$("#btnSave").on("click", function(){
-	if (seq.val() == "0" || seq.val() == ""){
-		alert("test2");
-   		// insert
-   		//if (validationInst() == false) return false;
-   		form.attr("action", goUrlInst).submit();
-   	} else {
-   		alert("test");
-   		// update
-   		//keyName.val(atob(keyName.val()));
-   		//if (validationUpdt() == false) return false;
-   		form.attr("action", goUrlUpdt).submit();
-   	}
 	
-}); 
-$("#btnList").on("click", function(){
-	formVo.attr("action", goUrlList).submit();
-});
-
-
-$("#MBid").on("focusout", function(){
 	
-	$.ajax({
-		async: true 
-		,cache: false
-		,type: "post"
-		/* ,dataType:"json" */
-		,url: "/member/checkId"
-		/* ,data : $("#formLogin").serialize() */
-		,data : { "MBid" : $("#MBid").val() }
-		,success: function(response) {
-			if(response.rt == "success") {
-				$('#idLabel').css({'color':'green','font-weight':'bold'});
-				$('#MBid').css({'color':'green','font-weight':'bold','border-color':'Green'});
-				$('#idLabel').text(' *ID 사용 가능');
-				/* document.getElementById("MBid").classList.remove('is-invalid');
-				document.getElementById("MBid").classList.add('is-valid'); */
+	
+	<script type="text/javascript">
+		var goUrlList = "/member/memberList"; /* #-> */
+		var goUrlInst = "/member/memberInst"; /* #-> */
+		var goUrlUpdt = "/member/memberUpdt"; /* #-> */
+		//var goUrlUele = "/code/codeUele";				/* #-> */
+		//var goUrlDele = "/code/codeDele";				/* #-> */
 
-				/* document.getElementById("IdFeedback").classList.remove('invalid-feedback');
-				document.getElementById("IdFeedback").classList.add('valid-feedback'); */
-			 	/* document.getElementById("IdFeedback").innerText = "사용 가능 합니다."; */
-				
-				document.getElementById("AllowedNy").value = 1;
-				
+		var seq = $("input:hidden[name=MBseq]"); /* #-> */
+
+		var form = $("form[name=form]");
+		var formVo = $("form[name=formVo]");
+
+		$("#btnSave").on("click", function() {
+			if (seq.val() == "0" || seq.val() == "") {
+				alert("추가");
+				// insert
+				//if (validationInst() == false) return false;
+				form.attr("action", goUrlInst).submit();
 			} else {
-				$('#idLabel').css({'color':'red','font-weight':'bold'});
-				$('#MBid').css({'color':'red','font-weight':'bold','border-color':'red'});
-				$('#idLabel').text(' *ID 사용 불가');
-				/* document.getElementById("MBid").classList.remove('is-valid');
-				document.getElementById("MBid").classList.add('is-invalid');
-				
-				document.getElementById("IdFeedback").classList.remove('valid-feedback');
-				document.getElementById("IdFeedback").classList.add('invalid-feedback');
-				document.getElementById("IdFeedback").innerText = "사용 불가능 합니다"; */
-				
-				document.getElementById("AllowedNy").value = 0;
+				alert("변경");
+				// update
+				//keyName.val(atob(keyName.val()));
+				//if (validationUpdt() == false) return false;
+				form.attr("action", goUrlUpdt).submit();
 			}
-		}
-		,error : function(jqXHR, textStatus, errorThrown){
-			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-		}
-	});
 
-});
-</script>
+		});
+		$("#btnList").on("click", function() {
+			formVo.attr("action", goUrlList).submit();
+		});
+
+		$("#MBid").on(
+				"focusout",
+				function() {
+
+					$.ajax({
+						async : true,
+						cache : false,
+						type : "post"
+						/* ,dataType:"json" */
+						,
+						url : "/member/checkId"
+						/* ,data : $("#formLogin").serialize() */
+						,
+						data : {
+							"MBid" : $("#MBid").val()
+						},
+						success : function(response) {
+							if (response.rt == "success") {
+								$('#idLabel').css({
+									'color' : 'green',
+									'font-weight' : 'bold'
+								});
+								$('#MBid').css({
+									'color' : 'green',
+									'font-weight' : 'bold',
+									'border-color' : 'Green'
+								});
+								$('#idLabel').text(' *ID 사용 가능');
+								/* document.getElementById("MBid").classList.remove('is-invalid');
+								document.getElementById("MBid").classList.add('is-valid'); */
+
+								/* document.getElementById("IdFeedback").classList.remove('invalid-feedback');
+								document.getElementById("IdFeedback").classList.add('valid-feedback'); */
+								/* document.getElementById("IdFeedback").innerText = "사용 가능 합니다."; */
+
+								document.getElementById("AllowedNy").value = 1;
+
+							} else {
+								$('#idLabel').css({
+									'color' : 'red',
+									'font-weight' : 'bold'
+								});
+								$('#MBid').css({
+									'color' : 'red',
+									'font-weight' : 'bold',
+									'border-color' : 'red'
+								});
+								$('#idLabel').text(' *ID 사용 불가');
+								/* document.getElementById("MBid").classList.remove('is-valid');
+								document.getElementById("MBid").classList.add('is-invalid');
+								
+								document.getElementById("IdFeedback").classList.remove('valid-feedback');
+								document.getElementById("IdFeedback").classList.add('invalid-feedback');
+								document.getElementById("IdFeedback").innerText = "사용 불가능 합니다"; */
+
+								document.getElementById("AllowedNy").value = 0;
+							}
+						},
+						error : function(jqXHR, textStatus, errorThrown) {
+							alert("ajaxUpdate " + jqXHR.textStatus + " : "
+									+ jqXHR.errorThrown);
+						}
+					});
+
+				});
+
+		//Kakao Map
+
+		// 우편번호 찾기 찾기 화면을 넣을 element
+		var element_wrap = document.getElementById('wrap');
+
+		function foldDaumPostcode() {
+			// iframe을 넣은 element를 안보이게 한다.
+			element_wrap.style.display = 'none';
+		}
+
+		function searchAddress() {
+			// 현재 scroll 위치를 저장해놓는다.
+			var currentScroll = Math.max(document.body.scrollTop,
+					document.documentElement.scrollTop);
+			new daum.Postcode(
+					{
+						oncomplete : function(data) {
+							// 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+							// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+							var addr = ''; // 주소 변수
+							var extraAddr = ''; // 참고항목 변수
+
+							//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+							if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+								addr = data.roadAddress;
+							} else { // 사용자가 지번 주소를 선택했을 경우(J)
+								addr = data.jibunAddress;
+							}
+
+							// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+							if (data.userSelectedType === 'R') {
+								// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+								// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+								if (data.bname !== ''
+										&& /[동|로|가]$/g.test(data.bname)) {
+									extraAddr += data.bname;
+								}
+								// 건물명이 있고, 공동주택일 경우 추가한다.
+								if (data.buildingName !== ''
+										&& data.apartment === 'Y') {
+									extraAddr += (extraAddr !== '' ? ', '
+											+ data.buildingName
+											: data.buildingName);
+								}
+								// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+								if (extraAddr !== '') {
+									extraAddr = ' (' + extraAddr + ')';
+								}
+								// 조합된 참고항목을 해당 필드에 넣는다.
+								document.getElementById("addressMore").value = extraAddr;
+
+							} else {
+								document.getElementById("addressMore").value = '';
+							}
+
+							// 우편번호와 주소 정보를 해당 필드에 넣는다.
+							document.getElementById("addressZipCode").value = data.zonecode;
+							document.getElementById("addressMain").value = addr;
+							// 커서를 상세주소 필드로 이동한다.
+							document.getElementById("addressDetail").focus();
+
+							/* lat and lng from address s */
+
+							// 주소-좌표 변환 객체를 생성
+							//	var geocoder = new daum.maps.services.Geocoder();
+							// 주소로 좌표를 검색
+							//	geocoder.addressSearch(roadAddr, function(result, status) {
+							// 정상적으로 검색이 완료됐으면,
+							//		if (status == daum.maps.services.Status.OK) {
+							//			document.getElementById("ifmaLatArray0").value=result[0].y;
+							//			document.getElementById("ifmaLngArray0").value=result[0].x;
+							//		}
+							//	});
+							/* lat and lng from address e */
+
+							// iframe을 넣은 element를 안보이게 한다.
+							// (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
+							element_wrap.style.display = 'none';
+
+							// 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
+							document.body.scrollTop = currentScroll;
+						},
+						// 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
+						onresize : function(size) {
+							element_wrap.style.height = size.height + 'px';
+						},
+						width : '100%',
+						height : '100%'
+					}).embed(element_wrap);
+
+			// iframe을 넣은 element를 보이게 한다.
+			element_wrap.style.display = 'block';
+
+		}
+	</script>
 </body>
 </html>

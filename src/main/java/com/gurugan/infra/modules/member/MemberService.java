@@ -10,6 +10,8 @@ public interface MemberService {
 	
 	public int insert(Member dto) throws Exception;
 	
+	public int insertAddress(Member dto) throws Exception;
+	
 	public int update(Member dto) throws Exception;
 	
 	public int selectOneIdCheck(Member dto) throws Exception;

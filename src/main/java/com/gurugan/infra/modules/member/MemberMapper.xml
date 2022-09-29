@@ -76,7 +76,10 @@
 			,#{MBemail}
 			,NOW()
 			,0
-			,#{MBgrade}
+			<choose>
+				<when test="MBgrade != null and !MBgrade.equals('')">,#{MBgrade}</when>
+				<otherwise>,3</otherwise>
+			</choose>
 		)
 	<selectKey resultType="String" keyProperty="MBseq" order="AFTER">
 		SELECT last_insert_id()
@@ -91,14 +94,16 @@
 			,addressMain
 			,addressDetail
 			,addressMore
+			,defaultYn
 			,delYn
 		) VALUES (
-			1
-			,#{addressName}
+			#{MBseq}
+			,"기본배송지"
 			,#{addressZipcode}
 			,#{addressMain}
 			,#{addressDetail}
 			,#{addressMore}
+			,1
 			,0
 		)
 	<selectKey resultType="String" keyProperty="MAseq" order="AFTER">

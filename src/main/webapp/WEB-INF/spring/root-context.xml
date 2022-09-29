@@ -10,7 +10,7 @@
 		<!--원본 <property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
 		<!--원본 <property name="url" value="jdbc:mysql://g-mysql-1.cfmagchysxsn.ap-northeast-2.rds.amazonaws.com:53306/dolphin" /> -->
-		<property name="url" value="jdbc:log4jdbc:mysql://g-mysql-1.cfmagchysxsn.ap-northeast-2.rds.amazonaws.com:53306/dolphin" />
+		<property name="url" value="jdbc:log4jdbc:mysql://g-mysql-1.cfmagchysxsn.ap-northeast-2.rds.amazonaws.com:53306/dolphin?allowMultiQueries=true" />
 		<property name="username" value="dbmaster" />
 		<property name="password" value="1!E%aJA3" />
 	</bean>

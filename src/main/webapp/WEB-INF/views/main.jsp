@@ -83,7 +83,7 @@
 											</h6>
 										</li>
 										<li><a href="#">MY CART</a></li>
-										<li><a href="/member/login">ACCOUNT INFO</a></li>
+										<li><a href="/login">ACCOUNT INFO</a></li>
 										<li><a id="btnLogout" cursor="pointer">LOG OUT</a></li>
 									</ul></li>
 
@@ -489,7 +489,7 @@
 
 	<script type="text/javascript">
 	
-	var URL_LOGIN_FORM = "/member/login";
+	var URL_LOGIN_FORM = "/login";
 	
 	$("#btnLogout").on("click", function(){
 		$.ajax({

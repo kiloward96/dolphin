@@ -51,8 +51,15 @@ import com.gurugan.infra.common.constants.Constants;
 		public String MemberInst(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
 			int result = service.insert(dto);
 			System.out.println("controller Result: " + result);
+				if (dto.getMBid() != null && dto.getAddressZipcode() != null || dto.getAddressMain() != null) {
+					System.out.println("Controller Address insert");
+					
+					System.out.println(dto.getAddressZipcode());
+					service.insertAddress(dto);
+				}
 			
 			redirectAttributes.addFlashAttribute("vo", vo);
+			
 			return "redirect:/member/memberForm";
 		}
 		
@@ -150,21 +157,5 @@ import com.gurugan.infra.common.constants.Constants;
 			String rtSeq = (String) httpSession.getAttribute("sessSeq");
 			return rtSeq;
 		}
-		
-		@RequestMapping(value = "login")
-		public String login(Member dto, Model model) {
-			
-			return "infra/member/user/login";
-
-		}
-		
-		@RequestMapping(value = "register")
-		public String register(Member dto, Model model) {
-
-			return "infra/member/user/register";
-
-		}
-		
-		
 		
 	}
