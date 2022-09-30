@@ -11,7 +11,7 @@ public class Constants {
 	public static final int INSERT_AFTER_TYPE = 1;
 	public static final int UPDATE_AFTER_TYPE = 1;
 
-	public static final String URL_LOGINFORM = "/member/login";
+	public static final String URL_LOGINFORM = "/login";
 	public static final String URL_MAIN = "/";
 
 	public static final String DATETIME_FORMAT_BASIC = "yyyy-MM-dd HH:mm:ss";

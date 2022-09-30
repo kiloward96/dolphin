@@ -183,7 +183,7 @@
 										<li><a href="#."><i class="fa fa-n"></i>NAVER</a></li>
 										<li><a href="#."><i class="fa fa-comment"></i>KAKAO</a></li>
 									</ul>
-									sessSeq:
+									<%-- sessSeq:
 									<c:out value="${sessSeq }" />
 									<br>
 									sessName:
@@ -193,7 +193,7 @@
 									<c:out value="${sessId }" />
 									<br>
 									sessGrade:
-									<c:out value="${sessGrade }" />
+									<c:out value="${sessGrade }" /> --%>
 									<br>
 								</div>
 							</form>

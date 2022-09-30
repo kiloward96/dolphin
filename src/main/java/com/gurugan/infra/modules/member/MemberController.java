@@ -60,7 +60,10 @@ import com.gurugan.infra.common.constants.Constants;
 			
 			redirectAttributes.addFlashAttribute("vo", vo);
 			
-			return "redirect:/member/memberForm";
+//				return "redirect:/member/memberForm";
+
+				return "redirect:/";
+			
 		}
 		
 		@RequestMapping(value = "memberUpdt")
