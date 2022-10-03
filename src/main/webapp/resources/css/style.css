@@ -892,7 +892,7 @@ header .user-acc .dropdown-menu {
 	margin-top: 11px;
 }
 header .is-sticky .sticky .user-acc .dropdown-menu {
-	margin-top: 21px;
+	/* margin-top: 21px; */
 }
 header .user-acc li a {
 	display: inline-block;

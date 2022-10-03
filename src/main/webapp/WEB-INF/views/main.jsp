@@ -85,7 +85,8 @@
 										<li><a href="#">MY CART</a></li>
 										<li><a href="/login">ACCOUNT INFO</a></li>
 										<li><a id="btnLogout" cursor="pointer">LOG OUT</a></li>
-									</ul></li>
+									</ul>
+								</li>
 
 								<!-- USER BASKET -->
 								<li class="dropdown user-basket"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="icon-basket-loaded"></i></a></li>
@@ -104,413 +105,414 @@
 					</nav>
 				</div>
 			</div>
-	</header>
-	</div>
+		</header>
 
 
-	<!--======= HOME MAIN SLIDER =========-->
-	<section class="home-slider">
 
-		<!-- SLIDE Start -->
-		<div class="tp-banner-container">
-			<div class="tp-banner">
-				<ul>
-					<!-- SLIDE  -->
-					<li data-transition="random" data-slotamount="7" data-masterspeed="300" data-saveperformance="off">
-						<!-- MAIN IMAGE --> <img src="/resources/images/slide-bg-2-2.jpg" alt="slider" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat"> <!-- LAYERS -->
+		<!--======= HOME MAIN SLIDER =========-->
+		<section class="home-slider">
 
-						<div class="tp-caption font-playfair sfb tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="-160" data-speed="800" data-start="500" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
-							data-endspeed="300" style="z-index: 7; font-size: 22px; color: #fff; max-width: auto; max-height: auto; white-space: nowrap;"
-						>The Latest Product from Jumal</div> <!-- LAYER NR. 2 -->
-						<div class="tp-caption sfr font-extra-bold tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="-60" data-speed="800" data-start="800" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="none" data-elementdelay="0.07" data-endelementdelay="0.1"
-							data-endspeed="300" style="z-index: 6; font-size: 175px; color: #fff; text-transform: uppercase; white-space: nowrap;"
-						>summer</div> <!-- LAYER NR. 2 -->
-						<div class="tp-caption sfr font-playfair tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="40" data-speed="800" data-start="1300" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="none" data-elementdelay="0.07" data-endelementdelay="0.1"
-							data-endspeed="300" style="z-index: 6; font-size: 100px; color: #fff; text-transform: uppercase; white-space: nowrap;"
-						>collection</div> <!-- LAYER NR. 4 -->
-						<div class="tp-caption lfb tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="180" data-speed="800" data-start="2200" data-easing="Power3.easeInOut" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" data-scrolloffset="0" style="z-index: 8;">
-							<a href="#." class="btn btn-round">SHOP NOW</a>
-						</div>
-					</li>
+			<!-- SLIDE Start -->
+			<div class="tp-banner-container">
+				<div class="tp-banner">
+					<ul>
+						<!-- SLIDE  -->
+						<li data-transition="random" data-slotamount="7" data-masterspeed="300" data-saveperformance="off">
+							<!-- MAIN IMAGE --> <img src="/resources/images/slide-bg-2-2.jpg" alt="slider" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat"> <!-- LAYERS -->
 
-					<!-- SLIDE  -->
-					<li data-transition="random" data-slotamount="7" data-masterspeed="300" data-saveperformance="off">
-						<!-- MAIN IMAGE --> <img src="/resources/images/slide-bg-2.jpg" alt="slider" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat"> <!-- LAYERS --> <!-- LAYER NR. 1 -->
-						<div class="tp-caption font-playfair sfb tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="-150" data-speed="800" data-start="500" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
-							data-endspeed="300" style="z-index: 7; font-size: 18px; color: #fff; max-width: auto; max-height: auto; white-space: nowrap;"
-						>The Latest Product from ecoshop</div> <!-- LAYER NR. 2 -->
-						<div class="tp-caption sfr font-regular tp-resizeme letter-space-4" data-x="center" data-hoffset="0" data-y="center" data-voffset="-50" data-speed="800" data-start="800" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="none" data-elementdelay="0.07" data-endelementdelay="0.1"
-							data-endspeed="300" style="z-index: 6; font-size: 78px; color: #fff; text-transform: uppercase; white-space: nowrap;"
-						>look beautiful</div> <!-- LAYER NR. 2 -->
-						<div class="tp-caption sfr font-extra-bold tp-resizeme letter-space-4" data-x="center" data-hoffset="0" data-y="center" data-voffset="60" data-speed="800" data-start="1300" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="none" data-elementdelay="0.07"
-							data-endelementdelay="0.1" data-endspeed="300" style="z-index: 6; font-size: 140px; color: #fff; text-transform: uppercase; white-space: nowrap;"
-						>this season</div> <!-- LAYER NR. 4 -->
-						<div class="tp-caption sfb font-extra-bold tp-resizeme" data-x="center" data-hoffset="120" data-y="center" data-voffset="200" data-speed="800" data-start="2200" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.07" data-endelementdelay="0.1"
-							data-endspeed="300" style="z-index: 6; font-size: 60px; color: #fff; text-transform: uppercase; white-space: nowrap;"
-						>
-							<small class="font-regular">$</small> 299
-						</div> <!-- LAYER NR. 4 -->
-						<div class="tp-caption lfb tp-scrollbelowslider tp-resizeme" data-x="center" data-hoffset="-120" data-y="center" data-voffset="200" data-speed="800" data-start="2200" data-easing="Power3.easeInOut" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" data-scrolloffset="0"
-							style="z-index: 8;"
-						>
-							<a href="#." class="btn">BUY NOW</a>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</section>
+							<div class="tp-caption font-playfair sfb tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="-160" data-speed="800" data-start="500" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
+								data-endspeed="300" style="z-index: 7; font-size: 22px; color: #fff; max-width: auto; max-height: auto; white-space: nowrap;"
+							>The Latest Product from Jumal</div> <!-- LAYER NR. 2 -->
+							<div class="tp-caption sfr font-extra-bold tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="-60" data-speed="800" data-start="800" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="none" data-elementdelay="0.07" data-endelementdelay="0.1"
+								data-endspeed="300" style="z-index: 6; font-size: 175px; color: #fff; text-transform: uppercase; white-space: nowrap;"
+							>summer</div> <!-- LAYER NR. 2 -->
+							<div class="tp-caption sfr font-playfair tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="40" data-speed="800" data-start="1300" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="none" data-elementdelay="0.07" data-endelementdelay="0.1"
+								data-endspeed="300" style="z-index: 6; font-size: 100px; color: #fff; text-transform: uppercase; white-space: nowrap;"
+							>collection</div> <!-- LAYER NR. 4 -->
+							<div class="tp-caption lfb tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="180" data-speed="800" data-start="2200" data-easing="Power3.easeInOut" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" data-scrolloffset="0" style="z-index: 8;">
+								<a href="#." class="btn btn-round">SHOP NOW</a>
+							</div>
+						</li>
 
-	<!-- Content -->
-	<div id="content">
-
-		<!-- New Arrival -->
-		<section class="padding-top-100 padding-bottom-100">
-			<div class="container">
-
-				<!-- Main Heading -->
-				<div class="heading text-center">
-					<h4>new arrival</h4>
-					<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. Sed feugiat, tellus vel tristique posuere, diam</span>
+						<!-- SLIDE  -->
+						<li data-transition="random" data-slotamount="7" data-masterspeed="300" data-saveperformance="off">
+							<!-- MAIN IMAGE --> <img src="/resources/images/slide-bg-2.jpg" alt="slider" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat"> <!-- LAYERS --> <!-- LAYER NR. 1 -->
+							<div class="tp-caption font-playfair sfb tp-resizeme" data-x="center" data-hoffset="0" data-y="center" data-voffset="-150" data-speed="800" data-start="500" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
+								data-endspeed="300" style="z-index: 7; font-size: 18px; color: #fff; max-width: auto; max-height: auto; white-space: nowrap;"
+							>The Latest Product from ecoshop</div> <!-- LAYER NR. 2 -->
+							<div class="tp-caption sfr font-regular tp-resizeme letter-space-4" data-x="center" data-hoffset="0" data-y="center" data-voffset="-50" data-speed="800" data-start="800" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="none" data-elementdelay="0.07"
+								data-endelementdelay="0.1" data-endspeed="300" style="z-index: 6; font-size: 78px; color: #fff; text-transform: uppercase; white-space: nowrap;"
+							>look beautiful</div> <!-- LAYER NR. 2 -->
+							<div class="tp-caption sfr font-extra-bold tp-resizeme letter-space-4" data-x="center" data-hoffset="0" data-y="center" data-voffset="60" data-speed="800" data-start="1300" data-easing="Power3.easeInOut" data-splitin="chars" data-splitout="none" data-elementdelay="0.07"
+								data-endelementdelay="0.1" data-endspeed="300" style="z-index: 6; font-size: 140px; color: #fff; text-transform: uppercase; white-space: nowrap;"
+							>this season</div> <!-- LAYER NR. 4 -->
+							<div class="tp-caption sfb font-extra-bold tp-resizeme" data-x="center" data-hoffset="120" data-y="center" data-voffset="200" data-speed="800" data-start="2200" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.07" data-endelementdelay="0.1"
+								data-endspeed="300" style="z-index: 6; font-size: 60px; color: #fff; text-transform: uppercase; white-space: nowrap;"
+							>
+								<small class="font-regular">$</small> 299
+							</div> <!-- LAYER NR. 4 -->
+							<div class="tp-caption lfb tp-scrollbelowslider tp-resizeme" data-x="center" data-hoffset="-120" data-y="center" data-voffset="200" data-speed="800" data-start="2200" data-easing="Power3.easeInOut" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" data-scrolloffset="0"
+								style="z-index: 8;"
+							>
+								<a href="#." class="btn">BUY NOW</a>
+							</div>
+						</li>
+					</ul>
 				</div>
 			</div>
+		</section>
+
+		<!-- Content -->
+		<div id="content">
 
 			<!-- New Arrival -->
-			<div class="arrival-block">
+			<section class="padding-top-100 padding-bottom-100">
+				<div class="container">
 
-				<!-- Item -->
-				<div class="item">
-					<!-- Images -->
-					<img class="img-1" src="/resources/images/item-img-1-1.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
-					<!-- Overlay  -->
-					<div class="overlay">
-						<!-- Price -->
-						<span class="price"><small>$</small>299</span>
-						<div class="position-center-center">
-							<a href="/resources/images/item-img-1-1.jpg" data-lighter><i class="icon-magnifier"></i></a>
-						</div>
-					</div>
-					<!-- Item Name -->
-					<div class="item-name">
-						<a href="./product-detail.html">wooden chair</a>
-						<p>Lorem ipsum dolor sit amet</p>
+					<!-- Main Heading -->
+					<div class="heading text-center">
+						<h4>new arrival</h4>
+						<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. Sed feugiat, tellus vel tristique posuere, diam</span>
 					</div>
 				</div>
 
-				<!-- Item -->
-				<div class="item">
-					<!-- Images -->
-					<img class="img-1" src="/resources/images/item-img-1-2.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
-					<!-- Overlay  -->
-					<div class="overlay">
-						<!-- Price -->
-						<span class="price"><small>$</small>299</span>
-						<div class="position-center-center">
-							<a href="/resources/images/item-img-1-2.jpg" data-lighter><i class="icon-magnifier"></i></a>
-						</div>
-					</div>
-					<!-- Item Name -->
-					<div class="item-name">
-						<a href="#.">MINIMALIST WOO TOYS</a>
-						<p>Lorem ipsum dolor sit amet</p>
-					</div>
-				</div>
-
-				<!-- Item -->
-				<div class="item">
-					<!-- Images -->
-					<img class="img-1" src="/resources/images/item-img-1-3.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
-					<!-- Overlay  -->
-					<div class="overlay">
-						<!-- Price -->
-						<span class="price"><small>$</small>299</span>
-						<div class="position-center-center">
-							<a href="images/item-img-1-3.jpg" data-lighter><i class="icon-magnifier"></i></a>
-						</div>
-					</div>
-					<!-- Item Name -->
-					<div class="item-name">
-						<a href="#.">Concrete Shaving Kit</a>
-						<p>Lorem ipsum dolor sit amet</p>
-					</div>
-				</div>
-
-				<!-- Item -->
-				<div class="item">
-					<!-- Images -->
-					<img class="img-1" src="/resources/images/item-img-1-4.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
-					<!-- Overlay  -->
-					<div class="overlay">
-						<!-- Price -->
-						<span class="price"><small>$</small>299</span>
-						<div class="position-center-center">
-							<a href="/resources/images/item-img-1-4.jpg" data-lighter><i class="icon-magnifier"></i></a>
-						</div>
-					</div>
-					<!-- Item Name -->
-					<div class="item-name">
-						<a href="#.">PARAGON PENDANT</a>
-						<p>Lorem ipsum dolor sit amet</p>
-					</div>
-				</div>
-
-				<!-- Item -->
-				<div class="item">
-					<!-- Images -->
-					<img class="img-1" src="/resources/images/item-img-1-5.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
-					<!-- Overlay  -->
-					<div class="overlay">
-						<!-- Price -->
-						<span class="price"><small>$</small>299</span>
-						<div class="position-center-center">
-							<a href="/resources/images/item-img-1-5.jpg" data-lighter><i class="icon-magnifier"></i></a>
-						</div>
-					</div>
-					<!-- Item Name -->
-					<div class="item-name">
-						<a href="#.">crative lamp</a>
-						<p>Lorem ipsum dolor sit amet</p>
-					</div>
-				</div>
-
-				<!-- Item -->
-				<div class="item">
-					<!-- Images -->
-					<img class="img-1" src="/resources/images/item-img-1-6.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
-					<!-- Overlay  -->
-					<div class="overlay">
-						<!-- Price -->
-						<span class="price"><small>$</small>299</span>
-						<div class="position-center-center">
-							<a href="/resources/images/item-img-1-6.jpg" data-lighter><i class="icon-magnifier"></i></a>
-						</div>
-					</div>
-					<!-- Item Name -->
-					<div class="item-name">
-						<a href="#.">ECO FRIENDLY</a>
-						<p>Lorem ipsum dolor sit amet</p>
-					</div>
-				</div>
-
-				<!-- Item -->
-				<div class="item">
-					<!-- Images -->
-					<img class="img-1" src="/resources/images/item-img-1-7.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
-					<!-- Overlay  -->
-					<div class="overlay">
-						<!-- Price -->
-						<span class="price"><small>$</small>299</span>
-						<div class="position-center-center">
-							<a href="/resources/images/item-img-1-7.jpg" data-lighter><i class="icon-magnifier"></i></a>
-						</div>
-					</div>
-					<!-- Item Name -->
-					<div class="item-name">
-						<a href="#.">GEOMETRY STOOL</a>
-						<p>Lorem ipsum dolor sit amet</p>
-					</div>
-				</div>
-
-				<!-- Item -->
-				<div class="item">
-					<!-- Images -->
-					<img class="img-1" src="/resources/images/item-img-1-8.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
-					<!-- Overlay  -->
-					<div class="overlay">
-						<!-- Price -->
-						<span class="price"><small>$</small>299</span>
-						<div class="position-center-center">
-							<a href="/resources/images/item-img-1-8.jpg" data-lighter><i class="icon-magnifier"></i></a>
-						</div>
-					</div>
-					<!-- Item Name -->
-					<div class="item-name">
-						<a href="#.">CERAMIC STONE VASE</a>
-						<p>Lorem ipsum dolor sit amet</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- Popular Products -->
-		<section class="padding-top-50 padding-bottom-150">
-			<div class="container">
-
-				<!-- Main Heading -->
-				<div class="heading text-center">
-					<h4>popular products</h4>
-					<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. Sed feugiat, tellus vel tristique posuere, diam</span>
-				</div>
-
-				<!-- Popular Item Slide -->
-				<div class="papular-block block-slide">
+				<!-- New Arrival -->
+				<div class="arrival-block">
 
 					<!-- Item -->
 					<div class="item">
-						<!-- Item img -->
-						<div class="item-img">
-							<img class="img-1" src="/resources/images/product-1.jpg" alt=""> <img class="img-2" src="/resources/images/product-2.jpg" alt="">
-							<!-- Overlay -->
-							<div class="overlay">
-								<div class="position-center-center">
-									<div class="inn">
-										<a href="/resources/images/product-1.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#."><i class="icon-heart"></i></a>
-									</div>
-								</div>
+						<!-- Images -->
+						<img class="img-1" src="/resources/images/item-img-1-1.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
+						<!-- Overlay  -->
+						<div class="overlay">
+							<!-- Price -->
+							<span class="price"><small>$</small>299</span>
+							<div class="position-center-center">
+								<a href="/resources/images/item-img-1-1.jpg" data-lighter><i class="icon-magnifier"></i></a>
 							</div>
 						</div>
 						<!-- Item Name -->
 						<div class="item-name">
-							<a href="#.">stone cup</a>
+							<a href="./product-detail.html">wooden chair</a>
 							<p>Lorem ipsum dolor sit amet</p>
 						</div>
-						<!-- Price -->
-						<span class="price"><small>$</small>299</span>
 					</div>
 
 					<!-- Item -->
 					<div class="item">
-						<!-- Item img -->
-						<div class="item-img">
-							<img class="img-1" src="/resources/images/product-2.jpg" alt=""> <img class="img-2" src="/resources/images/product-2.jpg" alt="">
-							<!-- Overlay -->
-							<div class="overlay">
-								<div class="position-center-center">
-									<div class="inn">
-										<a href="/resources/images/product-2.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#."><i class="icon-heart"></i></a>
-									</div>
-								</div>
+						<!-- Images -->
+						<img class="img-1" src="/resources/images/item-img-1-2.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
+						<!-- Overlay  -->
+						<div class="overlay">
+							<!-- Price -->
+							<span class="price"><small>$</small>299</span>
+							<div class="position-center-center">
+								<a href="/resources/images/item-img-1-2.jpg" data-lighter><i class="icon-magnifier"></i></a>
 							</div>
 						</div>
 						<!-- Item Name -->
 						<div class="item-name">
-							<a href="#.">gray bag</a>
+							<a href="#.">MINIMALIST WOO TOYS</a>
 							<p>Lorem ipsum dolor sit amet</p>
 						</div>
-						<!-- Price -->
-						<span class="price"><small>$</small>299</span>
 					</div>
 
 					<!-- Item -->
 					<div class="item">
-						<!-- Item img -->
-						<div class="item-img">
-							<img class="img-1" src="/resources/images/product-3.jpg" alt=""> <img class="img-2" src="/resources/images/product-2.jpg" alt="">
-							<!-- Overlay -->
-							<div class="overlay">
-								<div class="position-center-center">
-									<div class="inn">
-										<a href="/resources/images/product-3.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#."><i class="icon-heart"></i></a>
-									</div>
-								</div>
+						<!-- Images -->
+						<img class="img-1" src="/resources/images/item-img-1-3.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
+						<!-- Overlay  -->
+						<div class="overlay">
+							<!-- Price -->
+							<span class="price"><small>$</small>299</span>
+							<div class="position-center-center">
+								<a href="images/item-img-1-3.jpg" data-lighter><i class="icon-magnifier"></i></a>
 							</div>
 						</div>
 						<!-- Item Name -->
 						<div class="item-name">
-							<a href="#.">chiar</a>
+							<a href="#.">Concrete Shaving Kit</a>
 							<p>Lorem ipsum dolor sit amet</p>
 						</div>
-						<!-- Price -->
-						<span class="price"><small>$</small>299</span>
 					</div>
 
 					<!-- Item -->
 					<div class="item">
-						<!-- Item img -->
-						<div class="item-img">
-							<img class="img-1" src="/resources/images/product-4.jpg" alt=""> <img class="img-2" src="/resources/images/product-2.jpg" alt="">
-							<!-- Overlay -->
-							<div class="overlay">
-								<div class="position-center-center">
-									<div class="inn">
-										<a href="/resources/images/product-4.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#."><i class="icon-heart"></i></a>
-									</div>
-								</div>
+						<!-- Images -->
+						<img class="img-1" src="/resources/images/item-img-1-4.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
+						<!-- Overlay  -->
+						<div class="overlay">
+							<!-- Price -->
+							<span class="price"><small>$</small>299</span>
+							<div class="position-center-center">
+								<a href="/resources/images/item-img-1-4.jpg" data-lighter><i class="icon-magnifier"></i></a>
 							</div>
 						</div>
 						<!-- Item Name -->
 						<div class="item-name">
-							<a href="#.">STool</a>
+							<a href="#.">PARAGON PENDANT</a>
 							<p>Lorem ipsum dolor sit amet</p>
 						</div>
-						<!-- Price -->
-						<span class="price"><small>$</small>299</span>
+					</div>
+
+					<!-- Item -->
+					<div class="item">
+						<!-- Images -->
+						<img class="img-1" src="/resources/images/item-img-1-5.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
+						<!-- Overlay  -->
+						<div class="overlay">
+							<!-- Price -->
+							<span class="price"><small>$</small>299</span>
+							<div class="position-center-center">
+								<a href="/resources/images/item-img-1-5.jpg" data-lighter><i class="icon-magnifier"></i></a>
+							</div>
+						</div>
+						<!-- Item Name -->
+						<div class="item-name">
+							<a href="#.">crative lamp</a>
+							<p>Lorem ipsum dolor sit amet</p>
+						</div>
+					</div>
+
+					<!-- Item -->
+					<div class="item">
+						<!-- Images -->
+						<img class="img-1" src="/resources/images/item-img-1-6.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
+						<!-- Overlay  -->
+						<div class="overlay">
+							<!-- Price -->
+							<span class="price"><small>$</small>299</span>
+							<div class="position-center-center">
+								<a href="/resources/images/item-img-1-6.jpg" data-lighter><i class="icon-magnifier"></i></a>
+							</div>
+						</div>
+						<!-- Item Name -->
+						<div class="item-name">
+							<a href="#.">ECO FRIENDLY</a>
+							<p>Lorem ipsum dolor sit amet</p>
+						</div>
+					</div>
+
+					<!-- Item -->
+					<div class="item">
+						<!-- Images -->
+						<img class="img-1" src="/resources/images/item-img-1-7.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
+						<!-- Overlay  -->
+						<div class="overlay">
+							<!-- Price -->
+							<span class="price"><small>$</small>299</span>
+							<div class="position-center-center">
+								<a href="/resources/images/item-img-1-7.jpg" data-lighter><i class="icon-magnifier"></i></a>
+							</div>
+						</div>
+						<!-- Item Name -->
+						<div class="item-name">
+							<a href="#.">GEOMETRY STOOL</a>
+							<p>Lorem ipsum dolor sit amet</p>
+						</div>
+					</div>
+
+					<!-- Item -->
+					<div class="item">
+						<!-- Images -->
+						<img class="img-1" src="/resources/images/item-img-1-8.jpg" alt=""> <img class="img-2" src="/resources/images/item-img-1-1-1.jpg" alt="">
+						<!-- Overlay  -->
+						<div class="overlay">
+							<!-- Price -->
+							<span class="price"><small>$</small>299</span>
+							<div class="position-center-center">
+								<a href="/resources/images/item-img-1-8.jpg" data-lighter><i class="icon-magnifier"></i></a>
+							</div>
+						</div>
+						<!-- Item Name -->
+						<div class="item-name">
+							<a href="#.">CERAMIC STONE VASE</a>
+							<p>Lorem ipsum dolor sit amet</p>
+						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
 
+			<!-- Popular Products -->
+			<section class="padding-top-50 padding-bottom-150">
+				<div class="container">
 
+					<!-- Main Heading -->
+					<div class="heading text-center">
+						<h4>popular products</h4>
+						<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. Sed feugiat, tellus vel tristique posuere, diam</span>
+					</div>
 
+					<!-- Popular Item Slide -->
+					<div class="papular-block block-slide">
 
+						<!-- Item -->
+						<div class="item">
+							<!-- Item img -->
+							<div class="item-img">
+								<img class="img-1" src="/resources/images/product-1.jpg" alt=""> <img class="img-2" src="/resources/images/product-2.jpg" alt="">
+								<!-- Overlay -->
+								<div class="overlay">
+									<div class="position-center-center">
+										<div class="inn">
+											<a href="/resources/images/product-1.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#."><i class="icon-heart"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Item Name -->
+							<div class="item-name">
+								<a href="#.">stone cup</a>
+								<p>Lorem ipsum dolor sit amet</p>
+							</div>
+							<!-- Price -->
+							<span class="price"><small>$</small>299</span>
+						</div>
 
-		<!--======= FOOTER =========-->
-		<footer>
+						<!-- Item -->
+						<div class="item">
+							<!-- Item img -->
+							<div class="item-img">
+								<img class="img-1" src="/resources/images/product-2.jpg" alt=""> <img class="img-2" src="/resources/images/product-2.jpg" alt="">
+								<!-- Overlay -->
+								<div class="overlay">
+									<div class="position-center-center">
+										<div class="inn">
+											<a href="/resources/images/product-2.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#."><i class="icon-heart"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Item Name -->
+							<div class="item-name">
+								<a href="#.">gray bag</a>
+								<p>Lorem ipsum dolor sit amet</p>
+							</div>
+							<!-- Price -->
+							<span class="price"><small>$</small>299</span>
+						</div>
 
+						<!-- Item -->
+						<div class="item">
+							<!-- Item img -->
+							<div class="item-img">
+								<img class="img-1" src="/resources/images/product-3.jpg" alt=""> <img class="img-2" src="/resources/images/product-2.jpg" alt="">
+								<!-- Overlay -->
+								<div class="overlay">
+									<div class="position-center-center">
+										<div class="inn">
+											<a href="/resources/images/product-3.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#."><i class="icon-heart"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Item Name -->
+							<div class="item-name">
+								<a href="#.">chiar</a>
+								<p>Lorem ipsum dolor sit amet</p>
+							</div>
+							<!-- Price -->
+							<span class="price"><small>$</small>299</span>
+						</div>
 
-			<!-- Rights -->
-			<div class="about-footer">
-				<div class="row">
-					<img class="margin-bottom-30" src="/resources/images/logo-foot.PNG" alt="">
-					<p>
-						<i class="icon-pointer"></i> Gangdong-gu, Seoul, Korea.
-					</p>
-					<p>
-						<i class="icon-call-end"></i> 010.1111.2222
-					</p>
-					<p>
-						<i class="icon-envelope"></i> info@jumal.co.kr
-					</p>
+						<!-- Item -->
+						<div class="item">
+							<!-- Item img -->
+							<div class="item-img">
+								<img class="img-1" src="/resources/images/product-4.jpg" alt=""> <img class="img-2" src="/resources/images/product-2.jpg" alt="">
+								<!-- Overlay -->
+								<div class="overlay">
+									<div class="position-center-center">
+										<div class="inn">
+											<a href="/resources/images/product-4.jpg" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#."><i class="icon-heart"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Item Name -->
+							<div class="item-name">
+								<a href="#.">STool</a>
+								<p>Lorem ipsum dolor sit amet</p>
+							</div>
+							<!-- Price -->
+							<span class="price"><small>$</small>299</span>
+						</div>
+					</div>
 				</div>
-			</div>
+			</section>
 
-			<div class="rights">
-				<p>© 2022 jumal All right reserved.</p>
-				<div class="scroll">
-					<a href="#wrap" class="go-up"><i class="lnr lnr-arrow-up"></i></a>
+
+
+
+
+			<!--======= FOOTER =========-->
+			<footer>
+
+
+				<!-- Rights -->
+				<div class="about-footer">
+					<div class="row">
+						<img class="margin-bottom-30" src="/resources/images/logo-foot.PNG" alt="">
+						<p>
+							<i class="icon-pointer"></i> Gangdong-gu, Seoul, Korea.
+						</p>
+						<p>
+							<i class="icon-call-end"></i> 010.1111.2222
+						</p>
+						<p>
+							<i class="icon-envelope"></i> info@jumal.co.kr
+						</p>
+					</div>
 				</div>
-			</div>
-		</footer>
 
-		<!--======= RIGHTS =========-->
+				<div class="rights">
+					<p>© 2022 jumal All right reserved.</p>
+					<div class="scroll">
+						<a href="#wrap" class="go-up"><i class="lnr lnr-arrow-up"></i></a>
+					</div>
+				</div>
+			</footer>
 
-	</div>
-	<script src="/resources/js/jquery-1.11.3.min.js"></script>
-	<script src="/resources/js/bootstrap.min.js"></script>
-	<script src="/resources/js/own-menu.js"></script>
-	<script src="/resources/js/jquery.lighter.js"></script>
-	<script src="/resources/js/owl.carousel.min.js"></script>
+			<!--======= RIGHTS =========-->
 
-	<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
-	<script type="text/javascript" src="/resources/rs-plugin/js/jquery.tp.t.min.js"></script>
-	<script type="text/javascript" src="/resources/rs-plugin/js/jquery.tp.min.js"></script>
-	<script src="/resources/js/main.js"></script>
-	<script src="/resources/js/main.js"></script>
+		</div>
+		<script src="/resources/js/jquery-1.11.3.min.js"></script>
+		<script src="/resources/js/bootstrap.min.js"></script>
+		<script src="/resources/js/own-menu.js"></script>
+		<script src="/resources/js/jquery.lighter.js"></script>
+		<script src="/resources/js/owl.carousel.min.js"></script>
 
-	<script type="text/javascript">
-	
-	var URL_LOGIN_FORM = "/login";
-	
-	$("#btnLogout").on("click", function(){
-		$.ajax({
-			async: true 
-			,cache: false
-			,type: "post"
-			,url: "/member/logoutProc"
-			,data: {}
-			,success: function(response) {
-				if(response.rt == "success") {
-					location.href = URL_LOGIN_FORM;
-				} else {
-					// by pass
-				}
-			}
-			,error : function(jqXHR, textStatus, errorThrown){
-				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-			}
-		});
-	});
-	
-	</script>
+		<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+		<script type="text/javascript" src="/resources/rs-plugin/js/jquery.tp.t.min.js"></script>
+		<script type="text/javascript" src="/resources/rs-plugin/js/jquery.tp.min.js"></script>
+		<script src="/resources/js/main.js"></script>
+		<script src="/resources/js/main.js"></script>
+
+		<script type="text/javascript">
+			var URL_LOGIN_FORM = "/login";
+
+			$("#btnLogout").on(
+					"click",
+					function() {
+						$.ajax({
+							async : true,
+							cache : false,
+							type : "post",
+							url : "/member/logoutProc",
+							data : {},
+							success : function(response) {
+								if (response.rt == "success") {
+									location.href = URL_LOGIN_FORM;
+								} else {
+									// by pass
+								}
+							},
+							error : function(jqXHR, textStatus, errorThrown) {
+								alert("ajaxUpdate " + jqXHR.textStatus + " : "
+										+ jqXHR.errorThrown);
+							}
+						});
+					});
+		</script>
 </body>
 </html>

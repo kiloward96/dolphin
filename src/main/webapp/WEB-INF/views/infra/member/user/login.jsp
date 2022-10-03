@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="rb" uri="http://www.springframework.org/tags"%>
 
 <%@ page session="true"%>
 
@@ -115,75 +115,74 @@
 				</div>
 			</div>
 		</header>
-	</div>
 
-	<!-- Content -->
-	<div id="content">
+		<!-- Content -->
+		<div id="content">
 
-		<!--======= PAGES INNER =========-->
-		<section class="chart-page padding-top-100 padding-bottom-100">
-			<div class="container">
+			<!--======= PAGES INNER =========-->
+			<section class="chart-page padding-top-100 padding-bottom-100">
+				<div class="container">
 
-				<!-- Payments Steps -->
-				<div class="shopping-cart">
+					<!-- Payments Steps -->
+					<div class="shopping-cart">
 
-					<!-- SHOPPING INFORMATION -->
-					<div class="cart-ship-info">
-						<div class="row">
+						<!-- SHOPPING INFORMATION -->
+						<div class="cart-ship-info">
+							<div class="row">
 
-							<!-- ESTIMATE SHIPPING & TAX -->
-							<form id="form" name="form" method="post">
-								<div class="col-sm-7">
-									<h6>LOGIN YOUR ACCOUNT</h6>
-									<ul class="row">
+								<!-- ESTIMATE SHIPPING & TAX -->
+								<form id="form" name="form" method="post">
+									<div class="col-sm-7">
+										<h6>LOGIN YOUR ACCOUNT</h6>
+										<ul class="row">
 
-										<!-- Name -->
-										<li class="col-md-12"><label> USERNAME <input type="text" id="MBid" name="MBid">
-										</label></li>
-										<!-- LAST NAME -->
-										<li class="col-md-12"><label> PASSWORD <input type="password" id="MBpassword" name="MBpassword">
-										</label></li>
+											<!-- Name -->
+											<li class="col-md-12"><label> USERNAME <input type="text" id="MBid" name="MBid">
+											</label></li>
+											<!-- LAST NAME -->
+											<li class="col-md-12"><label> PASSWORD <input type="password" id="MBpassword" name="MBpassword">
+											</label></li>
 
-										<!-- LOGIN -->
-										<li class="col-md-4">
-											<button type="button" class="btn" id="btnLogin" name="btnLogin">LOGIN</button>
-										</li>
+											<!-- LOGIN -->
+											<li class="col-md-4">
+												<button type="button" class="btn" id="btnLogin" name="btnLogin">LOGIN</button>
+											</li>
 
-										<!-- CREATE AN ACCOUNT -->
-										<li class="col-md-3">
-											<div class="checkbox margin-0 margin-top-20">
-												<input id="autoLogin" class="styled" type="checkbox">
-												<label for="checkbox1"> Auto Login</label>
-											</div>
-										</li>
+											<!-- CREATE AN ACCOUNT -->
+											<li class="col-md-3">
+												<div class="checkbox margin-0 margin-top-20">
+													<input id="autoLogin" class="styled" type="checkbox">
+													<label for="checkbox1"> Auto Login</label>
+												</div>
+											</li>
 
-										<!-- SIGN UP -->
-										<li class="col-md-2">
-											<div class="checkbox margin-0 margin-top-20 text-right">
-												<a href="/register">SIGN UP</a>
-											</div>
-										</li>
+											<!-- SIGN UP -->
+											<li class="col-md-2">
+												<div class="checkbox margin-0 margin-top-20 text-right">
+													<a href="/register">SIGN UP</a>
+												</div>
+											</li>
 
-										<!-- FORGET PASS -->
-										<li class="col-md-3">
-											<div class="checkbox margin-0 margin-top-20 text-right">
-												<a href="#.">Forget Password</a>
-											</div>
-										</li>
-									</ul>
-								</div>
+											<!-- FORGET PASS -->
+											<li class="col-md-3">
+												<div class="checkbox margin-0 margin-top-20 text-right">
+													<a href="#.">Forget Password</a>
+												</div>
+											</li>
+										</ul>
+									</div>
 
-								<!-- SUB TOTAL -->
-								<div class="col-sm-5">
-									<h6>LOGIN WITH</h6>
+									<!-- SUB TOTAL -->
+									<div class="col-sm-5">
+										<h6>LOGIN WITH</h6>
 
-									<ul class="login-with">
-										<li><a href="#."><i class="fa fa-facebook"></i>FACEBOOK</a></li>
-										<li><a href="#."><i class="fa fa-google"></i>GOOGLE</a></li>
-										<li><a href="#."><i class="fa fa-n"></i>NAVER</a></li>
-										<li><a href="#."><i class="fa fa-comment"></i>KAKAO</a></li>
-									</ul>
-									<%-- sessSeq:
+										<ul class="login-with">
+											<li><a href="#."><i class="fa fa-facebook"></i>FACEBOOK</a></li>
+											<li><a href="#."><i class="fa fa-google"></i>GOOGLE</a></li>
+											<li><a href="#."><i class="fa fa-n"></i>NAVER</a></li>
+											<li><a href="#."><i class="fa fa-comment"></i>KAKAO</a></li>
+										</ul>
+										<%-- sessSeq:
 									<c:out value="${sessSeq }" />
 									<br>
 									sessName:
@@ -194,20 +193,20 @@
 									<br>
 									sessGrade:
 									<c:out value="${sessGrade }" /> --%>
-									<br>
-								</div>
-							</form>
+										<br>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
 
 
-	</div>
+		</div>
 
-	<!--======= FOOTER =========-->
-	<footer>
+		<!--======= FOOTER =========-->
+		<footer>
 
 
 			<!-- Rights -->
@@ -234,7 +233,7 @@
 			</div>
 		</footer>
 
-	<!--======= RIGHTS =========-->
+		<!--======= RIGHTS =========-->
 
 	</div>
 	<script src="/resources/js/jquery-1.11.3.min.js"></script>
@@ -250,15 +249,15 @@
 	<script src="/resources/js/main.js"></script>
 
 	<script type="text/javascript">
-	const URL_INDEX_MAIN = "/";
-	const URL_LOGIN_FORM = "/login";
-	
+		const URL_INDEX_MAIN = "/";
+		const URL_LOGIN_FORM = "/login";
+
 		$("#btnLogin").on(
 				"click",
 				function() {
-				/* 	if (validation() == false)
-						return false;
- */
+					/* 	if (validation() == false)
+							return false;
+					 */
 					$.ajax({
 						async : true,
 						cache : false,
@@ -271,12 +270,12 @@
 						data : {
 							"MBid" : $("#MBid").val(),
 							"MBpassword" : $("#MBpassword").val(),
-//							"autoLogin" : $("#autoLogin").is(":checked")
+						//							"autoLogin" : $("#autoLogin").is(":checked")
 						},
 						success : function(response) {
 							if (response.rt == "success") {
 								alert("로그인성공")
-									location.href = URL_INDEX_MAIN
+								location.href = URL_INDEX_MAIN
 								/* if (response.changePwd == "true") {
 									location.href = URL_CHANGE_PWD_FORM;
 								} else {
@@ -292,26 +291,29 @@
 						}
 					});
 				});
-	
-	$("#btnLogout").on("click", function(){
-		$.ajax({
-			async: true 
-			,cache: false
-			,type: "post"
-			,url: "/member/logoutProc"
-			,data: {}
-			,success: function(response) {
-				if(response.rt == "success") {
-					location.href = URL_LOGIN_FORM;
-				} else {
-					// by pass
-				}
-			}
-			,error : function(jqXHR, textStatus, errorThrown){
-				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-			}
-		});
-	});
+
+		$("#btnLogout").on(
+				"click",
+				function() {
+					$.ajax({
+						async : true,
+						cache : false,
+						type : "post",
+						url : "/member/logoutProc",
+						data : {},
+						success : function(response) {
+							if (response.rt == "success") {
+								location.href = URL_LOGIN_FORM;
+							} else {
+								// by pass
+							}
+						},
+						error : function(jqXHR, textStatus, errorThrown) {
+							alert("ajaxUpdate " + jqXHR.textStatus + " : "
+									+ jqXHR.errorThrown);
+						}
+					});
+				});
 	</script>
 </body>
 </html>
