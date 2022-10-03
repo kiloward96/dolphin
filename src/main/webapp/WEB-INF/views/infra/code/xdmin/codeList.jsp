@@ -503,6 +503,12 @@
 												</button>
 											</div>
 										</div>
+										<div class="row">
+										<div class="col-1">
+											<span class="">Total : <c:out value="${vo.totalRows}" /></span>
+										</div>
+										<div class="col-11"></div>
+										</div>
 									</div>
 								</div>
 								<div class="row">
