@@ -226,7 +226,7 @@
 							<!-- Price -->
 							<span class="price"><small>$</small>299</span>
 							<div class="position-center-center">
-								<a href="images/item-img-1-3.jpg" data-lighter><i class="icon-magnifier"></i></a>
+								<a href="/resources/images/item-img-1-3.jpg" data-lighter><i class="icon-magnifier"></i></a>
 							</div>
 						</div>
 						<!-- Item Name -->

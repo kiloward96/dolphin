@@ -13,7 +13,7 @@ public class AuthLoginSessionInterception extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		System.out.println(request.getSession().getAttribute("sessGrade"));
-		if (request.getSession().getAttribute("sessGrade").equals("1")) {
+		if (request.getSession().getAttribute("sessGrade").equals("1") && !request.getSession().getAttribute("sessGrade").equals("")) {
 			// by pass
 			
 		} else {

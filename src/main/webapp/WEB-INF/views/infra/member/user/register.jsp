@@ -141,119 +141,132 @@
 					</nav>
 				</div>
 			</div>
-	</header>
+		</header>
 
 
 
-	<!--======= SUB BANNER =========-->
+		<!--======= SUB BANNER =========-->
 
-	<!-- Content -->
-	<div id="content">
+		<!-- Content -->
+		<div id="content">
 
-		<!--======= PAGES INNER =========-->
-		<section class="chart-page padding-bottom-100">
-			<div class="container">
-				<!-- Payments Steps -->
-				<div class="shopping-cart">
+			<!--======= PAGES INNER =========-->
+			<section class="chart-page padding-bottom-100">
+				<div class="container">
+					<!-- Payments Steps -->
+					<div class="shopping-cart">
 
-					<!-- SHOPPING INFORMATION -->
-					<div class="cart-ship-info register">
-						<div class="row d-flex justify-content-center">
+						<!-- SHOPPING INFORMATION -->
+						<div class="cart-ship-info register">
+							<div class="row d-flex justify-content-center">
 
-							<!-- ESTIMATE SHIPPING & TAX -->
-							<div class="container">
-								<form id="form" name="form" method="post">
-									<div>
-										<h6>REGISTER</h6>
-										<input type="hidden" id="MBseq" name="MBseq">
-										<input type="hidden" id="AllowedNy" name="AllowedNy">
-										<ul class="row">
-											<!-- ID -->
-											<li class="col-md-5"><label><span id="idLabel"> *ID </span> <input type="text" id="MBid" name="MBid"> </label></li>
+								<!-- ESTIMATE SHIPPING & TAX -->
+								<div class="container">
+									<form id="form" name="form" method="post">
+										<div>
+											<h6>REGISTER</h6>
+											<input type="hidden" id="MBseq" name="MBseq">
+											<input type="hidden" id="AllowedNy" name="AllowedNy">
+											<div class="row">
+												<!-- ID -->
+												<div class="col-md-5"><label><span id="idLabel"> *ID </span> <input type="text" id="MBid" name="MBid"> </label></div>
 
-											<!-- NAME -->
-											<li class="col-md-5"><label> *NAME <input type="text" id="MBname" name="MBname">
-											</label></li>
+												<!-- NAME -->
+												<div class="col-md-5"><label> *NAME <input type="text" id="MBname" name="MBname">
+												</label></div>
+											</div>
+											<div class="row">
+												<div class="col-md-5"><label> *PASSWORD <input type="password" id="MBpassword" name="MBpassword">
+												</label></div>
 
-											<li class="col-md-5"><label> *PASSWORD <input type="password" id="MBpassword" name="MBpassword">
-											</label></li>
+												<div class="col-md-5"><label> *PASSWORD CHECK <input type="password" id="MBpasswordCheck" name="MBpasswordCheck">
+												</label></div>
+											</div>
+											<div class="row">
+												<div class="col-md-5"><label> *EMAIL ADDRESS <input type="text" id="MBemail" name="MBemail">
+												</label></div>
 
-											<li class="col-md-5"><label> *PASSWORD CHECK <input type="password" id="MBpasswordCheck" name="MBpasswordCheck">
-											</label></li>
+												<div class="col-md-2"><label>
+														<button type="button" class="btn" style="margin-top: 25px;">Email 본인인증</button>
+												</label></div>
+											</div>
+											<div class="row">
+												<div class="col-md-5"><label><span> *인증번호 </span><input type="text" id="MBemailCode" name="MBemailCode">
+												</div>
+											</div>
+											<div class="row">
 
-											<li class="col-md-5"><label> *EMAIL ADDRESS <input type="text" id="MBemail" name="MBemail">
-											</label></li>
-
-											<li class="col-md-5"><label> *PHONE <input type="text" id="MBmobile" name="MBmobile">
-											</label></li>
-										</ul>
-									</div>
-									<br>
-									<br>
-									<div class="d-flex justify-content-start">
-										<h6>BASIC ADDRESS</h6>
-										<ul class="row">
-											<li class="col-md-5"><label> ZIP CODE <input type="text" id="addressZipCode" name="addressZipCode" readonly>
-											</label></li>
-											<li class="col-md-2"><label>
-													<button type="button" class="btn" style="margin-top: 25px;" onclick="searchAddress()">SEARCH</button>
-											</label></li>
+												<div class="col-md-5"><label> *PHONE <input type="text" id="MBmobile" name="MBmobile">
+												</label></div>
+											</div>
 											
-											<li class="col-md-8"><label>ADDRESS <input type="text" id="addressMain" name="addressMain" readonly>
-											</label></li>
-											<li class="col-md-8"><label>DETAIL ADDRESS <input type="text" id="addressDetail" name="addressDetail">
-											</label></li>
-											<li class="col-md-8"><label>REFERENCE ADDRESS <input type="text" id="addressMore" name="addressMore" readonly>
-											</label></li>
+										</div>
+										<br>
+										<br>
+										<div class="d-flex justify-content-start">
+											<h6>BASIC ADDRESS</h6>
+											<ul class="row">
+												<li class="col-md-5"><label> ZIP CODE <input type="text" id="addressZipCode" name="addressZipCode" readonly>
+												</label></li>
+												<li class="col-md-2"><label>
+														<button type="button" class="btn" style="margin-top: 25px;" onclick="searchAddress()">SEARCH</button>
+												</label></li>
 
-											<li class="d-flex justify-content-center col-md-6">
-												<button type="button" class="btn" id="btnSave" name="btnSave">REGISTER NOW</button>
-											</li>
-										</ul>
+												<li class="col-md-8"><label>ADDRESS <input type="text" id="addressMain" name="addressMain" readonly>
+												</label></li>
+												<li class="col-md-8"><label>DETAIL ADDRESS <input type="text" id="addressDetail" name="addressDetail">
+												</label></li>
+												<li class="col-md-8"><label>REFERENCE ADDRESS <input type="text" id="addressMore" name="addressMore" readonly>
+												</label></li>
 
-									</div>
+												<li class="d-flex justify-content-center col-md-6">
+													<button type="button" class="btn" id="btnSave" name="btnSave">REGISTER NOW</button>
+												</li>
+											</ul>
 
-									<!-- Kakao Map wrap 우측에 표기 -->
+										</div>
 
-								</form>
+										<!-- Kakao Map wrap 우측에 표기 -->
+
+									</form>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
 
-	</div>
-
-	<!--======= FOOTER =========-->
-	<footer>
-
-
-		<!-- Rights -->
-		<div class="about-footer">
-			<div class="row">
-				<img class="margin-bottom-30" src="/resources/images/logo-foot.PNG" alt="">
-				<p>
-					<i class="icon-pointer"></i> Gangdong-gu, Seoul, Korea.
-				</p>
-				<p>
-					<i class="icon-call-end"></i> 010.1111.2222
-				</p>
-				<p>
-					<i class="icon-envelope"></i> info@jumal.co.kr
-				</p>
-			</div>
 		</div>
 
-		<div class="rights">
-			<p>© 2022 jumal All right reserved.</p>
-			<div class="scroll">
-				<a href="#wrap" class="go-up"><i class="lnr lnr-arrow-up"></i></a>
-			</div>
-		</div>
-	</footer>
+		<!--======= FOOTER =========-->
+		<footer>
 
-	<!--======= RIGHTS =========-->
+
+			<!-- Rights -->
+			<div class="about-footer">
+				<div class="row">
+					<img class="margin-bottom-30" src="/resources/images/logo-foot.PNG" alt="">
+					<p>
+						<i class="icon-pointer"></i> Gangdong-gu, Seoul, Korea.
+					</p>
+					<p>
+						<i class="icon-call-end"></i> 010.1111.2222
+					</p>
+					<p>
+						<i class="icon-envelope"></i> info@jumal.co.kr
+					</p>
+				</div>
+			</div>
+
+			<div class="rights">
+				<p>© 2022 jumal All right reserved.</p>
+				<div class="scroll">
+					<a href="#wrap" class="go-up"><i class="lnr lnr-arrow-up"></i></a>
+				</div>
+			</div>
+		</footer>
+
+		<!--======= RIGHTS =========-->
 
 	</div>
 	<script src="/resources/js/jquery-1.11.3.min.js"></script>
@@ -267,9 +280,9 @@
 	<script type="text/javascript" src="/resources/rs-plugin/js/jquery.tp.min.js"></script>
 	<script src="/resources/js/main.js"></script>
 	<script src="/resources/js/main.js"></script>
-	
-	
-	
+
+
+
 	<script type="text/javascript">
 		var goUrlList = "/member/memberList"; /* #-> */
 		var goUrlInst = "/member/memberInst"; /* #-> */
@@ -367,54 +380,58 @@
 
 				});
 		//Kakao Map
-	    function searchAddress() {
-	        new daum.Postcode({
-	            oncomplete: function(data) {
-	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+		function searchAddress() {
+			new daum.Postcode(
+					{
+						oncomplete : function(data) {
+							// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-	                var addr = ''; // 주소 변수
-	                var extraAddr = ''; // 참고항목 변수
+							// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+							var addr = ''; // 주소 변수
+							var extraAddr = ''; // 참고항목 변수
 
-	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-	                    addr = data.roadAddress;
-	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-	                    addr = data.jibunAddress;
-	                }
+							//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+							if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+								addr = data.roadAddress;
+							} else { // 사용자가 지번 주소를 선택했을 경우(J)
+								addr = data.jibunAddress;
+							}
 
-	                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-	                if(data.userSelectedType === 'R'){
-	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-	                        extraAddr += data.bname;
-	                    }
-	                    // 건물명이 있고, 공동주택일 경우 추가한다.
-	                    if(data.buildingName !== '' && data.apartment === 'Y'){
-	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-	                    }
-	                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-	                    if(extraAddr !== ''){
-	                        extraAddr = ' (' + extraAddr + ')';
-	                    }
-	                    // 조합된 참고항목을 해당 필드에 넣는다.
-	                    document.getElementById("addressMore").value = extraAddr;
-	                
-	                } else {
-	                    document.getElementById("addressMore").value = '';
-	                }
+							// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+							if (data.userSelectedType === 'R') {
+								// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+								// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+								if (data.bname !== ''
+										&& /[동|로|가]$/g.test(data.bname)) {
+									extraAddr += data.bname;
+								}
+								// 건물명이 있고, 공동주택일 경우 추가한다.
+								if (data.buildingName !== ''
+										&& data.apartment === 'Y') {
+									extraAddr += (extraAddr !== '' ? ', '
+											+ data.buildingName
+											: data.buildingName);
+								}
+								// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+								if (extraAddr !== '') {
+									extraAddr = ' (' + extraAddr + ')';
+								}
+								// 조합된 참고항목을 해당 필드에 넣는다.
+								document.getElementById("addressMore").value = extraAddr;
 
-	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                document.getElementById('addressZipCode').value = data.zonecode;
-	                document.getElementById("addressMain").value = addr;
-	                // 커서를 상세주소 필드로 이동한다.
-	                document.getElementById("addressDetail").focus();
-	            }
-	        }).open();
-	    }
+							} else {
+								document.getElementById("addressMore").value = '';
+							}
 
+							// 우편번호와 주소 정보를 해당 필드에 넣는다.
+							document.getElementById('addressZipCode').value = data.zonecode;
+							document.getElementById("addressMain").value = addr;
+							// 커서를 상세주소 필드로 이동한다.
+							document.getElementById("addressDetail").focus();
+						}
+					}).open();
+		}
 	</script>
 </body>
 </html>
