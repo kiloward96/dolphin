@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 
 <jsp:useBean id="CodeServiceImpl" class="com.gurugan.infra.modules.code.CodeServiceImpl" />
 <!DOCTYPE html>
@@ -387,8 +387,8 @@
 				<div class="col-lg">
 					<div class="card">
 						<div class="card-body">
-							<form method="get" id="form" name="form">
-							<input type="hidden" id="MBseq" name="MBseq" value="<c:out value="${item.MBseq }"/>">
+							<form id="form" name="form" method="post">
+								<input type="hidden" id="MBseq" name="MBseq" value="<c:out value="${item.MBseq }"/>">
 								<div class="container mt-2 mb-5">
 									<div class="row">
 										<div class="row mt-5">
@@ -542,7 +542,17 @@
 											</div>
 										</div>
 									</div>
-									<div class="mt-5 mb-5" id="footer"></div>
+									<div class="mt-5 mb-5" id="footer">
+										<!-- start -->
+										<div class="filebox clearfix">
+											<div class="inputFile">
+												<label for="AddImgs" class="addImgBtn">+</label>
+												<input type="file" id="AddImgs" class="upload-hidden" accept=".jpg, .png, .gif" multiple>
+											</div>
+											<ul id="Preview" class="sortable"></ul>
+										</div>
+										<!-- end -->
+									</div>
 								</div>
 							</form>
 						</div>
@@ -739,6 +749,107 @@
 			element_wrap.style.display = 'block';
 
 		}
+
+		/* test 221006 s */
+
+		$(function() {
+			//드래그 앤 드롭
+			$(".sortable").sortable();
+
+			//이미지 등록
+			$("#AddImgs")
+					.change(
+							function(e) {
+								//div 내용 비워주기
+								$('#Preview').empty();
+
+								var files = e.target.files;
+								var arr = Array.prototype.slice.call(files);
+
+								//업로드 가능 파일인지 체크
+								for (var i = 0; i < files.length; i++) {
+									if (!checkExtension(files[i].name,
+											files[i].size)) {
+										return false;
+									}
+								}
+								preview(arr);
+
+								function checkExtension(fileName, fileSize) {
+									var regex = new RegExp(
+											"(.*?)\.(exe|sh|zip|alz)$");
+									var maxSize = 20971520; //20MB
+
+									if (fileSize >= maxSize) {
+										alert('이미지 크기가 초과되었습니다.');
+										$("#AddImgs").val(""); //파일 초기화
+										return false;
+									}
+
+									if (regex.test(fileName)) {
+										alert('확장자명을 확인해주세요.');
+										$("#AddImgs").val(""); //파일 초기화
+										return false;
+									}
+									return true;
+								}
+
+								function preview(arr) {
+									arr.forEach(function(f) {
+												//파일명이 길면 파일명...으로 처리
+												/*
+												var fileName = f.name;
+												if(fileName.length > 10){
+												    fileName = fileName.substring(0,7)+"...";
+												}
+												 */
+
+												//div에 이미지 추가
+												var str = '<li class="ui-state-default" id="imgChild">';
+												//str += '<span>'+fileName+'</span><br>';
+
+												//이미지 파일 미리보기
+												if (f.type.match('image.*')) {
+													//파일을 읽기 위한 FileReader객체 생성
+													var reader = new FileReader();
+													reader.onload = function(e) {
+														
+														//파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+														str += '<img src="'+ e.target.result +'" value="' + f.name + '" width=100 height=100>';
+														str += '<button type="button" class="btn" id="delImg">x</button>';
+														str += '</li>';
+														$(str).appendTo('#Preview');
+													}
+													reader.readAsDataURL(f);
+												} else {
+													//이미지 파일 아닐 경우 대체 이미지
+													/*
+													str += '<img src="/resources/img/fileImg.png" title="'+f.name+'" width=60 height=60 />';
+													$(str).appendTo('#Preview');
+													 */
+												}
+											})
+								}
+							})
+
+			//이미지 삭제
+			var name = "YD";
+			var message = "Hello world!";
+			
+//			$("#btnSave").on("click", function() {
+		 	$(document).on("click", "#delImg", function() {
+		 		console.log(message + " " + name); // Hello World! YD
+		 		$("#imgChild").remove();
+			});
+		 	
+			
+		/* function delPreview(_this) {
+				console.log( $(e).attr('class'));
+				$(get).parent('li').remove();
+			} */
+		});
+
+		/* test 221006 e */
 	</script>
 
 </body>

@@ -98,7 +98,10 @@
 			,delYn
 		) VALUES (
 			#{MBseq}
-			,"기본배송지"
+			<choose>
+				<when test="addressName != null and !addressName.equals('')">,#{addressName}</when>
+				<otherwise>,"기본배송지"</otherwise>
+			</choose>
 			,#{addressZipcode}
 			,#{addressMain}
 			,#{addressDetail}

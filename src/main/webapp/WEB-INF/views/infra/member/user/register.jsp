@@ -89,6 +89,34 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				$.datepicker.setDefaults($.datepicker.regional['ko']);
+				$("#MBdob")
+						.datepicker(
+								{
+									changeMonth : true,
+									changeYear : true,
+									nextText : '다음 달',
+									prevText : '이전 달',
+									dayNames : [ '일요일', '월요일', '화요일', '수요일',
+											'목요일', '금요일', '토요일' ],
+									dayNamesMin : [ '일', '월', '화', '수', '목',
+											'금', '토' ],
+									monthNamesShort : [ '1월', '2월', '3월', '4월',
+											'5월', '6월', '7월', '8월', '9월',
+											'10월', '11월', '12월' ],
+									monthNames : [ '1월', '2월', '3월', '4월',
+											'5월', '6월', '7월', '8월', '9월',
+											'10월', '11월', '12월' ],
+									dateFormat : "yy-mm-dd",
+									/* maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가) */
+									);
+
+			});
+</script>
+
 </head>
 <body>
 
@@ -182,6 +210,15 @@
 												<div class="col-md-5"><label> *PASSWORD CHECK <input type="password" id="MBpasswordCheck" name="MBpasswordCheck">
 												</label></div>
 											</div>
+											
+											<div class="row">
+												<!-- Gender -->
+												<div class="col-md-5"><label><span id="idLabel"> *GENDER </span> <input type="text" id="MBgender" name="MBgender"> </label></div>
+
+												<!-- birthday -->
+												<div class="col-md-5"><label> *BIRTHDAY <input type="text" id="MBdob" name="MBdob">
+												</label></div>
+											</div>
 											<div class="row">
 												<div class="col-md-5"><label> *EMAIL ADDRESS <input type="text" id="MBemail" name="MBemail">
 												</label></div>
@@ -190,12 +227,11 @@
 														<button type="button" class="btn" style="margin-top: 25px;">Email 본인인증</button>
 												</label></div>
 											</div>
-											<div class="row">
+											<div class="row" style="display: none">
 												<div class="col-md-5"><label><span> *인증번호 </span><input type="text" id="MBemailCode" name="MBemailCode">
 												</div>
 											</div>
 											<div class="row">
-
 												<div class="col-md-5"><label> *PHONE <input type="text" id="MBmobile" name="MBmobile">
 												</label></div>
 											</div>

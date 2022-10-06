@@ -51,7 +51,7 @@ import com.gurugan.infra.common.constants.Constants;
 		public String MemberInst(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
 			int result = service.insert(dto);
 			System.out.println("controller Result: " + result);
-				if (dto.getMBid() != null && dto.getAddressZipcode() != null || dto.getAddressMain() != null) {
+				if (!dto.getMBid().equals("") && dto.getAddressZipcode() != null || dto.getAddressMain() != null) {
 					System.out.println("Controller Address insert");
 					
 					System.out.println(dto.getAddressZipcode());

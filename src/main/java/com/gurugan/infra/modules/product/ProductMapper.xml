@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gurugan.infra.modules.product.ProductMapper">
+	<!-- Member dto -->
+	<resultMap id="resultMapPD" type="com.gurugan.infra.modules.product.Product"></resultMap>
+	
+	<!-- select Product table ALL -->
+	
+	<select id="selectList" resultMap="resultMapPD">
+		SELECT
+			PD.seq AS PDseq
+		    ,PD.productName AS PDproductName
+		    ,PD.price AS PDprice
+		    ,PD.stock AS PDstock
+		    ,PD.category AS PDcategory
+		    ,PD.uploadDate AS PDuploadDate
+		    ,PD.status AS PDstatus
+		    ,PD.delYn AS PDdelYn
+		FROM product PD
+		WHERE 1=1
+			<if test="PDdelYn != null and !PDdelYn.equals('')">AND PD.delYn = #{PDdelYn}</if>
+	</select>
+	
+	<select id="selectOne" resultMap="resultMapPD">
+		SELECT
+			PD.seq AS PDseq
+		    ,PD.productName AS PDproductName
+		    ,PD.price AS PDprice
+		    ,PD.stock AS PDstock
+		    ,PD.category AS PDcategory
+		    ,PD.uploadDate AS PDuploadDate
+		    ,PD.status AS PDstatus
+		    ,PD.delYn AS PDdelYn
+		FROM product PD
+		WHERE 1=1
+			AND PD.seq = #{PDseq}
+			<if test="PDdelYn != null and !PDdelYn.equals('')">AND PD.delYn = #{PDdelYn}</if>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO Product (
+		    ,productName
+		    ,price
+		    ,stock
+		    ,category
+		    ,uploadDate
+		    ,status
+		    ,delYn
+		) VALUES (
+			#{PDproductName}
+			,#{PDprice}
+			,#{PDstock}
+			,#{PDcategory}
+			,NOW()
+			,#{PDstatus}
+			,0
+		)
+	<selectKey resultType="String" keyProperty="PDseq" order="AFTER">
+		SELECT last_insert_id()
+	</selectKey>
+	</insert>
+	
+	
+	
+	
+
+</mapper>	
