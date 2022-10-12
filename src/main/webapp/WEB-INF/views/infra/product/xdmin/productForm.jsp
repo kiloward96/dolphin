@@ -377,7 +377,7 @@
 		<section class="section">
 			<div class="row">
 				<div class="col-lg">
-					<form method="get" id="form" name="form" method="post">
+					<form id="form" name="form" method="post">
 					<input type="hidden" id="AllowedNy" name="AllowedNy">
 						<div class="card">
 							<div class="card-body">
@@ -565,11 +565,11 @@
 //		}
 		var goUrlList = "/product/productList"; 			/* #-> */
 		var goUrlInst = "/product/productInst"; 			/* #-> */
-		var goUrlUpdt = "/code/codeUpdt";				/* #-> */
+		var goUrlUpdt = "/product/productUpdt";				/* #-> */
 //		var goUrlUele = "/code/codeUele";				/* #-> */
 //		var goUrlDele = "/code/codeDele";				/* #-> */
 
-		var seq = $("input:text[name=CCseq]");						/* #-> */
+		var seq = $("input:text[name=PDseq]");						/* #-> */
 
 		var form = $("form[name=form]");
 		var formVo = $("form[name=formVo]");

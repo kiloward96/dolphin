@@ -448,14 +448,14 @@
 																	<th scope="col" onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></th>
 																	<th scope="col"><c:out value="${list.PDseq}" /></th>
 																	<td><c:out value="${list.PDproductName}" /></td>
-																	<td><c:out value="${list.PDprice}" /></td>
+																	<%-- <td><c:out value="${list.PDprice}" /></td> --%>
+																	<td><fmt:formatNumber value="${list.PDprice}" pattern="#,###"/>원</td>
 																	<td><c:out value="${list.PDstock}" /></td>
 																	<td><c:out value="${list.PDcategory}" /></td>
 																	<%-- <td><c:out value="${list.MBgender}"/></td> --%>
 																	<td><fmt:formatDate value="${list.PDuploadDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 																	<td><c:out value="${list.PDstatus}" /></td>
 																	<td><c:out value="${list.PDdelYn}" /></td>
-																	<br>
 																</tr>
 															</c:forEach>
 														</c:otherwise>
@@ -512,6 +512,12 @@
 				</div>
 			</form>
 		</section>
+		<form name="formVo" id="formVo" method="get">
+			<!-- *Vo.jsp s -->
+			<%@include file="productVo.jsp"%>
+			<!-- #-> -->
+			<!-- *Vo.jsp e -->
+		</form>
 
 	</main>
 	<!-- End #main -->
@@ -564,7 +570,7 @@
 
 		goForm = function(keyValue) {
 		/* if(keyValue != 0) seq.val(btoa(keyValue)); */
-			/* seq.val(keyValue); */
+			seq.val(keyValue);
 			form.attr("action", goUrlForm).submit();
 		}
 	</script>

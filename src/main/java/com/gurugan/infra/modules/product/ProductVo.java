@@ -2,7 +2,7 @@ package com.gurugan.infra.modules.product;
 
 import com.gurugan.infra.common.base.BaseVo;
 
-public class ProductVo extends BaseVo{
+public class ProductVo extends BaseVo {
 	
 	// vo option
 	private Integer shOption;

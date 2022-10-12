@@ -11,6 +11,7 @@
 	<!-- select Product table ALL -->
 	
 	<select id="selectList" resultMap="resultMapPD">
+		<include refid="Base.selectListUpperForMysql"/>
 		SELECT
 			PD.seq AS PDseq
 		    ,PD.productName AS PDproductName
@@ -23,6 +24,7 @@
 		FROM product PD
 		WHERE 1=1
 			<if test="PDdelYn != null and !PDdelYn.equals('')">AND PD.delYn = #{PDdelYn}</if>
+		<include refid="Base.selectListLowerForMysql" />
 	</select>
 	
 	<select id="selectOne" resultMap="resultMapPD">
