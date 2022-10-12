@@ -43,7 +43,7 @@
 	
 	<insert id="insert">
 		INSERT INTO Product (
-		    ,productName
+		    productName
 		    ,price
 		    ,stock
 		    ,category
@@ -63,6 +63,21 @@
 		SELECT last_insert_id()
 	</selectKey>
 	</insert>
+	
+	<update id="update">
+		UPDATE Product PD
+			SET
+				productName = #{PDproductName}
+				,price = #{PDprice}
+				,stock = #{PDstock}
+				,category = #{PDcategory}
+				,uploadDate = #{PDuploadDate}
+				,status = #{PDstatus}
+				,delYn = #{PDdelYn}
+			WHERE 1=1
+				AND PD.seq = #{PDseq}
+			
+	</update>
 	
 	
 	

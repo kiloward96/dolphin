@@ -2,8 +2,12 @@ package com.gurugan.infra.modules.member;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
 
-public class Member{
+import com.gurugan.infra.common.base.Base;
+
+
+public class Member extends Base{
 	
 	// Member table
 	private String MBseq;				// member table 외래키
@@ -41,9 +45,13 @@ public class Member{
 	private String addressMore;
 	private String recieverName;		// 차후 변경가능 수신자명
 	private String recieverMobile;		// 수신자 전화번호
-	private String defaultYn;
+	private Integer defaultYn;
 	private String MAdelYn;
 	
+	// file Upload dto
+	private MultipartFile[] memberUploadedProfileImage;
+	private MultipartFile[] memberUploadedImage;
+	private MultipartFile[] memberUploadedFile;
 	
 	public String getMBseq() {
 		return MBseq;
@@ -207,10 +215,10 @@ public class Member{
 	public void setRecieverMobile(String recieverMobile) {
 		this.recieverMobile = recieverMobile;
 	}
-	public String getDefaultYn() {
+	public Integer getDefaultYn() {
 		return defaultYn;
 	}
-	public void setDefaultYn(String defaultYn) {
+	public void setDefaultYn(Integer defaultYn) {
 		this.defaultYn = defaultYn;
 	}
 	public String getMAdelYn() {
@@ -219,6 +227,26 @@ public class Member{
 	public void setMAdelYn(String mAdelYn) {
 		MAdelYn = mAdelYn;
 	}
+	public MultipartFile[] getMemberUploadedProfileImage() {
+		return memberUploadedProfileImage;
+	}
+	public void setMemberUploadedProfileImage(MultipartFile[] memberUploadedProfileImage) {
+		this.memberUploadedProfileImage = memberUploadedProfileImage;
+	}
+	public MultipartFile[] getMemberUploadedImage() {
+		return memberUploadedImage;
+	}
+	public void setMemberUploadedImage(MultipartFile[] memberUploadedImage) {
+		this.memberUploadedImage = memberUploadedImage;
+	}
+	public MultipartFile[] getMemberUploadedFile() {
+		return memberUploadedFile;
+	}
+	public void setMemberUploadedFile(MultipartFile[] memberUploadedFile) {
+		this.memberUploadedFile = memberUploadedFile;
+	}
+	
+	
 	
 
 

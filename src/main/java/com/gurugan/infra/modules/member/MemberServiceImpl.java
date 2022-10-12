@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gurugan.infra.common.util.UtilSecurity;
+import com.gurugan.infra.common.util.UtilUpload;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -25,14 +27,54 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int insert(Member dto) throws Exception {
-		dto.setMBpassword(UtilSecurity.encryptSha256(dto.getMBpassword()));
-    	dto.setMBname(dto.getMBname());
+		try {
+			dto.setMBpassword(UtilSecurity.encryptSha256(dto.getMBpassword()));
+			dto.setMBname(dto.getMBname());
 //    	dto.setMBname(dto.getIfmmLastName() + dto.getIfmmFirstName());
 //    	dto.setIfmmPwdModDate(UtilDateTime.nowDate());
-		int result = dao.insert(dto);
-		System.out.println("service result: " + result);
-		
-		return result;
+			dao.insert(dto);
+		int j = 0;
+		for(MultipartFile multipartFile : dto.getMemberUploadedImage() ) {
+				
+			if(!multipartFile.isEmpty()) {
+			
+				String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");		
+				UtilUpload.upload(multipartFile, pathModule, dto);
+				
+	    		dto.setTableName("MemberUploaded");
+	    		dto.setType(2);
+	    		dto.setDefaultYn(j == 0 ? 1 : 0);
+	    		dto.setSort(j + 1);
+	    		dto.setPseq(dto.getMBseq());
+
+				dao.insertUploaded(dto);
+				j++;
+			}
+		}
+
+		j = 0;
+		for(MultipartFile multipartFile : dto.getMemberUploadedFile() ) {
+			
+			if(!multipartFile.isEmpty()) {	    		
+			
+	    		String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");		
+	    		UtilUpload.upload(multipartFile, pathModule, dto);
+	    		
+	    		dto.setTableName("memberUploaded");
+	    		dto.setType(3);
+	    		dto.setDefaultYn(j == 0 ? 1 : 0);
+	    		dto.setSort(j + 1);
+	    		dto.setPseq(dto.getMBseq());
+	    		
+	    		dao.insertUploaded(dto);
+	    		j++;
+			}
+		}
+		return 1;
+		} catch (Exception e) {
+			throw new Exception();
+			
+	    }
 	}
 	
 	
@@ -70,5 +112,7 @@ public class MemberServiceImpl implements MemberService {
     	dto.setMBname(dto.getMBname());
 		return dao.selectOneLogin(dto);
 	}
+	
+	
 	
 }

@@ -47,10 +47,12 @@
 <!-- Jquery CDN -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<!-- test -->
+<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 
 <!-- Kakao Map API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7f53c37dc4421e758709ee1ef160750b&libraries=services"></script>
+<!-- <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7f53c37dc4421e758709ee1ef160750b&libraries=services"></script> -->
 
 
 </head>
@@ -387,7 +389,7 @@
 				<div class="col-lg">
 					<div class="card">
 						<div class="card-body">
-							<form id="form" name="form" method="post">
+							<form id="form" name="form" method="post" enctype="multipart/form-data">
 								<input type="hidden" id="MBseq" name="MBseq" value="<c:out value="${item.MBseq }"/>">
 								<div class="container mt-2 mb-5">
 									<div class="row">
@@ -546,10 +548,16 @@
 										<!-- start -->
 										<div class="filebox clearfix">
 											<div class="inputFile">
-												<label for="AddImgs" class="addImgBtn">+</label>
-												<input type="file" id="AddImgs" class="upload-hidden" accept=".jpg, .png, .gif" multiple>
+												<label for="memberUploadedImage" class="addImgBtn">+</label>
+												<input type="file" id="memberUploadedImage" name="memberUploadedImage" class="upload-hidden" accept=".jpg, .png, .gif" multiple>
+												<button type="button" id="btnReset" class="btn btn-danger">리셋</button>
 											</div>
 											<ul id="Preview" class="sortable"></ul>
+										</div>
+										<div class="row">
+										<input type="file" id="AddTest" name="AddTest" multiple>
+												<input type="file" id="AddTest2" name="AddTest2" accept=".jpg, .png, .gif">
+												<button type="button" id="TestGo" class="btn btn-success">TEST</button>
 										</div>
 										<!-- end -->
 									</div>
@@ -751,21 +759,115 @@
 		}
 
 		/* test 221006 s */
+		
+		$(function() {
+				$("#TestGo").on("click", function(obj){
+				// jquery식 file pasing
+			//	var totalFileSize = 0;
+				var obj = $("input:file[name=AddTest]")[0].files;
+				var obj2 = $("input:file[name=AddTest2]")[0].files;
+				var total2 = obj + obj2;
+				var fileCount = obj.length;
+				var totalFileCount = obj.length + obj2.length;
+				var totalFileSize = obj.size + obj2.size;
+				
+			//	allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
+			//	allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
+			//	var obj = $("input:file[name=AddTest]")[0].files;
+			//	var obj2 = $("input:file[name=AddTest2]")[0].files;
+				
+				//js 방식
+			//	var obj = document.getElementById("AddTest").files;
+			//	var obj2 = document.getElementById("AddTest2").files;
+				
+			//	alert(obj);
+			//	alert(obj.length);
+				// alert(obj.name);
+				console.log(obj.name);
+				
+				for(var i=0; i<totalFileCount; i++){
+					if(!validationFile(obj, totalFileCount)) {
+						return false;
+					}
+				}
+				
+			//	alert(obj2);
+			//	alert(obj2.length);
+				// alert(obj2.name);
+				
+				for(var i=0; i<obj2.length; i++){
+				//	alert(obj2[i].name + " : " + obj2[i].size);
+				}
+			
+				//alert(obj.length + obj2.length);
+				
+				
+				
+				
+				function validationFile(obj, totalFileCount, totalFileSize) {
+					const maxSize = 160000;
+					const maxCount = 5;
+					var totalCount = 0;
+			//		var totalSize += $("input:file[name=AddTest2]")[0].files[i].size;
+			//		totalCount += obj[i].length;
+			//		totalCount += obj2[i].length;
+					var extDeiny = new RegExp(
+							"(.*?)\.(exe|sh|zip|alz|sql|pdf|hwp)$");
+					
+					if(totalFileSize > maxSize) {
+						alert("파일은 최대 20MB 까지 업로드 가능합니다.");
+						$('#AddTest').val("");
+						$('#AddTest2').val("");
+						return false;
+					}
+					if((obj.length) > maxCount) {
+						alert("파일은 최대 5개 까지 업로드 가능합니다.");
+						$('#AddTest').val("");
+						return false;
+					}
+					if(totalFileCount > maxCount) {
+						alert("전체 파일은 최대 5개 까지 업로드 가능합니다.");
+						console.log(total2.name);
+						$('#AddTest').val("");
+						$('#AddTest2').val("");
+						return false;
+					}
+					if(extDeiny.test(obj.name)) {
+						console.log(obj.name);
+						alert('이미지파일만 업로드');
+						$('#AddTest').val("");
+						return false;
+					}
+			//		if(obj.name)
+					
+					else {
+						
+					}
+					
+				}
+				
+				
+				
+			
+				
+			});
+		});
 
 		$(function() {
 			//드래그 앤 드롭
 			$(".sortable").sortable();
-
+			
+			
 			//이미지 등록
-			$("#AddImgs")
+			$("#memberUploadedImage")
 					.change(
 							function(e) {
 								//div 내용 비워주기
-								$('#Preview').empty();
+								/* $('#Preview').empty(); */
 
 								var files = e.target.files;
 								var arr = Array.prototype.slice.call(files);
-
+								
 								//업로드 가능 파일인지 체크
 								for (var i = 0; i < files.length; i++) {
 									if (!checkExtension(files[i].name,
@@ -777,18 +879,18 @@
 
 								function checkExtension(fileName, fileSize) {
 									var regex = new RegExp(
-											"(.*?)\.(exe|sh|zip|alz)$");
+											"(.*?)\.(exe|sh|zip|alz|sql)$");
 									var maxSize = 20971520; //20MB
 
 									if (fileSize >= maxSize) {
 										alert('이미지 크기가 초과되었습니다.');
-										$("#AddImgs").val(""); //파일 초기화
+										$("#memberUploadedImage").val(""); //파일 초기화
 										return false;
 									}
 
 									if (regex.test(fileName)) {
 										alert('확장자명을 확인해주세요.');
-										$("#AddImgs").val(""); //파일 초기화
+										$("#memberUploadedImage").val(""); //파일 초기화
 										return false;
 									}
 									return true;
@@ -803,20 +905,23 @@
 												    fileName = fileName.substring(0,7)+"...";
 												}
 												 */
+												 console.log(arr);
+												 
+												 console
 
 												//div에 이미지 추가
 												var str = '<li class="ui-state-default" id="imgChild">';
 												//str += '<span>'+fileName+'</span><br>';
-
+												
 												//이미지 파일 미리보기
 												if (f.type.match('image.*')) {
 													//파일을 읽기 위한 FileReader객체 생성
 													var reader = new FileReader();
 													reader.onload = function(e) {
-														
 														//파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
 														str += '<img src="'+ e.target.result +'" value="' + f.name + '" width=100 height=100>';
 														str += '<button type="button" class="btn" id="delImg">x</button>';
+														str += '<span>'+ f.name +'</span>';
 														str += '</li>';
 														$(str).appendTo('#Preview');
 													}
@@ -833,20 +938,15 @@
 							})
 
 			//이미지 삭제
-			var name = "YD";
-			var message = "Hello world!";
-			
-//			$("#btnSave").on("click", function() {
-		 	$(document).on("click", "#delImg", function() {
-		 		console.log(message + " " + name); // Hello World! YD
+			$(document).on("click", "#delImg", function() {
 		 		$("#imgChild").remove();
 			});
-		 	
-			
-		/* function delPreview(_this) {
-				console.log( $(e).attr('class'));
-				$(get).parent('li').remove();
-			} */
+
+			//전체 이미지 리셋
+			$("#btnReset").on("click", function() {
+				$('#Preview').empty();
+			});
+
 		});
 
 		/* test 221006 e */

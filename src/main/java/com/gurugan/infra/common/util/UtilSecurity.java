@@ -7,7 +7,9 @@ public class UtilSecurity {
 	
     public static String encryptSha256(String text) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
+        System.out.println(text);
         md.update(text.getBytes());
+        
 
         return bytesToHex(md.digest());
     }

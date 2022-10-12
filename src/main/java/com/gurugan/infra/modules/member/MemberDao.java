@@ -20,39 +20,44 @@ public class MemberDao {
 	public List<Member> selectList(MemberVo vo) {
 		return sqlSession.selectList(namespace + ".selectList", vo);
 	}
-	
+
 	public Member selectOne(MemberVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOne", vo);
 	}
-	
+
 	public int insert(Member dto) {
 		int result = sqlSession.insert(namespace + ".insert", dto);
 		System.out.println("dao result: " + result);
 		return result;
 	}
-	
+
 	public int insertAddress(Member dto) {
 		int result = sqlSession.insert(namespace + ".insertAddress", dto);
 		System.out.println("dao result: " + result);
 		return result;
 	}
-	
+
 	public int update(Member dto) {
 		int result = sqlSession.update(namespace + ".update", dto);
 		System.out.println("dao result: " + result);
 		return result;
 	}
-	
+
 	public int selectOneIdCheck(Member dto) {
 		return sqlSession.selectOne(namespace + ".selectOneIdCheck", dto);
 	}
-	
+
 	public Member selectOneId(Member dto) {
 		return sqlSession.selectOne(namespace + ".selectOneId", dto);
 	}
-	
+
 	public Member selectOneLogin(Member dto) {
 		return sqlSession.selectOne(namespace + ".selectOneLogin", dto);
-		
+
+	}
+
+//	uploaded
+	public int insertUploaded(Member dto) {
+		return sqlSession.insert("Base" + ".insertUploaded", dto);
 	}
 }
