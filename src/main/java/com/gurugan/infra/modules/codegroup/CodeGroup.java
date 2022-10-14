@@ -2,13 +2,16 @@ package com.gurugan.infra.modules.codegroup;
 
 import java.util.Date;
 
+import com.gurugan.infra.modules.code.Code;
 
-public class CodeGroup {
+
+public class CodeGroup extends Code{
 	
 	private String CCseq;
 	private String CCcommonCodeGroup_seq;
 	private Integer CCdelYn;
 	private Integer xCCcount;
+	private String CCseqChar;
 	
 	
 	private String CCGseq;
@@ -137,5 +140,14 @@ public class CodeGroup {
 	public void setCCcommonCodeGroup_seq(String cCcommonCodeGroup_seq) {
 		CCcommonCodeGroup_seq = cCcommonCodeGroup_seq;
 	}
+
+	public String getCCseqChar() {
+		return CCseqChar;
+	}
+
+	public void setCCseqChar(String cCseqChar) {
+		CCseqChar = cCseqChar;
+	}
+	
 	
 }

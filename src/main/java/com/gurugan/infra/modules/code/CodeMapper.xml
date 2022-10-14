@@ -116,8 +116,6 @@
 			<when test="shOption2 == 3">OR CC.codeName LIKE CONCAT ('%',#{shValue2},'%')  OR CC.codeNameEng LIKE CONCAT ('%',#{shValue},'%')</when>
 			<otherwise></otherwise>
 		</choose>
-		ORDER BY
-			CC.seq ASC
 	</select>
 	
 	<insert id="insert">
@@ -178,10 +176,13 @@
 			CC.seq AS CCseq
 			,CC.codeName AS CCcodeName
 			,CC.commonCodeGroup_seq AS CCGseq
+			,CC.seqChar AS CCseqChar
 		FROM
 			commonCode CC
 		WHERE 1=1
 			AND delYn = 0
 		    AND useYn = 1
+		    OR CC.commonCodeGroup_seq = #{CCGseq}
+		    <!-- OR CC.seqChar LIKE '' -->
     </select>
 </mapper>	

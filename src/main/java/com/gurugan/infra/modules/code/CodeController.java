@@ -39,9 +39,11 @@ public class CodeController {
 	public String codeForm(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 		
 		List<Code> list = service.groupList();
+		List<Code> list2 = service.selectList(vo);
 		Code result = service.selectOne(vo);
 		model.addAttribute("item", result);
 		model.addAttribute("list", list);
+		model.addAttribute("list2", list2);
 		
 		return "infra/code/xdmin/codeForm";
 	}

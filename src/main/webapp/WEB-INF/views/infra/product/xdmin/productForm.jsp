@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page session="true"%>
+
+<jsp:useBean id="CodeServiceImpl" class="com.gurugan.infra.modules.code.CodeServiceImpl" />
 <!DOCTYPE html>
 <html lang="en">
 
@@ -383,17 +385,17 @@
 							<div class="card-body">
 								<h5 class="card-title fw-bold">상품 등록</h5>
 								<div class="row mt-3 mb-3">
-									<div class="col">
+									<%-- <div class="col">
 										<label for="inputId" class="form-label text bold">코드 그룹</label>
-										<%-- <c:if test="${empty list}"> --%>
-										<%-- <select class="form-select" name="CCcommonCodeGroup_seq">
+										<c:if test="${empty list}">
+										<select class="form-select" name="CCcommonCodeGroup_seq">
 												<!-- <option value="" selected>선택</option> -->
 										<c:forEach items="${list}" var="list" varStatus="status">
 												<option value="<c:out value="${list.CCGseq}"></c:out>"><c:out value="${list.CCGgroupName}" /></option>
 												<c:if test="${empty item.CCGseq }">selected</c:if><c:out value="${list.CCGgroupName}" />
 										</c:forEach>
-										</select> --%>
-									</div>
+										</select>
+									</div> --%>
 									<div class="col">
 										<label for="inputId" class="form-label text bold">제품 판매 상태</label>
 										<select class="form-select" name="CCuseYn">
@@ -406,13 +408,13 @@
 								<div class="row mt-3 mb-3">
 									<div class="col">
 										<div class="m-auto">
-											<label for="inputId" class="form-label">상품 번호</label>
+											<label for="inputId" class="form-label">제품 번호</label>
 											<input type="text" class="form-control" placeholder="자동생성" readonly name="PDseq" value="<c:out value="${item.PDseq }"/>">
 										</div>
 									</div>
 									<div class="col">
 										<div class="m-auto">
-											<label for="inputId" class="form-label">상품 명</label>
+											<label for="inputId" class="form-label">제품 명</label>
 											<input type="text" class="form-control" id="PDproductName" name="PDproductName" value="<c:out value="${item.PDproductName }"/>">
 										</div>
 									</div>
@@ -420,29 +422,30 @@
 								<div class="row mt-3 mb-3">
 									<div class="col">
 										<div class="m-auto">
-											<label for="inputId" class="form-label">상품</label>
-											<input type="text" class="form-control" id="CCcodeName" name="CCcodeName" value="<c:out value="${item.CCcodeName }"/>">
+											<label for="inputId" class="form-label">제품 가격</label>
+											<%-- <input type="text" class="form-control" id="PDprice" name="PDprice" value="<fmt:formatNumber value="${item.PDprice}" pattern="#,###"/>"> --%>
+											<input type="text" class="form-control" id="PDprice" name="PDprice" value="<c:out value="${item.PDprice}"/>">
 										</div>
 									</div>
 									<div class="col">
 										<div class="m-auto">
-											<label for="inputId" class="form-label">코드 이름 (영문)</label>
-											<input type="text" class="form-control" id="CCcodeNameEng" name="CCcodeNameEng" value="<c:out value="${item.CCcodeNameEng }"/>">
+											<label for="inputId" class="form-label">수량</label>
+											<input type="text" class="form-control" id="PDstock" name="PDstock" value="<c:out value="${item.PDstock }"/>">
 										</div>
 									</div>
 								</div>
 								<div class="row mt-3 mb-3">
 									<div class="col">
 										<div class="m-auto">
-											<label for="inputId" class="form-label">순서</label>
-											<input type="text" class="form-control" id="CCsort" name="CCsort" value="<c:out value="${item.CCsort }"/>">
+											<label for="inputId" class="form-label">제품 카테고리</label>
+											<input type="text" class="form-control" id="PDcategory" name="PDcategory" value="<c:out value="${item.PDcategory }"/>">
 										</div>
 									</div>
 									<div class="col">
-										<label for="inputId" class="form-label text bold">코드 삭제 여부</label>
-										<select class="form-select" name="CCdelYn">
-											<option value="0" <c:if test="${item.CCdelYn eq 0}">selected</c:if>>No</option>
-											<option value="1" <c:if test="${item.CCdelYn eq 1}">selected</c:if>>Yes</option>
+										<label for="PDdelYn" class="form-label text bold">제품 삭제 여부</label>
+										<select class="form-select" name="PDdelYn">
+											<option value="0" <c:if test="${item.PDdelYn eq 0}">selected</c:if>>No</option>
+											<option value="1" <c:if test="${item.PDdelYn eq 1}">selected</c:if>>Yes</option>
 										</select>
 									</div>
 								</div>
@@ -458,14 +461,45 @@
 								<div class="row mt-3 mb-3">
 									<div class="col">
 										<div class="m-auto">
-											<label for="inputId" class="form-label">예비1 (varchar type)</label>
-											<input type="text" class="form-control" id="formGroupExampleInput">
-										</div>
-									</div>
-									<div class="col">
-										<div class="m-auto">
-											<label for="inputId" class="form-label">예비2 (varchar type)</label>
-											<input type="text" class="form-control" id="formGroupExampleInput">
+											<table>
+											<label for="inputId" class="form-label"><h5 class="card-title fw-bold">제품 옵션</h5></label>
+											<tr>
+											<th>옵션 순번</th>
+											<th>메인 옵션</th>
+											<th>상세 옵션</th>
+											<th>옵션 삭제 여부</th>
+											</tr>
+											<c:set var="listCodeOptionMain" value="${CodeServiceImpl.selectListCachedCode('3')}" />
+											<c:set var="listCodeOptionSub" value="${CodeServiceImpl.selectListCachedCode('13')}" />
+											<c:forEach items="${option}" var="option" varStatus="status">
+											<tr>
+											<input type="hidden" id="POproductSeq" name="POproductSeq" value="<c:out value="${option.POproductSeq }"/>">
+											<td><input type="text" class="form-control" id="POseq" name="POseq" value="<c:out value="${option.POseq }"/>"></td>
+														<td>
+															<%-- <input type="text" class="form-control" id="POoptionmain" name="POoptionmain" value="<c:out value="${option.POoptionmain }"/>"> --%> 
+															<select class="form-select" id="POoptionMain" name="POoptionMain">
+																<option value="" <c:if test="${option.POoptionMain eq 0}">selected</c:if>>옵션 선택</option>
+															<c:forEach items="${listCodeOptionMain}" var="listOptionMain" varStatus="statusOptionMain">
+																<option value="<c:out value="${option.POoptionMain }"/>" <c:if test="${listOptionMain.CCseq eq option.POoptionMain }"> selected </c:if>>
+																	<c:out value="${listOptionMain.CCcodeName }" /></option>
+															</c:forEach>
+															</select> 
+														</td>
+														<td>
+														<%-- <input type="text" class="form-control" id="POoptionSub" name="POoptionSub" value="<c:out value="${option.POoptionSub }"/>"> --%>
+														<select class="form-select" id="POoptionSub" name="POoptionSub">
+															<option value="" <c:if test="${option.POoptionSub eq 0}">selected</c:if>>상세 옵션 선택</option>
+															<c:forEach items="${listCodeOptionSub}" var="listOptionSub" varStatus="statusOptionSub">
+															<%-- <c:if test="${option.POoptionMain eq 6 }"> --%>
+																<option value="<c:out value="${option.POoptionSub }"/>" <c:if test="${listOptionSub.CCseq eq option.POoptionSub }"> selected </c:if>>
+																	<c:out value="${listOptionSub.CCcodeName }" /></option>
+															</c:forEach>
+															</select> 
+														</td>
+											<td><input type="text" class="form-control" id="POdelYn" name="POdelYn" value="<c:out value="${option.POdelYn }"/>"></td>
+											</tr>
+											</c:forEach>
+											</table>
 										</div>
 									</div>
 								</div>
@@ -495,7 +529,7 @@
 					</form>
 					<form name="formVo" id="formVo" method="get">
 						<!-- *Vo.jsp s -->
-						<%@include file="codeVo.jsp"%>
+						<%@include file="productVo.jsp"%>
 						<!-- #-> -->
 						<!-- *Vo.jsp e -->
 					</form>
@@ -576,7 +610,7 @@
 
 
 		$("#btnSave").on("click", function(){
-			if (seq.val() == "0" || seq.val() == ""){
+			 if (seq.val() == "0" || seq.val() == ""){
 				alert("test2");
 		   		// insert
 		   		//if (validationInst() == false) return false;

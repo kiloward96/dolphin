@@ -43,6 +43,25 @@
 			<if test="PDdelYn != null and !PDdelYn.equals('')">AND PD.delYn = #{PDdelYn}</if>
 	</select>
 	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+			FROM product PD
+		WHERE 1=1
+	</select>
+	
+	<select id="selectProductOption" resultMap="resultMapPD">
+		SELECT
+			PO.seq AS POseq
+		    ,PO.optionMain AS POoptionMain
+		    ,PO.optionSub AS POoptionSub
+		    ,PO.productSeq AS PDseq
+		    ,PO.delYn AS POdelYn
+		FROM productOption PO
+		WHERE 1=1
+			AND PO.productSeq = #{PDseq}
+			<if test="PDdelYn != null and !PDdelYn.equals('')">AND PO.delYn = #{POdelYn}</if>
+	</select>
+	
 	<insert id="insert">
 		INSERT INTO Product (
 		    productName

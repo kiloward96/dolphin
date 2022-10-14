@@ -26,11 +26,20 @@ public class ProductDao {
 		return sqlSession.selectOne(namespace + ".selectOne", vo);
 	}
 	
+	
+	public int selectOneCount(ProductVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
+	}
+	
+	public List<Product> selectProductOption(ProductVo vo) {
+		List<Product> list = sqlSession.selectList(namespace + ".selectProductOption", vo);
+		return list;
+	}
+	
 	public int insert(Product dto) {
 		int result = sqlSession.insert(namespace + ".insert", dto);
 		System.out.println("dao result: " + result);
 		return result;
 	}
 	
-
 }

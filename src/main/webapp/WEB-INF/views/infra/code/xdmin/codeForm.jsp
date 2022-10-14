@@ -474,8 +474,10 @@
 								<div class="row mt-3 mb-3">
 									<div class="col">
 										<div class="m-auto">
+									<%-- 	<c:forEach items="${list2}" var="list2" varStatus="status">
 											<label for="inputId" class="form-label">예비1 (varchar type)</label>
-											<input type="text" class="form-control" id="formGroupExampleInput">
+											<input type="text" class="form-control" id="CCGgroupName" name="CCGgroupName" value="<c:out value="${list2.CCGseq }"/>">
+										</c:forEach> --%>
 										</div>
 									</div>
 									<div class="col">

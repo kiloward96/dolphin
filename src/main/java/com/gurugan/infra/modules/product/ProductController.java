@@ -16,20 +16,28 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 	@Autowired
 	ProductServiceImpl service;
 	
+	public void setSearchAndPagin(ProductVo vo) throws Exception {
+		vo.setShDelYn(vo.getShDelYn() == null ? 0 : vo.getShDelYn());
+	}
+	
 	@RequestMapping(value = "productList")
 	public String productList(ProductVo vo, Model model) throws Exception {
-		
+		setSearchAndPagin(vo);
+		vo.setParamsPaging(service.selectOneCount(vo)); 
 		List<Product> list = service.selectList(vo);
 		model.addAttribute("list", list);
+		System.out.println("test : " + vo.getRowNumToShow());
 
 		return "infra/product/xdmin/productList";
 	}
 	
 	@RequestMapping(value = "productForm")
 	public String productForm(@ModelAttribute ("vo") ProductVo vo, Model model) throws Exception {
-		
+		System.out.println("test : " + vo.getRowNumToShow());
 		Product result = service.selectOne(vo);
+		List<Product> Option = service.selectProductOption(vo);
 		model.addAttribute("item", result);
+		model.addAttribute("option", Option);
 		
 		return "infra/product/xdmin/productForm";
 		
