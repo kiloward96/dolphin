@@ -486,17 +486,17 @@
 															</select> 
 														</td>
 														<td>
-														<%-- <input type="text" class="form-control" id="POoptionSub" name="POoptionSub" value="<c:out value="${option.POoptionSub }"/>"> --%>
-														<select class="form-select" id="POoptionSub" name="POoptionSub">
-															<option value="" <c:if test="${option.POoptionSub eq 0}">selected</c:if>>상세 옵션 선택</option>
-															<c:forEach items="${listCodeOptionSub}" var="listOptionSub" varStatus="statusOptionSub">
-															<%-- <c:if test="${option.POoptionMain eq 6 }"> --%>
-																<option value="<c:out value="${option.POoptionSub }"/>" <c:if test="${listOptionSub.CCseq eq option.POoptionSub }"> selected </c:if>>
-																	<c:out value="${listOptionSub.CCcodeName }" /></option>
-															</c:forEach>
-															</select> 
+															<%-- <input type="text" class="form-control" id="POoptionSub" name="POoptionSub" value="<c:out value="${option.POoptionSub }"/>"> --%> 
+															<select class="form-select" id="POoptionSub" name="POoptionSub">
+																<option value="" <c:if test="${option.POoptionSub eq 0}">selected</c:if>>상세 옵션 선택</option>
+																<c:forEach items="${listCodeOptionSub}" var="listOptionSub" varStatus="statusOptionSub">
+																	<%-- <c:if test="${option.POoptionMain eq 6 }"> --%>
+																	<option value="<c:out value="${option.POoptionSub }"/>" <c:if test="${listOptionSub.CCseq eq option.POoptionSub }"> selected </c:if>>
+																		<c:out value="${listOptionSub.CCcodeName }" /></option>
+																</c:forEach>
+															</select>
 														</td>
-											<td><input type="text" class="form-control" id="POdelYn" name="POdelYn" value="<c:out value="${option.POdelYn }"/>"></td>
+														<td><input type="text" class="form-control" id="POdelYn" name="POdelYn" value="<c:out value="${option.POdelYn }"/>"></td>
 											</tr>
 											</c:forEach>
 											</table>
