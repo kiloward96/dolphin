@@ -42,4 +42,27 @@ public class ProductDao {
 		return result;
 	}
 	
+	public int insertOption(Product dto) {
+		int result = sqlSession.insert(namespace + ".insertOption", dto);
+		System.out.println("dao result: " + result);
+		return result;
+	}
+	
+	public int update(Product dto) {
+		int result = sqlSession.update(namespace + ".update", dto);
+		System.out.println("dao result: " + result);
+		return result;
+	}
+	
+	public int updateOption(Product dto) {
+		int result = sqlSession.update(namespace + ".updateOption", dto);
+		System.out.println("dao result: " + result);
+		return result;
+	}
+	
+//	uploaded
+	public int insertUploaded(Product dto) { return sqlSession.insert("Base" + ".insertUploaded", dto); }
+	public int ueleteUploaded(Product dto) { return sqlSession.insert("Base" + ".ueleteUploaded", dto); }
+	public int deleteUploaded(Product dto) { return sqlSession.insert("Base" + ".deleteUploaded", dto); }
+	
 }

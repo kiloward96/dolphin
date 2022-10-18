@@ -20,6 +20,8 @@ public class Base {
 	private String pseq;
 	private Date regDateTime;
 	private Date regDateTimeSvr;
+	
+	
 	public String getTableName() {
 		return tableName;
 	}

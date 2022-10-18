@@ -380,8 +380,8 @@
 		<section class="section">
 			<form id="formList" name="formList" method="post">
 				<input type="hidden" name="PDseq">
-				<%-- <input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
-				<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>"> --%>
+				<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+				<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 				<input type="hidden" name="checkboxSeqArray">
 				<div class="row">
 					<div class="col-lg">

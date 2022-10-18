@@ -21,7 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 	}
 	
 	@RequestMapping(value = "productList")
-	public String productList(ProductVo vo, Model model) throws Exception {
+	public String productList(@ModelAttribute("vo") ProductVo vo, Model model) throws Exception {
 		setSearchAndPagin(vo);
 		vo.setParamsPaging(service.selectOneCount(vo)); 
 		List<Product> list = service.selectList(vo);
@@ -47,6 +47,27 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 	public String productInst(ProductVo vo, Product dto, RedirectAttributes redirectAttributes) throws Exception {
 		int result = service.insert(dto);
 		System.out.println("Controller result: " + result);
+		
+		
+		vo.setPDseq(dto.getPDseq());
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return "redirect:/product/productForm";
+	}
+	
+	@RequestMapping(value = "productUpdt")
+	public String productUpdt(ProductVo vo, Product dto, RedirectAttributes redirectAttributes) throws Exception {
+		
+		/*
+		 * for (int i = 0; i<dto.getUploadImgDeleteSeq().length; i++) {
+		 * System.out.println(dto.getUploadImgDeleteSeq()[i]); }
+		 */
+		int result = service.update(dto);
+		System.out.println("Controller Update result : " + result);
+		
+		vo.setPDseq(dto.getPDseq());
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
 		
 		return "redirect:/product/productForm";
 	}

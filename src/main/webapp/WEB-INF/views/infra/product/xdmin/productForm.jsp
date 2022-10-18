@@ -399,7 +399,7 @@
 									</div> --%>
 									<div class="col">
 										<label for="inputId" class="form-label text bold">제품 판매 상태</label>
-										<select class="form-select" name="CCuseYn">
+										<select class="form-select" id="PDstatus" name="PDstatus">
 											<option value="1" <c:if test="${item.PDstatus eq 1}">selected</c:if>>품절</option>
 											<option value="0" <c:if test="${item.PDstatus eq 0}">selected</c:if>>재고있음</option>
 										</select>
@@ -410,7 +410,7 @@
 									<div class="col">
 										<div class="m-auto">
 											<label for="PDseq" class="form-label">제품 번호</label>
-											<input type="text" class="form-control" placeholder="자동생성" readonly name="PDseq" value="<c:out value="${item.PDseq }"/>">
+											<input type="text" class="form-control" placeholder="자동생성" readonly id="PDseq" name="PDseq" value="<c:out value="${item.PDseq }"/>">
 										</div>
 									</div>
 									<div class="col">
@@ -444,7 +444,7 @@
 											<select class="form-select" id="PDcategory" name="PDcategory">
 												<option value="" <c:if test="${item.PDcategory eq 0}">selected</c:if>>카테고리 선택</option>
 												<c:forEach items="${listCodeCategory}" var="listCategory" varStatus="statusCategory">
-													<option value="<c:out value="${item.PDcategory }"/>" <c:if test="${listCategory.CCseq eq item.PDcategory }"> selected </c:if>>
+													<option value="<c:out value="${listCategory.CCseq }"/>" <c:if test="${listCategory.CCseq eq item.PDcategory }"> selected </c:if>>
 														<c:out value="${listCategory.CCcodeName }" /></option>
 												</c:forEach>
 											</select>
@@ -456,6 +456,16 @@
 											<option value="0" <c:if test="${item.PDdelYn eq 0}">selected</c:if>>No</option>
 											<option value="1" <c:if test="${item.PDdelYn eq 1}">selected</c:if>>Yes</option>
 										</select>
+									</div>
+								</div>
+								<div class="row mt-3 mb-3">
+									<div class="filebox clearfix">
+										<div class="inputFile">
+											<label for="productUploadedImage" class="addImgBtn">+</label>
+											<input type="file" id="productUploadedImage" name="productUploadedImage" class="upload-hidden" accept=".jpg, .png, .gif" multiple>
+											<button type="button" id="btnReset" class="btn btn-danger">리셋</button>
+										</div>
+										<ul id="Preview" class="sortable"></ul>
 									</div>
 								</div>
 								<div class="row mt-3 mb-3">
@@ -482,19 +492,15 @@
 												<c:forEach items="${option}" var="option" varStatus="status">
 													<tr>
 														<input type="hidden" id="POproductSeq" name="POproductSeq" value="<c:out value="${option.POproductSeq }"/>">
-														<td>
-														<input type="text" class="form-control" id="POseq" name="POseq" readonly value="<c:out value="${option.POseq }"/>">
-														</td>
-														<td>
-															<select class="form-select" id="POoptionMain" name="POoptionMain">
-															<%-- <input type="text" class="form-control" id="POoptionmain" name="POoptionmain" value="<c:out value="${option.POoptionmain }"/>"> --%>
+														<td><input type="text" class="form-control" id="POseq" name="POseq" readonly value="<c:out value="${option.POseq }"/>"></td>
+														<td><select class="form-select" id="POoptionMain" name="POoptionMain">
+																<%-- <input type="text" class="form-control" id="POoptionmain" name="POoptionmain" value="<c:out value="${option.POoptionmain }"/>"> --%>
 																<option value="" <c:if test="${option.POoptionMain eq 0}">selected</c:if>>옵션 선택</option>
 																<c:forEach items="${listCodeOptionMain}" var="listOptionMain" varStatus="statusOptionMain">
 																	<option value="<c:out value="${option.POoptionMain }"/>" <c:if test="${listOptionMain.CCseq eq option.POoptionMain }"> selected </c:if>>
 																		<c:out value="${listOptionMain.CCcodeName }" /></option>
 																</c:forEach>
-															</select>
-														</td>
+															</select></td>
 														<td><input type="text" class="form-control" id="POoptionSub" name="POoptionSub" value="<c:out value="${option.POoptionSub }"/>"></td>
 														<td><select class="form-select" name="POdelYn">
 																<option value="0" <c:if test="${option.POdelYn eq 0}">selected</c:if>>No</option>
@@ -621,6 +627,103 @@
 		$("#btnList").on("click", function(){
 			formVo.attr("action", goUrlList).submit();
 		});
+		
+		/* fileUpload s 221018 */
+		$(function() {
+			//드래그 앤 드롭
+			$(".sortable").sortable();
+			
+			
+			//이미지 등록
+			$("#memberUploadedImage")
+					.change(
+							function(e) {
+								//div 내용 비워주기
+								/* $('#Preview').empty(); */
+
+								var files = e.target.files;
+								var arr = Array.prototype.slice.call(files);
+								
+								//업로드 가능 파일인지 체크
+								for (var i = 0; i < files.length; i++) {
+									if (!checkExtension(files[i].name,
+											files[i].size)) {
+										return false;
+									}
+								}
+								preview(arr);
+
+								function checkExtension(fileName, fileSize) {
+									var regex = new RegExp(
+											"(.*?)\.(exe|sh|zip|alz|sql)$");
+									var maxSize = 20971520; //20MB
+
+									if (fileSize >= maxSize) {
+										alert('이미지 크기가 초과되었습니다.');
+										$("#productUploadedImage").val(""); //파일 초기화
+										return false;
+									}
+
+									if (regex.test(fileName)) {
+										alert('확장자명을 확인해주세요.');
+										$("#productUploadedImage").val(""); //파일 초기화
+										return false;
+									}
+									return true;
+								}
+
+								function preview(arr) {
+									arr.forEach(function(f) {
+												//파일명이 길면 파일명...으로 처리
+												/*
+												var fileName = f.name;
+												if(fileName.length > 10){
+												    fileName = fileName.substring(0,7)+"...";
+												}
+												 */
+												 console.log(arr);
+												 
+												 console
+
+												//div에 이미지 추가
+												var str = '<li class="ui-state-default" id="imgChild">';
+												//str += '<span>'+fileName+'</span><br>';
+												
+												//이미지 파일 미리보기
+												if (f.type.match('image.*')) {
+													//파일을 읽기 위한 FileReader객체 생성
+													var reader = new FileReader();
+													reader.onload = function(e) {
+														//파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+														str += '<img src="'+ e.target.result +'" value="' + f.name + '" width=100 height=100>';
+														str += '<button type="button" class="btn" id="delImg">x</button>';
+														str += '</li>';
+														$(str).appendTo('#Preview');
+													}
+													reader.readAsDataURL(f);
+												} else {
+													//이미지 파일 아닐 경우 대체 이미지
+													/*
+													str += '<img src="/resources/img/fileImg.png" title="'+f.name+'" width=60 height=60 />';
+													$(str).appendTo('#Preview');
+													 */
+												}
+											})
+								}
+							})
+
+			//이미지 삭제
+			$(document).on("click", "#delImg", function() {
+		 		$("#imgChild").remove();
+			});
+
+			//전체 이미지 리셋
+			$("#btnReset").on("click", function() {
+				$('#Preview').empty();
+			});
+
+		});
+		/* fileUpload e 221018 */
 		
 	</script>
 

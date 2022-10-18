@@ -50,6 +50,23 @@
 		WHERE 1=1
 			<if test="PDdelYn != null and !PDdelYn.equals('')">AND PD.delYn = #{PDdelYn}</if>
 	</select>
+	<!-- test 221018 -->
+	<select id="selectListUploaded" resultMap="resultMapPD">
+		SELECT 
+			seq
+			,type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+		FROM nct.infrMemberUploaded
+		WHERE 1=1
+			AND delYn = 0
+			AND pseq = #{PDSeq}
+		ORDER BY
+			type, sort
+	</select>
 	
 	<!-- ProductOption 조회 -->
 	<select id="selectProductOption" resultMap="resultMapPD">
@@ -95,7 +112,6 @@
 				,price = #{PDprice}
 				,stock = #{PDstock}
 				,category = #{PDcategory}
-				,uploadDate = #{PDuploadDate}
 				,status = #{PDstatus}
 				,delYn = #{PDdelYn}
 			WHERE 1=1
@@ -122,17 +138,14 @@
 	</insert>
 	
 	<update id="updateOption">
-		UPDATE Product PD
+		UPDATE productOption
 			SET
-				productName = #{PDproductName}
-				,price = #{PDprice}
-				,stock = #{PDstock}
-				,category = #{PDcategory}
-				,uploadDate = #{PDuploadDate}
-				,status = #{PDstatus}
-				,delYn = #{PDdelYn}
+				optionMain = #{POoptionMain}
+				,optionSub = #{POoptionSub}
+				,productSeq = #{PDseq}
+				,delYn = #{POdelYn}
 			WHERE 1=1
-				AND PD.seq = #{PDseq}
+				AND seq = #{POseq}
 	</update>
 	
 	
