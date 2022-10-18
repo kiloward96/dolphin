@@ -9,7 +9,7 @@
 
 <jsp:useBean id="CodeServiceImpl" class="com.gurugan.infra.modules.code.CodeServiceImpl" />
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
 <meta charset="utf-8">

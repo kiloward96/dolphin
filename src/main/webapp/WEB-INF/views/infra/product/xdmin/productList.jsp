@@ -370,9 +370,9 @@
 			<h1>상품 관리</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-					<li class="breadcrumb-item active">상품 목록</li>
-					<li class="breadcrumb-item"><a href="codelist.html">상품 관리</a></li>
+					<li class="breadcrumb-item"><a href="/code/codeList">Home</a></li>
+					<li class="breadcrumb-item active">제품 목록</li>
+					<li class="breadcrumb-item">제품 관리</a></li>
 				</ol>
 			</nav>
 		</div>

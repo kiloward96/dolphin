@@ -43,12 +43,15 @@
 			<if test="PDdelYn != null and !PDdelYn.equals('')">AND PD.delYn = #{PDdelYn}</if>
 	</select>
 	
+	
 	<select id="selectOneCount" resultType="Integer">
 		SELECT COUNT(*)
 			FROM product PD
 		WHERE 1=1
+			<if test="PDdelYn != null and !PDdelYn.equals('')">AND PD.delYn = #{PDdelYn}</if>
 	</select>
 	
+	<!-- ProductOption 조회 -->
 	<select id="selectProductOption" resultMap="resultMapPD">
 		SELECT
 			PO.seq AS POseq
@@ -63,7 +66,7 @@
 	</select>
 	
 	<insert id="insert">
-		INSERT INTO Product (
+		INSERT INTO product (
 		    productName
 		    ,price
 		    ,stock
@@ -86,6 +89,39 @@
 	</insert>
 	
 	<update id="update">
+		UPDATE product PD
+			SET
+				productName = #{PDproductName}
+				,price = #{PDprice}
+				,stock = #{PDstock}
+				,category = #{PDcategory}
+				,uploadDate = #{PDuploadDate}
+				,status = #{PDstatus}
+				,delYn = #{PDdelYn}
+			WHERE 1=1
+				AND PD.seq = #{PDseq}
+	</update>
+	
+	
+	<!-- product option  -->
+	<insert id="insertOption">
+		INSERT INTO ProductOption (
+			optionMain
+			,optionSub
+			,productSeq
+			,delYn
+		) VALUES (
+			#{POoptionMain}
+			,#{POoptionSub}
+			,#{PDseq}
+			,0
+		)
+	<selectKey resultType="String" keyProperty="PDseq" order="AFTER">
+		SELECT last_insert_id()
+	</selectKey>
+	</insert>
+	
+	<update id="updateOption">
 		UPDATE Product PD
 			SET
 				productName = #{PDproductName}
@@ -97,7 +133,6 @@
 				,delYn = #{PDdelYn}
 			WHERE 1=1
 				AND PD.seq = #{PDseq}
-			
 	</update>
 	
 	

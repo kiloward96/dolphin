@@ -51,12 +51,13 @@ import com.gurugan.infra.common.constants.Constants;
 		@RequestMapping(value = "memberInst")
 		public String MemberInst(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
 			
-				//if (!dto.getMBid().equals("") && dto.getAddressZipcode() != null || !dto.getAddressMain().equals("")) {
-				//	System.out.println("Controller Address insert");
-				//	
-				//	System.out.println(dto.getAddressZipcode());
-				//	service.insertAddress(dto);
-				//}
+				if (dto.getMBid().equals("") && dto.getAddressZipcode() == null || dto.getAddressMain().equals("")) {
+					System.out.println("please insert MBid");
+				} else {
+					System.out.println("Controller Address insert");
+					System.out.println(dto.getAddressZipcode());
+					service.insertAddress(dto);
+				}
 			service.insert(dto);
 			redirectAttributes.addFlashAttribute("vo", vo);
 			System.out.println("Controller result: " + service.insert(dto));
