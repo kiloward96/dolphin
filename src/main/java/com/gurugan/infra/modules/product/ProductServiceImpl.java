@@ -16,7 +16,56 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	ProductDao dao;
+	
+	public void uploadFiles(MultipartFile[] multipartFiles, Product dto, String tableName, int type, int maxNumber) throws Exception {
 
+		System.out.println(" dto.getUploadImgMaxNumber() : " + dto.getUploadImgMaxNumber());
+		
+		for(int i=0; i<multipartFiles.length; i++) {
+    	
+			if(!multipartFiles[i].isEmpty()) {
+				
+				System.out.println(i + ": multipartFiles[i].getOriginalFilename() : " + multipartFiles[i].getOriginalFilename());
+				
+				String className = dto.getClass().getSimpleName().toString().toLowerCase();		
+				String fileName = multipartFiles[i].getOriginalFilename();
+				String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
+				String uuid = UUID.randomUUID().toString();
+				String uuidFileName = uuid + "." + ext;
+				String pathModule = className;
+				String nowString = UtilDateTime.nowString();
+				String product =dto.getPDseq() + "_" + dto.getPDcategory();
+				String pathDate = nowString.substring(0,4) + "/" + nowString.substring(5,7) + "/" + nowString.substring(8,10); 
+				String path = Constants.UPLOAD_PATH_PREFIX + pathModule + "/" + pathDate + "/" + product;
+				String pathForView = Constants.UPLOAD_PATH_PREFIX_FOR_VIEW + pathModule + "/" + pathDate + "/" + product;
+				
+				File uploadPath = new File(path);
+				
+				if (!uploadPath.exists()) {
+					uploadPath.mkdir();
+				} else {
+					// by pass
+				}
+				  
+				multipartFiles[i].transferTo(new File(path + uuidFileName));
+				
+				dto.setPath(pathForView);
+				dto.setOriginalName(fileName);
+				dto.setUuidName(uuidFileName);
+				dto.setExt(ext);
+				dto.setSize(multipartFiles[i].getSize());
+				
+				dto.setTableName(tableName);
+				dto.setType(type);
+//.				dto.setDefaultNy(j == 0 ? 1 : 0);
+				dto.setSort(maxNumber + i + 1);
+				dto.setPseq(dto.getPDseq());
+
+				dao.insertUploaded(dto);
+    		}
+		}
+	}
+	
 	
 	// select
 	@Override
@@ -43,12 +92,20 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public int insert(Product dto) throws Exception {
-		return dao.insert(dto);
+		dao.insert(dto);
+			uploadFiles(dto.getUploadImg(), dto, "productUploaded", 2, dto.getUploadImgMaxNumber());
+		return 1;
 	}
 
 	@Override
 	public int update(Product dto) throws Exception {
-		return dao.update(dto);
+		dao.update(dto);
+	//	deleteFiles(dto.getUploadImgDeleteSeq(), dto.getUploadImgDeletePathFile(), dto, "infrMemberUploaded");
+		System.out.println(dto.getUploadImg());
+		System.out.println(dto.getUploadImg());
+		System.out.println(dto.getUploadImgMaxNumber());
+		uploadFiles(dto.getUploadImg(), dto, "productUploaded", 2, dto.getUploadImgMaxNumber());
+		return 1;
 	}
 
 	@Override
@@ -61,53 +118,7 @@ public class ProductServiceImpl implements ProductService {
 		return dao.updateOption(dto);
 	}
 	
-	public void uploadFiles(MultipartFile[] multipartFiles, Product dto, String tableName, int type, int maxNumber) throws Exception {
-
-		System.out.println(" dto.getUploadImgMaxNumber() : " + dto.getUploadImgMaxNumber());
-		
-		for(int i=0; i<multipartFiles.length; i++) {
-    	
-			if(!multipartFiles[i].isEmpty()) {
-				
-				System.out.println(i + ": multipartFiles[i].getOriginalFilename() : " + multipartFiles[i].getOriginalFilename());
-				
-				String className = dto.getClass().getSimpleName().toString().toLowerCase();		
-				String fileName = multipartFiles[i].getOriginalFilename();
-				String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
-				String uuid = UUID.randomUUID().toString();
-				String uuidFileName = uuid + "." + ext;
-				String pathModule = className;
-				String nowString = UtilDateTime.nowString();
-				String pathDate = nowString.substring(0,4) + "/" + nowString.substring(5,7) + "/" + nowString.substring(8,10); 
-				String path = Constants.UPLOAD_PATH_PREFIX + "/" + pathModule + "/" + pathDate + "/";
-				String pathForView = Constants.UPLOAD_PATH_PREFIX_FOR_VIEW + "/" + pathModule + "/" + pathDate + "/";
-				
-				File uploadPath = new File(path);
-				
-				if (!uploadPath.exists()) {
-					uploadPath.mkdir();
-				} else {
-					// by pass
-				}
-				  
-				multipartFiles[i].transferTo(new File(path + uuidFileName));
-				
-				dto.setPath(pathForView);
-				dto.setOriginalName(fileName);
-				dto.setUuidName(uuidFileName);
-				dto.setExt(ext);
-				dto.setSize(multipartFiles[i].getSize());
-				
-				dto.setTableName(tableName);
-				dto.setType(type);
-//				dto.setDefaultNy(j == 0 ? 1 : 0);
-				dto.setSort(maxNumber + i + 1);
-				dto.setPseq(dto.getPDseq());
-
-				dao.insertUploaded(dto);
-    		}
-		}
-	}
+	
 	
 
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -45,8 +46,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 	
 	@RequestMapping(value = "productInst")
 	public String productInst(ProductVo vo, Product dto, RedirectAttributes redirectAttributes) throws Exception {
-		int result = service.insert(dto);
-		System.out.println("Controller result: " + result);
+		service.insert(dto);
+		System.out.println("Controller result: " + service.insert(dto));
 		
 		
 		vo.setPDseq(dto.getPDseq());
@@ -55,16 +56,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 		return "redirect:/product/productForm";
 	}
 	
-	@RequestMapping(value = "productUpdt")
+	@SuppressWarnings(value = { "all" })
+	@RequestMapping(value = "productUpdt", method = RequestMethod.POST)
 	public String productUpdt(ProductVo vo, Product dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		/*
 		 * for (int i = 0; i<dto.getUploadImgDeleteSeq().length; i++) {
 		 * System.out.println(dto.getUploadImgDeleteSeq()[i]); }
 		 */
-		int result = service.update(dto);
-		System.out.println("Controller Update result : " + result);
-		
+		service.update(dto);
+		System.out.println("Controller Update result : " + service.update(dto));
+		System.out.println(dto.getUploadImg());
 		vo.setPDseq(dto.getPDseq());
 		redirectAttributes.addFlashAttribute("vo", vo);
 		

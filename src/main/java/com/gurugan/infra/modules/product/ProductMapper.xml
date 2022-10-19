@@ -60,7 +60,7 @@
 			,path
 			,originalName
 			,uuidName
-		FROM nct.infrMemberUploaded
+		FROM dolphin.productUploaded
 		WHERE 1=1
 			AND delYn = 0
 			AND pseq = #{PDSeq}
@@ -79,7 +79,6 @@
 		FROM productOption PO
 		WHERE 1=1
 			AND PO.productSeq = #{PDseq}
-			<if test="PDdelYn != null and !PDdelYn.equals('')">AND PO.delYn = #{POdelYn}</if>
 	</select>
 	
 	<insert id="insert">

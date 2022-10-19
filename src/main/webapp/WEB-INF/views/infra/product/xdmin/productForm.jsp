@@ -73,12 +73,12 @@
 		</div>
 
 		<div class="search-bar">
-			<form class="search-form d-flex align-items-center">
+			<div class="search-form d-flex align-items-center">
 				<input type="text" name="query" placeholder="Search" title="Enter search keyword">
 				<button type="submit" title="Search">
 					<i class="bi bi-search"></i>
 				</button>
-			</form>
+			</div>
 		</div>
 		<!-- End Search Bar -->
 
@@ -380,7 +380,8 @@
 		<section class="section">
 			<div class="row">
 				<div class="col-lg">
-					<form id="form" name="form" method="post">
+					<!-- <form id="form" name="form" method="post" > -->
+					<form id="form" name="form" method="post" autocomplete="off" enctype="multipart/form-data">
 						<input type="hidden" id="AllowedNy" name="AllowedNy">
 						<div class="card">
 							<div class="card-body">
@@ -458,15 +459,43 @@
 										</select>
 									</div>
 								</div>
-								<div class="row mt-3 mb-3">
-									<div class="filebox clearfix">
-										<div class="inputFile">
-											<label for="productUploadedImage" class="addImgBtn">+</label>
-											<input type="file" id="productUploadedImage" name="productUploadedImage" class="upload-hidden" accept=".jpg, .png, .gif" multiple>
-											<button type="button" id="btnReset" class="btn btn-danger">리셋</button>
-										</div>
-										<ul id="Preview" class="sortable"></ul>
+							 	<div class="row mt-3 mb-3">
+									<c:set var="type" value="2" />
+									<!-- #-> -->
+									<c:set var="name" value="uploadImg" />
+									<!-- #-> -->
+									<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0" />
+									<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq" />
+									<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile" />
+									<label for="uploadImg" class="addImgBtn" style="cursor: pointer;">+</label>
+									<input type="file" class="upload-hidden" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" multiple="multiple" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 0, 1, 0, 0, 1);">
+									<div id="<c:out value="${name }"/>Preview" class="addScroll">
+										<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
+											<c:if test="${listUploaded.type eq type }">
+												<div id="imgDiv_<c:out value="${type }"/>_<c:out value="${listUploaded.sort }"/>" style="display: inline-block; height: 95px;">
+													<img src="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded" width="85px" height="85px" style="cursor: pointer;" onClick="openViewer(<c:out value="${listUploaded.type }"/>, <c:out value="${listUploaded. sort }"/>);">
+													<div style="position: relative; top: -85px; left: 5px">
+														<span style="color: red; cursor: pointer;" onClick="delImgDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${listUploaded.sort }"/>, <c:out value="${listUploaded.seq }"/>, '<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>')">X</span>
+													</div>
+												</div>
+											</c:if>
+										</c:forEach>
 									</div>
+									<%--   <div class="filebox clearfix">
+										<div class="inputFile">
+											<c:set var="type" value="2" />
+											<c:set var="name" value="uploadImg" />
+											<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0" />
+											<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq" />
+											<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile" />
+											<label for="uploadImg" class="addImgBtn" style="cursor: pointer;">+</label>
+											<input class="upload-hidden" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" multiple="multiple" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 0, 1, 0, 0, 1);">
+											<!-- <input type="file" id="productUploadedImage" name="productUploadedImage" class="upload-hidden" accept=".jpg, .png, .gif" multiple> -->
+											<!-- <button type="button" id="btnReset" class="btn btn-danger">리셋</button> -->
+										</div>
+										<ul id="Preview" class="sortable">
+										</ul>
+									</div> --%> 
 								</div>
 								<div class="row mt-3 mb-3">
 									<div class="col">
@@ -571,79 +600,335 @@
 	<script src="/resources/assets/js/main.js"></script>
 
 	<script type="text/javascript">
-//	var CCGseqChar = document.getElementById("CCGseqChar");
-//	var CCGgroupName = document.getElementById("CCGgroupName");
-	
-		
-	
-//		function CGsubmit() {
-//	  		if(CCGseqChar.value == '' || CCGseqChar.value == null) {
-//				document.getElementById("basicSeqChar").style.display = 'none';
-//				document.getElementById("alertSeqChar").style.display = 'block';
-//				
-//				return false;
-				
-//			} else if (CCGgroupName.value == '' || CCGgroupName.value == null ) {
-//				document.getElementById("basicGroupName").style.display = 'none';
-//				document.getElementById("alertGroupName").style.display = 'block';
-				
-//				return false;
-				
-//			} else {
-//				alert(document.getElementById("CCGseqChar").value); 	 			
-//				document.getElementById("inputForm").submit();
-				
-//				return true;
-				
-//	 		}
-//		}
-		var goUrlList = "/product/productList"; 			/* #-> */
-		var goUrlInst = "/product/productInst"; 			/* #-> */
-		var goUrlUpdt = "/product/productUpdt";				/* #-> */
-//		var goUrlUele = "/code/codeUele";				/* #-> */
-//		var goUrlDele = "/code/codeDele";				/* #-> */
+		//	var CCGseqChar = document.getElementById("CCGseqChar");
+		//	var CCGgroupName = document.getElementById("CCGgroupName");
 
-		var seq = $("input:text[name=PDseq]");						/* #-> */
+		//		function CGsubmit() {
+		//	  		if(CCGseqChar.value == '' || CCGseqChar.value == null) {
+		//				document.getElementById("basicSeqChar").style.display = 'none';
+		//				document.getElementById("alertSeqChar").style.display = 'block';
+		//				
+		//				return false;
+
+		//			} else if (CCGgroupName.value == '' || CCGgroupName.value == null ) {
+		//				document.getElementById("basicGroupName").style.display = 'none';
+		//				document.getElementById("alertGroupName").style.display = 'block';
+
+		//				return false;
+
+		//			} else {
+		//				alert(document.getElementById("CCGseqChar").value); 	 			
+		//				document.getElementById("inputForm").submit();
+
+		//				return true;
+
+		//	 		}
+		//		}
+		var goUrlList = "/product/productList"; /* #-> */
+		var goUrlInst = "/product/productInst"; /* #-> */
+		var goUrlUpdt = "/product/productUpdt"; /* #-> */
+		//		var goUrlUele = "/code/codeUele";				/* #-> */
+		//		var goUrlDele = "/code/codeDele";				/* #-> */
+
+		var seq = $("input:text[name=PDseq]"); /* #-> */
 
 		var form = $("form[name=form]");
 		var formVo = $("form[name=formVo]");
 
+		$("#btnSave").on("click", function() {
+			if (seq.val() == "0" || seq.val() == "") {
+				alert("insert");
+				// insert
+				//if (validationInst() == false) return false;
+				form.attr("action", goUrlInst).submit();
+			} else {
+				alert("update");
+				// update
+				// keyName.val(atob(keyName.val()));
+				//if (validationUpdt() == false) return false;
+				form.attr("action", goUrlUpdt).submit();
+			}
 
-		$("#btnSave").on("click", function(){
-			 if (seq.val() == "0" || seq.val() == ""){
-				alert("test2");
-		   		// insert
-		   		//if (validationInst() == false) return false;
-		   		form.attr("action", goUrlInst).submit();
-		   	} else {
-		   		alert("test");
-		   		// update
-		   		// keyName.val(atob(keyName.val()));
-		   		//if (validationUpdt() == false) return false;
-		   		form.attr("action", goUrlUpdt).submit();
-		   	}
-			
-		}); 
-		$("#btnList").on("click", function(){
+		});
+		$("#btnList").on("click", function() {
 			formVo.attr("action", goUrlList).submit();
 		});
 		
+		
+		/* file validiation s */
+		const MAX_EACH_FILE_SIZE = 5 * 1024 * 1024;		//	5M
+		const MAX_TOTAL_FILE_SIZE = 25 * 1024 * 1024;	//	25M
+		const MAX_TOTAL_FILE_NUMBER = 5;				//	5
+
+		function kbToMb(bytes) {
+		    var e = Math.floor(Math.log(bytes)/Math.log(1024));
+		
+		    if(e == "-Infinity") return 0;
+		    else return (bytes/Math.pow(1024, Math.floor(e))).toFixed(2).slice(0, -3);
+		}
+		
+		// 이미지 전용
+		var extArray1 = new Array();
+		extArray1 = ["jpg","gif","png","jpeg","bmp","tif"];
+
+		// 문서관련
+		var extArray2 = new Array();
+		extArray2 = ["txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+		
+		checkUploadedTotalFileNumber = function(obj, allowedMaxTotalFileNumber, filesCount, uploadedFilesCount) {
+			if(allowedMaxTotalFileNumber < (filesCount + uploadedFilesCount)){
+				alert("전체 파일 갯수는 "+ allowedMaxTotalFileNumber +"개 까지 허용됩니다.");
+//				$("#file"+seq).val("");
+//				obj.val("");
+				return false;
+			}
+		}
+
+
+		checkUploadedExt = function(objName, seq, div) {
+			var ext = objName.split('.').pop().toLowerCase();
+			var extArray = eval("extArray" + div);
+			
+			if(extArray.indexOf(ext) == -1) {
+				alert("허용된 확장자가 아닙니다.");
+//				$("#file"+seq).val("");
+				return false;
+			}
+		}
+
+
+		checkUploadedEachFileSize = function(obj, seq, allowedEachFileSize) {
+
+			if(obj.size > allowedEachFileSize){
+				alert("각 첨부 파일 사이즈는 "+kbToMb(allowedEachFileSize)+"MB 이내로 등록 가능합니다.");
+				$("#file"+seq).val("");
+				return false;
+			}
+		}
+
+
+		checkUploadedTotalFileSize = function(seq, totalSize, allowedTotalFileSize) {
+			if(totalSize > allowedTotalFileSize){
+				alert("전체 용량은 "+kbToMb(allowedTotalFileSize)+"M를 넘을 수 없습니다.");
+				$("#file"+seq).val("");
+				return false;
+			}
+		}
+		/* file validiation e */
+		
+		upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType) {
+
+			//			objName 과 seq 는 jsp 내에서 유일 하여야 함.
+			//			memberProfileImage: 1
+			//			memberImage: 2
+			//			memberFile : 3
+
+			//			uiType: 1 => 이미지형
+			//			uiType: 2 => 파일형
+			//			uiType: 3 => 프로필형
+
+			var files = $("#" + objName + "")[0].files;
+			var filePreview = $("#" + objName + "Preview");
+			var numbering = [];
+			var maxNumber = 0;
+
+			if (uiType == 1) {
+				var uploadedFilesCount = document.querySelectorAll("#"
+						+ objName + "Preview > div > img").length;
+				var tagIds = document.querySelectorAll("#" + objName
+						+ "Preview > div");
+
+				for (var i = 0; i < tagIds.length; i++) {
+					var tagId = tagIds[i].getAttribute("id").split("_");
+					numbering.push(tagId[2]);
+				}
+
+				if (uploadedFilesCount > 0) {
+					numbering.sort();
+					maxNumber = parseInt(numbering[numbering.length - 1])
+							+ parseInt(1);
+				}
+			} else if (uiType == 2) {
+				var uploadedFilesCount = document.querySelectorAll("#"
+						+ objName + "Preview > li").length;
+				var tagIds = document.querySelectorAll("#" + objName
+						+ "Preview > li");
+
+				for (var i = 0; i < tagIds.length; i++) {
+					var tagId = tagIds[i].getAttribute("id").split("_");
+					numbering.push(tagId[2]);
+				}
+
+				if (uploadedFilesCount > 0) {
+					numbering.sort();
+					maxNumber = parseInt(numbering[numbering.length - 1])
+							+ parseInt(1);
+				}
+			} else {
+				// by pass
+			}
+
+			$("#" + objName + "MaxNumber").val(maxNumber);
+
+			var totalFileSize = 0;
+			var filesCount = files.length;
+			var filesArray = [];
+
+			allowedMaxTotalFileNumber = allowedMaxTotalFileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : allowedMaxTotalFileNumber;
+			allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
+			allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
+
+			if (checkUploadedTotalFileNumber(files, allowedMaxTotalFileNumber,
+					filesCount, uploadedFilesCount) == false) {
+				return false;
+			}
+
+			for (var i = 0; i < filesCount; i++) {
+				if (checkUploadedExt(files[i].name, seq, allowedExtdiv) == false) {
+					return false;
+				}
+				if (checkUploadedEachFileSize(files[i], seq,
+						allowedEachFileSize) == false) {
+					return false;
+				}
+
+				totalFileSize += files[i].size;
+
+				filesArray.push(files[i]);
+			}
+
+			if (checkUploadedTotalFileSize(seq, totalFileSize,
+					allowedTotalFileSize) == false) {
+				return false;
+			}
+
+			if (uiType == 1) {
+				for (var i = 0; i < filesArray.length; i++) {
+					var file = filesArray[i];
+
+					var picReader = new FileReader();
+					picReader.addEventListener("load", addEventListenerCustom(
+							objName, seq, i, file, filePreview, maxNumber));
+					picReader.readAsDataURL(file);
+				}
+			} else if (uiType == 2) {
+				for (var i = 0; i < filesCount; i++) {
+					addUploadLi(objName, seq, i,
+							$("#" + objName + "")[0].files[i].name,
+							filePreview, maxNumber);
+				}
+			} else if (uiType == 3) {
+				var fileReader = new FileReader();
+				fileReader.onload = function() {
+					$("#uploadImgProfilePreview")
+							.attr("src", fileReader.result); /* #-> */
+				}
+				fileReader.readAsDataURL($("#" + objName + "")[0].files[0]);
+			} else {
+				return false;
+			}
+			return false;
+		}
+		
+		/* fileUpload s 221019 */
+		addEventListenerCustom = function (objName, type, i, file, filePreview, maxNumber) { 
+		return function(event) {
+			var imageFile = event.target;
+			var sort = parseInt(maxNumber) + i;
+
+			var divImage = "";
+			divImage += '<div id="imgDiv_'+type+'_'+ sort +'" style="display: inline-block; height: 95px;">';
+			divImage += '	<img src="'+ imageFile.result +'" class="rounded" width= "85px" height="85px">';
+			divImage += '	<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv(0,' + type +','+ sort +')">X</span></div>';
+			divImage += '</div> ';
+			
+			filePreview.append(divImage);
+	    };
+	}
+	
+	
+	delImgDiv = function(objName, type, sort, deleteSeq, pathFile) {
+		
+		$("#imgDiv_"+type+"_"+sort).remove();
+		
+		var objDeleteSeq = $('input[name='+ objName +'DeleteSeq]');
+		var objDeletePathFile = $('input[name='+ objName +'DeletePathFile]');
+
+		if(objDeleteSeq.val() == "") {
+			objDeleteSeq.val(deleteSeq);
+		} else {
+			objDeleteSeq.val(objDeleteSeq.val() + "," + deleteSeq);
+		}
+		
+		if(objDeletePathFile.val() == "") {
+			objDeletePathFile.val(pathFile);
+		} else {
+			objDeletePathFile.val(objDeletePathFile.val() + "," + pathFile);
+		}
+	}
+	
+	
+	addUploadLi = function (objName, type, i, name, filePreview, maxNumber){
+
+		var sort = parseInt(maxNumber) + i;
+		
+		var li ="";
+		li += '<input type="hidden" id="'+ objName +'Process_'+type+'_'+ sort +'" name="'+ objName +'Process" value="1">';
+		li += '<input type="hidden" id="'+ objName +'Sort_'+type+'_'+ sort +'" name="'+ objName +'Sort" value="'+ sort +'">';
+		li += '<li id="li_'+type+'_'+sort+'" class="list-group-item d-flex justify-content-between align-items-center">';
+		li += name;
+		li +='<span class="badge bg-danger rounded-pill" onClick="delLi(0,'+ type +','+ sort +')"><i class="fa-solid fa-x" style="cursor: pointer;"></i></span>';
+		li +='</li>';
+		
+		filePreview.append(li);
+	}
+	
+	
+	delLi = function(objName, type, sort, deleteSeq, pathFile) {
+		
+		$("#li_"+type+"_"+sort).remove();
+
+		var objDeleteSeq = $('input[name='+ objName +'DeleteSeq]');
+		var objDeletePathFile = $('input[name='+ objName +'DeletePathFile]');
+
+		if(objDeleteSeq.val() == "") {
+			objDeleteSeq.val(deleteSeq);
+		} else {
+			objDeleteSeq.val(objDeleteSeq.val() + "," + deleteSeq);
+		}
+		
+		if(objDeletePathFile.val() == "") {
+			objDeletePathFile.val(pathFile);
+		} else {
+			objDeletePathFile.val(objDeletePathFile.val() + "," + pathFile);
+		}
+	}
+	
+	openViewer = function (type, sort) {
+		$("#modalImgViewer").modal("show");
+	}
+		/* fileUpload e 221019 */
+		
+		
+		
+		
+		
+
 		/* fileUpload s 221018 */
-		$(function() {
-			//드래그 앤 드롭
+/*		 $(function() {
+		//드래그 앤 드롭
 			$(".sortable").sortable();
-			
-			
+
 			//이미지 등록
-			$("#memberUploadedImage")
+			$("#uploadImg")
 					.change(
-							function(e) {
+							function(objName, type, i, name, filePreview, maxNumber) {
 								//div 내용 비워주기
 								/* $('#Preview').empty(); */
 
-								var files = e.target.files;
+/*								var files = e.target.files;
 								var arr = Array.prototype.slice.call(files);
-								
+
 								//업로드 가능 파일인지 체크
 								for (var i = 0; i < files.length; i++) {
 									if (!checkExtension(files[i].name,
@@ -660,20 +945,21 @@
 
 									if (fileSize >= maxSize) {
 										alert('이미지 크기가 초과되었습니다.');
-										$("#productUploadedImage").val(""); //파일 초기화
+										$("#uploadImg").val(""); //파일 초기화
 										return false;
 									}
 
 									if (regex.test(fileName)) {
 										alert('확장자명을 확인해주세요.');
-										$("#productUploadedImage").val(""); //파일 초기화
+										$("#uploadImg").val(""); //파일 초기화
 										return false;
 									}
 									return true;
 								}
 
 								function preview(arr) {
-									arr.forEach(function(f) {
+									arr
+											.forEach(function(f) {
 												//파일명이 길면 파일명...으로 처리
 												/*
 												var fileName = f.name;
@@ -681,24 +967,26 @@
 												    fileName = fileName.substring(0,7)+"...";
 												}
 												 */
-												 console.log(arr);
-												 
-												 console
-
+												 /*												console.log(arr);
 												//div에 이미지 추가
-												var str = '<li class="ui-state-default" id="imgChild">';
+												var str = '';
 												//str += '<span>'+fileName+'</span><br>';
-												
+
 												//이미지 파일 미리보기
 												if (f.type.match('image.*')) {
 													//파일을 읽기 위한 FileReader객체 생성
 													var reader = new FileReader();
-													reader.onload = function(e) {
+													reader.onload = function(objName, type, i, name, filePreview, maxNumber) {
 														//파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+														var sort = parseInt(maxNumber) + i;
+														str += '<li id="li_'+type+'_'+sort+'" class="ui-state-default">';
+														str += '<input type="hidden" id="'+ objName +'Process_'+type+'_'+ sort +'" name="'+ objName +'Process" value="1">';
+														str += '<input type="hidden" id="'+ objName +'Sort_'+type+'_'+ sort +'" name="'+ objName +'Sort" value="'+ sort +'">';
 														str += '<img src="'+ e.target.result +'" value="' + f.name + '" width=100 height=100>';
 														str += '<button type="button" class="btn" id="delImg">x</button>';
 														str += '</li>';
-														$(str).appendTo('#Preview');
+														filePreview.append(li);
+														//$(str).appendTo('#Preview');
 													}
 													reader.readAsDataURL(f);
 												} else {
@@ -707,14 +995,14 @@
 													str += '<img src="/resources/img/fileImg.png" title="'+f.name+'" width=60 height=60 />';
 													$(str).appendTo('#Preview');
 													 */
-												}
+/*													}
 											})
 								}
 							})
 
 			//이미지 삭제
-			$(document).on("click", "#delImg", function() {
-		 		$("#imgChild").remove();
+		$(document).on("click", "#delImg", function() {
+				$("#imgChild").remove();
 			});
 
 			//전체 이미지 리셋
@@ -722,9 +1010,8 @@
 				$('#Preview').empty();
 			});
 
-		});
+		}); */
 		/* fileUpload e 221018 */
-		
 	</script>
 
 </body>
