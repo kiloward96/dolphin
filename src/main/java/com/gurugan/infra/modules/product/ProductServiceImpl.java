@@ -1,5 +1,6 @@
 package com.gurugan.infra.modules.product;
 
+
 import java.io.File;
 import java.util.List;
 import java.util.UUID;
@@ -36,8 +37,9 @@ public class ProductServiceImpl implements ProductService {
 				String nowString = UtilDateTime.nowString();
 				String product =dto.getPDseq() + "_" + dto.getPDcategory();
 				String pathDate = nowString.substring(0,4) + "/" + nowString.substring(5,7) + "/" + nowString.substring(8,10); 
-				String path = Constants.UPLOAD_PATH_PREFIX + pathModule + "/" + pathDate + "/" + product;
-				String pathForView = Constants.UPLOAD_PATH_PREFIX_FOR_VIEW + pathModule + "/" + pathDate + "/" + product;
+				String path = Constants.UPLOAD_PATH_PREFIX + "/" + pathModule + "/" + pathDate + "/" + product + "/";
+				// String path = "D:\\factory\\ws_sts_4151\\dolphin\\src\\main\\webapp\\resources\\uploaded" + "\\" + pathModule + "\\" + pathDate + "\\" + product + "\\";
+				String pathForView = Constants.UPLOAD_PATH_PREFIX_FOR_VIEW + "/" + pathModule + "/" + pathDate + "/" + product + "/";
 				
 				File uploadPath = new File(path);
 				
@@ -46,7 +48,11 @@ public class ProductServiceImpl implements ProductService {
 				} else {
 					// by pass
 				}
-				  
+				
+				System.out.println(uploadPath);
+				System.out.println(path);
+				System.out.println(path + uuidFileName);
+				
 				multipartFiles[i].transferTo(new File(path + uuidFileName));
 				
 				dto.setPath(pathForView);
@@ -66,6 +72,37 @@ public class ProductServiceImpl implements ProductService {
 		}
 	}
 	
+	
+	@Override
+	public void deleteFiles(String[] deleteSeq, String[] deletePathFile, Product dto, String tableName) throws Exception{
+		
+		for (int i=0; i<deleteSeq.length; i++) {
+			File file = new File(Constants.UPLOAD_PATH_PREFIX_EXTERNAL + deletePathFile[i]);
+            boolean result = file.delete();
+            
+            if(result) {
+            	dto.setSeq(deleteSeq[i]);
+            	dto.setTableName(tableName);
+            	dao.deleteUploaded(dto);
+            }
+		}
+	}
+	
+	
+	@Override
+	public void ueleteFiles(String[] deleteSeq, String[] deletePathFile, Product dto, String tableName) throws Exception{
+		
+		for (int i=0; i<deleteSeq.length; i++) {
+//			File file = new File(Constants.UPLOAD_PATH_PREFIX_EXTERNAL + deletePathFile[i]);
+//			boolean result = file.delete();
+			
+//			if(result) {
+				dto.setSeq(deleteSeq[i]);
+				dto.setTableName(tableName);
+				dao.ueleteUploaded(dto);
+//			}
+		}
+	}
 	
 	// select
 	@Override
@@ -92,7 +129,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public int insert(Product dto) throws Exception {
-		dao.insert(dto);
+			dao.insert(dto);
 			uploadFiles(dto.getUploadImg(), dto, "productUploaded", 2, dto.getUploadImgMaxNumber());
 		return 1;
 	}
@@ -103,7 +140,6 @@ public class ProductServiceImpl implements ProductService {
 	//	deleteFiles(dto.getUploadImgDeleteSeq(), dto.getUploadImgDeletePathFile(), dto, "infrMemberUploaded");
 		System.out.println(dto.getUploadImg());
 		System.out.println(dto.getUploadImg());
-		System.out.println(dto.getUploadImgMaxNumber());
 		uploadFiles(dto.getUploadImg(), dto, "productUploaded", 2, dto.getUploadImgMaxNumber());
 		return 1;
 	}
