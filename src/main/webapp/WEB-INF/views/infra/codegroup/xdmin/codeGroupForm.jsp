@@ -380,7 +380,7 @@
 
 					<div class="card">
 						<div class="card-body">
-							<form method="post" id="form" name="form">
+							<form method="get" id="form" name="form">
 								<h5 class="card-title fw-bold">코드그룹 등록</h5>
 								<div class="row mt-3 mb-3">
 									<div class="col">
