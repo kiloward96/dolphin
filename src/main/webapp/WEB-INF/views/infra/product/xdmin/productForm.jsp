@@ -499,10 +499,20 @@
 								</div>
 								<div class="row mt-3 mb-3">
 									<div class="col">
-										<div class="m-auto">
-											<label for="inputId" class="form-label">설명</label>
-											<textarea class="form-control" rows="3" id="formGroupExampleInput"></textarea>
-										</div>
+										<%-- <div class="m-auto">
+											<label for="inputId" class="form-label">이미지</label>
+											<c:forEach items="${imgList}" var="imgList" varStatus="status">
+												<input type="hidden" id="<c:out value="${uuidName }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0" />
+												<input type="hidden" id="<c:out value="${uuidName }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq" />
+												<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile" />
+												<div id="imgDiv_<c:out value="${imgList.type }"/>_<c:out value="${imgList.sort }"/>" style="display: inline-block; height: 95px;">
+													<img src="<c:out value="${imgList.path }"/><c:out value="${imgList.uuidName }"/>" class="rounded" width="85px" height="85px" style="cursor: pointer;" onClick="openViewer(<c:out value="${imgList.type }"/>, <c:out value="${imgList. sort }"/>);">
+													<div style="position: relative; top: -85px; left: 5px">
+														<span style="color: red; cursor: pointer;" onClick="delImgDiv('<c:out value="${imgList.originalName }"/>', <c:out value="${imgList.type }"/>,<c:out value="${imgList.sort }"/>, <c:out value="${imgList.seq }"/>, '<c:out value="${imgList.path }"/><c:out value="${imgList.uuidName }"/>')">X</span>
+													</div>
+												</div>
+											</c:forEach>
+										</div> --%>
 									</div>
 									<div class="col"></div>
 								</div>

@@ -55,15 +55,16 @@
 		SELECT 
 			seq
 			,type
-			,defaultNy
+			,defaultYn
 			,sort
 			,path
 			,originalName
 			,uuidName
+			,pseq
 		FROM dolphin.productUploaded
 		WHERE 1=1
 			AND delYn = 0
-			AND pseq = #{PDSeq}
+			AND pseq = #{PDseq}
 		ORDER BY
 			type, sort
 	</select>

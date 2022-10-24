@@ -36,6 +36,11 @@ public class ProductDao {
 		return list;
 	}
 	
+	public List<Product> selectListUploaded(ProductVo vo) {
+		List<Product> imgList = sqlSession.selectList(namespace + ".selectListUploaded", vo);
+		return imgList;
+	}
+	
 	public int insert(Product dto) {
 		int result = sqlSession.insert(namespace + ".insert", dto);
 		System.out.println("dao result: " + result);

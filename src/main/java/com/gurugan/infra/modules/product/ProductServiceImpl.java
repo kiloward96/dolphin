@@ -52,8 +52,11 @@ public class ProductServiceImpl implements ProductService {
 				System.out.println(uploadPath);
 				System.out.println(path);
 				System.out.println(path + uuidFileName);
-				
-				multipartFiles[i].transferTo(new File(path + uuidFileName));
+				try {
+					multipartFiles[i].transferTo(new File(path + uuidFileName));
+				} catch(IllegalStateException e) {
+					e.printStackTrace();
+				}
 				
 				dto.setPath(pathForView);
 				dto.setOriginalName(fileName);
@@ -125,7 +128,15 @@ public class ProductServiceImpl implements ProductService {
 		return dao.selectProductOption(vo);
 	}
 	
+	@Override
+	public List<Product> selectListUploaded(ProductVo vo) throws Exception {
+		return dao.selectListUploaded(vo);
+	}
+	
+	
 	// insert, update
+
+
 
 	@Override
 	public int insert(Product dto) throws Exception {
@@ -137,9 +148,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int update(Product dto) throws Exception {
 		dao.update(dto);
-	//	deleteFiles(dto.getUploadImgDeleteSeq(), dto.getUploadImgDeletePathFile(), dto, "infrMemberUploaded");
-		System.out.println(dto.getUploadImg());
-		System.out.println(dto.getUploadImg());
+		deleteFiles(dto.getUploadImgDeleteSeq(), dto.getUploadImgDeletePathFile(), dto, "productUploaded");
 		uploadFiles(dto.getUploadImg(), dto, "productUploaded", 2, dto.getUploadImgMaxNumber());
 		return 1;
 	}

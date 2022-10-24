@@ -37,8 +37,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 		System.out.println("test : " + vo.getRowNumToShow());
 		Product result = service.selectOne(vo);
 		List<Product> Option = service.selectProductOption(vo);
+		List<Product> imgList = service.selectListUploaded(vo);
 		model.addAttribute("item", result);
 		model.addAttribute("option", Option);
+		model.addAttribute("imgList", imgList);
 		
 		return "infra/product/xdmin/productForm";
 		
