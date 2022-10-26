@@ -24,7 +24,7 @@ public class CodeController {
 	}
 
 	@RequestMapping(value = "codeList")
-	public String codeGroupList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
+	public String codeList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 		setSearchAndPagin(vo);
 		vo.setParamsPaging(service.selectOneCount(vo)); 
 		System.out.println("sh vo value: " + vo.getShValue() + "| sh vo value2: " + vo.getShValue2());
