@@ -9,7 +9,7 @@
 	<resultMap id="resultMapObj" type="com.gurugan.infra.modules.member.Member"></resultMap>
 
 	<select id="selectList" resultMap="resultMapObj">
-	<!-- <include refid="Base.selectListUpperForMysql"/> -->
+	<include refid="Base.selectListUpperForMysql"/>
 		SELECT
 			MB.seq AS MBseq
 			,MB.id AS MBid
@@ -26,7 +26,7 @@
 			AND MB.delYn = 0
 		ORDER BY
 			MB.seq DESC
-<!-- 		<include refid="Base.selectListLowerForMysql" /> -->
+		<include refid="Base.selectListLowerForMysql" />
 	</select>
 	
 	<select id="selectOne" resultMap="resultMapObj">
@@ -60,7 +60,6 @@
 			,password
 			,name
 			,gender
-			,dob
 			,mobile
 			,email
 			,regDate
@@ -71,7 +70,6 @@
 			,#{MBpassword}
 			,#{MBname}
 			,#{MBgender}
-			,#{MBdob}
 			,#{MBmobile}
 			,#{MBemail}
 			,NOW()

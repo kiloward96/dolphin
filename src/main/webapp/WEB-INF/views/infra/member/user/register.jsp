@@ -173,8 +173,8 @@ $(function() {
 												<div class="col-md-5"><label><span id="idLabel"> *GENDER </span> <input type="text" id="MBgender" name="MBgender"> </label></div>
 
 												<!-- birthday -->
-												<div class="col-md-5"><label> *BIRTHDAY <input type="text" id="MBdob" name="MBdob">
-												</label></div>
+												<!-- <div class="col-md-5"><label> *BIRTHDAY <input type="date" id="MBdob" name="MBdob">
+												</label></div> -->
 											</div>
 											<div class="row">
 												<div class="col-md-5"><label> *EMAIL ADDRESS <input type="text" id="MBemail" name="MBemail">

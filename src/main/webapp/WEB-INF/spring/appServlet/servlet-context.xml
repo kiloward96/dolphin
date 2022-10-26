@@ -45,9 +45,10 @@
 			<mapping path="/codeGroup/**"/>
 			<mapping path="/member/memberList"/>
 			<mapping path="/member/memberForm"/>
+			<mapping path="/product/**"/>
 			<beans:bean id="AuthLoginSessionInterception" class="com.gurugan.infra.common.interceptor.AuthLoginSessionInterception"/>
 		</interceptor>
-	</interceptors>	-->
+	</interceptors>	 -->
 	<!-- session interceptor e 2022.03.13 for logincheck -->
 	
 		<!-- fileUpload s 2022.03.30 --> 

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -33,14 +32,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 	}
 	
 	@RequestMapping(value = "productForm")
-	public String productForm(@ModelAttribute ("vo") ProductVo vo, Model model) throws Exception {
+	public String productForm(@ModelAttribute ("vo") ProductVo vo, Model model, RedirectAttributes redirectAttributes) throws Exception {
 		System.out.println("test : " + vo.getRowNumToShow());
-		Product result = service.selectOne(vo);
 		List<Product> Option = service.selectProductOption(vo);
 		List<Product> imgList = service.selectListUploaded(vo);
-		model.addAttribute("item", result);
 		model.addAttribute("option", Option);
 		model.addAttribute("imgList", imgList);
+		Product result = service.selectOne(vo);
+		model.addAttribute("item", result);
+		redirectAttributes.addFlashAttribute("vo", vo);
 		
 		return "infra/product/xdmin/productForm";
 		
@@ -48,28 +48,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 	
 	@RequestMapping(value = "productInst")
 	public String productInst(ProductVo vo, Product dto, RedirectAttributes redirectAttributes) throws Exception {
-		service.insert(dto);
-		System.out.println("Controller result: " + service.insert(dto));
-		
-		
 		vo.setPDseq(dto.getPDseq());
+		int result = service.insert(dto);
+		System.out.println("Controller Insert result : " + result);
 		redirectAttributes.addFlashAttribute("vo", vo);
 		
 		return "redirect:/product/productForm";
 	}
 	
-	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "productUpdt", method = RequestMethod.POST)
+	@RequestMapping(value = "productUpdt")
 	public String productUpdt(ProductVo vo, Product dto, RedirectAttributes redirectAttributes) throws Exception {
 		
-		/*
-		 * for (int i = 0; i<dto.getUploadImgDeleteSeq().length; i++) {
-		 * System.out.println(dto.getUploadImgDeleteSeq()[i]); }
-		 */
-		service.update(dto);
-		System.out.println("Controller Update result : " + service.update(dto));
-		System.out.println(dto.getUploadImg());
+		int result = service.update(dto);
 		vo.setPDseq(dto.getPDseq());
+		System.out.println("Controller Update result : " + result);
+		System.out.println(dto.getUploadImg());
 		redirectAttributes.addFlashAttribute("vo", vo);
 		
 		

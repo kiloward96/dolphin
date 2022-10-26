@@ -60,7 +60,7 @@
 	
 	
 	<update id="ueleteUploaded">
-		UPDATE ${tableName} SET delNy = 1
+		UPDATE ${tableName} SET delYn = 1
 		WHERE 1=1
 			AND seq = #{seq}
 	</update>
