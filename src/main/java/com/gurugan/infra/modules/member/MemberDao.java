@@ -53,7 +53,10 @@ public class MemberDao {
 
 	public Member selectOneLogin(Member dto) {
 		return sqlSession.selectOne(namespace + ".selectOneLogin", dto);
-
+	}
+	
+	public int selectOneCount(MemberVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
 
 //	uploaded

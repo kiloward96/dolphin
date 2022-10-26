@@ -26,7 +26,7 @@
 			AND MB.delYn = 0
 		ORDER BY
 			MB.seq DESC
-		<include refid="Base.selectListLowerForMysql" />
+	<include refid="Base.selectListLowerForMysql" />
 	</select>
 	
 	<select id="selectOne" resultMap="resultMapObj">
@@ -52,6 +52,34 @@
 			</choose>
 		ORDER BY
 			MB.seq DESC
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+			FROM member MB
+		WHERE 1=1
+	  <!--   <choose>
+				<when test="shDelYn == 2">AND CC.delYn IS NOT NULL</when>
+				<when test="shDelYn != null and !shDelYn.equals('')">AND CC.delYn = #{shDelYn}</when>
+				<otherwise></otherwise>
+	    </choose>
+	    <choose>
+				<when test="shDate == 1">AND CC.regDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+				<when test="shDate == 2">AND CC.modDate BETWEEN #{shStartDate} AND #{shEndDate}</when>
+				<otherwise></otherwise>
+		</choose>
+		<choose>
+			<when test="shOption == 1">AND CC.seq = #{shValue}</when>
+			<when test="shOption == 2">AND CC.seqChar LIKE CONCAT ('%',#{shValue},'%')</when>
+			<when test="shOption == 3">AND CC.codeName LIKE CONCAT ('%',#{shValue},'%') OR CC.codeNameEng LIKE CONCAT ('%',#{shValue},'%')</when>
+			<otherwise></otherwise>
+		</choose>
+		<choose>
+			<when test="shOption2 == 1">OR CC.seq = #{shValue2}</when>
+			<when test="shOption2 == 2">OR CC.seqChar LIKE CONCAT ('%',#{shValue2},'%')</when>
+			<when test="shOption2 == 3">OR CC.codeName LIKE CONCAT ('%',#{shValue2},'%')  OR CC.codeNameEng LIKE CONCAT ('%',#{shValue},'%')</when>
+			<otherwise></otherwise>
+		</choose> -->
 	</select>
 	
 	<insert id="insert">

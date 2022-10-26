@@ -66,15 +66,15 @@
 			<h1>사용자 관리</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+					<li class="breadcrumb-item"><a href="/dashBoard">Home</a></li>
 					<li class="breadcrumb-item active">사용자 목록</li>
-					<li class="breadcrumb-item"><a href="codelist.html">사용자 관리</a></li>
+					<li class="breadcrumb-item">사용자 관리</li>
 				</ol>
 			</nav>
 		</div>
 		<!-- End Page Title -->
 		<section class="section">
-			<form id="formList" name="formList" method="post">
+			<form id="formList" name="formList" method="get">
 				<input type="hidden" name="MBseq">
 				<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 				<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
@@ -125,57 +125,57 @@
 											</div>
 										</div>
 										<div class="row">
-											<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('2')}" />
-											<table class="table table-light table-hover text-center" id="userList">
-												<thead>
-													<tr class="table">
-														<th scope="col"><input class="form-check-input" type="checkbox" name="flexCheck" onclick="selectAll(this);"></th>
-														<th scope="col">No</th>
-														<th scope="col">권한</th>
-														<th scope="col">이름</th>
-														<th scope="col">ID</th>
-														<th scope="col">성별</th>
-														<th scope="col">생년월일</th>
-														<th scope="col">Email</th>
-														<th scope="col">mobile</th>
-														<th scope="col">가입일</th>
-														<th scope="col">탈퇴여부</th>
-													</tr>
-												</thead>
-												<tbody>
-													<c:choose>
-														<c:when test="${fn:length(list) eq 0}">
-															<tr>
-																<td class="text-center" colspan="11">데이터가 없습니다.</td>
-															</tr>
-														</c:when>
-														<c:otherwise>
-															<c:forEach items="${list}" var="list" varStatus="status">
-																<tr style="cursor: pointer;" onclick="javascript:goForm(<c:out value="${list.MBseq }"/>)">
-																	<th scope="col" onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></th>
-																	<th scope="col"><c:out value="${list.MBseq}" /></th>
-																	<td><c:out value="${list.MBgrade}" /></td>
-																	<td><c:out value="${list.MBname}" /></td>
-																	<td><c:out value="${list.MBid}" /></td>
-																	<%-- <td><c:out value="${list.MBgender}"/></td> --%>
-																	<td><c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
-																			<c:if test="${list.MBgender eq listGender.CCseq}">
-																				<c:out value="${listGender.CCcodeName }" />
-																			</c:if>
-																		</c:forEach></td>
-																	<td><fmt:formatDate value="${list.MBdob}" pattern="yyyy-MM-dd" /></td>
-																	<td><c:out value="${list.MBemail}" /></td>
-																	<td><c:out value="${list.MBmobile}" /></td>
-																	<td><fmt:formatDate value="${list.MBregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-																	<td><c:out value="${list.MBdelYn}" /></td>
-																	<br>
-																</tr>
-															</c:forEach>
-														</c:otherwise>
-													</c:choose>
-												</tbody>
-											</table>
+											<span>Total : <c:out value="${vo.totalRows}" /></span>
 										</div>
+
+										<table class="table table-light table-hover text-center" id="userList">
+											<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('2')}" />
+											<thead>
+												<tr class="table">
+													<th scope="col"><input class="form-check-input" type="checkbox" name="flexCheck" onclick="selectAll(this);"></th>
+													<th scope="col">No</th>
+													<th scope="col">권한</th>
+													<th scope="col">이름</th>
+													<th scope="col">ID</th>
+													<th scope="col">성별</th>
+													<th scope="col">생년월일</th>
+													<th scope="col">Email</th>
+													<th scope="col">mobile</th>
+													<th scope="col">가입일</th>
+													<th scope="col">탈퇴여부</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:choose>
+													<c:when test="${fn:length(list) eq 0}">
+														<tr>
+															<td class="text-center" colspan="10">데이터가 없습니다.</td>
+														</tr>
+													</c:when>
+													<c:otherwise>
+														<c:forEach items="${list}" var="list" varStatus="status">
+															<tr style="cursor: pointer;" onclick="javascript:goForm(<c:out value="${list.MBseq }"/>)">
+																<th scope="col" onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></th>
+																<th scope="col"><c:out value="${list.MBseq}" /></th>
+																<td><c:out value="${list.MBgrade}" /></td>
+																<td><c:out value="${list.MBname}" /></td>
+																<td><c:out value="${list.MBid}" /></td>
+																<td><c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+																		<c:if test="${list.MBgender eq listGender.CCseq}">
+																			<c:out value="${listGender.CCcodeName }" />
+																		</c:if>
+																	</c:forEach></td>
+																<td><fmt:formatDate value="${list.MBdob}" pattern="yyyy-MM-dd" /></td>
+																<td><c:out value="${list.MBemail}" /></td>
+																<td><c:out value="${list.MBmobile}" /></td>
+																<td><fmt:formatDate value="${list.MBregDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+																<td><c:out value="${list.MBdelYn}" /></td>
+															</tr>
+														</c:forEach>
+													</c:otherwise>
+												</c:choose>
+											</tbody>
+										</table>
 									</div>
 
 									<!-- pagination s -->
@@ -223,6 +223,12 @@
 						</div>
 					</div>
 				</div>
+			</form>
+			<form name="formVo" id="formVo" method="post">
+				<!-- *Vo.jsp s -->
+				<%@include file="memberVo.jsp"%>
+				<!-- #-> -->
+				<!-- *Vo.jsp e -->
 			</form>
 		</section>
 

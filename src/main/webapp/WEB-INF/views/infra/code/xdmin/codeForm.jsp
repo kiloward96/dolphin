@@ -64,8 +64,8 @@
 			<h1>코드 관리</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-					<li class="breadcrumb-item"><a onclick="location.href='/code/codeList'">코드 목록</a></li>
+					<li class="breadcrumb-item"><a href="/dashBoard">Home</a></li>
+					<li class="breadcrumb-item"><a href="/code/codeList">코드 목록</a></li>
 					<li class="breadcrumb-item active">코드 관리</li>
 				</ol>
 			</nav>

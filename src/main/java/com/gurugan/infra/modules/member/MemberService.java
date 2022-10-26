@@ -20,4 +20,6 @@ public interface MemberService {
 	
 	public Member selectOneLogin(Member dto) throws Exception;
 	
+	public int selectOneCount(MemberVo vo) throws Exception;
+	
 }

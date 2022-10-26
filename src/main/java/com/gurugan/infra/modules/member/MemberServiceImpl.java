@@ -24,6 +24,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public int selectOneCount(MemberVo vo) throws Exception {
+		return dao.selectOneCount(vo);
+	}
+
+	@Override
 	public int insert(Member dto) throws Exception {
 			dto.setMBpassword(UtilSecurity.encryptSha256(dto.getMBpassword()));
 			dto.setMBname(dto.getMBname());

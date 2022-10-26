@@ -64,7 +64,7 @@
 			<h1>코드그룹 관리</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+					<li class="breadcrumb-item"><a href="/dashBoard">Home</a></li>
 					<li class="breadcrumb-item"><a href="/codeGroup/codeGroupList">코드그룹 목록</a></li>
 					<li class="breadcrumb-item active">코드그룹 관리</li>
 				</ol>

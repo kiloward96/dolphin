@@ -66,7 +66,7 @@
 			<h1>제품 관리</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="/code/codeList">Home</a></li>
+					<li class="breadcrumb-item"><a href="/dashBoard">Home</a></li>
 					<li class="breadcrumb-item active">제품 목록</li>
 					<li class="breadcrumb-item">제품 관리</a></li>
 				</ol>
@@ -74,7 +74,7 @@
 		</div>
 		<!-- End Page Title -->
 		<section class="section">
-			<form id="formList" name="formList" method="post">
+			<form id="formList" name="formList" method="get">
 				<input type="hidden" name="PDseq">
 				<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 				<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
@@ -117,7 +117,9 @@
 											</div>
 										</div>
 										<div class="row">
-											<%-- <c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('2')}" /> --%>
+											<div>
+												<span>Total : <c:out value="${vo.totalRows}" /></span>
+											</div>
 											<table class="table table-light table-hover text-center" id="userList">
 												<thead>
 													<tr class="table">
@@ -141,14 +143,12 @@
 														<c:otherwise>
 															<c:forEach items="${list}" var="list" varStatus="status">
 																<tr style="cursor: pointer;" onclick="javascript:goForm(<c:out value="${list.PDseq }"/>)">
-																	<th scope="col" onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></th>
-																	<th scope="col"><c:out value="${list.PDseq}" /></th>
+																	<td onclick="event.cancelBubble=true"><input class="form-check-input" type="checkbox" name="flexCheck"></td>
+																	<td><c:out value="${list.PDseq}" /></td>
 																	<td><c:out value="${list.PDproductName}" /></td>
-																	<%-- <td><c:out value="${list.PDprice}" /></td> --%>
-																	<td><fmt:formatNumber value="${list.PDprice}" pattern="#,###"/>원</td>
+																	<td><fmt:formatNumber value="${list.PDprice}" pattern="#,###" />원</td>
 																	<td><c:out value="${list.PDstock}" /></td>
 																	<td><c:out value="${list.PDcategory}" /></td>
-																	<%-- <td><c:out value="${list.MBgender}"/></td> --%>
 																	<td><fmt:formatDate value="${list.PDuploadDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 																	<td><c:out value="${list.PDstatus}" /></td>
 																	<td><c:out value="${list.PDdelYn}" /></td>

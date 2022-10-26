@@ -66,7 +66,7 @@
 			<h1>코드 관리</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+					<li class="breadcrumb-item"><a href="/dashBoard">Home</a></li>
 					<li class="breadcrumb-item"><a href="/product/productList">제품 목록</a></li>
 					<li class="breadcrumb-item active">제품 관리</li>
 				</ol>
@@ -212,7 +212,7 @@
 											</c:if>
 										</c:forEach> 
 									</div>--%>
-									<%--   <div class="filebox clearfix">
+								<%--   <div class="filebox clearfix">
 										<div class="inputFile">
 											<c:set var="type" value="2" />
 											<c:set var="name" value="uploadImg" />
@@ -227,7 +227,7 @@
 										<ul id="Preview" class="sortable">
 										</ul>
 									</div> 
-								</div>--%> 
+								</div>--%>
 								<div class="row mt-3 mb-3">
 									<div class="col">
 										<%-- <div class="m-auto">
@@ -248,41 +248,49 @@
 									<div class="col"></div>
 								</div>
 								<div class="row mt-3 mb-3">
-									<div class="col">
-										<div class="m-auto">
-											<table>
-												<label for="inputId" class="form-label"><h5 class="card-title fw-bold">제품 옵션</h5></label>
-												<tr>
-													<th>옵션 순번</th>
-													<th>옵션 구분</th>
-													<th>옵션 명</th>
-													<th>옵션 삭제 여부</th>
+									<div class="m-auto">
+										<label for="opList" class="form-label"><h5 class="card-title fw-bold">제품 옵션</h5></label>
+										<table class="table table-hover text-center" id="opList">
+											<thead>
+												<tr class="table">
+													<th class="col-2">옵션 순번</th>
+													<th class="col-4">옵션 구분</th>
+													<th class="col-4">옵션 명</th>
+													<th class="col">옵션 삭제 여부</th>
 												</tr>
-												<%-- <c:when test="${fn:length(list) eq 0}">
-																<td class="text-center" colspan="11">데이터가 없습니다.</td>
-												</c:when> --%>
+											</thead>
+											<tbody>
 												<c:set var="listCodeOptionMain" value="${CodeServiceImpl.selectListCachedCode('3')}" />
-												<c:forEach items="${option}" var="option" varStatus="status">
-													<tr>
-														<input type="hidden" id="POproductSeq" name="POproductSeq" value="<c:out value="${option.POproductSeq }"/>">
-														<td><input type="text" class="form-control" id="POseq" name="POseq" readonly value="<c:out value="${option.POseq }"/>"></td>
-														<td><select class="form-select" id="POoptionMain" name="POoptionMain">
-																<%-- <input type="text" class="form-control" id="POoptionmain" name="POoptionmain" value="<c:out value="${option.POoptionmain }"/>"> --%>
-																<option value="" <c:if test="${option.POoptionMain eq 0}">selected</c:if>>옵션 선택</option>
-																<c:forEach items="${listCodeOptionMain}" var="listOptionMain" varStatus="statusOptionMain">
-																	<option value="<c:out value="${option.POoptionMain }"/>" <c:if test="${listOptionMain.CCseq eq option.POoptionMain }"> selected </c:if>>
-																		<c:out value="${listOptionMain.CCcodeName }" /></option>
-																</c:forEach>
-															</select></td>
-														<td><input type="text" class="form-control" id="POoptionSub" name="POoptionSub" value="<c:out value="${option.POoptionSub }"/>"></td>
-														<td><select class="form-select" name="POdelYn">
-																<option value="0" <c:if test="${option.POdelYn eq 0}">selected</c:if>>No</option>
-																<option value="1" <c:if test="${option.POdelYn eq 1}">selected</c:if>>Yes</option>
-															</select></td>
-													</tr>
-												</c:forEach>
-											</table>
-										</div>
+												<c:choose>
+													<c:when test="${fn:length(option) eq 0}">
+														<tr>
+															<td class="text-center" colspan="4">데이터가 없습니다.</td>
+														</tr>
+													</c:when>
+													<c:otherwise>
+														<c:forEach items="${option}" var="option" varStatus="status">
+															<tr>
+																<input type="hidden" id="POproductSeq" name="POproductSeq" value="<c:out value="${option.POproductSeq }"/>">
+																<td><input type="text" class="form-control" id="POseq" name="POseq" readonly value="<c:out value="${option.POseq }"/>"></td>
+																<td><select class="form-select" id="POoptionMain" name="POoptionMain">
+																		<%-- <input type="text" class="form-control" id="POoptionmain" name="POoptionmain" value="<c:out value="${option.POoptionmain }"/>"> --%>
+																		<option value="" <c:if test="${option.POoptionMain eq 0}">selected</c:if>>옵션 선택</option>
+																		<c:forEach items="${listCodeOptionMain}" var="listOptionMain" varStatus="statusOptionMain">
+																			<option value="<c:out value="${option.POoptionMain }"/>" <c:if test="${listOptionMain.CCseq eq option.POoptionMain }"> selected </c:if>>
+																				<c:out value="${listOptionMain.CCcodeName }" /></option>
+																		</c:forEach>
+																	</select></td>
+																<td><input type="text" class="form-control" id="POoptionSub" name="POoptionSub" value="<c:out value="${option.POoptionSub }"/>"></td>
+																<td><select class="form-select" name="POdelYn">
+																		<option value="0" <c:if test="${option.POdelYn eq 0}">selected</c:if>>No</option>
+																		<option value="1" <c:if test="${option.POdelYn eq 1}">selected</c:if>>Yes</option>
+																	</select></td>
+															</tr>
+														</c:forEach>
+													</c:otherwise>
+												</c:choose>
+											<tbody>
+										</table>
 									</div>
 								</div>
 								<div class="row mt-3 mb-3">
@@ -305,7 +313,7 @@
 					</form>
 					<form name="formVo" id="formVo" method="post">
 						<!-- *Vo.jsp s -->
-						
+
 						<%@include file="productVo.jsp"%>
 						<!-- #-> -->
 						<!-- *Vo.jsp e -->

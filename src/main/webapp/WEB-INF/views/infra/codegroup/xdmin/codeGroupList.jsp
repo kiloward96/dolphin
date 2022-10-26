@@ -126,14 +126,14 @@
 			<h1>코드그룹 관리</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+					<li class="breadcrumb-item"><a href="/dashBoard">Home</a></li>
 					<li class="breadcrumb-item active">코드그룹 목록</li>
 					<li class="breadcrumb-item"><a href="page-code-list.html">코드 그룹 관리</a></li>
 				</ol>
 			</nav>
 		</div>
 		<!-- End Page Title -->
-		<form method="get" id="formList" name="formList">
+		<form id="formList" name="formList" method="get">
 
 			<section class="section">
 				<div class="row">
@@ -199,7 +199,6 @@
 
 									<div>
 										<span>Total : <c:out value="${vo.totalRows}" /></span>
-										</tr>
 									</div>
 									<div class="row">
 										<table class="table table-light table-hover" id="codeGroupList">

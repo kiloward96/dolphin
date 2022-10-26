@@ -48,8 +48,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 	
 	@RequestMapping(value = "productInst")
 	public String productInst(ProductVo vo, Product dto, RedirectAttributes redirectAttributes) throws Exception {
-		vo.setPDseq(dto.getPDseq());
 		int result = service.insert(dto);
+		vo.setPDseq(dto.getPDseq());
 		System.out.println("Controller Insert result : " + result);
 		redirectAttributes.addFlashAttribute("vo", vo);
 		

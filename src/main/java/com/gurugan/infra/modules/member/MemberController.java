@@ -27,10 +27,14 @@ import com.gurugan.infra.common.constants.Constants;
 		@Autowired
 		private MemberServiceImpl service;
 		
+		public void setSearchAndPagin(MemberVo vo) throws Exception {
+			vo.setShDelYn(vo.getShDelYn() == null ? 0 : vo.getShDelYn());
+		}
+		
 		@RequestMapping(value = "memberList")
 		public String MemberList(@ModelAttribute ("vo") MemberVo vo, Model model) throws Exception {
-			System.out.println("test1: " + vo.getMBseq());
-			System.out.println("test2: " + vo.getMBid());
+			setSearchAndPagin(vo);
+			vo.setParamsPaging(service.selectOneCount(vo));
 			List<Member> list = service.selectList(vo);
 			model.addAttribute("list", list);
 
@@ -42,9 +46,6 @@ import com.gurugan.infra.common.constants.Constants;
 			
 			Member result = service.selectOne(vo);
 			model.addAttribute("item", result);
-			System.out.println("test1: " + vo.getMBseq());
-			System.out.println("test2: " + vo.getMBid());
-			
 			return "infra/member/xdmin/memberForm";
 		}
 		
@@ -58,9 +59,9 @@ import com.gurugan.infra.common.constants.Constants;
 					System.out.println(dto.getAddressZipcode());
 					service.insertAddress(dto);
 				}
-			service.insert(dto);
+			int result = service.insert(dto);
 			redirectAttributes.addFlashAttribute("vo", vo);
-			System.out.println("Controller result: " + service.insert(dto));
+			System.out.println("Controller result: " + result);
 			
 //				return "redirect:/member/memberForm";
 
