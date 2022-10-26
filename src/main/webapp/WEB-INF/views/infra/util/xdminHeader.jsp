@@ -7,21 +7,6 @@
 		</div>
 		<!-- End Logo -->
 
-		<div class="search-bar">
-			<div class="search-form d-flex align-items-center" method="POST" action="#">
-			</div>
-		</div>
-
-		<div class="search-bar">
-			<div class="search-form d-flex align-items-center" method="POST" action="#">
-				<input type="text" name="query" placeholder="Search" title="Enter search keyword">
-				<button type="submit" title="Search">
-					<i class="bi bi-search"></i>
-				</button>
-			</div>
-		</div>
-		<!-- End Search Bar -->
-
 		<nav class="header-nav ms-auto">
 			<ul class="d-flex align-items-center">
 
@@ -29,12 +14,12 @@
 				</a></li>
 				<!-- End Search Icon-->
 
-				<li class="nav-item dropdown pe-3"><a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown"> <img src="/resources/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+				<li class="nav-item dropdown pe-3"><a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown"> <img src="/resources/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> <span class="d-none d-md-block dropdown-toggle ps-2"><c:out value="${sessName }" /></span>
 				</a> <!-- End Profile Iamge Icon -->
 
 					<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 						<li class="dropdown-header">
-							<h6>Kevin Anderson</h6> <span>Web Designer</span>
+							<h6><c:out value="${sessName }" /></h6> <span><c:out value="${sessId }" /></span>
 						</li>
 						<li>
 							<hr class="dropdown-divider">
@@ -42,23 +27,12 @@
 
 						<li><a class="dropdown-item d-flex align-items-center" href="users-profile.html"> <i class="bi bi-person"></i> <span>My Profile</span>
 						</a></li>
+				
 						<li>
 							<hr class="dropdown-divider">
 						</li>
 
-						<li><a class="dropdown-item d-flex align-items-center" href="users-profile.html"> <i class="bi bi-gear"></i> <span>Account Settings</span>
-						</a></li>
-						<li>
-							<hr class="dropdown-divider">
-						</li>
-
-						<li><a class="dropdown-item d-flex align-items-center" href="pages-faq.html"> <i class="bi bi-question-circle"></i> <span>Need Help?</span>
-						</a></li>
-						<li>
-							<hr class="dropdown-divider">
-						</li>
-
-						<li><a class="dropdown-item d-flex align-items-center" href="#"> <i class="bi bi-box-arrow-right"></i> <span>Sign Out</span>
+						<li><a class="dropdown-item d-flex align-items-center" href="#" id="btnLogout"> <i class="bi bi-box-arrow-right"></i> <span>Sign Out</span>
 						</a></li>
 
 					</ul> <!-- End Profile Dropdown Items --></li>
@@ -69,3 +43,30 @@
 		<!-- End Icons Navigation -->
 
 	</header>
+	
+	<script type="text/javascript">
+			var URL_LOGIN_FORM = "/login";
+
+			$("#btnLogout").on(
+					"click",
+					function() {
+						$.ajax({
+							async : true,
+							cache : false,
+							type : "post",
+							url : "/member/logoutProc",
+							data : {},
+							success : function(response) {
+								if (response.rt == "success") {
+									location.href = URL_LOGIN_FORM;
+								} else {
+									// by pass
+								}
+							},
+							error : function(jqXHR, textStatus, errorThrown) {
+								alert("ajaxUpdate " + jqXHR.textStatus + " : "
+										+ jqXHR.errorThrown);
+							}
+						});
+					});
+		</script>
