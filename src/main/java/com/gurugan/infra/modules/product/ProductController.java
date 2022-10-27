@@ -34,9 +34,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 	@RequestMapping(value = "productForm")
 	public String productForm(@ModelAttribute ("vo") ProductVo vo, Model model, RedirectAttributes redirectAttributes) throws Exception {
 		System.out.println("test : " + vo.getRowNumToShow());
-		List<Product> Option = service.selectProductOption(vo);
+		List<Product> option = service.selectProductOption(vo);
 		List<Product> imgList = service.selectListUploaded(vo);
-		model.addAttribute("option", Option);
+		model.addAttribute("option", option);
 		model.addAttribute("imgList", imgList);
 		Product result = service.selectOne(vo);
 		model.addAttribute("item", result);

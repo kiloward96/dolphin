@@ -58,6 +58,7 @@
 		SELECT COUNT(*)
 			FROM member MB
 		WHERE 1=1
+			AND MB.delYn = 0
 	  <!--   <choose>
 				<when test="shDelYn == 2">AND CC.delYn IS NOT NULL</when>
 				<when test="shDelYn != null and !shDelYn.equals('')">AND CC.delYn = #{shDelYn}</when>

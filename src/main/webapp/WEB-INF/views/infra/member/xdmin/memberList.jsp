@@ -149,7 +149,7 @@
 												<c:choose>
 													<c:when test="${fn:length(list) eq 0}">
 														<tr>
-															<td class="text-center" colspan="10">데이터가 없습니다.</td>
+															<td class="text-center" colspan="11">데이터가 없습니다.</td>
 														</tr>
 													</c:when>
 													<c:otherwise>
