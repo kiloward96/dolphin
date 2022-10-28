@@ -37,9 +37,19 @@ public class ProductServiceImpl implements ProductService {
 				String nowString = UtilDateTime.nowString();
 				String product =dto.getPDseq() + "_" + dto.getPDcategory();
 				String pathDate = nowString.substring(0,4) + "/" + nowString.substring(5,7) + "/" + nowString.substring(8,10); 
-				String path = Constants.UPLOAD_PATH_PREFIX + "/" + pathModule + "/" + pathDate + "/" + product + "/";
+				String osPath;
 				// String path = "D:\\factory\\ws_sts_4151\\dolphin\\src\\main\\webapp\\resources\\uploaded" + "\\" + pathModule + "\\" + pathDate + "\\" + product + "\\";
 				String pathForView = Constants.UPLOAD_PATH_PREFIX_FOR_VIEW + "/" + pathModule + "/" + pathDate + "/" + product + "/";
+				
+				String os = System.getProperty("os.name").toLowerCase();
+				
+				if (os.contains("win")) {
+					osPath = Constants.UPLOAD_PATH_PREFIX_WINDOW;
+				}
+				else {
+					osPath = Constants.UPLOAD_PATH_PREFIX_LINUX;
+				}
+				String path = osPath + "/" + pathModule + "/" + pathDate + "/" + product + "/";
 				
 				File uploadPath = new File(path);
 				

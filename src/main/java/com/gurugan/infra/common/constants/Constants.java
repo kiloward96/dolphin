@@ -23,7 +23,8 @@ public class Constants {
 	public static final long PASSWOPRD_CHANGE_INTERVAL = 90;
 
 	public static final String UPLOAD_PATH_PREFIX_EXTERNAL = "D://factory/ws_sts_4151/dolphin/src/main/webapp";
-	public static final String UPLOAD_PATH_PREFIX = "D://factory/ws_sts_4151/dolphin/src/main/webapp/resources/uploaded";
+	public static final String UPLOAD_PATH_PREFIX_WINDOW = "D://factory/ws_sts_4151/dolphin/src/main/webapp/resources/uploaded";
+	public static final String UPLOAD_PATH_PREFIX_LINUX = "/factory/workspace/dolphin/resources/uploaded";
 	public static final String UPLOAD_PATH_PREFIX_FOR_VIEW = "/resources/uploaded";
 
 	public static final int COOKIE_MAXAGE = 60 * 60 * 24 * 30; // 초 * 분 * 시간 * 일 : 30day
