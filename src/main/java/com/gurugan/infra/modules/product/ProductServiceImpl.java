@@ -56,7 +56,7 @@ public class ProductServiceImpl implements ProductService {
 				if (!uploadPath.exists()) {
 					uploadPath.mkdir();
 				} else {
-					// by pass
+					// by pass 
 				}
 				
 				System.out.println(uploadPath);
