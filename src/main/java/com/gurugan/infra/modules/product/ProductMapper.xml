@@ -72,7 +72,7 @@
 	
 	<!-- ProductOption 조회 -->
 	<select id="selectProductOption" resultMap="resultMapPD">
-		SELECT
+		SELECT DISTINCT
 			PO.seq AS POseq
 		    ,PO.optionMain AS POoptionMain
 		    ,PO.optionSub AS POoptionSub

@@ -271,24 +271,57 @@
 														<c:forEach items="${option}" var="option" varStatus="status">
 															<tr>
 																<input type="hidden" id="POproductSeq" name="POproductSeq" value="<c:out value="${option.POproductSeq }"/>">
-																<td><input type="text" class="form-control" id="POseq" name="POseq" readonly value="<c:out value="${option.POseq }"/>"></td>
-																<td><select class="form-select" id="POoptionMain" name="POoptionMain">
+																<td>
+																	<input type="text" class="form-control" id="POseq" name="POseq" readonly value="<c:out value="${option.POseq }"/>">
+																</td>
+																<td>
+																	<select class="form-select" id="POoptionMain" name="POoptionMain">
 																		<%-- <input type="text" class="form-control" id="POoptionmain" name="POoptionmain" value="<c:out value="${option.POoptionmain }"/>"> --%>
 																		<option value="" <c:if test="${option.POoptionMain eq 0}">selected</c:if>>옵션 선택</option>
 																		<c:forEach items="${listCodeOptionMain}" var="listOptionMain" varStatus="statusOptionMain">
 																			<option value="<c:out value="${option.POoptionMain }"/>" <c:if test="${listOptionMain.CCseq eq option.POoptionMain }"> selected </c:if>>
 																				<c:out value="${listOptionMain.CCcodeName }" /></option>
 																		</c:forEach>
-																	</select></td>
-																<td><input type="text" class="form-control" id="POoptionSub" name="POoptionSub" value="<c:out value="${option.POoptionSub }"/>"></td>
-																<td><select class="form-select" name="POdelYn">
+																	</select>
+																</td>
+																<td>
+																	<input type="text" class="form-control" id="POoptionSub" name="POoptionSub" value="<c:out value="${option.POoptionSub }"/>">
+																</td>
+																<td>
+																	<select class="form-select" name="POdelYn">
 																		<option value="0" <c:if test="${option.POdelYn eq 0}">selected</c:if>>No</option>
 																		<option value="1" <c:if test="${option.POdelYn eq 1}">selected</c:if>>Yes</option>
-																	</select></td>
+																	</select>
+																</td>
 															</tr>
 														</c:forEach>
 													</c:otherwise>
 												</c:choose>
+												<tr>
+													<td>
+														<input type="text" class="form-control" id="POseq" name="POseq" readonly placeholder="자동생성">
+													</td>
+													<td>
+														<select class="form-select" id="POoptionMain" name="POoptionMain">
+																<option value="">옵션 선택</option>
+															<c:forEach items="${option}" var="option" varStatus="status">
+																<c:forEach items="${listCodeOptionMain}" var="listOptionMain" varStatus="statusOptionMain">
+																	<option value="<c:out value="${option.POoptionMain }"/>" <c:if test="${listOptionMain.CCseq eq option.POoptionMain }"> selected </c:if>>
+																		<c:out value="${listOptionMain.CCcodeName }" /></option>
+																</c:forEach>
+															</c:forEach>
+														</select>
+													</td>
+													<td>
+														<input type="text" class="form-control" id="POoptionSub" name="POoptionSub" placeholder="세부 옵션을 입력하세요">
+													</td>
+													<td>
+														<select class="form-select" name="POdelYn">
+															<option value="0">No</option>
+															<option value="1">Yes</option>
+														</select>
+													</td>
+												</tr>
 											<tbody>
 										</table>
 									</div>
