@@ -60,7 +60,8 @@ public class MemberDao {
 	}
 
 //	uploaded
-	public int insertUploaded(Member dto) {
-		return sqlSession.insert("Base" + ".insertUploaded", dto);
-	}
+	/*
+	 * public int insertUploaded(Member dto) { return sqlSession.insert("Base" +
+	 * ".insertUploaded", dto); }
+	 */
 }
