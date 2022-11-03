@@ -60,7 +60,6 @@ public class HomeController {
 
 	}
 	
-	@SuppressWarnings({ "unchecked", "unused" })
 	@RequestMapping(value = "/test/publicWeather1")
 	public String publicWeather1List(Model model) throws Exception {
 		

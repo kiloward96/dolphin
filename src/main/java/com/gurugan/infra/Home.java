@@ -43,6 +43,8 @@ public class Home {
 	public int sky;
 	public int rhm;
 	public int pop;
+	
+	
 	public Object getResponse() {
 		return response;
 	}
