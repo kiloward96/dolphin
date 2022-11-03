@@ -280,14 +280,17 @@
 											</div>
 										</div>
 										<div class="col d-flex justify-content-end">
-											<button type="button" class="btn btn-outline-success m-2" id="btnForm" name="btnForm">
-												<i class="fa-solid fa-circle-plus"></i> 추가
+											<button type="button" class="btn btn-outline-success m-2" id="btnExcel" name="btnExcel">
+												<i class="fa-regular fa-file-excel"></i> Excel
 											</button>
-											<button type="button" class="btn btn-outline-danger m-2">
-												<i class="fa-solid fa-pen-to-square"></i> 삭제
+											<button type="button" class="btn btn-outline-primary m-2" id="btnForm" name="btnForm">
+												<i class="fa-solid fa-circle-plus"></i> 추가
 											</button>
 											<button type="button" class="btn btn-outline-warning m-2">
 												<i class="fa-solid fa-pen-to-square"></i> 수정
+											</button>
+											<button type="button" class="btn btn-outline-danger m-2">
+												<i class="fa-solid fa-pen-to-square"></i> 삭제
 											</button>
 										</div>
 									</div>
@@ -330,6 +333,7 @@
 	<script type="text/javascript">
 		var goUrlForm = "/codeGroup/codeGroupForm";
 		var goUrlList = "/codeGroup/codeGroupList"; /* #-> */
+		var excelUri = "/codeGroup/excelDownload"; /* #-> */
 		var form = $("form[name=formList]");
 
 		goList = function(thisPage) {
@@ -348,6 +352,10 @@
 			seq.val(keyValue);
 			form.attr("action", goUrlForm).submit();
 		}
+		
+		$("#btnExcel").click(function() {
+			form.attr("action", excelUri).submit();
+		});
 	</script>
 
 
