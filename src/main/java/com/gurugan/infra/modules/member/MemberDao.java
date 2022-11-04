@@ -58,6 +58,14 @@ public class MemberDao {
 	public int selectOneCount(MemberVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
+	
+	public Member snsLoginCheck(Member dto) {
+		return sqlSession.selectOne(namespace + ".snsLoginCheck", dto);
+	}
+	
+	public int kakaoInst(Member dto) {
+		return sqlSession.insert(namespace + ".kakaoInst", dto);
+	}
 
 //	uploaded
 	/*

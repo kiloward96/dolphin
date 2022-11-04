@@ -26,6 +26,11 @@ public class Member extends Base{
 	// cache 관련 dto
 	private String CCGseq;
 	
+	// kakao token dto
+	private String snsId;
+	private String token;
+	private Integer snsYn;
+	
 	// Session 처리 관련 dto
 	private String sessSeq;
 	private String sessName;
@@ -244,6 +249,24 @@ public class Member extends Base{
 	}
 	public void setMemberUploadedFile(MultipartFile[] memberUploadedFile) {
 		this.memberUploadedFile = memberUploadedFile;
+	}
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
+	public String getSnsId() {
+		return snsId;
+	}
+	public void setSnsId(String snsId) {
+		this.snsId = snsId;
+	}
+	public Integer getSnsYn() {
+		return snsYn;
+	}
+	public void setSnsYn(Integer snsYn) {
+		this.snsYn = snsYn;
 	}
 	
 	

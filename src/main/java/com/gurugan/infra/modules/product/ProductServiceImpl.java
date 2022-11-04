@@ -151,17 +151,29 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int insert(Product dto) throws Exception {
 		dao.insert(dto);
-		dao.insertOption(dto);
+		// dao.insertOption(dto);
 		uploadFiles(dto.getUploadImg(), dto, "productUploaded", 2, dto.getUploadImgMaxNumber());
 		return 1;
 	}
+
+	@Override
+	public int insertOption(Product dto) throws Exception {
+		return dao.insertOption(dto);
+	}
+
+
+	@Override
+	public int updateOption(Product dto) throws Exception {
+		return dao.updateOption(dto);
+	}
+
 
 	@Override
 	public int update(Product dto) throws Exception {
 		ueleteFiles(dto.getUploadImgDeleteSeq(), dto.getUploadImgDeletePathFile(), dto, "productUploaded");
 		uploadFiles(dto.getUploadImg(), dto, "productUploaded", 2, dto.getUploadImgMaxNumber());
 		dao.update(dto);
-		dao.updateOption(dto);
+		//dao.updateOption(dto);
 		return 1;
 	}
 	

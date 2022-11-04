@@ -304,12 +304,9 @@
 													<td>
 														<select class="form-select" id="POoptionMain" name="POoptionMain">
 																<option value="">옵션 선택</option>
-															<c:forEach items="${option}" var="option" varStatus="status">
 																<c:forEach items="${listCodeOptionMain}" var="listOptionMain" varStatus="statusOptionMain">
-																	<option value="<c:out value="${option.POoptionMain }"/>" <c:if test="${listOptionMain.CCseq eq option.POoptionMain }"> selected </c:if>>
-																		<c:out value="${listOptionMain.CCcodeName }" /></option>
+																	<option value="<c:out value="${listOptionMain.CCseq }"/>"><c:out value="${listOptionMain.CCcodeName }" /></option>
 																</c:forEach>
-															</c:forEach>
 														</select>
 													</td>
 													<td>

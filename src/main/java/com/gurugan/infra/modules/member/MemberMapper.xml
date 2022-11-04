@@ -187,6 +187,42 @@
 			<if test="MBpassword != null and !MBpassword.equals('')">AND MB.password = #{MBpassword}</if>
 	</select>
 	
+	<select id="snsLoginCheck" resultMap="resultMapObj">
+		SELECT
+			MB.seq AS MBseq
+		    ,MB.id AS MBid
+		    ,MB.name AS MBname
+		    ,MB.email AS MBemail
+		    ,MB.token AS token
+		    ,MB.snsYn AS snsYn
+		FROM member MB
+			WHERE 1=1
+		AND MB.email = #{MBemail}
+		AND MB.name = #{MBname}
+		AND snsId = #{snsId}
+	</select>
+	
+	<insert id="kakaoInst">
+		INSERT INTO member (
+			id
+		    ,name
+		    ,email
+		    ,snsYn
+		    ,dob
+		    ,regDate
+		    ,snsId
+		) VALUES (
+			#{snsId}
+		    ,#{MBname}
+		    ,#{MBemail}
+		    ,#{snsYn} 
+		    ,NOW()
+		    ,#{snsId}
+		)
+		<selectKey resultType="String" keyProperty="MBseq" order="AFTER">
+		SELECT last_insert_id()
+		</selectKey>
+	</insert>
 	
 
 </mapper>	

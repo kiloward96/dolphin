@@ -180,9 +180,9 @@
 											<li><a href="#."><i class="fa fa-facebook"></i>FACEBOOK</a></li>
 											<li><a href="#."><i class="fa fa-google"></i>GOOGLE</a></li>
 											<li><a href="#."><i class="fa fa-n"></i>NAVER</a></li>
-											<li><a href="#."><i class="fa fa-comment"></i>KAKAO</a></li>
+											<li><a id="kakaoBtn" name="kakaoBtn" href="#."><i class="fa fa-comment"></i>KAKAO</a></li>
 										</ul>
-										<%-- sessSeq:
+										sessSeq:
 									<c:out value="${sessSeq }" />
 									<br>
 									sessName:
@@ -192,9 +192,18 @@
 									<c:out value="${sessId }" />
 									<br>
 									sessGrade:
-									<c:out value="${sessGrade }" /> --%>
+									<c:out value="${sessGrade }" />
 										<br>
 									</div>
+									<input type="hidden" name="MBname" />
+									<input type="hidden" name="snsId" />
+									<input type="hidden" name="MBmobile" />
+									<input type="hidden" name="MBemail" />
+									<input type="hidden" name="MBgender" />
+									<!-- <input type="hidden" name="MBdob" /> -->
+									<input type="hidden" name="snsImg" />
+									<input type="hidden" name="token" />
+									<input type="hidden" name="snsYn" />
 								</form>
 							</div>
 						</div>
@@ -244,9 +253,11 @@
 
 	<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
 	<script type="text/javascript" src="/resources/rs-plugin/js/jquery.tp.t.min.js"></script>
-	<script type="text/javascript" src="/resources/rs-plugin/js/jquery.tp.min.js"></script>
 	<script src="/resources/js/main.js"></script>
-	<script src="/resources/js/main.js"></script>
+
+	<!-- kakao login s -->
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<!-- kakao login e -->
 
 	<script type="text/javascript">
 		const URL_INDEX_MAIN = "/";
@@ -314,6 +325,85 @@
 						}
 					});
 				});
+		
+		
+		
+		Kakao.init('7f53c37dc4421e758709ee1ef160750b'); // test 용
+    	console.log(Kakao.isInitialized());
+/*     	Kakao.init('ec2655da82c3779d622f0aff959060e6');
+    	console.log(Kakao.isInitialized()); */
+    	
+    	$("#kakaoBtn").on("click", function() {
+    		/* Kakao.Auth.authorize({
+   		      redirectUri: 'http://localhost:8080/member/kakaoCallback',
+   		    }); */
+    		
+    		Kakao.Auth.login({
+   		      success: function (response) {
+   		        Kakao.API.request({
+   		          url: '/v2/user/me',
+   		          success: function (response) {
+   		        	  
+   		        	  var accessToken = Kakao.Auth.getAccessToken();
+   		        	  Kakao.Auth.setAccessToken(accessToken);
+
+   		        	  var account = response.kakao_account;
+   		        	  
+   		        	  console.log(response)
+   		        	  console.log("email : " + account.email);
+   		        	  console.log("name : " + account.name);
+   		        	  console.log("nickname : " + account.profile.nickname);
+   		        	  console.log("picture : " + account.profile.thumbnail_image_url);
+   		        	  console.log("picture : " + account.gender);
+   		        	  console.log("picture : " + account.birthday);
+   		        	  console.log("picture : " + account.birthday.substring(0,2) + "-" + account.birthday.substring(2,account.birthday.length));
+
+	  	        	  $("input[name=snsId]").val("kakaoAccount");
+	  	        	  $("input[name=MBname]").val(account.profile.nickname);
+	  	        	  $("input[name=MBmobile]").val(account.profile.phone_number);
+	  	        	  $("input[name=MBemail]").val(account.email);
+	  	        	  //$("input[name=MBdob]").val(account.birthday.substring(0,2) + "-" + account.birthday.substring(2,account.birthday.length));
+	  	        	  $("input[name=snsImg]").val(account.profile.thumbnail_image_url);
+	  	        	  $("input[name=token]").val(accessToken);
+	  	        	  $("input[name=snsYn]").val(1);
+	  	        	  
+	  	        	  if (account.gender === "male") {
+	  	        		  $("input[name=MBgender]").val(4);
+	          		  } else {
+	          			  $("input[name=MBgender]").val(5);
+         			  } 
+	  	        	  
+	  	        	 /*  $("form[name=form]").attr("action", "/member/kakaoLoginProc").submit(); */
+					
+	  	        	  $.ajax({
+						async: true
+						,cache: false
+						,type:"POST"
+						,url: "/member/kakaoLoginProc"
+						,data: {"MBname": $("input[name=MBname]").val(), "snsId": $("input[name=snsId]").val(), "MBmobile": $("input[name=MBmobile]").val(), "MBemail": $("input[name=MBemail]").val(), "MBgender": $("input[name=MBgender]").val(), "MBdob": $("input[name=MBdob]").val(), "snsImg": $("input[name=snsImg]").val(), "token": $("input[name=token]").val(), "snsYn": $("input[name=snsYn]").val()}
+						,success : function(response) {
+							if (response.rt == "fail") {
+								alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
+								return false;
+							} else {
+								window.location.href = "/";
+							}
+						},
+						error : function(jqXHR, status, error) {
+							alert("알 수 없는 에러 [ " + error + " ]");
+						}
+					});
+   		          },
+   		          fail: function (error) {
+   		            console.log(error)
+   		          },
+   		        })
+   		      },
+   		      fail: function (error) {
+   		        console.log(error)
+   		      },
+   		    })
+		});
 	</script>
 </body>
 </html>

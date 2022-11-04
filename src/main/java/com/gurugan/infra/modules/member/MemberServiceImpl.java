@@ -75,6 +75,23 @@ public class MemberServiceImpl implements MemberService {
     	dto.setMBname(dto.getMBname());
 		return dao.selectOneLogin(dto);
 	}
+
+	@Override
+	public Member snsLoginCheck(Member dto) throws Exception {
+
+		return dao.snsLoginCheck(dto);
+	}
+
+	@Override
+	public int kakaoInst(Member dto) throws Exception {
+		System.out.println(dto);
+		System.out.println(dto.getMBname());
+		System.out.println(dto.getMBemail());
+		System.out.println(dto.getToken());
+		return dao.kakaoInst(dto);
+	}
+	
+	
 	
 	
 	

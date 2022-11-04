@@ -19,6 +19,9 @@ public class ProductVo extends BaseVo {
 	private String POproductSeq;
 	private String POdelYn;
 	
+	private Integer shOptionInsert;
+	
+	
 	// getter setter
 	public Integer getShOption() {
 		return shOption;
@@ -85,6 +88,12 @@ public class ProductVo extends BaseVo {
 	}
 	public void setPOdelYn(String pOdelYn) {
 		POdelYn = pOdelYn;
+	}
+	public Integer getShOptionInsert() {
+		return shOptionInsert;
+	}
+	public void setShOptionInsert(Integer shOptionInsert) {
+		this.shOptionInsert = shOptionInsert;
 	}
 	
 }

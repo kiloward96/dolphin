@@ -22,4 +22,7 @@ public interface MemberService {
 	
 	public int selectOneCount(MemberVo vo) throws Exception;
 	
+	public Member snsLoginCheck(Member dto) throws Exception;
+	
+	public int kakaoInst(Member dto) throws Exception;
 }
