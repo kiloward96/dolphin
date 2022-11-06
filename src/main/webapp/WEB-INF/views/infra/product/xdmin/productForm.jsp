@@ -507,6 +507,8 @@
 		}
 		/* file validiation e */
 		
+		
+		/* fileUpload s 221019 */
 		upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType) {
 	
 //		objName 과 seq 는 jsp 내에서 유일 하여야 함.
