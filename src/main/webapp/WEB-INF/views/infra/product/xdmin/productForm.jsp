@@ -599,88 +599,126 @@
 		} else {
 			return false;
 		}
-		return false;
-	}
+			return false;
+		}
+		
+		
+		addEventListenerCustom = function (objName, type, i, file, filePreview, maxNumber) { 
+			return function(event) {
+				var imageFile = event.target;
+				var sort = parseInt(maxNumber) + i;
 	
-	
-	addEventListenerCustom = function (objName, type, i, file, filePreview, maxNumber) { 
-		return function(event) {
-			var imageFile = event.target;
-			var sort = parseInt(maxNumber) + i;
-
-			var divImage = "";
-			divImage += '<div id="imgDiv_'+type+'_'+ sort +'" style="display: inline-block; height: 95px;">';
-			divImage += '	<img src="'+ imageFile.result +'" class="rounded" width= "85px" height="85px">';
-			divImage += '	<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv(0,' + type +','+ sort +')">X</span></div>';
-			divImage += '</div> ';
+				var divImage = "";
+				divImage += '<div id="imgDiv_'+type+'_'+ sort +'" style="display: inline-block; height: 95px;">';
+				divImage += '	<img src="'+ imageFile.result +'" class="rounded" width= "85px" height="85px">';
+				divImage += '	<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv(0,' + type +','+ sort +')">X</span></div>';
+				divImage += '</div> ';
+				
+				filePreview.append(divImage);
+		    };
+		}
+		
+		
+		delImgDiv = function(objName, type, sort, deleteSeq, pathFile) {
 			
-			filePreview.append(divImage);
-	    };
-	}
+			$("#imgDiv_"+type+"_"+sort).remove();
+			
+			var objDeleteSeq = $('input[name='+ objName +'DeleteSeq]');
+			var objDeletePathFile = $('input[name='+ objName +'DeletePathFile]');
 	
-	
-	delImgDiv = function(objName, type, sort, deleteSeq, pathFile) {
-		
-		$("#imgDiv_"+type+"_"+sort).remove();
-		
-		var objDeleteSeq = $('input[name='+ objName +'DeleteSeq]');
-		var objDeletePathFile = $('input[name='+ objName +'DeletePathFile]');
-
-		if(objDeleteSeq.val() == "") {
-			objDeleteSeq.val(deleteSeq);
-		} else {
-			objDeleteSeq.val(objDeleteSeq.val() + "," + deleteSeq);
+			if(objDeleteSeq.val() == "") {
+				objDeleteSeq.val(deleteSeq);
+			} else {
+				objDeleteSeq.val(objDeleteSeq.val() + "," + deleteSeq);
+			}
+			
+			if(objDeletePathFile.val() == "") {
+				objDeletePathFile.val(pathFile);
+			} else {
+				objDeletePathFile.val(objDeletePathFile.val() + "," + pathFile);
+			}
 		}
 		
-		if(objDeletePathFile.val() == "") {
-			objDeletePathFile.val(pathFile);
-		} else {
-			objDeletePathFile.val(objDeletePathFile.val() + "," + pathFile);
-		}
-	}
-	
-	
-	addUploadLi = function (objName, type, i, name, filePreview, maxNumber){
-
-		var sort = parseInt(maxNumber) + i;
 		
-		var li ="";
-		li += '<input type="hidden" id="'+ objName +'Process_'+type+'_'+ sort +'" name="'+ objName +'Process" value="1">';
-		li += '<input type="hidden" id="'+ objName +'Sort_'+type+'_'+ sort +'" name="'+ objName +'Sort" value="'+ sort +'">';
-		li += '<li id="li_'+type+'_'+sort+'" class="list-group-item d-flex justify-content-between align-items-center">';
-		li += name;
-		li +='<span class="badge bg-danger rounded-pill" onClick="delLi(0,'+ type +','+ sort +')"><i class="fa-solid fa-x" style="cursor: pointer;"></i></span>';
-		li +='</li>';
-		
-		filePreview.append(li);
-	}
+		addUploadLi = function (objName, type, i, name, filePreview, maxNumber){
 	
-	
-	delLi = function(objName, type, sort, deleteSeq, pathFile) {
-		
-		$("#li_"+type+"_"+sort).remove();
-
-		var objDeleteSeq = $('input[name='+ objName +'DeleteSeq]');
-		var objDeletePathFile = $('input[name='+ objName +'DeletePathFile]');
-
-		if(objDeleteSeq.val() == "") {
-			objDeleteSeq.val(deleteSeq);
-		} else {
-			objDeleteSeq.val(objDeleteSeq.val() + "," + deleteSeq);
+			var sort = parseInt(maxNumber) + i;
+			
+			var li ="";
+			li += '<input type="hidden" id="'+ objName +'Process_'+type+'_'+ sort +'" name="'+ objName +'Process" value="1">';
+			li += '<input type="hidden" id="'+ objName +'Sort_'+type+'_'+ sort +'" name="'+ objName +'Sort" value="'+ sort +'">';
+			li += '<li id="li_'+type+'_'+sort+'" class="list-group-item d-flex justify-content-between align-items-center">';
+			li += name;
+			li +='<span class="badge bg-danger rounded-pill" onClick="delLi(0,'+ type +','+ sort +')"><i class="fa-solid fa-x" style="cursor: pointer;"></i></span>';
+			li +='</li>';
+			
+			filePreview.append(li);
 		}
 		
-		if(objDeletePathFile.val() == "") {
-			objDeletePathFile.val(pathFile);
-		} else {
-			objDeletePathFile.val(objDeletePathFile.val() + "," + pathFile);
-		}
-	}
+		
+		delLi = function(objName, type, sort, deleteSeq, pathFile) {
+			
+			$("#li_"+type+"_"+sort).remove();
 	
-	openViewer = function (type, sort) {
-		$("#modalImgViewer").modal("show");
-	}
+			var objDeleteSeq = $('input[name='+ objName +'DeleteSeq]');
+			var objDeletePathFile = $('input[name='+ objName +'DeletePathFile]');
+	
+			if(objDeleteSeq.val() == "") {
+				objDeleteSeq.val(deleteSeq);
+			} else {
+				objDeleteSeq.val(objDeleteSeq.val() + "," + deleteSeq);
+			}
+			
+			if(objDeletePathFile.val() == "") {
+				objDeletePathFile.val(pathFile);
+			} else {
+				objDeletePathFile.val(objDeletePathFile.val() + "," + pathFile);
+			}
+		}
+		
+		openViewer = function (type, sort) {
+			$("#modalImgViewer").modal("show");
+		}
 		/* fileUpload e 221019 */
-		
+		$("#btnLogin").on(
+				"click",
+				function() {
+					/* 	if (validation() == false)
+							return false;
+					 */
+					$.ajax({
+						async : true,
+						cache : false,
+						type : "post"
+						/* ,dataType:"json" */
+						,
+						url : "/member/loginProc"
+						/* ,data : $("#formLogin").serialize() */
+						,
+						data : {
+							"MBid" : $("#MBid").val(),
+							"MBpassword" : $("#MBpassword").val(),
+						//							"autoLogin" : $("#autoLogin").is(":checked")
+						},
+						success : function(response) {
+							if (response.rt == "success") {
+								alert("로그인성공")
+								location.href = URL_INDEX_MAIN
+								/* if (response.changePwd == "true") {
+									location.href = URL_CHANGE_PWD_FORM;
+								} else {
+									location.href = URL_INDEX_MAIN;
+								} */
+							} else {
+								alert("회원없음");
+							}
+						},
+						error : function(jqXHR, textStatus, errorThrown) {
+							alert("ajaxUpdate " + jqXHR.textStatus + " : "
+									+ jqXHR.errorThrown);
+						}
+					});
+				});
 		
 
 	</script>

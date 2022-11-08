@@ -64,7 +64,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 		int result = service.update(dto);
 		vo.setPDseq(dto.getPDseq());
 		System.out.println("Controller Update result : " + result);
-		System.out.println(dto.getUploadImg());
 		redirectAttributes.addFlashAttribute("vo", vo);
 		
 		
