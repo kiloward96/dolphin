@@ -71,8 +71,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	public Member selectOneLogin(Member dto) throws Exception {
-		dto.setMBpassword(UtilSecurity.encryptSha256(dto.getMBpassword()));
-    	dto.setMBname(dto.getMBname());
+			dto.setMBpassword(UtilSecurity.encryptSha256(dto.getMBpassword()));
+			dto.setMBname(dto.getMBname());
 		return dao.selectOneLogin(dto);
 	}
 
