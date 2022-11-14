@@ -41,7 +41,7 @@ public class HomeController {
 
 		model.addAttribute("serverTime", formattedDate);
 
-		return "infra/index";
+		return "infra/index"; 
 
 	}
 	
