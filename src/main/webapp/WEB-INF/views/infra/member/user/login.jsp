@@ -179,7 +179,7 @@
 										<ul class="login-with">
 											<li><a href="#."><i class="fa fa-facebook"></i>FACEBOOK</a></li>
 											<li><a href="#."><i class="fa fa-google"></i>GOOGLE</a></li>
-											<li><a href="#."><i class="fa fa-n"></i>NAVER</a></li>
+											<li><a id="naverIdLogin" name="naverIdLogin" href="#."><i class="fa fa-n"></i>NAVER</a></li>
 											<li><a id="kakaoBtn" name="kakaoBtn" href="#."><i class="fa fa-comment"></i>KAKAO</a></li>
 										</ul>
 										sessSeq:
@@ -197,6 +197,7 @@
 									</div>
 									<input type="hidden" name="MBname" />
 									<input type="hidden" name="snsId" />
+									<input type="hidden" name="sns_Id" />
 									<input type="hidden" name="MBmobile" />
 									<input type="hidden" name="MBemail" />
 									<input type="hidden" name="MBgender" />
@@ -258,6 +259,10 @@
 	<!-- kakao login s -->
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<!-- kakao login e -->
+	
+	<!-- naver login s -->
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+	<!-- naver login e -->
 
 	<script type="text/javascript">
 		const URL_INDEX_MAIN = "/";
@@ -314,8 +319,10 @@
 						data : {},
 						success : function(response) {
 							if (response.rt == "success") {
+								window.location.reload();
 								location.href = URL_LOGIN_FORM;
 							} else {
+								localStorage.clear();
 								// by pass
 							}
 						},
@@ -326,6 +333,22 @@
 					});
 				});
 		
+ 		$("#signOutBtn").on("click", function() {
+			$.ajax({
+				type: "POST"
+				,url: "/member/logoutProc"
+				,data: {}
+				,success : function(response) {
+					if (response.rt == "success") {
+						window.location.href = "/";
+					} else {
+						localStorage.clear();
+						window.location.href = "/";
+					}
+				}
+			});
+		});
+		 
 		
 		
 		Kakao.init('7f53c37dc4421e758709ee1ef160750b'); // test 용
@@ -404,6 +427,71 @@
    		      },
    		    })
 		});
+    	
+    	
+    	
+    	/* naver social login s 221115 */
+   		/* var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "b8EhDTV3tvvAE_gRRBoJ",
+				callbackUrl: "http://localhost:8080/userLogin",
+				isPopup: false,
+				loginButton: {color: "green", type: 3, height: 70} 
+			}
+		); */
+   		var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "IYoLK4irvca8GaspZi4Y",
+				callbackUrl: "http://localhost:8080/login",
+				isPopup: false,
+				callbackHandle: true,
+				loginButton: {color: "green", type: 3, height: 70}
+			}
+		);
+
+    	
+    	naverLogin.init();
+    	$("#naverIdLogin").on('click', function () {
+   			naverLogin.getLoginStatus(function (status) {
+   				if (!status) {
+   					naverLogin.authorize();
+   				}
+   				else {
+   					/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+   					setLoginStatus();
+   				}
+   			});
+   		});
+   		
+   		function setLoginStatus() {
+   			
+			if (naverLogin.user.gender == 'M'){
+				$("input[name=MBgender]").val(4);
+			} else {
+				$("input[name=MBgender]").val(5);
+			} 
+			
+			$.ajax({
+				async: true
+				,cache: false
+				,type:"POST"
+				,url: "/member/naverLoginProc"
+				/* ,data: {"MBname": naverLogin.user.name, "snsId": "네이버로그인", "MBmobile": naverLogin.user.mobile, "MBemail": naverLogin.user.email, "MBgender": $("input[name=MBgender]").val(), "MBdob": naverLogin.user.birthyear+"-"+naverLogin.user.birthday, "snsImg": naverLogin.user.profile_image, "sns_id": naverLogin.user.id} */
+				,data: {"MBname": naverLogin.user.name, "snsId": "네이버로그인", "MBmobile": naverLogin.user.mobile, "MBemail": naverLogin.user.email, "MBgender": $("input[name=MBgender]").val(), "snsImg": naverLogin.user.profile_image, "snsYn": $("input[name=snsYn]").val() }
+				,success : function(response) {
+					if (response.rt == "fail") {
+						alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
+						return false;
+					} else {
+						window.location.href = "/";
+					}
+				},
+				error : function(jqXHR, status, error) {
+					alert("알 수 없는 에러 [ " + error + " ]");
+				}
+			});
+   		}
+    	/* naver social login 221115 e */
 	</script>
 </body>
 </html>

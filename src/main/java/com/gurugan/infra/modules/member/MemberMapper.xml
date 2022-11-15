@@ -193,7 +193,6 @@
 		    ,MB.id AS MBid
 		    ,MB.name AS MBname
 		    ,MB.email AS MBemail
-		    ,MB.token AS token
 		    ,MB.snsYn AS snsYn
 		FROM member MB
 			WHERE 1=1
@@ -207,17 +206,16 @@
 			id
 		    ,name
 		    ,email
-		    ,snsYn
-		    ,dob
 		    ,regDate
 		    ,snsId
+		    ,snsYn
 		) VALUES (
 			#{snsId}
 		    ,#{MBname}
 		    ,#{MBemail}
-		    ,#{snsYn} 
 		    ,NOW()
 		    ,#{snsId}
+		    ,1
 		)
 		<selectKey resultType="String" keyProperty="MBseq" order="AFTER">
 		SELECT last_insert_id()
