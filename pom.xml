@@ -237,6 +237,14 @@
 			<version>2.11.0</version>
 		</dependency>
 		<!-- excel download e 2022.06.21 -->
+			<!-- JSONArray 221114 test s 확정 -->
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+			<classifier>jdk15</classifier>
+		</dependency>
+		<!-- JSONArray 221114 test e 확정 -->
 
 	</dependencies>
 	<build>
