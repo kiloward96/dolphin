@@ -153,17 +153,8 @@ import com.gurugan.infra.common.constants.Constants;
 		public Map<String, Object> logoutProc(HttpSession httpSession) throws Exception {
 			Map<String, Object> returnMap = new HashMap<String, Object>();
 			
-			String sns = httpSession.getAttribute("sessSeq").toString();
-			System.out.println("test : " + sns);
-			
-			if (sns != null) {
-			    System.out.println("네이버 로그아웃 왜 안됨?");
-			    httpSession.invalidate();
-			    returnMap.put("rt", "naver");
-			} else {
 			    httpSession.invalidate();
 			    returnMap.put("rt", "success");
-			}
 			return returnMap;
 			
 //			UtilCookie.deleteCookie();

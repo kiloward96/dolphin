@@ -450,17 +450,38 @@
 		);
 
     	
-    	naverLogin.init();
-    	$("#naverIdLogin").on('click', function () {
-   			naverLogin.getLoginStatus(function (status) {
-   				if (!status) {
-   					naverLogin.authorize();
-   				}
-   				else {
+//        naverLogin.init();
+//    	$("#naverIdLogin").on('click', function () {
+//   			naverLogin.getLoginStatus(function (status) {
+//   				if (!status) {
+//   					naverLogin.authorize();
+//   				}
+//   				else {
    					/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
-   					setLoginStatus();
-   				}
-   			});
+//   					setLoginStatus();
+//   				}
+//   			});
+//   		});
+		naverLogin.init();
+   		
+   		$("#naverIdLogin").on("click", function() {
+   			naverLogin.getLoginStatus(function (status) {
+  				if (!status) {
+  					naverLogin.authorize();
+  				} else {
+					setLoginStatus();
+  				}
+  			});
+		})
+   		
+		window.addEventListener('load', function () {
+			if (naverLogin.accessToken != null) { 
+	  			naverLogin.getLoginStatus(function (status) {
+	  				if (status) {
+	  					setLoginStatus();
+	  				}
+  				});
+			}
    		});
    		
    		function setLoginStatus() {
