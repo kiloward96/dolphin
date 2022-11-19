@@ -44,7 +44,7 @@ public class CodeGroupController {
 	//		    : UtilDateTime.add00TimeString(vo.getShDateStart()));
 	//		vo.setShDateEnd(vo.getShDateEnd() == null
 	//		    ? UtilDateTime.nowString()
-	//		    : UtilDateTime.addNowTimeString(vo.getShDateEnd()));
+	//		    : UtilDateTime.addNowTimeString(vo.getShDateEnd())); 
 		}
 	
 	@RequestMapping(value = "codeGroupList")
