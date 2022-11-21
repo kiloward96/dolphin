@@ -80,6 +80,7 @@
 		var excelUri = "/codeGroup/excelDownload"; /* #-> */
 		var form = $("form[name=formList]");
 		
+		var seq = $("input:hidden[name=CCGseq]");
 		goForm = function(keyValue) {
 			/* if(key != 0) seq.val(btoa(key)); */
 			seq.val(keyValue);
@@ -92,7 +93,6 @@
 			setLita();
 		}
 
-		var seq = $("input:hidden[name=CCGseq]");
 
 		$('#btnForm').on("click", function() {
 			goForm(0);
