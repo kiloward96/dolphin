@@ -178,14 +178,20 @@
 			<version>1.16</version>
 		</dependency>
 		<!-- mysql, mariadb log e 2022.02.26 -->
-
+		<!-- ojdbc8 s 2022.06.02 -->
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>21.5.0.0</version>
+		</dependency>
+		<!-- ojdbc8 e 2022.06.02 -->
 		<!-- for ajax s 2022.03.12 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
 			<version>2.13.0</version>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>

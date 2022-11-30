@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public class CodeGroupDao {
 
 	@Inject
-	@Resource(name = "sqlSession")
+	@Resource(name = "sqlSessionOracle")
 	private SqlSession sqlSession;
 
 	private static String namespace = "com.gurugan.infra.modules.codegroup.CodeGroupMapper";
