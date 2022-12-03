@@ -48,7 +48,7 @@ public class CodeGroupController {
 		}
 	
 	@RequestMapping(value = "codeGroupList")
-	public String codeGroupList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
+	public String codeGroupList(@ModelAttribute("vo") CodeGroupVo vo, CodeGroup dto, Model model) throws Exception {
 		setSearchAndPagin(vo);
 		vo.setParamsPaging(service.selectOneCount(vo));
 		System.out.println("controller Result: " + vo);
@@ -57,6 +57,7 @@ public class CodeGroupController {
 		
 		
 		List<CodeGroup> list = service.selectList(vo);
+		//List<CodeGroup> list = service.selectListOra(dto);
 		model.addAttribute("list", list);
 
 		return "infra/codegroup/xdmin/codeGroupList";
@@ -70,11 +71,12 @@ public class CodeGroupController {
 	}
 	
 	@RequestMapping(value = "codeGroupAjaxLita")
-	public String codeGroupAjaxLita(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
+	public String codeGroupAjaxLita(@ModelAttribute("vo") CodeGroupVo vo, CodeGroup dto, Model model) throws Exception {
 		
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		List<CodeGroup> list = service.selectList(vo);
+		
 		model.addAttribute("list", list);
 
 		return "infra/codegroup/xdmin/codeGroupAjaxLita";

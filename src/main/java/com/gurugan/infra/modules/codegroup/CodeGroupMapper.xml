@@ -140,6 +140,10 @@
 			AND CCG.seq = #{CCGseq}
 	</delete>
 	
+	<select id="selectListOra" resultMap="resultMapObj">
+		select * from HR.COMMONCODEGROUP
+	</select>
+	
 <!-- 	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
 		SELECT 
 			seq

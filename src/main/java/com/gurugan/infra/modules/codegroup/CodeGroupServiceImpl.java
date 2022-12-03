@@ -67,6 +67,12 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 		
 	}
 	
+	@Override
+	public List<CodeGroup> selectListOra(CodeGroup dto) throws Exception {
+		List<CodeGroup>list = dao.selectListOra(dto);
+		return list;
+	}
+	
 //	@PostConstruct
 //	public void selectListCachedCodeArrayList() throws Exception {
 //		List<CodeGroup> codeListFromDb = (ArrayList<CodeGroup>) dao.selectListCachedCodeArrayList();

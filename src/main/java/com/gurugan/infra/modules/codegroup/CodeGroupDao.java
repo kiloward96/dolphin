@@ -12,8 +12,12 @@ import org.springframework.stereotype.Repository;
 public class CodeGroupDao {
 
 	@Inject
-	@Resource(name = "sqlSessionOracle")
+	@Resource(name = "sqlSession")
 	private SqlSession sqlSession;
+	
+	@Inject
+	@Resource(name = "sqlSessionOracle")
+	private SqlSession sqlSessionOra;
 
 	private static String namespace = "com.gurugan.infra.modules.codegroup.CodeGroupMapper";
 
@@ -48,5 +52,9 @@ public class CodeGroupDao {
 //	for cache
 	public List<CodeGroup> selectListCachedCodeArrayList(){ 
 		return sqlSession.selectList(namespace + ".selectListCachedCodeArrayList", null); 
+	}
+	
+	public List<CodeGroup> selectListOra(CodeGroup dto) {
+		return sqlSessionOra.selectList(namespace + ".selectListOra", dto);
 	}
 }
